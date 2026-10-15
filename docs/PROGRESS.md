@@ -1,0 +1,160 @@
+# 꼬마 탐험 공부방 개발 기록
+
+최종 목표: kkoma_spec.md v1.1 전체 주요 기능 및 Android APK. 전체 문서(0~13장)를 읽음. 출시 검수와 구현 완료를 구분한다.
+
+최신 후속 검증(2026-10-15): 정적 분석 오류/경고 0, 호스트 테스트 56개 통과. 상세 변경과 재개 지점은 아래 '2026-10-15 후속 작업 결과' 및 `docs/REQUIREMENTS_STATUS.md` 참조. 과거 세션의 41개 결과는 이력이다.
+
+## 작업상황 보고 형식 (사용자 지정, 2026-10-15)
+앞으로 작업상황 보고 요청에는 다음 순서로 답한다.
+1. 전체 작업 대비 진행 정도: 기능 구현과 출시 검증을 구분하고, 진행률은 측정값이 아니면 추정임을 명시한다.
+2. 작업된 내용: 구현 기능과 실제 실행한 테스트 결과, 검증 날짜.
+3. 남은 내용: 미구현·대체 구현·미검증·사용자 결정으로 보류된 항목을 구분한다.
+4. 다음 단계에서 작업할 내용: 우선순위와 기대 결과. 서명 없이 유지한다는 사용자 결정을 준수한다.
+
+## 환경 (2026-10-14)
+- Windows 10, Flutter stable 3.47.7 / Dart 3.13.5, Android SDK 36 / platform 37, JDK 25.0.3. flutter doctor 모두 정상.
+- 기존 Flutter 카운터 템플릿. Riverpod 3.4.3 / go_router 18.0.2. Git 저장소/AGENTS.md 없음.
+- Pixel_Tablet AVD 시작 요청. 실제 Galaxy Tab 미연결, 모델/OS 미확인.
+- 추가: sqflite 2.4.4+1, path_provider 2.1.6, flutter_tts 4.2.5. 설정/진도/메타데이터 SQLite 하나로 통일.
+- 기본: 만 3세, 도움 3회 후 허용, 20분, 자동 읽기 켬. Android TTS 대안; 녹음·발음 전문가 검수 미완료.
+- 기존 앱 ID 유지, 릴리스 서명 제거(기존 키 없음). 배포용 서명 키 임의 생성 금지. 현재 APK는 서명 없는 컴파일 검증용.
+
+## 전체 구현 계획
+각 기능 완료 후 analyze/test 실행, 실패 수정, 회귀 테스트 추가.
+
+## 후속 작업 계획 (2026-10-15)
+- 서명 없이 유지. 키 생성/서명/자동 debug 키를 만들 수 있는 Android 실행은 수행하지 않는다.
+- 코드 대조에서 확인한 문제: 음성 실패에도 듣기 완료 기록, 음성 오류가 화면에 표시되지 않음, 퀴즈 전환 중 힌트/쉬운 경로/다음 입력의 쓰기 경합, 동시 작품 저장의 메타데이터 유실 가능성.
+- 순서: (1) 음성 결과·화면 안내·듣기 기록 수정 및 테스트 (2) 학습/필기 전환 경합 방지 및 저장 실패 회귀 테스트 (3) 작품 메타데이터 직렬 처리·삭제 실패 복구 검증 (4) 전체 analyze/test, 콘텐츠 검사, 서명 없는 APK 재빌드.
+- 완료 기준: 실패한 읽기를 완료로 저장하지 않음, 취소된 이전 재생이 최신 상태를 덮지 않음, 연속 입력에도 저장/화면 일치, 동시 저장 작품 목록 보존, 실패 시 재시도 가능. 녹음 제작·교육 검수·실기기 검증은 별도 남긴다.
+- 환경 재확인: Android emulator-5554는 여전히 offline. 오늘 기기 실행 성공으로 보고하지 않는다.
+
+| 순서 | 기능 / 파일 | 검증 및 완료 기준 | 상태 |
+|---|---|---|---|
+|1|환경·문서 분석|도구/기기 확인|완료, 실기기 제외|
+|2|app, storage, profile, home, parent|설정 복구, 큰 버튼, 보호자 관문|구현·테스트 통과|
+|3|tracing domain/presentation, 획 데이터|방향/부분/취소/연령 판정 테스트|13글자 구현·테스트 통과, 전문가 검수 대기|
+|4|drawing, progress|브러시/지우개/undo/redo/PNG/초안/복구|구현·테스트 통과|
+|5|learning, audio|2~5세 한글/영어/수학, 난이도/읽기|75항목·19퀴즈 구현, TTS 대안|
+|6|story|State Machine, 1화 저장·힌트·도움|구현·테스트 통과|
+|7|별도 Dart 데이터 시즌 12화|연령별 장면/선택/필기/복습/결말|120장면 구현·연령별 완주 테스트 통과|
+|8|보호자/시간/생명주기/콘텐츠 검증|오프라인, 복구, 접근성, 삭제 확인|구현·단위/화면 테스트 통과, 실기기 대기|
+|9|README, integration_test, APK|analyze/test/에뮬레이터/release|서명 없는 릴리스 빌드 성공, 설치·실행 검증 대기|
+
+## 출시 전 남는 검수
+- 사전 녹음 한국어/영어 음원 및 발음 검수. TTS 오프라인 언어팩 확인.
+- 교육 전문가의 연령별 문항/한글 필순 검수.
+- 실제 Galaxy Tab 필기, 성능/메모리, 재부팅/새 설치, 아동 사용성.
+- 배포 앱 ID/서명 확정(직접 작성한 벡터 책/별 아이콘 적용, 릴리스 서명 없음).
+
+## 실행/재개
+flutter pub get → flutter analyze → flutter test → flutter emulators --launch Pixel_Tablet → flutter devices → flutter run -d Android-ID → flutter build apk --release.
+아래에 기능별 실제 결과와 후속 작업을 추가한다.
+
+## 2~5단계 중간 검증
+- 홈/설정/보호자 산술 관문, Notifier/AsyncNotifier + Repository, SQLite 저장 구현.
+- 13개 글자(한글 7 / 영어 3 / 숫자 3)의 획 경로와 필기 판정/시범/취소/재시도 구현.
+- 자유 그림: 6색, 굵기, 지우개, undo/redo, 배경/도장(4~5세), SQLite 초안 자동 저장, 내부 PNG/작품 메타데이터 구현.
+- 학습: 한글 자음/모음/음절/낱말, A~Z/소문자 표시, 1~20 세기, 유형 혼합 퀴즈 및 한 단계 난이도 조정 구현 중.
+- 첫 analyze 통과. 이후 캔버스 drawColor 인자 오류 수정. 현재 async context lint 수정 중.
+- Windows flutter_tester 종료 코드 0xC0000409: 한글 사용자 TEMP 경로 대신 프로젝트 `.tool_tmp`로 TEMP/TMP를 설정하니 테스트 실행 가능.
+- 실행된 필기 테스트: 4개 통과, B 경로 1개 실패(교차 구간에서 가장 가까운 점 투영의 방향 오판). 판정 개선 후 다시 실행할 것.
+- 에뮬레이터는 offline 상태. crashpad_handler 이벤트가 있어 추가 진단 중.
+- 사전 녹음/효과음/배경음악 파일 없음. TTS/텍스트 및 진동 대안, 완료로 주장하지 않음.
+
+## 6~8단계 검증 및 빌드 환경 해결
+- 스토리: 12화 / 기본 120장면. 연령 2/3/4/5별 4/6/8/10장면. 선택 플래그, 9화 세 갈래 복습, 7화 그림 저장, 12화 방 선택·결말 구현.
+- StoryPhase State Machine: 대사/선택/퀴즈/필기/그림/성공/에피소드완료/시즌완료 명시적 전이. 오답 상태에서는 다음 장면 차단, 시범/힌트/함께 쉬운 길/설정에 따른 도움 통과 제공.
+- 스토리·학습 세션·필기 완료 획·그림 초안을 저장, 다시 시작 시 복원. 빠른 중복 답변 방지. 설정 변경 쓰기는 직렬화하여 값 덮어쓰기 방지.
+- 보호자 산술 관문, 하루 실제 전경 사용 시간 누적/일자 변경, 장면 종료 후 쉬기, 음성/진동/애니메이션 설정, 진도 초기화/작품 삭제 확인 구현.
+- 그림책 배경 8종 및 4 캐릭터는 직접 작성한 Flutter 벡터 렌더러. 다운로드 이미지 의존성 없음. 학습 그림은 시스템 이모지이며 기기별 표시 차이 검수 필요.
+- 28테스트 통과 후 PNG/오디오/화면 테스트 확대. 1280x800, 800x1280, 600x960 전체 주요 화면 레이아웃 테스트 통과(홈 카드 넘침 수정).
+- content audit: 75학습 항목, 13필기 지원 글자, 12화, 19퀴즈, 참조 오류 0. 녹음 214파일 미제작. docs/content_audit.json 참조.
+- Windows 테스트: tool/test.ps1에서 TEMP/TMP를 .tool_tmp로 지정. flutter analyze 통과.
+- Android 수정: Kotlin 플러그인 누락 보완, kotlin.incremental=false(C:/PubCache와 D: 프로젝트 서로 다른 드라이브 오류 회피).
+- 신규 SDK CLI는 세미콜론 대신 slash 패키지명을 사용. NDK 28.2.13676358 수동 설치, SDK 35/36 및 CMake 3.22.1 자동 설치.
+- JNI CMake가 한글 사용자 SDK 경로를 처리 못하여 tool/android.ps1에 앱 작업 폴더 .tool_tmp/android-sdk Junction 경로 설정. 원본 SDK 이동/삭제 및 전역 Flutter 설정 변경 없음.
+- 에뮬레이터: 시작 후 emulator-5554 offline. 기존 AVD 스냅샷 없는 부팅/SwiftShader/소프트웨어/읽기전용 부팅도 시도했으나 프로세스 잠금 및 WHPX에서 중단. 기존 AVD 데이터 삭제/초기화하지 않음. 실실행 통과로 보고하지 않음.
+- 릴리스: 명세 11장의 '서명 키 생성 등 영향이 큰 결정은 임의로 수행하지 마'를 준수하여 서명 없는 APK 빌드로 컴파일 확인 중. 설치 가능한 APK에는 사용자가 허용한 키 필요.
+
+## 이번 세션 최종 상태 (2026-10-14)
+
+### 실제 실행 결과
+- `tool/test.ps1`: `flutter analyze` 오류/경고 없음. `flutter test --concurrency=1` **41개 모두 통과**, 약 16초. 최종 로그: `docs/final-test.log`.
+- `dart run tool/audit_content.dart`: 75학습 항목 / 13필기 항목 / 12화·120장면 / 19퀴즈 / 콘텐츠 참조 오류 0. 녹음 214개 미제작(TTS 대안); `docs/content_audit.json`에 전체 ID와 제작 상태 기록.
+- `tool/android.ps1 build apk --release`: **성공**, 최종 빌드 42.0초, `build/app/outputs/flutter-apk/app-release.apk`, 약 50.8MB.
+- 최종 APK SHA256: `A943CE34BFD6260D7DB9E10E0B8E297017E1F140210946E334E18A7EC9416227`.
+- APK manifest 검사: minSdk 24, target/compileSdk 36, 앱 이름 '꼬마 탐험 공부방'. 책과 별을 직접 그린 Android 벡터 아이콘 적용. 자동 백업 끔.
+- 서명 **없음**. apksigner 검증이 'DOES NOT VERIFY / Missing META-INF/MANIFEST.MF'로 서명 없음 확인. 컴파일 성공을 설치 가능한 APK로 오인하지 말 것.
+- `adb devices -l`: emulator-5554 **offline**. Android 실실행/통합 테스트 **미실행**. 실제 Galaxy Tab **미검증**.
+- 검증용 debug 키 및 정식 배포 키 **생성하지 않음**. Android 릴리스 설정에 자동 debug 서명 연결 없음. 사용자가 **서명 없이 유지**하기로 결정함. 승인 대기 상태가 아니며 키 생성·서명을 실행하지 않는다.
+- Android 통합 테스트: `integration_test/app_flow_test.dart` 작성 및 정적 분석됨. 연결된 Android와 debug 서명 승인 후 실제 실행할 것.
+
+### 구현 및 핵심 변경 파일
+- `lib/main.dart`, `lib/app/{app,lifecycle}.dart`: SQLite 초기화/ProviderScope/go_router/생명주기/큰 버튼 테마.
+- `lib/core/{storage/local_store,audio/audio_service,widgets/activity_scaffold}.dart`: 로컬 저장, 오프라인 TTS/텍스트 대안, 공통 화면 및 확인.
+- `lib/features/profile/{domain/settings,data/profile_repository,presentation/profile_vm}.dart`: 연령 Strategy, 보호자 설정 직렬 저장. 나이 변경 시 기본 학습 경로도 변경.
+- `lib/features/learning/{domain,data,presentation}`: 3과목 카탈로그/퀴즈/적응 경로 및 세션 저장. 준비된 필기만 활성화.
+- `lib/features/tracing/{domain,data,presentation}`: 경로/방향/시작/완료 평가, 낮은 이벤트 빈도 보간, 시범/현재 획, 취소/재시도/완료 획 복원.
+- `lib/features/drawing/{domain,data,presentation}`: 캔버스, PNG, 초안, undo/redo, 지우개/도장/배경, 파일 실패 롤백.
+- `lib/features/story/{domain,data,presentation}`: 12화·분기/복습/필기/그림/결말, 명시적 전이/도움 통과, 학습 경로 변경 시 장면 ID 유지 또는 다음 지원 장면 이동.
+- `lib/features/math/presentation/counting_page.dart`: 3/5/10/20개 사과 드래그/탭/하나 더·덜.
+- `lib/features/{home,parent,progress}`: 메뉴, 보호자 확인, 진도/작품 관리, 사용 시간/쉬기. 시간은 Stopwatch로 전경 시간을 누적하여 빠른 장면 이동에서 소수 초가 사라지지 않게 처리.
+- `test/`: 12개 테스트 파일, 41 테스트. 콘텐츠/전이/필기/저장/PNG/음성/보호자/시간/3크기 전체 화면/동시 입력 회귀 검증.
+- `tool/{test,android,sign-debug}.ps1`, `tool/audit_content.dart`: 재현 가능한 실행·검증 도구. 서명 스크립트는 작성만 했고 키 생성·서명 단계는 미실행.
+- `README.md`, `docs/DEVICE_VALIDATION.md`: 실행/설치/제한과 실기기 검증 체크리스트.
+
+### 남는 작업 / 다음 세션 순서
+1. 사용자 결정: **서명 없이 유지**. 키 생성·서명을 실행하지 않고 같은 승인을 다시 요청하지 않는다.
+2. 사용자가 향후 명시적으로 결정을 변경할 때만 서명 작업을 재개한다. 현재 설치 가능한 APK 및 Android 기기 테스트는 보류하며, 소스 개발·정적 분석·호스트 테스트는 계속 가능하다.
+3. Windows 재시작 또는 Android Studio에서 멈춘 AVD/QEMU 종료 후 Cold Boot. AVD 데이터 wipe/실제 앱 데이터 삭제를 임의로 하지 않는다.
+4. Android 연결 확인 후 `tool/android.ps1 test integration_test/app_flow_test.dart -d <ID>` 및 실제 실행. 키 승인 전 flutter run/test on-device는 기본 debug 키를 만들 수 있으므로 실행하지 않는다.
+5. Galaxy Tab 실기기 검증(DEVICE_VALIDATION.md), 한글 필순/문항/영어 발음 교육 전문가 검수.
+6. 사전 녹음·효과음·배경음악 제작 및 재생 검증. 현재 음성은 오프라인 TTS, 효과 반응은 진동이며 음량을 조절하는 효과음으로 보고하지 않는다.
+7. 필요 시 나머지 글자의 검수된 획 데이터 확장(현재 13글자). 시스템 이모지 표시 및 접근성/아동 사용성 확인.
+8. 정식 배포 앱 ID/서명 결정, 설치/업데이트/재부팅/오프라인/프레임·메모리 검증 후에만 출시 완료로 판정한다.
+
+전체 주요 기능의 실행 코드·자동 테스트·빌드 산출물은 준비했으나, **전체 명세의 출시 검수가 모두 완료된 상태는 아니다**. 미완료를 숨기지 않고 위 재개 지점부터 이어간다.
+
+후속 빌드 종료 코드 확인: 동일한 최종 코드를 다시 빌드하여 PowerShell의 stderr 경고와 실제 프로세스 종료 코드를 구분했다. Android 빌드 프로세스 종료 코드 **0** 확인(전체 빌드 성공). 출력 로그는 docs/apk-build.log, 서명 검증 로그는 docs/apk-signature.log에 있다. 이후 사용자 답변 **서명 없이 유지**를 반영했다. 이번 갱신은 문서만 변경했으며 APK·키·코드 변경이나 테스트 재실행은 하지 않았다.
+
+## 2026-10-15 후속 작업 결과
+
+### 작업한 내용
+- 명세 대조표 `docs/REQUIREMENTS_STATUS.md` 추가. 준비된 기능/일부 지원/대체 구현/미검증을 구분했다. 같은 수량 연결·색/크기 분류·쉬운 대체 문제 등 콘텐츠 보강 대상과 제한된 필기 범위를 명확히 기록했다.
+- 음성: `AudioService`가 재생 성공/무음/오프라인 음성 없음/취소/실패를 구분해 반환. 최신 요청만 음성 상태를 갱신하며 이전 재생 완료가 최신 실패 안내를 지우지 않는다. 네이티브 재생 거절·시간 초과도 실패로 처리하고 정지 요청을 보낸다.
+- UI: 공통 `AudioNotice`로 소리 없이도 계속할 수 있음을 안내. 안내 닫기 제공. 보호자 영역에 언어팩 확인 방법과 최근 진단 표시. 녹음이나 실제 기기 재생이 완료된 것으로 보고하지 않는다.
+- 듣기 기록: `LearningVM.listen`에서 음성 호출과 진도 기록을 조율. 실패/무음은 시도만 기록하고 실제 재생 성공만 듣기 완료로 기록. 다른 요청으로 취소된 읽기는 완료/시도를 추가하지 않는다.
+- 퀴즈: 답변뿐 아니라 힌트/쉬운 길/도움/다음 장면 입력에도 동일한 저장 중 가드 적용. 저장된 상태와 화면의 피드백이 일치하도록 처리. 저장 실패 후 다시 입력 가능.
+- 필기: 획 저장 중 지우기/재시도가 경합하여 저장 상태를 덮지 않도록 보호.
+- 작품: 저장·목록 조회·삭제를 Repository에서 순서대로 처리. 동시 PNG 저장 또는 저장/삭제 혼합에서 목록 유실 방지. 메타데이터 저장 실패 시 PNG 복구/정리. 삭제 전 파일을 임시 보관하고 실패 시 복구하며, 메타데이터 반영 전 중단된 삭제는 다음 목록 읽기에서 원래 PNG로 복구. PNG 렌더링 리소스도 실패 경로에서 해제.
+- 사용 시간: 저장을 기다리는 동안에도 일시 중지 상태를 즉시 반영하여 백그라운드 시간 오산입 방지. 초기 로딩 도중 일시 중지·종료 처리. 저장 실패 이후 누적 시간을 다음 체크포인트에서 다시 저장. 테스트용 Stopwatch 주입으로 실제 수 분을 기다리지 않고 검증.
+- 추가 패키지 없음. 키 생성·서명·Android 설치/실행 없음. 사용자 '서명 없이 유지' 결정 유지.
+
+### 실제 테스트 결과
+- `powershell -ExecutionPolicy Bypass -File tool/test.ps1`: `flutter analyze` 오류/경고 없음, **56개 모두 통과**, 약 19초. 이전 41개에서 회귀 테스트 15개 추가. 최신 로그 `docs/followup-test.log`.
+- 추가 테스트: 음성 거절/시간 초과/이전 응답 경합, 읽기 완료 기록/안내 닫기와 학습 계속, 답변 중 힌트·쉬운 길·중복 다음/저장 실패 재시도, 필기 초기화 경합, 동시 작품 저장/삭제·삭제 실패·중단 복구, 저장 지연/초기 로딩 중 일시 중지·시간 저장 실패 재시도.
+- 초기 수정 후 화면 전환 테스트에서 음성 정지 timeout 타이머가 남는 실패 발견. 화면 전환/해제는 네이티브 응답을 기다리지 않고 정지 요청을 보내도록 수정한 뒤 전체 테스트 통과. 실행되지 않은 Android 음성 검증을 mock 테스트로 대체했다고 주장하지 않는다.
+- `dart run tool/audit_content.dart`: 75학습 항목, 13필기 항목, 12화·120장면, 19퀴즈. 콘텐츠 참조 오류 0. 녹음 214개 미제작 상태 유지.
+
+### 남은 내용 및 다음 단계
+1. 학습 콘텐츠 보강: 수량 연결·색/크기 분류와 연산 문항 다양화, 힌트 강조와 구분되는 쉬운 대체 문제 추가. 정답 유일성·연령별 경로 회귀 검증.
+2. 한글 필순·영어 발음·문항의 교육 전문가 검수 및 검수된 필기 경로 확대. 현재 13개 지원을 전체 글자 지원으로 보고하지 않는다.
+3. 사전 녹음 214개·효과음·배경음악 제작 및 재생 기능 연결. 현재 TTS/진동 대안 유지.
+4. Android 에뮬레이터는 여전히 offline. 기기 통합 테스트·실제 Galaxy Tab 성능/오디오/아동 사용성 미검증. 서명 없이 유지한다는 결정에 따라 키 생성·서명·기기 실행은 보류.
+5. 다음 세션 검증 명령: `tool/test.ps1`, `dart run tool/audit_content.dart`, `tool/android.ps1 build apk --release`. 최신 요구사항 범위는 `docs/REQUIREMENTS_STATUS.md`부터 확인한다.
+
+진행률은 이전 약 70%라는 추정치를 기계적으로 올리지 않는다. 이번에는 기능 수보다 저장·오디오·생명주기의 안정성을 보강했으며, 출시 검수까지 끝난 상태는 아니다.
+
+### 후속 APK 산출물
+- 최종 변경 코드로 서명 없는 릴리스 빌드 성공: assembleRelease 42.7초, 프로세스 종료 코드 0.
+- 경로: build/app/outputs/flutter-apk/app-release.apk, 53305981 bytes (약 50.8MB).
+- SHA256: 9773097B480324370474B377D8062B55B25377DBB9BF2984F4DDFACFA1380E07
+- apksigner 종료 코드 1, 서명 없음(DOES NOT VERIFY / Missing META-INF/MANIFEST.MF) 확인. 설치 가능한 서명 APK가 아니다.
+- 최신 빌드 로그 docs/followup-apk-build.log, 서명 확인 로그 docs/followup-apk-signature.log.
+
+## GitHub 소스 관리 설정 (2026-10-15)
+- 원격 저장소: https://github.com/duafyd/kkoma_learning.git, main 브랜치.
+- 기존 원격 초기 커밋과 .gitignore 규칙을 보존한 상태로 현재 Flutter 프로젝트 소스·테스트·문서·pubspec.lock을 추가한다.
+- APK/build, .tool_tmp, .dart_tool, IDE 캐시, 로컬 SDK 설정, 실행 로그, 개인 키/서명 파일은 추적하지 않는다. 서명 없이 유지 결정도 그대로 적용한다.
+- 이번 작업은 Git 설정과 업로드 범위 정리이며 앱 동작 코드는 수정하지 않았다. 기존 56개 테스트 통과 기록을 유지하며 테스트 재실행으로 보고하지 않는다.

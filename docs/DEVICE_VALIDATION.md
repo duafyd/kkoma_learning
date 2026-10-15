@@ -1,0 +1,24 @@
+# Android 태블릿 최종 검증
+
+현재 실제 Galaxy Tab 검증 및 Android 통합 테스트는 실행하지 않았다. AVD가 offline이며 WHPX/QEMU 프로세스 잠금에서 멈춘다. Windows 재시작 또는 Android Studio Device Manager에서 AVD 종료 후 Cold Boot(데이터 지우기 아님)를 권장한다.
+
+## 환경 기록
+- Galaxy Tab 모델 / OS / 화면 비율 / S Pen 여부: 미확인
+- AVD Pixel_Tablet: Android 35, 2560×1600, density 320, 가로, RAM 4096MB. 연결 offline.
+- Flutter stable 3.47.7, Dart 3.13.5, Gradle 9.3.1, AGP 9.1.0, Kotlin 2.4.0, JDK 25.0.3, NDK 28.2.13676358.
+- compileSdk/targetSdk: Flutter SDK 기본값, minSdk: Flutter 기본값(최종 모델에서 지원 확인).
+
+## 실행할 검증
+1. `powershell -ExecutionPolicy Bypass -File tool/android.ps1 devices`로 Android 연결 확인.
+2. 서명 키 승인 후 `tool/android.ps1 test integration_test/app_flow_test.dart -d emulator-5554` 실행. 테스트는 별도의 SQLite DB를 사용하며 실제 학습 데이터는 변경하지 않는다.
+3. 한국어/영어 오프라인 TTS 언어팩 설치 및 비행기 모드에서 읽기 확인. A 이름과 Apple의 첫소리, ㄱ 이름과 가방, 1/하나 등 구분 검수.
+4. 홈 → 세 과목 → 퀴즈 → 필기 → 그림 → 작품 → 보호자 확인을 가로/세로에서 실행.
+5. 필기: 획 순서·역방향·짧은 획·멀티터치·취소·손 떨림·시범/애니메이션 끔·재시작 복원 확인.
+6. 스토리: 12화 완주, 9화 모든 길, 7화 그림 저장, 힌트/도움 끔/반복 시도/쉬운 길, 화면 잠금 및 강제 종료 후 이어하기.
+7. 그림: 도장/브러시/지우개/undo/redo/회전/저장/PNG 다시 열기, 저장 공간 부족과 보호자 삭제 확인.
+8. 시간: 하루 누적 시간 유지, 백그라운드 제외, 종료 경계에서 쉬는 화면, 보호자 시간 조정, 다음 날 초기화.
+9. 음성 반복 탭/페이지 전환/앱 일시 중지에서 겹치거나 이어서 나오지 않는지 확인.
+10. `flutter run --profile`로 필기 및 그림 프레임/메모리 확인. 시스템 재부팅/서명 APK 새 설치·업데이트 확인.
+
+## 검수 미완료
+교육 전문가의 문항·필순·발음, 아이가 글을 읽지 않고 행동을 이해하는지, 소리/반응의 적정성, 실제 Galaxy Tab 성능과 메모리.
