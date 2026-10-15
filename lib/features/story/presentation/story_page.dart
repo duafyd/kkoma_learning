@@ -6,6 +6,7 @@ import '../../parent/presentation/usage_vm.dart';
 
 import '../../../core/audio/audio_service.dart';
 import '../../../core/widgets/activity_scaffold.dart';
+import '../../../core/widgets/canvas_workspace.dart';
 import '../../drawing/domain/drawing.dart';
 import '../../drawing/presentation/drawing_page.dart';
 import '../../drawing/presentation/drawing_vm.dart';
@@ -101,40 +102,41 @@ class _StoryPageState extends ConsumerState<StoryPage> {
                 final item = learningItems.firstWhere(
                   (i) => i.id == scene.traceId,
                 );
-                return Column(
-                  children: [
-                    Text(scene.text),
-                    Text(s.message),
-                    Expanded(
-                      child: TraceCanvas(
-                        key: traceKey,
-                        strokes: item.strokes,
-                        state: TraceState(
-                          strokeIndex: s.strokes.length,
-                          completed: s.strokes,
-                        ),
-                        animate: settings.animations,
-                        tolerance: AgeStrategy(s.hints >= 3 ? 2 : s.level)
-                            .traceTolerance,
-                        onStroke: (p) => safe(() => vm.trace(p)),
+                return CanvasWorkspace(
+                  canvas: TraceCanvas(
+                    key: traceKey,
+                    strokes: item.strokes,
+                    state: TraceState(
+                      strokeIndex: s.strokes.length,
+                      completed: s.strokes,
+                    ),
+                    animate: settings.animations,
+                    tolerance: AgeStrategy(s.hints >= 3 ? 2 : s.level)
+                        .traceTolerance,
+                    onStroke: (p) => safe(() => vm.trace(p)),
+                  ),
+                  controls: Column(
+                    children: [
+                      Text(scene.text),
+                      Text(s.message),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 8,
+                        children: [
+                          OutlinedButton(
+                            onPressed: () =>
+                                traceKey.currentState?.demonstrate(),
+                            child: const Text('시범 보기'),
+                          ),
+                          OutlinedButton(
+                            onPressed: () => safe(vm.resetStrokes),
+                            child: const Text('다시 그리기'),
+                          ),
+                          ..._support(vm, s, settings),
+                        ],
                       ),
-                    ),
-                    Wrap(
-                      spacing: 12,
-                      runSpacing: 8,
-                      children: [
-                        OutlinedButton(
-                          onPressed: () => traceKey.currentState?.demonstrate(),
-                          child: const Text('시범 보기'),
-                        ),
-                        OutlinedButton(
-                          onPressed: () => safe(vm.resetStrokes),
-                          child: const Text('다시 그리기'),
-                        ),
-                        ..._support(vm, s, settings),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               }
               if (s.phase == StoryPhase.drawing) {
@@ -260,31 +262,31 @@ class _StoryPageState extends ConsumerState<StoryPage> {
       .when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Text('그림을 열지 못했어요: $e'),
-        data: (h) => Column(
-          children: [
-            Text(text),
-            Expanded(
-              child: DrawingCanvas(
-                document: h.current,
-                color: 0xffe9a845,
-                width: .018,
-                eraser: false,
-                stamp: null,
-                onLine: (DrawingLine l) =>
-                    safe(() => ref.read(drawingProvider.notifier).add(l)),
+        data: (h) => CanvasWorkspace(
+          canvas: DrawingCanvas(
+            document: h.current,
+            color: 0xffe9a845,
+            width: .018,
+            eraser: false,
+            stamp: null,
+            onLine: (DrawingLine l) =>
+                safe(() => ref.read(drawingProvider.notifier).add(l)),
+          ),
+          controls: Column(
+            children: [
+              Text(text),
+              FilledButton(
+                onPressed: h.current.lines.isEmpty
+                    ? null
+                    : () => safe(() async {
+                        await ref.read(drawingProvider.notifier).save();
+                        await ref.read(galleryProvider.notifier).refresh();
+                        await vm.drawingComplete();
+                      }),
+                child: const Text('정원 그림 저장하고 계속'),
               ),
-            ),
-            FilledButton(
-              onPressed: h.current.lines.isEmpty
-                  ? null
-                  : () => safe(() async {
-                      await ref.read(drawingProvider.notifier).save();
-                      await ref.read(galleryProvider.notifier).refresh();
-                      await vm.drawingComplete();
-                    }),
-              child: const Text('정원 그림 저장하고 계속'),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 }

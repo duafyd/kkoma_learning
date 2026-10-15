@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../parent/presentation/usage_vm.dart';
 
 import '../../../core/widgets/activity_scaffold.dart';
+import '../../../core/widgets/canvas_workspace.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../tracing/domain/trace_engine.dart';
 import '../domain/drawing.dart';
@@ -43,164 +44,175 @@ class _DrawingPageState extends ConsumerState<DrawingPage> {
       child: history.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Text('그림을 불러오지 못했어요: $e'),
-        data: (h) => Column(
-          children: [
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                ...[
-                  0xff376e64,
-                  0xffe76f51,
-                  0xffe9b331,
-                  0xff4289b5,
-                  0xff8648a6,
-                  0xff222222,
-                ].map(
-                  (c) => IconButton(
-                    tooltip: '색상 $c',
-                    style: IconButton.styleFrom(backgroundColor: Color(c)),
+        data: (h) => CanvasWorkspace(
+          controlsFirst: true,
+          canvas: DrawingCanvas(
+            document: h.current,
+            color: color,
+            width: width,
+            eraser: eraser,
+            stamp: stamp,
+            onLine: (l) =>
+                perform(() => ref.read(drawingProvider.notifier).add(l)),
+          ),
+          controls: Column(
+            children: [
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  ...[
+                    0xff376e64,
+                    0xffe76f51,
+                    0xffe9b331,
+                    0xff4289b5,
+                    0xff8648a6,
+                    0xff222222,
+                  ].map(
+                    (c) => IconButton(
+                      tooltip: '색상 $c',
+                      style: IconButton.styleFrom(backgroundColor: Color(c)),
+                      onPressed: () => setState(() {
+                        color = c;
+                        eraser = false;
+                        stamp = null;
+                      }),
+                      icon: Icon(
+                        color == c && !eraser
+                            ? Icons.check
+                            : Icons.circle_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    tooltip: '지우개',
                     onPressed: () => setState(() {
-                      color = c;
-                      eraser = false;
+                      eraser = !eraser;
                       stamp = null;
                     }),
                     icon: Icon(
-                      color == c && !eraser
-                          ? Icons.check
-                          : Icons.circle_outlined,
-                      color: Colors.white,
+                      Icons.auto_fix_normal,
+                      color: eraser ? Colors.orange : null,
                     ),
                   ),
-                ),
-                IconButton(
-                  tooltip: '지우개',
-                  onPressed: () => setState(() {
-                    eraser = !eraser;
-                    stamp = null;
-                  }),
-                  icon: Icon(
-                    Icons.auto_fix_normal,
-                    color: eraser ? Colors.orange : null,
+                  IconButton(
+                    tooltip: '실행 취소',
+                    onPressed: h.past.isEmpty
+                        ? null
+                        : () =>
+                              perform(ref.read(drawingProvider.notifier).undo),
+                    icon: const Icon(Icons.undo),
                   ),
-                ),
-                IconButton(
-                  tooltip: '실행 취소',
-                  onPressed: h.past.isEmpty
-                      ? null
-                      : () => perform(ref.read(drawingProvider.notifier).undo),
-                  icon: const Icon(Icons.undo),
-                ),
-                IconButton(
-                  tooltip: '다시 실행',
-                  onPressed: h.future.isEmpty
-                      ? null
-                      : () => perform(ref.read(drawingProvider.notifier).redo),
-                  icon: const Icon(Icons.redo),
-                ),
-                OutlinedButton(
-                  onPressed: () async {
-                    if (await confirmAction(context, '그림을 모두 지울까요?')) {
-                      await perform(ref.read(drawingProvider.notifier).clear);
-                    }
-                  },
-                  child: const Text('전체 지우기'),
-                ),
-                FilledButton(
-                  onPressed: saving
-                      ? null
-                      : () async {
-                          setState(() => saving = true);
-                          try {
-                            await ref.read(drawingProvider.notifier).save();
-                            await ref.read(galleryProvider.notifier).refresh();
-                            final expired = await ref
-                                .read(usageProvider.notifier)
-                                .boundary();
-                            if (context.mounted && expired) {
-                              context.go('/rest');
-                              return;
-                            }
-                            if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('내 작품에 저장했어요!')),
-                              );
-                            }
-                          } catch (_) {
-                            if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    '저장할 수 없어요. 보호자에게 저장 공간 확인을 부탁해 주세요.',
+                  IconButton(
+                    tooltip: '다시 실행',
+                    onPressed: h.future.isEmpty
+                        ? null
+                        : () =>
+                              perform(ref.read(drawingProvider.notifier).redo),
+                    icon: const Icon(Icons.redo),
+                  ),
+                  OutlinedButton(
+                    onPressed: () async {
+                      if (await confirmAction(context, '그림을 모두 지울까요?')) {
+                        await perform(ref.read(drawingProvider.notifier).clear);
+                      }
+                    },
+                    child: const Text('전체 지우기'),
+                  ),
+                  FilledButton(
+                    onPressed: saving
+                        ? null
+                        : () async {
+                            setState(() => saving = true);
+                            try {
+                              await ref.read(drawingProvider.notifier).save();
+                              await ref
+                                  .read(galleryProvider.notifier)
+                                  .refresh();
+                              final expired = await ref
+                                  .read(usageProvider.notifier)
+                                  .boundary();
+                              if (context.mounted && expired) {
+                                context.go('/rest');
+                                return;
+                              }
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('내 작품에 저장했어요!')),
+                                );
+                              }
+                            } catch (_) {
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      '저장할 수 없어요. 보호자에게 저장 공간 확인을 부탁해 주세요.',
+                                    ),
                                   ),
-                                ),
-                              );
+                                );
+                              }
+                            } finally {
+                              if (context.mounted) {
+                                setState(() => saving = false);
+                              }
                             }
-                          } finally {
-                            if (context.mounted) setState(() => saving = false);
-                          }
-                        },
-                  child: Text(saving ? '저장 중…' : '작품 저장'),
-                ),
-              ],
-            ),
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                const Text('굵기'),
-                SizedBox(
-                  width: 220,
-                  child: Slider(
-                    value: width,
-                    min: .006,
-                    max: .05,
-                    divisions: older ? 8 : 2,
-                    onChanged: (v) => setState(() => width = v),
+                          },
+                    child: Text(saving ? '저장 중…' : '작품 저장'),
                   ),
-                ),
-                if (older)
-                  ...['🌼', '🦋', '⭐', '●', '▲'].map(
-                    (s) => IconButton(
-                      tooltip: '$s 도장',
-                      onPressed: () => setState(() {
-                        stamp = s;
-                        eraser = false;
-                      }),
-                      icon: Text(s),
+                ],
+              ),
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  const Text('굵기'),
+                  SizedBox(
+                    width: 220,
+                    child: Slider(
+                      value: width,
+                      min: .006,
+                      max: .05,
+                      divisions: older ? 8 : 2,
+                      onChanged: (v) => setState(() => width = v),
                     ),
                   ),
-              ],
-            ),
-            if (older)
-              Wrap(
-                spacing: 8,
-                children:
-                    [('종이', 0xfffffdf7), ('하늘', 0xffe0f1fa), ('정원', 0xffe6f1d8)]
-                        .map(
-                          (b) => TextButton(
-                            onPressed: () => perform(
-                              () => ref
-                                  .read(drawingProvider.notifier)
-                                  .background(b.$2),
+                  if (older)
+                    ...['🌼', '🦋', '⭐', '●', '▲'].map(
+                      (s) => IconButton(
+                        tooltip: '$s 도장',
+                        onPressed: () => setState(() {
+                          stamp = s;
+                          eraser = false;
+                        }),
+                        icon: Text(s),
+                      ),
+                    ),
+                ],
+              ),
+              if (older)
+                Wrap(
+                  spacing: 8,
+                  children:
+                      [
+                            ('종이', 0xfffffdf7),
+                            ('하늘', 0xffe0f1fa),
+                            ('정원', 0xffe6f1d8),
+                          ]
+                          .map(
+                            (b) => TextButton(
+                              onPressed: () => perform(
+                                () => ref
+                                    .read(drawingProvider.notifier)
+                                    .background(b.$2),
+                              ),
+                              child: Text(b.$1),
                             ),
-                            child: Text(b.$1),
-                          ),
-                        )
-                        .toList(),
-              ),
-            Expanded(
-              child: DrawingCanvas(
-                document: h.current,
-                color: color,
-                width: width,
-                eraser: eraser,
-                stamp: stamp,
-                onLine: (l) =>
-                    perform(() => ref.read(drawingProvider.notifier).add(l)),
-              ),
-            ),
-          ],
+                          )
+                          .toList(),
+                ),
+            ],
+          ),
         ),
       ),
     );

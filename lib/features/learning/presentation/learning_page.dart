@@ -73,9 +73,12 @@ class _LearningPageState extends ConsumerState<LearningPage> {
       child: quizMode
           ? _quiz(vm, state, settings)
           : GridView.builder(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 300,
-                mainAxisExtent: 340,
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: MediaQuery.sizeOf(context).width < 600
+                    ? 600
+                    : 300,
+                mainAxisExtent:
+                    340 + (MediaQuery.textScalerOf(context).scale(25) - 25) * 6,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),

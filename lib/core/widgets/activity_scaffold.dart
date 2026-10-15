@@ -16,20 +16,40 @@ class ActivityScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: Text(title),
+      title: Tooltip(
+        message: title,
+        child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
+      ),
       leading: IconButton(
         tooltip: '집으로',
         icon: const Icon(Icons.home_rounded),
         onPressed: () => context.go('/'),
       ),
-      actions: actions,
+      actions: MediaQuery.sizeOf(context).width < 600 ? [] : actions,
+      bottom: MediaQuery.sizeOf(context).width < 600 && actions.isNotEmpty
+          ? PreferredSize(
+              preferredSize: const Size.fromHeight(64),
+              child: SizedBox(
+                height: 64,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(children: actions),
+                ),
+              ),
+            )
+          : null,
     ),
     body: SafeArea(
       child: Column(
         children: [
           const AudioNotice(),
           Expanded(
-            child: Padding(padding: const EdgeInsets.all(20), child: child),
+            child: Padding(
+              padding: EdgeInsets.all(
+                MediaQuery.sizeOf(context).shortestSide < 600 ? 12 : 20,
+              ),
+              child: child,
+            ),
           ),
         ],
       ),

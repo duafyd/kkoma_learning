@@ -14,6 +14,7 @@
 - 사과를 바구니로 드래그하거나 눌러 모으기, 연령별 3/5/10/20개, 4~5세 하나 더/하나 덜 조작.
 - 보호자 산술 관문, 자동 읽기/반복/음량/반응/애니메이션, 하루 사용 시간, 진도 초기화/작품 삭제/앱 종료 확인. 장면 마무리 후 쉬는 화면.
 - 가로/세로 화면, 큰 터치 영역, 벡터 그림책 배경과 모아·루루·토토·휙휙, 자체 벡터 앱 아이콘.
+- 휴대폰 반응형: 좁은 화면 학습 카드 1열과 상단 작업 버튼 별도 줄, 낮은 가로 화면은 캔버스/도구 좌우 배치. 도구 영역만 스크롤해 필기·그림 터치와 분리. 보호자 확인은 키보드가 떠도 스크롤 가능. 홈 카드는 글자 확대에 따라 높이가 늘어납니다.
 
 따라 그리기는 **99항목**입니다: 한글 기본 자음 14개·모음 10개와 가/나/모(27), 영어 A~Z·a~z(52), 숫자 1~20(20). 현재 획 수와 시범을 표시하며 완료 후 같은 과목의 다음 글자로 이어집니다. 두 자리 숫자는 왼쪽 숫자부터 쓰고 획마다 저장합니다. 소문자 a/g는 한 층 손글씨 형태입니다. 사과/나무 낱말은 듣기/보기만 제공합니다. 경로는 직접 작성한 중심선이며 **교육 전문가의 모양·필순 검수는 미완료**입니다. [전체 경로 미리보기](docs/tracing_preview.png)에서 점검할 수 있습니다.
 
@@ -34,7 +35,7 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 
 2026-10-15 사용자 승인으로 기존 서명 보류를 해제하고 **APK 직접 공유용 전용 키**를 생성했습니다. 릴리스 빌드는 로컬 `android/key.properties`를 읽어 자동 서명합니다. Play Store 업로드는 하지 않습니다.
 
-최신 릴리스 빌드 성공 및 apksigner 서명 검증 통과(v2, 종료 코드 0). APK 약 51MB. 전체 테스트 62개 통과, 정적 분석 문제 없음. 자세한 결과는 PROGRESS와 `docs/sharing-apk-signature.log`를 확인하세요. 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
+최신 릴리스 빌드 성공 및 apksigner 서명 검증 통과(v2, 종료 코드 0). APK 약 51MB. 전체 테스트 73개 통과, 정적 분석 문제 없음. 자세한 결과는 PROGRESS와 `docs/sharing-apk-signature.log`를 확인하세요. 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release

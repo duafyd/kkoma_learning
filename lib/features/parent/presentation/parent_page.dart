@@ -31,32 +31,37 @@ class _ParentPageState extends ConsumerState<ParentPage> {
     if (!unlocked) {
       return ActivityScaffold(
         title: '보호자 확인',
-        child: Center(
-          child: SizedBox(
-            width: 420,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.lock_outline, size: 64),
-                const Text('보호자가 계산하고 입력해 주세요.'),
-                Text(
-                  gate.prompt,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                TextField(
-                  controller: answer,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(labelText: '답', errorText: error),
-                ),
-                const SizedBox(height: 20),
-                FilledButton(
-                  onPressed: () => setState(() {
-                    unlocked = gate.accepts(answer.text);
-                    error = unlocked ? null : '다시 계산해 주세요.';
-                  }),
-                  child: const Text('설정 열기'),
-                ),
-              ],
+        child: SingleChildScrollView(
+          child: Center(
+            child: SizedBox(
+              width: 420,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.lock_outline, size: 64),
+                  const Text('보호자가 계산하고 입력해 주세요.'),
+                  Text(
+                    gate.prompt,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  TextField(
+                    controller: answer,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: '답',
+                      errorText: error,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  FilledButton(
+                    onPressed: () => setState(() {
+                      unlocked = gate.accepts(answer.text);
+                      error = unlocked ? null : '다시 계산해 주세요.';
+                    }),
+                    child: const Text('설정 열기'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -54,31 +54,34 @@ class HomePage extends ConsumerWidget {
                             : c.maxWidth >= 520
                             ? (c.maxWidth - 18) / 2
                             : c.maxWidth,
-                        height: 250,
-                        child: Card(
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(24),
-                            onTap: () => context.go(e.$4),
-                            child: Padding(
-                              padding: const EdgeInsets.all(18),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    e.$3,
-                                    size: 46,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primary,
-                                  ),
-                                  Text(
-                                    e.$1,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge,
-                                  ),
-                                  Text(e.$2),
-                                ],
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 250),
+                          child: Card(
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(24),
+                              onTap: () => context.go(e.$4),
+                              child: Padding(
+                                padding: const EdgeInsets.all(18),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      e.$3,
+                                      size: 46,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary,
+                                    ),
+                                    Text(
+                                      e.$1,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    Text(e.$2),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
