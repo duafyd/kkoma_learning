@@ -62,6 +62,11 @@ class _LearningPageState extends ConsumerState<LearningPage> {
       actions: [
         if (widget.subject == 'math')
           TextButton(
+            onPressed: () => context.go('/math/match'),
+            child: const Text('짝꿍 바구니'),
+          ),
+        if (widget.subject == 'math')
+          TextButton(
             onPressed: () => context.go('/math/play'),
             child: const Text('사과 모으기'),
           ),

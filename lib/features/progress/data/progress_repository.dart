@@ -35,11 +35,37 @@ class ProgressRepository {
     await _writes;
     await store.remove('learning-progress');
     await store.remove('story');
+    for (var level = 2; level <= 5; level++) {
+      await store.remove('math-sorting-$level');
+    }
     for (final subject in ['hangul', 'english', 'math']) {
       await store.remove('session-$subject');
     }
-    for (final item in learningItems.where((i) => i.strokes.isNotEmpty)) {
+    for (final item in learningItems) {
       await store.remove('trace-${item.id}');
     }
+  }
+
+  // Activity badges are idempotent across retries if saving the next round fails.
+  Future<void> completeOnce(
+    String id, {
+    bool assisted = false,
+    int attempts = 1,
+  }) {
+    final write = _writes.catchError((Object _) {}).then((_) async {
+      final progress = await load();
+      final old = Map<String, dynamic>.from(progress[id] as Map? ?? {});
+      if (old['completed'] == true) return;
+      progress[id] = {
+        'attempts': attempts,
+        'successes': 1,
+        'completed': true,
+        'assisted': assisted,
+        'last': DateTime.now().toIso8601String(),
+      };
+      await store.write('learning-progress', progress);
+    });
+    _writes = write;
+    return write;
   }
 }

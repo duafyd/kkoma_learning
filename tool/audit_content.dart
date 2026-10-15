@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter_application_1/features/learning/data/learning_content.dart';
 import 'package:flutter_application_1/features/story/data/story_content.dart';
+import 'package:flutter_application_1/features/story/data/support_quizzes.dart';
+import 'package:flutter_application_1/features/math/data/sorting_content.dart';
 
 void main(List<String> args) {
   final errors = <String>[];
@@ -38,11 +40,40 @@ void main(List<String> args) {
       errors.add('missing trace ${scene.id}');
     }
   }
-  final voices = [
+  for (final q in storySupportQuizzes.values) {
+    if (q.options.toSet().length != q.options.length ||
+        q.answer < 0 ||
+        q.answer >= q.options.length) {
+      errors.add('invalid story support ${q.id}');
+    }
+  }
+  for (var age = 2; age <= 5; age++) {
+    final rounds = sortingRounds(age);
+    if (rounds.map((r) => r.id).toSet().length != rounds.length) {
+      errors.add('duplicate sorting round $age');
+    }
+    for (final r in rounds) {
+      if (r.targets.toSet().length != r.targets.length ||
+          r.pieces.any((p) => !r.targets.contains(p))) {
+        errors.add('invalid sorting round $age ${r.id}');
+      }
+    }
+  }
+  final voices = <String>{
     ...learningItems.map((i) => 'voice-${i.id}'),
     ...storyEpisodes.expand((e) => e.scenes).map((s) => 'voice-${s.id}'),
     ...learningQuizzes.map((q) => 'voice-quiz-${q.id}'),
-  ];
+    ...storySupportQuizzes.values.map((q) => 'voice-quiz-${q.id}'),
+    ...storyEpisodes
+        .expand((e) => e.scenes)
+        .where((s) => s.quiz != null)
+        .map((s) => 'voice-quiz-${s.quiz!.id}'),
+    ...storyEpisodes
+        .expand((e) => e.scenes)
+        .where((s) => s.traceId != null)
+        .map((s) => 'voice-quiz-story-support-${s.traceId}'),
+    ...sortingRounds(5).map((r) => 'voice-sorting-${r.id}'),
+  }.toList();
   final missing = voices
       .where((id) => !File('assets/audio/$id.wav').existsSync())
       .toList();
@@ -59,6 +90,11 @@ void main(List<String> args) {
     'episodes': storyEpisodes.length,
     'scenes': storyEpisodes.fold(0, (n, e) => n + e.scenes.length),
     'quizCount': learningQuizzes.length,
+    'storySupportQuizCount': storySupportQuizzes.length,
+    'sortingRoundsPerLevel': {
+      for (var level = 2; level <= 5; level++)
+        '$level': sortingRounds(level).length,
+    },
     'contentErrors': errors,
     'backgrounds': storyEpisodes
         .expand((e) => e.scenes)

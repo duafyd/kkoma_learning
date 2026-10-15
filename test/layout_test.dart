@@ -56,6 +56,7 @@ void main() {
             '/learn/english',
             '/learn/math',
             '/math/play',
+            '/math/match',
             '/trace/h-ㅏ',
             '/trace/h-모',
             '/trace/e-g',

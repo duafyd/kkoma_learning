@@ -6,6 +6,8 @@
 
 - 만 나이 2~5세와 별도 학습 경로 설정. 나이를 바꾸면 기본 학습 경로도 바뀝니다. 퀴즈 성공이 이어지면 한 단계씩 조정하고, 반복 시도에는 힌트·다른 길·도움 통과를 제공합니다.
 - 새 수학 활동 38개: 같은 수량 찾기 5개, 사과 그림 덧셈 15개·뺄셈 14개(0개 포함), 색 분류 2개·패턴 2개. 유형을 번갈아 배치합니다. 새 문항의 '다른 길'은 별도 쉬운 문제로 전환하며 앱 재시작 후에도 해당 문제를 이어합니다. 그림 선택 방식 수량 매칭이며 선 연결/드래그 매칭으로 보고하지 않습니다.
+- **짝꿍 바구니:** 숫자 탐험대 상단에서 여는 독립 조작 놀이입니다. 수량 드래그 매칭·크기/색/도형 분류 4유형, 단계별 12라운드(반복 연습과 배치 변화 포함). 드래그 또는 친구→바구니 터치로 진행하며 선택·배치·힌트·도움 상태를 저장합니다. 2~3세는 2개 바구니, 4~5세는 3개 바구니이며 힌트·도움 통과와 사용 시간 쉬기를 제공합니다. 부모 진도 초기화에 포함하고 다음 놀이에서 완료 배지를 한 번 기록합니다.
+- **스토리 대체 미션:** 퀴즈와 필기에서 '함께 쉬운 길로'를 선택하면 별도의 두 가지 선택 매칭 미션으로 바뀝니다. '원래 미션'으로 돌아가거나 대체 미션을 완료해 같은 이야기의 다음 장면으로 진행합니다. 변환 상태를 저장하며 보호자의 도움 통과 설정은 그대로 적용합니다.
 - 한글 자음·모음·쉬운 음절/낱말, A~Z·a~z, 1~20 숫자: 122항목. 소문자는 학습 단계 4 이상에서 제공. 세기·비교·분류·패턴·조합·기초 더하기/빼기 등 57퀴즈.
 - Android 오프라인 TTS 읽기. 알파벳 이름과 대표 단어, 자음 이름과 예시를 구분해 읽습니다. 기기에 해당 언어의 오프라인 음성이 없으면 글과 그림으로 계속 진행합니다.
 - 음성 재생 실패 시 안내를 표시하고 보호자 영역에서 최근 상태를 확인할 수 있습니다. 음성 실패·무음은 듣기 시도로만 기록하며 실제 재생 성공만 듣기 완료로 기록합니다. 취소된 이전 재생은 완료로 기록하지 않습니다.
@@ -36,7 +38,7 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 
 2026-10-15 사용자 승인으로 기존 서명 보류를 해제하고 **APK 직접 공유용 전용 키**를 생성했습니다. 릴리스 빌드는 로컬 `android/key.properties`를 읽어 자동 서명합니다. Play Store 업로드는 하지 않습니다.
 
-최신 릴리스 빌드 성공 및 apksigner 서명 검증 통과(v2, 종료 코드 0). APK 약 51MB. 전체 테스트 79개 통과, 정적 분석 문제 없음. 자세한 결과는 PROGRESS와 `docs/sharing-apk-signature.log`를 확인하세요. 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
+최신 릴리스 빌드 성공 및 apksigner 서명 검증 통과(v2, 종료 코드 0). APK 약 51MB. 전체 테스트 98개 통과, 정적 분석 문제 없음. 자세한 결과는 PROGRESS와 `docs/sharing-apk-signature.log`를 확인하세요. 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
@@ -84,7 +86,7 @@ powershell -ExecutionPolicy Bypass -File tool/publish-apk.ps1
 
 명세 대비 구현 범위와 누락 사항은 [docs/REQUIREMENTS_STATUS.md](docs/REQUIREMENTS_STATUS.md)에 정리했습니다.
 
-`dart run tool/audit_content.dart`는 콘텐츠 참조와 리소스를 검사하고 `docs/content_audit.json`을 생성합니다. `--require-recordings`를 추가하면 녹음이 누락될 때 실패합니다. 현재 사전 녹음 299파일, 효과음, 배경음악은 제작하지 않았습니다. 효과 설정은 현재 진동 켜기/끄기이며 음량 조절 가능한 효과음으로 보고하지 않습니다. 시스템 이모지와 TTS 발음은 기기마다 다를 수 있습니다.
+`dart run tool/audit_content.dart`는 콘텐츠 참조와 리소스를 검사하고 `docs/content_audit.json`을 생성합니다. `--require-recordings`를 추가하면 녹음이 누락될 때 실패합니다. 현재 사전 녹음 338파일, 효과음, 배경음악은 제작하지 않았습니다. 효과 설정은 현재 진동 켜기/끄기이며 음량 조절 가능한 효과음으로 보고하지 않습니다. 시스템 이모지와 TTS 발음은 기기마다 다를 수 있습니다.
 
 실제 Galaxy Tab의 필기·음성·프레임/메모리·재부팅/업데이트, 아동 사용성, 교육 전문가의 문항/필순/발음 검수, 정식 앱 ID/서명은 미완료입니다. 앱 ID는 `com.example.flutter_application_1`을 유지했습니다.
 

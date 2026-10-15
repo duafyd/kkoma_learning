@@ -56,6 +56,7 @@ class StorySnapshot {
   final List<List<TracePoint>> strokes;
   final bool assisted;
   final String message;
+  final String? supportSceneId;
   const StorySnapshot({
     this.episode = 0,
     this.scene = 0,
@@ -68,6 +69,7 @@ class StorySnapshot {
     this.strokes = const [],
     this.assisted = false,
     this.message = '',
+    this.supportSceneId,
   });
   Map<String, dynamic> toJson() => {
     'episode': episode,
@@ -81,6 +83,7 @@ class StorySnapshot {
     'strokes': strokes.map((s) => s.map((p) => p.toJson()).toList()).toList(),
     'assisted': assisted,
     'message': message,
+    'supportSceneId': supportSceneId,
   };
   factory StorySnapshot.fromJson(Map<String, dynamic> j) => StorySnapshot(
     episode: j['episode'] as int? ?? 0,
@@ -102,6 +105,7 @@ class StorySnapshot {
         .toList(),
     assisted: j['assisted'] as bool? ?? false,
     message: j['message'] as String? ?? '',
+    supportSceneId: j['supportSceneId'] as String?,
   );
   StorySnapshot change(Map<String, dynamic> fields) =>
       StorySnapshot.fromJson({...toJson(), ...fields});

@@ -164,6 +164,33 @@ void main() {
           );
           await tester.ensureVisible(find.text('친구와 함께 통과'));
           expect(find.text('친구와 함께 통과').hitTestable(), findsOneWidget);
+          await tester.ensureVisible(find.text('함께 쉬운 길로'));
+          await tester.tap(find.text('함께 쉬운 길로'));
+          await tester.pumpAndSettle();
+          expect(
+            container.read(storyProvider).requireValue.phase,
+            StoryPhase.quiz,
+          );
+          expect(
+            container.read(storyProvider).requireValue.supportSceneId,
+            isNotNull,
+          );
+          await tester.scrollUntilVisible(
+            find.text('원래 미션').hitTestable(),
+            200,
+            scrollable: find
+                .byWidgetPredicate(
+                  (w) =>
+                      w is Scrollable && w.axisDirection == AxisDirection.down,
+                )
+                .last,
+          );
+          await tester.tap(find.text('원래 미션'));
+          await tester.pumpAndSettle();
+          expect(
+            container.read(storyProvider).requireValue.phase,
+            StoryPhase.tracing,
+          );
         }
         if (phase == StoryPhase.drawing) {
           expect(

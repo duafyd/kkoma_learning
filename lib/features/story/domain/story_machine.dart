@@ -3,6 +3,7 @@ import '../../learning/domain/learning_models.dart';
 import '../../profile/domain/settings.dart';
 import '../../tracing/domain/trace_engine.dart';
 import '../data/story_content.dart';
+import '../data/support_quizzes.dart';
 import 'story_models.dart';
 
 class StoryMachine {
@@ -43,6 +44,7 @@ class StoryMachine {
       'scene': index,
       'phase': phase.name,
       'strokes': exact >= 0 ? s.toJson()['strokes'] : [],
+      'supportSceneId': exact >= 0 ? s.supportSceneId : null,
     });
   }
 
@@ -51,6 +53,37 @@ class StoryMachine {
     phase: episodes.first.forLevel(level).first.interaction,
   );
   QuizDefinition quiz(StorySnapshot s) {
+    if (s.supportSceneId == scene(s).id) {
+      if (scene(s).interaction == StoryPhase.tracing) {
+        final item = learningItems.firstWhere((i) => i.id == scene(s).traceId);
+        final alternative = item.subject == 'hangul'
+            ? (item.symbol == 'ㄱ' ? 'ㄴ' : 'ㄱ')
+            : item.subject == 'english'
+            ? (item.symbol == 'A' ? 'B' : 'A')
+            : (item.symbol == '1' ? '2' : '1');
+        return QuizDefinition(
+          id: 'story-support-${item.id}',
+          subject: item.subject,
+          prompt: '빛나는 글자와 같은 모양을 찾아요',
+          visual: item.symbol,
+          options: [alternative, item.symbol],
+          answer: 1,
+          hint: '${item.symbol} 모양을 함께 찾아요.',
+        );
+      }
+      final original = _originalQuiz(s);
+      return storySupportQuizzes[original.subject == 'math'
+          ? original.kind == QuizKind.pattern
+                ? 'pattern'
+                : original.kind == QuizKind.classify
+                ? 'shape'
+                : 'math'
+          : original.subject]!;
+    }
+    return _originalQuiz(s);
+  }
+
+  QuizDefinition _originalQuiz(StorySnapshot s) {
     if (s.episode == 8) {
       return quizById(
         s.flags['route'] == '영어 길'
@@ -89,6 +122,7 @@ class StoryMachine {
         'strokes': [],
         'assisted': false,
         'message': '',
+        'supportSceneId': null,
       });
     }
     if (s.phase != StoryPhase.dialogue && s.phase != StoryPhase.success) {
@@ -110,6 +144,7 @@ class StoryMachine {
       'strokes': [],
       'assisted': false,
       'message': '',
+      'supportSceneId': null,
     });
   }
 
@@ -147,14 +182,28 @@ class StoryMachine {
   }
 
   StorySnapshot easier(StorySnapshot s) {
-    if (s.phase == StoryPhase.quiz) {
-      return s.change({'hints': 3, 'message': '빛나는 답을 함께 눌러요.'});
-    }
-    if (s.phase == StoryPhase.tracing) {
-      return s.change({'hints': 3, 'message': '넓어진 길에서 함께 그려요.'});
+    if ([StoryPhase.quiz, StoryPhase.tracing].contains(s.phase)) {
+      return s.change({
+        'phase': 'quiz',
+        'supportSceneId': scene(s).id,
+        'strokes': [],
+        'hints': 0,
+        'message': '친구와 작은 미션부터 함께 해요.',
+      });
     }
     return s;
   }
+
+  StorySnapshot originalMission(StorySnapshot s) =>
+      s.phase == StoryPhase.quiz && s.supportSceneId == scene(s).id
+      ? s.change({
+          'phase': scene(s).interaction.name,
+          'supportSceneId': null,
+          'strokes': [],
+          'hints': 0,
+          'message': '원래 미션에 다시 도전해요.',
+        })
+      : s;
 
   StorySnapshot assist(StorySnapshot s, ParentSettings settings) {
     if (!settings.help ||

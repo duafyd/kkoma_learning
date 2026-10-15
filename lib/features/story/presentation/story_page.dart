@@ -72,7 +72,7 @@ class _StoryPageState extends ConsumerState<StoryPage> {
       data: (s) {
         final episode = vm.machine.episodes[s.episode],
             scene = vm.machine.scene(s);
-        final readKey = '${scene.id}-${s.phase.name}';
+        final readKey = '${scene.id}-${s.phase.name}-${s.supportSceneId}';
         if (lastRead != readKey && settings.autoRead) {
           lastRead = readKey;
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -80,7 +80,11 @@ class _StoryPageState extends ConsumerState<StoryPage> {
               ref
                   .read(audioProvider)
                   .speak(
-                    s.phase == StoryPhase.success ? s.message : scene.text,
+                    s.phase == StoryPhase.success
+                        ? s.message
+                        : s.phase == StoryPhase.quiz
+                        ? vm.machine.quiz(s).prompt
+                        : scene.text,
                     settings,
                   );
             }
@@ -91,8 +95,14 @@ class _StoryPageState extends ConsumerState<StoryPage> {
           actions: [
             IconButton(
               tooltip: '대사 다시 듣기',
-              onPressed: () =>
-                  ref.read(audioProvider).speak(scene.text, settings),
+              onPressed: () => ref
+                  .read(audioProvider)
+                  .speak(
+                    s.phase == StoryPhase.quiz
+                        ? vm.machine.quiz(s).prompt
+                        : scene.text,
+                    settings,
+                  ),
               icon: const Icon(Icons.volume_up),
             ),
           ],
@@ -246,6 +256,11 @@ class _StoryPageState extends ConsumerState<StoryPage> {
   List<Widget> _support(StoryVM vm, StorySnapshot s, ParentSettings settings) =>
       [
         OutlinedButton(onPressed: () => safe(vm.hint), child: const Text('힌트')),
+        if (s.supportSceneId == vm.machine.scene(s).id)
+          OutlinedButton(
+            onPressed: () => safe(vm.originalMission),
+            child: const Text('원래 미션'),
+          ),
         if (s.attempts >= 2)
           OutlinedButton(
             onPressed: () => safe(vm.easier),

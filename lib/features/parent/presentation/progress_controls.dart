@@ -6,6 +6,7 @@ import '../../drawing/presentation/drawing_vm.dart';
 import '../../progress/data/progress_repository.dart';
 import '../../progress/presentation/gallery_page.dart';
 import '../../story/presentation/story_vm.dart';
+import '../../math/presentation/sorting_vm.dart';
 import '../../learning/presentation/learning_vm.dart';
 import '../../tracing/presentation/trace_vm.dart';
 
@@ -51,6 +52,7 @@ class ProgressControls extends ConsumerWidget {
           try {
             await ref.read(progressRepositoryProvider).reset();
             ref.invalidate(storyProvider);
+            ref.invalidate(sortingProvider);
             ref.invalidate(learningProvider);
             ref.invalidate(traceProvider);
             ref.invalidate(progressSummaryProvider);

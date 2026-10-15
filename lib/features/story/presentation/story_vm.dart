@@ -44,6 +44,7 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
   Future<void> answer(int i) => _transition((s) => machine.answer(s, i));
   Future<void> hint() => _transition(machine.hint);
   Future<void> easier() => _transition(machine.easier);
+  Future<void> originalMission() => _transition(machine.originalMission);
   Future<void> assist() => _transition(
     (s) => machine.assist(
       s,

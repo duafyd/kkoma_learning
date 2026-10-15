@@ -14,6 +14,7 @@ import '../features/parent/presentation/rest_page.dart';
 import '../features/parent/presentation/usage_vm.dart';
 import 'lifecycle.dart';
 import '../features/math/presentation/counting_page.dart';
+import '../features/math/presentation/sorting_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final router = GoRouter(
@@ -34,6 +35,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/parent', builder: (_, _) => const ParentPage()),
       GoRoute(path: '/rest', builder: (_, _) => const RestPage()),
       GoRoute(path: '/math/play', builder: (_, _) => const CountingPage()),
+      GoRoute(path: '/math/match', builder: (_, _) => const SortingPage()),
       GoRoute(path: '/story', builder: (_, _) => const StoryPage()),
       GoRoute(path: '/gallery', builder: (_, _) => const GalleryPage()),
       GoRoute(path: '/drawing', builder: (_, _) => const DrawingPage()),
