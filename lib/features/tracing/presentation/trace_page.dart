@@ -6,6 +6,7 @@ import '../../../core/audio/audio_service.dart';
 import '../../../core/widgets/activity_scaffold.dart';
 import '../../../core/widgets/canvas_workspace.dart';
 import '../../learning/data/learning_content.dart';
+import '../../learning/domain/learning_speech.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../profile/domain/settings.dart';
 import '../../parent/presentation/usage_vm.dart';
@@ -61,7 +62,11 @@ class _TracePageState extends ConsumerState<TracePage> {
         if (mounted) {
           ref
               .read(audioProvider)
-              .speak(item.name, settings, language: item.language);
+              .speak(
+                learningLetterName(item),
+                settings,
+                language: item.language,
+              );
         }
       });
     }

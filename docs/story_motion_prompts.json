@@ -1,0 +1,46 @@
+{
+  "mode": "built-in image_gen; not CLI",
+  "assets": [
+    {
+      "key": "stage-library",
+      "referenced_image_paths": [
+        "assets/story/library.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Asset type: clean layered background for the same children's Flutter picture-book app. Edit target: the supplied library illustration. Remove ALL foreground story characters: orange fox, green turtle, brown-haired fairy girl, and smiling cloud/wind character if present. Inpaint their occupied areas with the existing environment, matching original gouache/clay-storybook style, lighting, perspective and texture. Keep the architecture, scenery, books, stars, lanterns, bridges, foliage and exact warm color mood. Keep the same 3:2 landscape composition. NO characters or faces, NO text, NO UI, NO borders. Leave the lower middle ground visually calm so separate animated characters can be placed there later. This is scenery only; do not invent replacement animals or humans."
+    },
+    {
+      "key": "stage-forest",
+      "referenced_image_paths": [
+        "assets/story/forest.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Asset type: clean layered background for the same children's Flutter picture-book app. Edit target: the supplied forest illustration. Remove ALL foreground story characters: orange fox, green turtle, brown-haired fairy girl, and smiling cloud/wind character if present. Inpaint their occupied areas with the existing environment, matching original gouache/clay-storybook style, lighting, perspective and texture. Keep the architecture, scenery, books, stars, lanterns, bridges, foliage and exact warm color mood. Keep the same 3:2 landscape composition. NO characters or faces, NO text, NO UI, NO borders. Leave the lower middle ground visually calm so separate animated characters can be placed there later. This is scenery only; do not invent replacement animals or humans."
+    },
+    {
+      "key": "stage-coast",
+      "referenced_image_paths": [
+        "assets/story/coast.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Asset type: clean layered background for the same children's Flutter picture-book app. Edit target: the supplied coast illustration. Remove ALL foreground story characters: orange fox, green turtle, brown-haired fairy girl, and smiling cloud/wind character if present. Inpaint their occupied areas with the existing environment, matching original gouache/clay-storybook style, lighting, perspective and texture. Keep the architecture, scenery, books, stars, lanterns, bridges, foliage and exact warm color mood. Keep the same 3:2 landscape composition. NO characters or faces, NO text, NO UI, NO borders. Leave the lower middle ground visually calm so separate animated characters can be placed there later. This is scenery only; do not invent replacement animals or humans."
+    },
+    {
+      "key": "stage-night",
+      "referenced_image_paths": [
+        "assets/story/night.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Asset type: clean layered background for the same children's Flutter picture-book app. Edit target: the supplied night illustration. Remove ALL foreground story characters: orange fox, green turtle, brown-haired fairy girl, and smiling cloud/wind character if present. Inpaint their occupied areas with the existing environment, matching original gouache/clay-storybook style, lighting, perspective and texture. Keep the architecture, scenery, books, stars, lanterns, bridges, foliage and exact warm color mood. Keep the same 3:2 landscape composition. NO characters or faces, NO text, NO UI, NO borders. Leave the lower middle ground visually calm so separate animated characters can be placed there later. This is scenery only; do not invent replacement animals or humans."
+    },
+    {
+      "key": "cast",
+      "referenced_image_paths": [
+        "assets/story/library.png",
+        "assets/story/night.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent character atlas for an offline children's picture-book app. Reference images are STYLE AND CHARACTER IDENTITY REFERENCES, not backgrounds to reproduce. Create precisely FOUR full-body isolated original characters on a truly transparent canvas in a clean 2x2 equal-cell grid. Top-left cell: Lulu orange fox with cream muzzle and fluffy tail, teal vest and small brown satchel, standing happily. Top-right cell: Toto small sage-green turtle, moss-green shell and ochre scarf, standing happily. Bottom-left cell: Moa tiny fairy child, chestnut bob, lavender dress, translucent wings, holding tiny golden star wand. Bottom-right cell: Whoosh a small smiling white-lavender wind cloud with a curling tail. Match the supplied sweet rounded polished gouache/clay storybook aesthetic, warm highlights, tactile fur, same identifiable faces. One and ONLY ONE character per quadrant. Every character fully contained within its own cell with at least 12% transparent padding on all sides, centered in its cell; no overlap or bleed across central horizontal/vertical gutters. Square canvas 1024x1024 or larger. Four cells each use the same relative character scale, except the cloud can be smaller. NO scene, NO ground, NO props beyond the named worn/held items, NO cast shadows beyond character silhouettes, NO labels, NO letters, NO numbers, NO grid lines, NO colored background. Each character must be completely separate from the others for cropping by the app at cell boundaries."
+    }
+  ]
+}

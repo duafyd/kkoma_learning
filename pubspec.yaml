@@ -63,7 +63,40 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/story/
+    - assets/story/stage-library.png
+    - assets/story/stage-forest.png
+    - assets/story/stage-coast.png
+    - assets/story/stage-night.png
+    - assets/story/cast-v2.png
+    - assets/story/cast-search-v3.png
+    - assets/story/ep1-quiet.png
+    - assets/story/ep1-search.png
+    - assets/story/ep1-map.png
+    - assets/story/ep2-gate.png
+    - assets/story/ep2-open.png
+    - assets/story/ep3-tree.png
+    - assets/story/ep3-seeds.png
+    - assets/story/ep4-station.png
+    - assets/story/ep4-ready.png
+    - assets/story/ep5-dark.png
+    - assets/story/ep5-beam-v2.png
+    - assets/story/ep6-bridge.png
+    - assets/story/ep7-faded.png
+    - assets/story/ep8-scattered.png
+    - assets/story/ep9-fork.png
+    - assets/story/ep10-damp.png
+    - assets/story/ep11-empty.png
+    - assets/story/ep12-return.png
+    - assets/story/ep6-built.png
+    - assets/story/ep7-color.png
+    - assets/story/ep8-sorted.png
+    - assets/story/ep9-joined.png
+    - assets/story/ep10-open.png
+    - assets/story/ep11-lit.png
+    - assets/story/ep12-flowers.png
+    - assets/story/ep12-stars.png
+    - assets/audio/
+    - assets/audio/effects/
     - assets/fonts/OFL.txt
   fonts:
     - family: Jua

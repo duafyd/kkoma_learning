@@ -1,0 +1,13 @@
+{
+  "mode": "built-in imagegen edit",
+  "prompt": "Edit the referenced transparent 2x2 character atlas. Preserve the exact four characters' identity, clothing, art style and current searching/pointing poses. The previous output failed cell isolation: the fox head extends across the top-right cell and turtle feet approach the bottom cells. Recompose with FOUR SMALLER FULL BODIES, each wholly inside its own equal quadrant. Top left fox, top right turtle, bottom left fairy, bottom right cloud. Each character including all extremities, ears, tail, wand and wings must fit in only the INNER 76% of its quadrant, with a wide fully transparent border on every side. The central vertical and horizontal cross must have a completely empty transparent gutter at least 8% of full canvas width. No part of any character may intersect either center line. Square canvas, actual alpha transparency, no background, no grid, no label, no text, no extra objects. Keep the beautiful detailed clay/gouache finish. Do not enlarge or crop any character.",
+  "referenced_image_paths": [
+    "assets/story/cast-search-v3.png (initial 1254x1254 generation)"
+  ],
+  "transparent_background": true,
+  "output": "assets/story/cast-search-v3.png",
+  "dimensions": [
+    1280,
+    1280
+  ]
+}

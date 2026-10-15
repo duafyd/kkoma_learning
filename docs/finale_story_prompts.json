@@ -1,0 +1,152 @@
+[
+  {
+    "asset": "assets/story/ep6-bridge.png",
+    "mode": "reference-guided generation",
+    "prompt": "Use case: illustration-story. Asset: full-bleed 1536x1024 landscape background for Korean offline storybook app ages 2–5. Input is a STYLE and WORLD reference only. Premium hand-painted gouache with soft clay depth, tactile wood/paper/moss, round welcoming architecture, peach mint honey-gold lavender palette. No people, characters, animals or faces: independent cast will be overlaid. NO writing, letters, digits, logos, UI, frames. All labels/plaques completely BLANK. Lowest 25% calm for characters. Main event clearly readable in central upper 70% after tablet crop. Gentle and safe: no dangerous falls, deep scary water, horror, dark villain shadows, lightning or flashing.\nScene: A very shallow tiny sparkling garden stream beside the coast. A low stone footbridge with THREE clearly visible empty shallow stepping-stone sockets across the narrow middle span, an unfinished path. Three loose smooth oval stepping stones wait in a small mossy tray on the near bank. Safe flowers and low railings on both banks. A distant unlit flower garden arch suggests next destination. No numeric marks. Camera close enough to see the gap sockets, quiet foreground bank.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/stage-coast.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-de14d907-b528-4536-be45-d2fa683fa43d.png"
+  },
+  {
+    "asset": "assets/story/ep7-faded.png",
+    "mode": "reference-guided generation",
+    "prompt": "Use case: illustration-story. Asset: full-bleed 1536x1024 landscape background for Korean offline storybook app ages 2–5. Input is a STYLE and WORLD reference only. Premium hand-painted gouache with soft clay depth, tactile wood/paper/moss, round welcoming architecture, peach mint honey-gold lavender palette. No people, characters, animals or faces: independent cast will be overlaid. NO writing, letters, digits, logos, UI, frames. All labels/plaques completely BLANK. Lowest 25% calm for characters. Main event clearly readable in central upper 70% after tablet crop. Gentle and safe: no dangerous falls, deep scary water, horror, dark villain shadows, lightning or flashing.\nScene: A garden of folded PAPER FLOWERS whose colour has faded to soft cream and pastel grey, surrounded by still-green lush mossy forest. Low central round flowerbed, a few blank round and triangle garden tokens on a little table, pale paper butterfly shapes without faces. The garden is peacefully waiting to be coloured, not dead or spooky. Curving path leads to a sheltered little art table. No letters or numbers.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/stage-forest.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-f9230ff6-900b-4503-9725-92756d308cc0.png"
+  },
+  {
+    "asset": "assets/story/ep8-scattered.png",
+    "mode": "reference-guided generation",
+    "prompt": "Use case: illustration-story. Asset: full-bleed 1536x1024 landscape background for Korean offline storybook app ages 2–5. Input is a STYLE and WORLD reference only. Premium hand-painted gouache with soft clay depth, tactile wood/paper/moss, round welcoming architecture, peach mint honey-gold lavender palette. No people, characters, animals or faces: independent cast will be overlaid. NO writing, letters, digits, logos, UI, frames. All labels/plaques completely BLANK. Lowest 25% calm for characters. Main event clearly readable in central upper 70% after tablet crop. Gentle and safe: no dangerous falls, deep scary water, horror, dark villain shadows, lightning or flashing.\nScene: A friendly cloud-village garden terrace in soft blue-lavender daylight after a breeze. Several BLANK loose book pages, cream letter tiles WITHOUT symbols, and plain round counting tokens are gently scattered on a low table and soft rug. A small curled ribbon of wind lifts two blank pages, no cloud faces. Empty wicker sorting baskets at centre. A three-way forest path visible beyond. Cozy inviting atmosphere, not stormy.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/stage-night.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-91b97805-58bd-4116-b869-70f89162b872.png"
+  },
+  {
+    "asset": "assets/story/ep9-fork.png",
+    "mode": "reference-guided generation",
+    "prompt": "Use case: illustration-story. Asset: full-bleed 1536x1024 landscape background for Korean offline storybook app ages 2–5. Input is a STYLE and WORLD reference only. Premium hand-painted gouache with soft clay depth, tactile wood/paper/moss, round welcoming architecture, peach mint honey-gold lavender palette. No people, characters, animals or faces: independent cast will be overlaid. NO writing, letters, digits, logos, UI, frames. All labels/plaques completely BLANK. Lowest 25% calm for characters. Main event clearly readable in central upper 70% after tablet crop. Gentle and safe: no dangerous falls, deep scary water, horror, dark villain shadows, lightning or flashing.\nScene: A distinct THREE-WAY FORK in a beautiful mossy storybook forest, three little wooden path arches with large completely BLANK cream plaques. Left branch has paper flowers, middle branch has a tiny peach lighthouse ornament, right branch has smooth stepping stones. Three routes visibly converge again at a distant glowing paper grove. Paths peaceful, foreground fork spacious for characters. No printed arrows, letters or numbers.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/stage-forest.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-c784ebd0-5141-4613-8b66-98d7602cff28.png"
+  },
+  {
+    "asset": "assets/story/ep10-damp.png",
+    "mode": "reference-guided generation",
+    "prompt": "Use case: illustration-story. Asset: full-bleed 1536x1024 landscape background for Korean offline storybook app ages 2–5. Input is a STYLE and WORLD reference only. Premium hand-painted gouache with soft clay depth, tactile wood/paper/moss, round welcoming architecture, peach mint honey-gold lavender palette. No people, characters, animals or faces: independent cast will be overlaid. NO writing, letters, digits, logos, UI, frames. All labels/plaques completely BLANK. Lowest 25% calm for characters. Main event clearly readable in central upper 70% after tablet crop. Gentle and safe: no dangerous falls, deep scary water, horror, dark villain shadows, lightning or flashing.\nScene: Peaceful PAPER FOREST after a light shower: folded-paper trees among living mossy trees, raindrops on leaves, a protective arched reading shelter. On a low central table an open big blank storybook has a few cream pages gently stuck/folded together from dampness. Beside it, a seed packet, a tiny green sprout in a pot, and a little leafy tree pot show natural growth without labels. Warm lanterns make shelter inviting, rain delicate, no darkness or damage/scary mood.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/stage-night.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-cccd0672-30b8-4463-9011-2ce5d5d0e244.png"
+  },
+  {
+    "asset": "assets/story/ep11-empty.png",
+    "mode": "reference-guided generation",
+    "prompt": "Use case: illustration-story. Asset: full-bleed 1536x1024 landscape background for Korean offline storybook app ages 2–5. Input is a STYLE and WORLD reference only. Premium hand-painted gouache with soft clay depth, tactile wood/paper/moss, round welcoming architecture, peach mint honey-gold lavender palette. No people, characters, animals or faces: independent cast will be overlaid. NO writing, letters, digits, logos, UI, frames. All labels/plaques completely BLANK. Lowest 25% calm for characters. Main event clearly readable in central upper 70% after tablet crop. Gentle and safe: no dangerous falls, deep scary water, horror, dark villain shadows, lightning or flashing.\nScene: A wide friendly sky observatory terrace above a cloud garden at twilight. A LARGE ROUND STAR-MAP TABLE with FIVE EMPTY circular shallow star sockets in a clear arc, faint connecting lines. Five soft golden star fragments lie neatly in a small wooden tray beside it. Distant glowing library visible on a cloud island, warm lanterns, gentle constellation sky without text. Safe low railing, foreground quiet for cast. No symbols resembling written digits.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/stage-night.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-4f8c956e-9510-4ac9-ae09-feabc9a85ce9.png"
+  },
+  {
+    "asset": "assets/story/ep12-return.png",
+    "mode": "reference-guided generation",
+    "prompt": "Use case: illustration-story. Asset: full-bleed 1536x1024 landscape background for Korean offline storybook app ages 2–5. Input is a STYLE and WORLD reference only. Premium hand-painted gouache with soft clay depth, tactile wood/paper/moss, round welcoming architecture, peach mint honey-gold lavender palette. No people, characters, animals or faces: independent cast will be overlaid. NO writing, letters, digits, logos, UI, frames. All labels/plaques completely BLANK. Lowest 25% calm for characters. Main event clearly readable in central upper 70% after tablet crop. Gentle and safe: no dangerous falls, deep scary water, horror, dark villain shadows, lightning or flashing.\nScene: Return to the same cozy cloud-village LIBRARY. Central round table holds an OPEN BLANK STORYBOOK waiting for final story fragments, only a very faint warm glow at spine. Bookshelves have a few vacant spaces but are neat and safe. A small closed blank new book rests nearby waiting for next adventure. Warm lamps and lavender windows. No flower/star decorations installed yet. Maintain inviting premium rich painterly world, no characters.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/stage-library.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-b79a7b1c-518f-4504-a72e-a14e1653043c.png"
+  },
+  {
+    "asset": "assets/story/ep6-built.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: Fill ALL THREE bridge sockets with the three smooth matching stepping stones from the tray. The tray is now empty. The bridge is complete and a gentle gold path crosses toward the flower garden. Keep shallow safe peaceful water and exact camera.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep6-bridge.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-59109384-1c4b-468b-9a86-93d30acbb415.png"
+  },
+  {
+    "asset": "assets/story/ep7-color.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: Restore the faded PAPER FLOWERS and butterflies to rich gentle red, blue, peach, golden yellow and lavender colours. The central round bed is full of cheerful coloured paper blossoms, art table remains, path softly glowing. Preserve exact garden, architecture and camera. Nothing new scary.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep7-faded.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-af31b47d-23fb-45ef-81e9-2df1ea5f67cd.png"
+  },
+  {
+    "asset": "assets/story/ep8-sorted.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: All scattered blank pages and plain tokens are now sorted NEATLY into the wicker baskets by kind, paper pages in one, plain cream letter tiles WITHOUT letters in another, round tokens in another. The loose flying pages now rest on table, calm breeze. One golden story star glows gently above tidy baskets. Exact same terrace/table/camera.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep8-scattered.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-9597c857-1ddc-44f0-8866-1d1ae9e11f9d.png"
+  },
+  {
+    "asset": "assets/story/ep9-joined.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: The same THREE paths and three arches remain visible and equally welcoming; soft golden dotted trails along all three paths converge in the distant paper grove, one story star glows above the central horizon. Blank plaques stay blank. No locked routes or correct-route bias, all paths valid. Preserve exact fork/camera.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep9-fork.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-7a7b8f9c-e603-47b4-b13b-cdc6889d8308.png"
+  },
+  {
+    "asset": "assets/story/ep10-open.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: The damp folded blank storybook pages are now unfolded smoothly and open flat. A gentle golden branching tree-like glow connects the seed packet, sprout pot and small tree pot, restoring a blank illustrated story spread with only abstract leafy shapes, no letters. Exact shelter, objects, landscape and camera.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep10-damp.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-98b54b0f-49a2-4191-a925-78affc6e05bd.png"
+  },
+  {
+    "asset": "assets/story/ep11-lit.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: Place a softly glowing GOLDEN STAR into each of the FIVE EMPTY sockets in the round map table. Five stars precisely in sockets, tray now empty, gentle gold connecting lines trace constellation and point toward the distant library. Preserve exact camera, room, terrace and safe light, no flashing.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep11-empty.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-1e0301f0-6473-4195-9e8f-3debb1293894.png"
+  },
+  {
+    "asset": "assets/story/ep12-flowers.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: Restore the storybook's magic: gentle warm golden story light rises from open book. Decorate THIS SAME LIBRARY as the chosen FLOWER ROOM: abundant tasteful paper flower garlands in peach mint lavender around shelves and railings, small flower cushions on chairs. Small closed new book nearby glows softly, hinting next adventure. Preserve exact furniture/camera/world, no writing or characters.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep12-return.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-2cdce731-b27e-4c72-9580-012fbb425d09.png"
+  },
+  {
+    "asset": "assets/story/ep12-stars.png",
+    "mode": "edit",
+    "prompt": "Use case: precise-object-edit / illustration-story. Matched success-state background for the same children's storybook app. Edit the referenced existing scene. KEEP THE EXACT CAMERA, COMPOSITION, ARCHITECTURE, MATERIALS, STYLE AND LANDMARK POSITIONS. Do not zoom out or redesign. Retain 1536x1024 landscape, no people/animals/characters/faces, no letters/digits/text/logo/UI. Calm safe foreground for separate cast.\nChange only the story event: Restore the storybook's magic: gentle warm golden story light rises from open book. Decorate THIS SAME LIBRARY as the chosen STAR ROOM: tasteful gold and lavender paper star garlands and constellation ribbons around shelves and railings, little star cushions. Small closed new book nearby glows softly, hinting next adventure. Preserve exact furniture/camera/world, no writing or characters.",
+    "referenced_image_paths": [
+      "D:/Sources/kkoma_learning/flutter_application_1/assets/story/ep12-return.png"
+    ],
+    "transparent_background": false,
+    "original_output": "C:\\Users\\염왕준\\.codex\\generated_images\\01a135da-db5e-7382-8068-8a22e7947ca5\\exec-38c494fb-8ff0-4c10-ba12-1f167e326090.png"
+  }
+]

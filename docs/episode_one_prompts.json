@@ -1,0 +1,38 @@
+[
+  {
+    "key": "ep1-quiet",
+    "referenced_image_paths": [
+      "assets/story/stage-library.png"
+    ],
+    "transparent_background": false,
+    "prompt": "Use case: illustration-story. Asset: layered background for episode 1 of a Korean picture-book app for ages 2–5. Input image is a visual identity and architecture reference for the SAME library. Keep its premium warm painterly clay/gouache quality, curving honey-oak bookshelves, windows to a cloud village, lanterns, round table, soft tactile textures and 3:2 landscape framing. NO characters, animals, people, faces, letters, numbers, text, logos or UI. Keep lower foreground open for independently animated characters. Do not create items in the foreground that resemble characters. No horror, fear or threatening shadows.\nScene: the beginning, the library's STORY STARLIGHT has gone out. An open book on the table is peacefully blank with cream paper, no floating golden magic, no glowing map, star lanterns unlit. The room remains clearly visible and inviting in soft blue lavender twilight plus a few ordinary warm amber reading lamps; moderate contrast, cozy and safe, never near-black. A light ribbon of wind gently lifts a few blank loose paper pages near the shelves, hinting at what happened. Noticeably quieter and less magical than the reference. Preserve richly readable details even on a child's tablet.",
+    "output": "assets/story/ep1-quiet.png"
+  },
+  {
+    "key": "ep1-search",
+    "referenced_image_paths": [
+      "assets/story/stage-library.png"
+    ],
+    "transparent_background": false,
+    "prompt": "Use case: illustration-story. Asset: layered background for episode 1 of a Korean picture-book app for ages 2–5. Input image is a visual identity and architecture reference for the SAME library. Keep its premium warm painterly clay/gouache quality, curving honey-oak bookshelves, windows to a cloud village, lanterns, round table, soft tactile textures and 3:2 landscape framing. NO characters, animals, people, faces, letters, numbers, text, logos or UI. Keep lower foreground open for independently animated characters. Do not create items in the foreground that resemble characters. No horror, fear or threatening shadows.\nScene: searching for the scattered story fragments. Move viewpoint closer to a low wooden bookshelf and soft mossy reading rug near the original round table, with a winding aisle toward the arched window. A few small warm star-shaped fragments glow softly between books and beside a closed book, like a friendly treasure trail. No numerals or counting task in this art; the app displays countable quiz items separately. Partial hopeful amber glow has returned, but the large open storybook is still mostly quiet. This is a distinct story-event composition, not just recoloring the entire original image.",
+    "output": "assets/story/ep1-search.png"
+  },
+  {
+    "key": "ep1-map",
+    "referenced_image_paths": [
+      "assets/story/stage-library.png"
+    ],
+    "transparent_background": false,
+    "prompt": "Use case: illustration-story. Asset: layered background for episode 1 of a Korean picture-book app for ages 2–5. Input image is a visual identity and architecture reference for the SAME library. Keep its premium warm painterly clay/gouache quality, curving honey-oak bookshelves, windows to a cloud village, lanterns, round table, soft tactile textures and 3:2 landscape framing. NO characters, animals, people, faces, letters, numbers, text, logos or UI. Keep lower foreground open for independently animated characters. Do not create items in the foreground that resemble characters. No horror, fear or threatening shadows.\nScene: ending and next adventure reveal. The book's first golden story star has lit up, and a large floating illustrated parchment map rises above the open book. The MAP HAS ONLY CLEAR PICTURES: a winding path from a small library icon to a lush flower garden gate with four simple rounded flowers, absolutely no written text, letters, numerals or symbols that look like writing. A warm golden trail connects book and map. Through the arched window a distant glowing garden on a cloud island is visible. Joyful renewed light, gold and mint and peach, no explosive fireworks. Map in upper-middle and large enough to recognize on phone, foreground quiet for separate cast.",
+    "output": "assets/story/ep1-map.png"
+  },
+  {
+    "key": "cast-search",
+    "referenced_image_paths": [
+      "assets/story/cast-v2.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: illustration-story. Asset: second transparent 2x2 equal-cell CHARACTER ATLAS for the SAME four original picture-book characters in the reference. Match exact identities, fur, clothing, colors, cute facial style, soft painterly/clay finish. Same cell order: top-left orange fox Lulu, cream muzzle, teal vest, brown satchel, crouching/leaning forward and reaching one paw down with a curious searching expression; top-right sage-green turtle Toto, moss shell, ochre scarf, one forepaw raised as if carefully counting; bottom-left chestnut-bob fairy Moa, lavender dress and translucent wings, holding star wand outward and pointing ahead with attentive gently concerned expression; bottom-right smiling white-lavender wind cloud Whoosh with curling tail, looking sheepishly apologetic but friendly. FOUR full bodies only, one fully contained in each quadrant, equal cells, centered, at least 8% clear transparent padding along all cell boundaries. Square canvas, 1280x1280 if possible. Actual alpha transparency. NO environment, floor, cast shadows, border, grid, labels, text, extra floating props, ground stars or additional characters. Keep all limbs, tail, wings and wand inside the correct quadrant. These are alternate narrative POSES, visibly different from the reference greeting poses.",
+    "output": "assets/story/cast-search-v3.png"
+  }
+]

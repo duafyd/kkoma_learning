@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/widgets/activity_scaffold.dart';
 import '../../../core/audio/audio_service.dart';
+import '../../../core/audio/sound_effects.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../domain/parent_gate.dart';
 import 'progress_controls.dart';
@@ -125,10 +126,35 @@ class _ParentPageState extends ConsumerState<ParentPage> {
               value: s.voiceVolume,
               onChanged: (v) => _change('voiceVolume', v),
             ),
-            const Text('효과 반응 (0이면 끔, 현재는 진동)'),
+            const Text('이야기 효과음 · 학습 진동 (0이면 끔)'),
             Slider(
               value: s.effectsVolume,
-              onChanged: (v) => _change('effectsVolume', v),
+              onChanged: (v) {
+                if (v == 0) ref.read(effectsProvider).stop();
+                _change('effectsVolume', v);
+              },
+            ),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.music_note_rounded),
+              label: const Text('이야기 효과음 들어 보기'),
+              onPressed: () async {
+                final result = await ref
+                    .read(effectsProvider)
+                    .play(StorySound.sparkle, s.effectsVolume);
+                if (!context.mounted) return;
+                if (result == EffectPlayback.unavailable ||
+                    result == EffectPlayback.muted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        result == EffectPlayback.muted
+                            ? '효과음 음량이 꺼져 있어요.'
+                            : '효과음을 재생하지 못했어요. 기기의 미디어 음량을 확인해 주세요.',
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
             const Text('배경음악은 현재 제공하지 않습니다. 녹음 음원 대신 기기의 TTS를 사용합니다.'),
             if (ref.watch(audioStatusProvider).issue != null) ...[

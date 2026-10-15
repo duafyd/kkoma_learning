@@ -1,6 +1,22 @@
 import '../../learning/domain/learning_models.dart';
 
 const storySupportQuizzes = <String, QuizDefinition>{
+  'order': QuizDefinition(
+    id: 'story-support-growth-order',
+    prompt: '씨앗 다음에 싹이 나온 순서를 골라요.',
+    visual: '씨앗 → 싹',
+    options: ['싹, 씨앗', '씨앗, 싹'],
+    answer: 1,
+    hint: '작은 씨앗에서 초록 싹이 나와요. 씨앗이 먼저예요.',
+    kind: QuizKind.order,
+    artwork: QuizArtwork(
+      objects: [QuizGlyph.seed, QuizGlyph.sprout],
+      choices: [
+        [QuizGlyph.sprout, QuizGlyph.seed],
+        [QuizGlyph.seed, QuizGlyph.sprout],
+      ],
+    ),
+  ),
   'hangul': QuizDefinition(
     id: 'story-support-hangul',
     subject: 'hangul',

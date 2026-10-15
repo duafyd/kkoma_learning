@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/audio/audio_service.dart';
+import '../core/audio/sound_effects.dart';
 import '../features/parent/presentation/usage_vm.dart';
 
 class AppLifecycle extends ConsumerStatefulWidget {
@@ -19,6 +20,10 @@ class _AppLifecycleState extends ConsumerState<AppLifecycle>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    ref
+        .read(audioProvider)
+        .setActive(lifecycle == null || lifecycle == AppLifecycleState.resumed);
   }
 
   @override
@@ -32,7 +37,8 @@ class _AppLifecycleState extends ConsumerState<AppLifecycle>
     ref
         .read(usageProvider.notifier)
         .setActive(state == AppLifecycleState.resumed);
-    if (state != AppLifecycleState.resumed) ref.read(audioProvider).stop();
+    ref.read(audioProvider).setActive(state == AppLifecycleState.resumed);
+    ref.read(effectsProvider).setActive(state == AppLifecycleState.resumed);
   }
 
   @override

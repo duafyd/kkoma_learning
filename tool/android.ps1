@@ -12,5 +12,9 @@ $env:ANDROID_HOME = $sdkAlias
 $env:ANDROID_SDK_ROOT = $sdkAlias
 $env:TEMP = $taskTemp
 $env:TMP = $taskTemp
+if ($FlutterArguments.Count -gt 0 -and $FlutterArguments[0] -eq 'build') {
+    dart run tool/prepare_recordings.dart
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+}
 flutter @FlutterArguments
 exit $LASTEXITCODE

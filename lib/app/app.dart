@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/audio/audio_service.dart';
+import '../core/audio/sound_effects.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/parent/presentation/parent_page.dart';
 import '../features/tracing/presentation/trace_page.dart';
@@ -49,7 +50,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
-  router.routerDelegate.addListener(() => ref.read(audioProvider).stop());
+  router.routerDelegate.addListener(() {
+    ref.read(audioProvider).stop();
+    ref.read(effectsProvider).stop();
+  });
   ref.onDispose(router.dispose);
   return router;
 });

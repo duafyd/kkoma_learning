@@ -9,6 +9,7 @@ import '../data/learning_content.dart';
 import '../data/learning_repository.dart';
 import '../domain/learning_models.dart';
 import '../domain/learning_session.dart';
+import '../domain/learning_speech.dart';
 export '../domain/learning_session.dart';
 
 final learningRepositoryProvider = Provider(
@@ -59,7 +60,7 @@ class LearningVM extends AsyncNotifier<LearningSession> {
         progress = ref.read(progressRepositoryProvider);
     final settings = ref.read(settingsProvider).value ?? const ParentSettings();
     final result = await audio.speak(
-      '${item.name}. ${item.example}.',
+      learningListeningText(item),
       settings,
       language: item.language,
     );

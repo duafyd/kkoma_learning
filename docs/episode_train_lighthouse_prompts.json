@@ -1,0 +1,53 @@
+{
+  "mode": "built-in imagegen",
+  "jobs": [
+    {
+      "key": "ep4-station",
+      "prompt": "Use case: illustration-story. Production landscape background for a Korean offline storybook learning app ages 2–5. Reference is visual style/world only: premium warm gouache with clay-like depth, tactile wood, peach/teal/pale-gold palette, rounded architecture, little flowers, friendly coastal cloud village. 1536x1024 landscape. NO characters, people, animals, faces, text, numbers, letters, logos, UI or border. Any plaques are completely BLANK cream paper. Leave lowest 25 percent quiet for separately animated cast, key event in upper middle visible in a narrower tablet crop. Safe and cozy.\nScene: A close friendly seaside toy-like steam train station, green forest lane arriving on left. The stationary coral-and-teal locomotive and TWO short low wooden cargo carriages occupy upper-middle. Their two wide cream front plaques completely blank. Wicker baskets of warm golden folded-paper seed packets wait on the platform at middle-left, not yet loaded. A closed small wooden boarding gate makes the waiting state clear. Station signs blank. Blue sea and a small distant unlit lighthouse visible behind. Cheerful afternoon. No steam blast or threat.",
+      "referenced_image_paths": [
+        "assets/story/stage-coast.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep4-station.png",
+      "selected": true
+    },
+    {
+      "key": "ep4-ready",
+      "prompt": "Use case: illustration-story. Production landscape background for a Korean offline storybook learning app ages 2–5. Reference is visual style/world only: premium warm gouache with clay-like depth, tactile wood, peach/teal/pale-gold palette, rounded architecture, little flowers, friendly coastal cloud village. 1536x1024 landscape. NO characters, people, animals, faces, text, numbers, letters, logos, UI or border. Any plaques are completely BLANK cream paper. Leave lowest 25 percent quiet for separately animated cast, key event in upper middle visible in a narrower tablet crop. Safe and cozy.\nScene: The same seaside coral-and-teal steam train at a friendly wooden platform, TWO low cargo carriages now neatly LOADED with wicker baskets of golden seed packets. The small boarding gate is OPEN, a gentle golden trail connects the blank cream car plaques and leads toward tracks on right. Little stationary train ready to depart, unlit lighthouse far behind. Same architecture and warm afternoon. No motion blur. Important: two large blank cream plaques face camera so Flutter can add letters later.",
+      "referenced_image_paths": [
+        "assets/story/stage-coast.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep4-ready.png",
+      "selected": true
+    },
+    {
+      "key": "ep5-dark",
+      "prompt": "Use case: illustration-story. Production landscape background for a Korean offline storybook learning app ages 2–5. Reference is visual style/world only: premium warm gouache with clay-like depth, tactile wood, peach/teal/pale-gold palette, rounded architecture, little flowers, friendly coastal cloud village. 1536x1024 landscape. NO characters, people, animals, faces, text, numbers, letters, logos, UI or border. Any plaques are completely BLANK cream paper. Leave lowest 25 percent quiet for separately animated cast, key event in upper middle visible in a narrower tablet crop. Safe and cozy.\nScene: A close distinctive peach-and-cream lighthouse at gentle blue-lavender early evening. Its glass lantern room at upper-middle is visibly UNLIT; ordinary warm little path lamps remain lit and the environment is inviting and clearly visible, not dark/scary. A LARGE BLANK CREAM SHIELD PLAQUE is centered on lighthouse front at middle-height. Low wooden table with an apple basket near the entrance, tiny seaside train platform behind left, distant rounded stone bridge on right. Broad safe foreground garden path. No glowing main beam yet.",
+      "referenced_image_paths": [
+        "assets/story/stage-coast.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep5-dark.png",
+      "selected": true
+    },
+    {
+      "key": "ep5-lit",
+      "prompt": "Use case: illustration-story. Production landscape background for a Korean offline storybook learning app ages 2–5. Reference is visual style/world only: premium warm gouache with clay-like depth, tactile wood, peach/teal/pale-gold palette, rounded architecture, little flowers, friendly coastal cloud village. 1536x1024 landscape. NO characters, people, animals, faces, text, numbers, letters, logos, UI or border. Any plaques are completely BLANK cream paper. Leave lowest 25 percent quiet for separately animated cast, key event in upper middle visible in a narrower tablet crop. Safe and cozy.\nScene: The same peach-and-cream lighthouse at blue-lavender early evening now GLOWING with a soft wide warm GOLDEN beam from the upper-middle glass lantern room across the bay toward a rounded stone bridge at right. No flashing or intense glare. A LARGE BLANK CREAM SHIELD PLAQUE centered on front at middle-height. Low wooden table and apple basket near entrance. Gentle star-like golden light celebrates success, inviting garden foreground open for independent cast. Clearly different bright restored-light event, preserve lighthouse identity.",
+      "referenced_image_paths": [
+        "assets/story/stage-coast.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep5-lit.png",
+      "selected": false
+    }
+  ],
+  "matchedBeamEdit": {
+    "prompt": "Use case: lighting-weather / illustration-story. Edit ONLY the main lantern's light state of the referenced image. Preserve the EXACT close-up composition, camera, lighthouse building shape and position, large blank cream shield plaque on its front, apple table, train at left, distant stone bridge at right, foreground paths and every background landmark. Do NOT zoom out, move the lighthouse, or return to a wider coastal view. The close lighthouse glass lantern room near the top centre now glows with a soft warm gold light and a gentle beam extends to the RIGHT toward the distant bridge. Environment remains soft early-evening lavender/peach, maybe slightly warmer reflected light on the immediate tower. No flashing or blown highlights. Keep the cream plaque completely BLANK for Flutter lettering. No people, animals, characters, letters, digits, writing, UI or logos. Same 1536x1024 landscape. This is a matched success-state background, not a new camera shot.",
+    "referenced_image_paths": [
+      "assets/story/ep5-dark.png"
+    ],
+    "transparent_background": false,
+    "output": "assets/story/ep5-beam-v2.png"
+  }
+}

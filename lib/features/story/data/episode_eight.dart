@@ -1,0 +1,108 @@
+import '../domain/story_models.dart';
+import 'finale_quizzes.dart' as q;
+
+const windCSound = [
+  StorySpeech(
+    id: 'letter-c-name',
+    label: 'C 이름 듣기',
+    text: 'C',
+    language: 'en-US',
+  ),
+];
+
+const episodeEight = StoryEpisode(
+  id: 8,
+  title: '바람 친구 휙휙의 실수',
+  goal: '함께 정리하며 글자와 숫자를 구별해요',
+  reward: '별빛 8',
+  scenes: [
+    StoryScene(
+      id: 'ep8-start',
+      text: '휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…”',
+      background: 'ep8-scattered',
+      character: '휙휙',
+      reaction: StoryReaction.search,
+    ),
+    StoryScene(
+      id: 'ep8-discover',
+      text: '“미안해. 나도 이야기 속에 들어가고 싶었어.”\n괜찮아, 휙휙! 우리 같이 정리하자.',
+      background: 'ep8-scattered',
+      minimumLevel: 3,
+      character: '휙휙',
+    ),
+    StoryScene(
+      id: 'ep8-choice',
+      text: '누구와 함께 살펴볼까요?',
+      background: 'ep8-scattered',
+      interaction: StoryPhase.choice,
+      choices: ['루루', '토토'],
+      flag: 'companion',
+    ),
+    StoryScene(
+      id: 'ep8-quiz',
+      text: 'A와 C는 영어 글자예요.\n숫자와 섞이지 않은 영어 글자 바구니를 찾아요.',
+      background: 'ep8-scattered',
+      interaction: StoryPhase.quiz,
+      reaction: StoryReaction.point,
+      quiz: q.windLetters,
+      successBackground: 'ep8-sorted',
+      successText: 'A와 C를 찾았어요! 흩어진 페이지도 바구니에 가지런히 모였어요.',
+      exploreQuiz: q.ep8Explore,
+      exploreText: '바람이 책과 동그라미를 살짝 흔들어요.\n마음에 드는 그림을 눌러 함께 정리해요.',
+      exploreSuccessText: '톡! 친구들과 페이지를 정리했어요. 휙휙도 환하게 웃어요.',
+    ),
+    StoryScene(
+      id: 'ep8-clue',
+      text: '글자는 글자끼리, 숫자는 숫자끼리!\n서로 달라도 모두 이야기에 필요한 친구예요.',
+      background: 'ep8-sorted',
+      minimumLevel: 4,
+      character: '휙휙',
+      reaction: StoryReaction.point,
+    ),
+    StoryScene(
+      id: 'ep8-trace',
+      text: '영어 글자 C를 그려 바구니에 표시해요.\n둥글게 돌다가 입구를 열어두어요.',
+      background: 'ep8-sorted',
+      minimumLevel: 3,
+      interaction: StoryPhase.tracing,
+      traceId: 'e-C',
+      reaction: StoryReaction.point,
+      speeches: windCSound,
+      successText: 'C 바구니가 완성됐어요! 휙휙이 조심조심 옮겨줘요.',
+    ),
+    StoryScene(
+      id: 'ep8-review',
+      text: '이번에는 1과 3을 모아요.\n숫자만 있는 바구니를 찾아요.',
+      background: 'ep8-sorted',
+      minimumLevel: 4,
+      interaction: StoryPhase.quiz,
+      reaction: StoryReaction.point,
+      quiz: q.windNumbers,
+      successText: '1과 3은 숫자! 다른 바구니와 구별했어요.',
+    ),
+    StoryScene(
+      id: 'ep8-talk',
+      text: '혼자 숨기지 않고 말하니 마음이 가벼워졌어.\n다음에는 먼저 물어보고 살살 불게!',
+      background: 'ep8-sorted',
+      minimumLevel: 5,
+      character: '휙휙',
+    ),
+    StoryScene(
+      id: 'ep8-together',
+      text: '별, 책, 별… 책갈피가 번갈아 놓였어요.\n다음에는 무엇을 놓을까요?',
+      background: 'ep8-sorted',
+      minimumLevel: 5,
+      interaction: StoryPhase.quiz,
+      reaction: StoryReaction.point,
+      quiz: q.windPattern,
+      successText: '다음은 책! 함께 정리하니 약속도 찾을 수 있어요.',
+    ),
+    StoryScene(
+      id: 'ep8-end',
+      text: '여덟 번째 별빛을 휙휙과 함께 챙겼어요.\n바람이 살랑, 세 갈래 길로 우리를 안내해요.',
+      background: 'ep8-sorted',
+      character: '휙휙',
+      reaction: StoryReaction.celebrate,
+    ),
+  ],
+);

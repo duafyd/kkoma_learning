@@ -1,0 +1,13 @@
+{
+    "version":  "1.0.0",
+    "buildNumber":  214215508,
+    "bytes":  146266134,
+    "MiB":  139.5,
+    "sha256":  "572379bbeaeddfcee4ad9376f42aa7ed7493cdda12f3686128751061a789d2c5",
+    "signature":  "verified v2",
+    "backgrounds":  30,
+    "atlases":  2,
+    "effects":  3,
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false
+}

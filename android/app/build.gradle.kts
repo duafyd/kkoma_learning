@@ -24,6 +24,10 @@ android {
     namespace = "com.example.flutter_application_1"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+    androidResources {
+        // SoundPool loads bundled PCM through AssetFileDescriptor.
+        noCompress += "wav"
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

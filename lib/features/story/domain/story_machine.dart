@@ -12,6 +12,29 @@ class StoryMachine {
     : episodes = episodes ?? storyEpisodes;
   StoryScene scene(StorySnapshot s) =>
       episodes[s.episode].forLevel(s.level)[s.scene];
+  String text(StorySnapshot s) => s.level == 2 && s.supportSceneId == null
+      ? scene(s).exploreText ?? scene(s).text
+      : scene(s).text;
+  String narration(StorySnapshot s) => s.phase == StoryPhase.success
+      ? s.message
+      : s.phase == StoryPhase.quiz
+      ? quiz(s).prompt
+      : text(s);
+  String background(StorySnapshot s) {
+    final current = scene(s);
+    return s.phase == StoryPhase.success
+        ? current.successBackgroundVariants[s.flags[current.variationFlag]] ??
+              current.successBackground ??
+              current.backgroundVariants[s.flags[current.variationFlag]] ??
+              current.background
+        : current.backgroundVariants[s.flags[current.variationFlag]] ??
+              current.background;
+  }
+
+  List<StorySpeech> speeches(StorySnapshot s) =>
+      scene(s).speechVariants[s.flags[scene(s).variationFlag]] ??
+      scene(s).speeches;
+
   StorySnapshot restore(StorySnapshot s) {
     if (s.episode < 0 || s.episode >= episodes.length) {
       return const StorySnapshot();
@@ -19,6 +42,20 @@ class StoryMachine {
     if (s.scene < 0 ||
         s.scene >= episodes[s.episode].forLevel(s.level).length) {
       return StorySnapshot(level: s.level);
+    }
+    if (s.pendingDrawing != null &&
+        (s.phase != StoryPhase.drawing ||
+            scene(s).interaction != StoryPhase.drawing)) {
+      return restore(s.change({'pendingDrawing': null}));
+    }
+    if (s.observedObjects.isNotEmpty) {
+      final art = scene(s).quiz != null ? quiz(s).artwork : null;
+      final valid = art != null && art.countOnTap && s.supportSceneId == null
+          ? s.observedObjects
+                .where((i) => i >= 0 && i < art.objects.length)
+                .toList()
+          : <int>[];
+      return s.change({'observedObjects': valid});
     }
     return s;
   }
@@ -39,13 +76,16 @@ class StoryMachine {
           );
     final index = next >= 0 ? next : newScenes.length - 1;
     final phase = exact >= 0 ? s.phase : newScenes[index].interaction;
-    return s.change({
-      'level': level,
-      'scene': index,
-      'phase': phase.name,
-      'strokes': exact >= 0 ? s.toJson()['strokes'] : [],
-      'supportSceneId': exact >= 0 ? s.supportSceneId : null,
-    });
+    return restore(
+      s.change({
+        'level': level,
+        'scene': index,
+        'phase': phase.name,
+        'strokes': exact >= 0 ? s.toJson()['strokes'] : [],
+        'supportSceneId': exact >= 0 ? s.supportSceneId : null,
+        'observedObjects': exact >= 0 ? s.observedObjects : [],
+      }),
+    );
   }
 
   StorySnapshot begin(int level) => StorySnapshot(
@@ -73,7 +113,9 @@ class StoryMachine {
       }
       final original = _originalQuiz(s);
       return storySupportQuizzes[original.subject == 'math'
-          ? original.kind == QuizKind.pattern
+          ? original.kind == QuizKind.order
+                ? 'order'
+                : original.kind == QuizKind.pattern
                 ? 'pattern'
                 : original.kind == QuizKind.classify
                 ? 'shape'
@@ -84,16 +126,12 @@ class StoryMachine {
   }
 
   QuizDefinition _originalQuiz(StorySnapshot s) {
-    if (s.episode == 8) {
-      return quizById(
-        s.flags['route'] == '영어 길'
-            ? 'e-apple'
-            : s.flags['route'] == '숫자 길'
-            ? 'count2'
-            : 'h-bag',
-      );
+    if (s.level == 2 && scene(s).exploreQuiz != null) {
+      return scene(s).exploreQuiz!;
     }
-    final q = scene(s).quiz!;
+    final current = scene(s);
+    final q =
+        current.quizVariants[s.flags[current.variationFlag]] ?? current.quiz!;
     if (q.minimumLevel > s.level && s.level >= 3) {
       return quizById(
         q.subject == 'hangul'
@@ -123,6 +161,7 @@ class StoryMachine {
         'assisted': false,
         'message': '',
         'supportSceneId': null,
+        'observedObjects': [],
       });
     }
     if (s.phase != StoryPhase.dialogue && s.phase != StoryPhase.success) {
@@ -145,6 +184,7 @@ class StoryMachine {
       'assisted': false,
       'message': '',
       'supportSceneId': null,
+      'observedObjects': [],
     });
   }
 
@@ -155,19 +195,42 @@ class StoryMachine {
     return s.change({
       'phase': 'success',
       'flags': {...s.flags, current.flag ?? current.id: current.choices[index]},
-      'message': '${current.choices[index]}과 함께 가요!',
+      'message': current.flag == 'room'
+          ? '${current.choices[index]}을 함께 꾸며요!'
+          : current.flag == 'route'
+          ? '${current.choices[index]}로 함께 가요!'
+          : '${current.choices[index]}와 함께 가요!',
     });
+  }
+
+  bool canAnswer(StorySnapshot s) {
+    if (s.phase != StoryPhase.quiz) return false;
+    final art = quiz(s).artwork;
+    return art == null ||
+        art.arrangement == QuizArrangement.tray ||
+        s.observedObjects.length == art.objects.length;
   }
 
   StorySnapshot answer(StorySnapshot s, int index) {
     if (s.phase != StoryPhase.quiz) return s;
     if (index < 0 || index >= quiz(s).options.length) return s;
+    if (!canAnswer(s)) {
+      return s.change({'message': '그림 조각을 빈자리에 먼저 놓아봐요. 친구의 도움을 받아도 좋아요.'});
+    }
     final accepted = s.level == 2 || quiz(s).accepts(index);
     return s.change({
       'phase': accepted ? 'success' : 'quiz',
       'attempts': s.attempts + 1,
       'hints': accepted ? s.hints : (s.hints + 1).clamp(0, 3),
-      'message': accepted ? '함께 찾았어요! 집중한 모습이 멋져요.' : '다른 길도 살펴볼까요?',
+      'message': accepted
+          ? s.level == 2 &&
+                    scene(s).exploreQuiz != null &&
+                    s.supportSceneId == null
+                ? scene(s).exploreSuccessText
+                : s.supportSceneId == null && scene(s).successText.isNotEmpty
+                ? scene(s).successText
+                : '함께 찾았어요! 집중한 모습이 멋져요.'
+          : '다른 길도 살펴볼까요?',
     });
   }
 
@@ -189,6 +252,7 @@ class StoryMachine {
         'strokes': [],
         'hints': 0,
         'message': '친구와 작은 미션부터 함께 해요.',
+        'observedObjects': [],
       });
     }
     return s;
@@ -202,6 +266,7 @@ class StoryMachine {
           'strokes': [],
           'hints': 0,
           'message': '원래 미션에 다시 도전해요.',
+          'observedObjects': [],
         })
       : s;
 
@@ -238,7 +303,11 @@ class StoryMachine {
           .map((line) => line.map((p) => p.toJson()).toList())
           .toList(),
       'phase': strokes.length == item.strokes.length ? 'success' : 'tracing',
-      'message': '길을 잘 따라갔어요!',
+      'message':
+          strokes.length == item.strokes.length &&
+              scene(s).successText.isNotEmpty
+          ? scene(s).successText
+          : '길을 잘 따라갔어요!',
     });
   }
 
@@ -246,4 +315,34 @@ class StoryMachine {
       s.phase == StoryPhase.drawing
       ? s.change({'phase': 'success', 'message': '내 그림이 정원의 지도가 되었어요!'})
       : s;
+
+  StorySnapshot observeObject(StorySnapshot s, int index) {
+    if (s.phase != StoryPhase.quiz) return s;
+    final artwork = quiz(s).artwork;
+    if (artwork == null ||
+        !artwork.countOnTap ||
+        index < 0 ||
+        index >= artwork.objects.length ||
+        s.observedObjects.contains(index)) {
+      return s;
+    }
+    final observed = [...s.observedObjects, index];
+    return s.change({
+      'observedObjects': observed,
+      'message': observed.length == artwork.objects.length
+          ? '모두 ${observed.length}개예요. 아래 그림에서 골라볼까요?'
+          : '${observed.length}개를 함께 세었어요. 다른 ${artwork.objectName}도 눌러봐요.',
+    });
+  }
+
+  StorySnapshot placeObject(StorySnapshot s, int piece, int slot) {
+    if (s.phase != StoryPhase.quiz) return s;
+    final art = quiz(s).artwork;
+    if (art == null ||
+        art.arrangement == QuizArrangement.tray ||
+        slot != s.observedObjects.length) {
+      return s;
+    }
+    return observeObject(s, piece);
+  }
 }

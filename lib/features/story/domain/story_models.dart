@@ -1,4 +1,5 @@
 import '../../learning/domain/learning_models.dart';
+import '../../drawing/domain/drawing.dart';
 import '../../tracing/domain/trace_engine.dart';
 
 enum StoryPhase {
@@ -12,6 +13,18 @@ enum StoryPhase {
   finished,
 }
 
+enum StoryReaction { greet, search, point, celebrate }
+
+class StorySpeech {
+  final String id, label, text, language;
+  const StorySpeech({
+    required this.id,
+    required this.label,
+    required this.text,
+    this.language = 'ko-KR',
+  });
+}
+
 class StoryScene {
   final String id, text, background, character;
   final StoryPhase interaction;
@@ -19,6 +32,18 @@ class StoryScene {
   final QuizDefinition? quiz;
   final String? traceId, flag;
   final List<String> choices;
+  final StoryReaction reaction;
+  final String successText;
+  final String? successBackground;
+  final QuizDefinition? exploreQuiz;
+  final String exploreSuccessText;
+  final String? exploreText;
+  final List<StorySpeech> speeches;
+  final String? variationFlag;
+  final Map<String, QuizDefinition> quizVariants;
+  final Map<String, String> backgroundVariants;
+  final Map<String, String> successBackgroundVariants;
+  final Map<String, List<StorySpeech>> speechVariants;
   const StoryScene({
     required this.id,
     required this.text,
@@ -29,6 +54,18 @@ class StoryScene {
     this.quiz,
     this.traceId,
     this.flag,
+    this.reaction = StoryReaction.greet,
+    this.successText = '',
+    this.successBackground,
+    this.exploreQuiz,
+    this.exploreSuccessText = '마음에 드는 모양을 찾았어요. 친구와 함께 가요!',
+    this.exploreText,
+    this.speeches = const [],
+    this.variationFlag,
+    this.quizVariants = const {},
+    this.backgroundVariants = const {},
+    this.successBackgroundVariants = const {},
+    this.speechVariants = const {},
     this.choices = const [],
   });
 }
@@ -57,6 +94,8 @@ class StorySnapshot {
   final bool assisted;
   final String message;
   final String? supportSceneId;
+  final List<int> observedObjects;
+  final Artwork? pendingDrawing;
   const StorySnapshot({
     this.episode = 0,
     this.scene = 0,
@@ -70,6 +109,8 @@ class StorySnapshot {
     this.assisted = false,
     this.message = '',
     this.supportSceneId,
+    this.observedObjects = const [],
+    this.pendingDrawing,
   });
   Map<String, dynamic> toJson() => {
     'episode': episode,
@@ -84,6 +125,8 @@ class StorySnapshot {
     'assisted': assisted,
     'message': message,
     'supportSceneId': supportSceneId,
+    'observedObjects': observedObjects,
+    'pendingDrawing': pendingDrawing?.toJson(),
   };
   factory StorySnapshot.fromJson(Map<String, dynamic> j) => StorySnapshot(
     episode: j['episode'] as int? ?? 0,
@@ -106,6 +149,16 @@ class StorySnapshot {
     assisted: j['assisted'] as bool? ?? false,
     message: j['message'] as String? ?? '',
     supportSceneId: j['supportSceneId'] as String?,
+    pendingDrawing: j['pendingDrawing'] is Map
+        ? Artwork.fromJson(
+            Map<String, dynamic>.from(j['pendingDrawing'] as Map),
+          )
+        : null,
+    observedObjects: (j['observedObjects'] as List? ?? const [])
+        .whereType<int>()
+        .where((i) => i >= 0)
+        .toSet()
+        .toList(),
   );
   StorySnapshot change(Map<String, dynamic> fields) =>
       StorySnapshot.fromJson({...toJson(), ...fields});

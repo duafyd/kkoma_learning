@@ -33,14 +33,15 @@ void main() {
   );
   test('rapid reading requests cancel earlier utterances', () async {
     final audio = AudioService();
-    await Future.wait([
+    final results = await Future.wait([
       audio.speak('첫 요청', const ParentSettings()),
       audio.speak('마지막 요청', const ParentSettings()),
     ]);
+    expect(results, [PlaybackResult.cancelled, PlaybackResult.played]);
     final speaks = calls.where((c) => c.method == 'speak').toList();
     expect(speaks.length, 1);
     expect(speaks.single.arguments.toString(), contains('마지막 요청'));
-    expect(calls.where((c) => c.method == 'stop').length, 2);
+    expect(calls.where((c) => c.method == 'stop'), isNotEmpty);
   });
   test('voice volume zero emits no speech', () async {
     await AudioService().speak('아', const ParentSettings(voiceVolume: 0));

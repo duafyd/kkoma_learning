@@ -6,6 +6,11 @@ abstract class LocalStore {
   Future<Map<String, dynamic>?> read(String key);
   Future<void> write(String key, Map<String, dynamic> value);
   Future<void> remove(String key);
+  Future<bool> writeIfUnchanged(
+    String key,
+    Map<String, dynamic> expected,
+    Map<String, dynamic> next,
+  );
 }
 
 class SqliteStore implements LocalStore {
@@ -44,6 +49,20 @@ class SqliteStore implements LocalStore {
   Future<void> remove(String key) async {
     await db.delete('documents', where: 'id = ?', whereArgs: [key]);
   }
+
+  @override
+  Future<bool> writeIfUnchanged(
+    String key,
+    Map<String, dynamic> expected,
+    Map<String, dynamic> next,
+  ) async =>
+      await db.update(
+        'documents',
+        {'value': jsonEncode(next)},
+        where: 'id = ? AND value = ?',
+        whereArgs: [key, jsonEncode(expected)],
+      ) ==
+      1;
 }
 
 class MemoryStore implements LocalStore {
@@ -64,5 +83,21 @@ class MemoryStore implements LocalStore {
   @override
   Future<void> remove(String key) async {
     documents.remove(key);
+  }
+
+  @override
+  Future<bool> writeIfUnchanged(
+    String key,
+    Map<String, dynamic> expected,
+    Map<String, dynamic> next,
+  ) async {
+    if (documents[key] == null ||
+        jsonEncode(documents[key]) != jsonEncode(expected)) {
+      return false;
+    }
+    documents[key] = Map<String, dynamic>.from(
+      jsonDecode(jsonEncode(next)) as Map,
+    );
+    return true;
   }
 }

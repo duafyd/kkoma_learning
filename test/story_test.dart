@@ -40,6 +40,12 @@ void main() {
           case StoryPhase.choice:
             s = machine.choose(s, 0);
           case StoryPhase.quiz:
+            final art = machine.quiz(s).artwork;
+            if (!machine.canAnswer(s) && art != null) {
+              for (var i = 0; i < art.objects.length; i++) {
+                s = machine.placeObject(s, i, i);
+              }
+            }
             s = machine.answer(s, machine.quiz(s).answer);
           case StoryPhase.tracing:
             final item = learningItems.firstWhere(

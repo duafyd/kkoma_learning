@@ -1,9 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/providers.dart';
+import '../../../core/audio/audio_service.dart';
 import '../../profile/domain/settings.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../tracing/domain/trace_engine.dart';
+import '../../drawing/data/drawing_repository.dart';
+import '../../drawing/presentation/drawing_vm.dart';
 import '../data/story_repository.dart';
 import '../domain/story_models.dart';
 import '../domain/story_machine.dart';
@@ -21,14 +24,22 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
   @override
   Future<StorySnapshot> build() async {
     final settings = await ref.watch(settingsProvider.future);
-    final saved = await ref.read(storyRepositoryProvider).load();
+    var saved = await ref.read(storyRepositoryProvider).load();
+    if (saved?.pendingDrawing != null &&
+        saved!.phase == StoryPhase.drawing &&
+        machine.scene(machine.restore(saved)).interaction ==
+            StoryPhase.drawing) {
+      saved = await _finishDrawing(saved);
+    }
     return saved == null
         ? machine.begin(settings.level)
         : machine.relevel(machine.restore(saved), settings.level);
   }
 
   Future<void> _transition(StorySnapshot Function(StorySnapshot) change) async {
-    if (busy || !state.hasValue) return;
+    if (busy || !state.hasValue || state.requireValue.pendingDrawing != null) {
+      return;
+    }
     busy = true;
     try {
       final next = change(state.requireValue);
@@ -53,6 +64,68 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
   );
   Future<void> trace(List<TracePoint> points) =>
       _transition((s) => machine.trace(s, points));
-  Future<void> drawingComplete() => _transition(machine.drawingComplete);
+  Future<void> saveGardenDrawing() async {
+    if (busy || state.asData?.value.phase != StoryPhase.drawing) return;
+    busy = true;
+    try {
+      var submitted = state.requireValue;
+      if (submitted.pendingDrawing == null) {
+        final document = (await ref.read(storyDrawingProvider.future)).current;
+        if (document.lines.isEmpty) return;
+        final repository = ref.read(storyRepositoryProvider);
+        final artwork = await ref
+            .read(drawingRepositoryProvider)
+            .prepare(document);
+        final pending = submitted.change({'pendingDrawing': artwork.toJson()});
+        if (!await repository.replaceIfCurrent(submitted, pending)) {
+          if (ref.mounted) ref.invalidateSelf();
+          return;
+        }
+        submitted = pending;
+        if (ref.mounted) state = AsyncData(pending);
+      }
+      final next = await _finishDrawing(submitted);
+      if (ref.mounted) state = AsyncData(next);
+    } finally {
+      busy = false;
+    }
+  }
+
+  Future<StorySnapshot> _finishDrawing(StorySnapshot submitted) async {
+    final repository = ref.read(storyRepositoryProvider);
+    final drawing = ref.read(drawingRepositoryProvider);
+    final level = submitted.level;
+    // A second VM or a parent reset may have superseded this pending save.
+    final current = await repository.load();
+    if (current?.pendingDrawing?.id != submitted.pendingDrawing!.id) {
+      return current ?? machine.begin(level);
+    }
+    await drawing.savePrepared(submitted.pendingDrawing!);
+    if (ref.mounted) ref.invalidate(galleryProvider);
+    final next = machine.drawingComplete(submitted).change({
+      'pendingDrawing': null,
+    });
+    if (await repository.replaceIfCurrent(submitted, next)) return next;
+    return await repository.load() ?? machine.begin(level);
+  }
+
   Future<void> resetStrokes() => _transition((s) => s.change({'strokes': []}));
+  Future<void> observeObject(int index) =>
+      _transition((s) => machine.observeObject(s, index));
+  Future<void> placeObject(int piece, int slot) =>
+      _transition((s) => machine.placeObject(s, piece, slot));
+  Future<PlaybackResult> listenTo(int index) async {
+    final current = state.asData?.value;
+    if (current == null) return PlaybackResult.cancelled;
+    final samples = machine.speeches(current);
+    if (index < 0 || index >= samples.length) return PlaybackResult.cancelled;
+    final sample = samples[index];
+    return ref
+        .read(audioProvider)
+        .speak(
+          sample.text,
+          ref.read(settingsProvider).value ?? const ParentSettings(),
+          language: sample.language,
+        );
+  }
 }

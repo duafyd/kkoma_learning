@@ -1,0 +1,41 @@
+{
+  "mode": "built-in imagegen, reference-guided generation",
+  "jobs": [
+    {
+      "key": "ep2-gate",
+      "prompt": "Use case: illustration-story. Asset: production landscape background for a Korean offline picture-book app for children ages 2–5. Reference image is ONLY the visual style and shared forest world: preserve premium warm hand-painted gouache with soft clay depth, rounded mossy trees, tiny wildflowers, warm golden lanterns, distant cloud village, tactile wood and paper, inviting daylight. 1536x1024 landscape, no border. NO characters, people, animals, faces, letters, digits, writing, logos or UI. Any hanging plaques are completely blank. Keep the lowest 25 percent relatively uncluttered for separately animated cast. Clear central event visible when the image is cropped horizontally on tablet. Cozy and safe, no threats or horror.\nScene: Episode 2 beginning. A distinctive CLOSED double wooden garden gate in a large flowering living arch, centered in the upper middle. Four chunky rounded flower-shaped plaques on the gate are blank cream paper. Pink peach mint flowers, a star-shaped latch gently unlit, path reaches the gate from the lower foreground. Beyond the closed gate only a hint of a sunlit winding flower path. Strong readable focal object, not a generic forest.",
+      "referenced_image_paths": [
+        "assets/story/stage-forest.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep2-gate.png"
+    },
+    {
+      "key": "ep2-open",
+      "prompt": "Use case: illustration-story. Asset: production landscape background for a Korean offline picture-book app for children ages 2–5. Reference image is ONLY the visual style and shared forest world: preserve premium warm hand-painted gouache with soft clay depth, rounded mossy trees, tiny wildflowers, warm golden lanterns, distant cloud village, tactile wood and paper, inviting daylight. 1536x1024 landscape, no border. NO characters, people, animals, faces, letters, digits, writing, logos or UI. Any hanging plaques are completely blank. Keep the lowest 25 percent relatively uncluttered for separately animated cast. Clear central event visible when the image is cropped horizontally on tablet. Cozy and safe, no threats or horror.\nScene: Episode 2 success. The same flower-covered living arch and chunky rounded wooden double garden gate now OPEN WIDE to reveal a warm golden winding path leading toward one giant old fruit tree. Four blank cream flower plaques hang safely along the opened doors. A small single golden story star glows above the arch. Pink peach mint flowers and little paper lanterns celebrate the path opening. No fireworks. Foreground spacious.",
+      "referenced_image_paths": [
+        "assets/story/stage-forest.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep2-open.png"
+    },
+    {
+      "key": "ep3-tree",
+      "prompt": "Use case: illustration-story. Asset: production landscape background for a Korean offline picture-book app for children ages 2–5. Reference image is ONLY the visual style and shared forest world: preserve premium warm hand-painted gouache with soft clay depth, rounded mossy trees, tiny wildflowers, warm golden lanterns, distant cloud village, tactile wood and paper, inviting daylight. 1536x1024 landscape, no border. NO characters, people, animals, faces, letters, digits, writing, logos or UI. Any hanging plaques are completely blank. Keep the lowest 25 percent relatively uncluttered for separately animated cast. Clear central event visible when the image is cropped horizontally on tablet. Cozy and safe, no threats or horror.\nScene: Episode 3 beginning. One enormous kind-looking old tree WITHOUT any face, broad mossy trunk and very low reachable boughs with soft peach/golden pear-shaped glowing paper fruit. Completely BLANK cream tags hang on a few fruit, no writing. A SMALL EMPTY WICKER COLLECTION BASKET on a low wooden stool at middle-right. A tiny distant wooden rail station glimpsed between leaves at upper-right foreshadows next chapter. Cozy library-forest world, composition centered on low tree bough and empty basket, foreground for separate characters.",
+      "referenced_image_paths": [
+        "assets/story/stage-forest.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep3-tree.png"
+    },
+    {
+      "key": "ep3-seeds",
+      "prompt": "Use case: illustration-story. Asset: production landscape background for a Korean offline picture-book app for children ages 2–5. Reference image is ONLY the visual style and shared forest world: preserve premium warm hand-painted gouache with soft clay depth, rounded mossy trees, tiny wildflowers, warm golden lanterns, distant cloud village, tactile wood and paper, inviting daylight. 1536x1024 landscape, no border. NO characters, people, animals, faces, letters, digits, writing, logos or UI. Any hanging plaques are completely blank. Keep the lowest 25 percent relatively uncluttered for separately animated cast. Clear central event visible when the image is cropped horizontally on tablet. Cozy and safe, no threats or horror.\nScene: Episode 3 completion. Close view of a LOW WOODEN TABLE beside the same giant mossy fruit tree. A wicker basket on the table holds warm golden folded-paper seed packets with completely BLANK cream tags. Nearby a small wooden handcart loaded with a few seed packets stands beside a tiny friendly rail station path; one softly glowing story star floats above the basket. Tactile leaves and flowers, sunlit branches framing background, no text or symbols. Clear event: seeds gathered and ready to travel. Foreground left and right open for cast.",
+      "referenced_image_paths": [
+        "assets/story/stage-forest.png"
+      ],
+      "transparent_background": false,
+      "output": "assets/story/ep3-seeds.png"
+    }
+  ]
+}

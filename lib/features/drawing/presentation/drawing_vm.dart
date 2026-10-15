@@ -6,19 +6,24 @@ import '../domain/drawing.dart';
 final drawingProvider = AsyncNotifierProvider<DrawingVM, DrawingHistory>(
   DrawingVM.new,
 );
+final storyDrawingProvider = AsyncNotifierProvider<DrawingVM, DrawingHistory>(
+  () => DrawingVM(draftKey: 'story-garden-draft'),
+);
 
 class DrawingVM extends AsyncNotifier<DrawingHistory> {
+  final String draftKey;
+  DrawingVM({this.draftKey = 'drawing-draft'});
   Future<void> _writes = Future.value();
   @override
   Future<DrawingHistory> build() async => DrawingHistory(
-    current: await ref.read(drawingRepositoryProvider).draft(),
+    current: await ref.read(drawingRepositoryProvider).draft(key: draftKey),
   );
   Future<void> _set(DrawingHistory next) {
     state = AsyncData(next);
     final repository = ref.read(drawingRepositoryProvider);
     final write = _writes
         .catchError((Object _) {})
-        .then((_) => repository.saveDraft(next.current));
+        .then((_) => repository.saveDraft(next.current, key: draftKey));
     _writes = write;
     return write;
   }

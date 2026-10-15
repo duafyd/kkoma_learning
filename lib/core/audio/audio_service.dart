@@ -5,8 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../features/profile/domain/settings.dart';
+import '../../features/profile/presentation/profile_vm.dart';
+import 'recorded_voice.dart';
 
 enum PlaybackResult { played, muted, unavailable, cancelled, failed }
+
+enum VoiceSource { recording, tts }
 
 enum AudioIssue { missingVoice, playbackFailed }
 
@@ -43,20 +47,32 @@ final audioProvider = Provider<AudioService>((ref) {
     onStatus: (status) => ref.read(audioStatusProvider.notifier).report(status),
   );
   ref.onDispose(service.dispose);
+  ref.listen(settingsProvider, (previous, next) {
+    if (next.asData?.value.voiceVolume == 0) service.stop();
+  });
   return service;
 });
 
 class AudioService {
+  static int _nextInstance = 0;
+  final String _instance = 'voice-${++_nextInstance}';
   final FlutterTts _tts = FlutterTts();
+  final RecordedVoice recordings;
   final void Function(AudioStatus)? onStatus;
   final Duration utteranceTimeout;
+  final Duration recordingTimeout;
   int _generation = 0;
   bool _disposed = false;
+  bool _active = true;
+  String? _recordingToken;
+  VoiceSource? lastSource;
   AudioStatus status = const AudioStatus();
   AudioService({
     this.onStatus,
     this.utteranceTimeout = const Duration(seconds: 30),
-  });
+    this.recordingTimeout = const Duration(seconds: 65),
+    RecordedVoice? recordings,
+  }) : recordings = recordings ?? RecordedVoice();
   String? get lastError =>
       status.issue == null ? null : status.diagnostic ?? status.message;
   bool _current(int generation) => !_disposed && generation == _generation;
@@ -71,13 +87,56 @@ class AudioService {
     ParentSettings settings, {
     String language = 'ko-KR',
   }) async {
-    if (_disposed) return PlaybackResult.cancelled;
+    if (_disposed || !_active) return PlaybackResult.cancelled;
     final generation = ++_generation;
+    final token = '$_instance-$generation';
+    _recordingToken = token;
+    lastSource = null;
     try {
+      await recordings.stop().timeout(const Duration(seconds: 2));
+      if (!_current(generation)) return PlaybackResult.cancelled;
       await _tts.stop().timeout(const Duration(seconds: 5));
       if (!_current(generation)) return PlaybackResult.cancelled;
       _report(generation, const AudioStatus());
       if (settings.voiceVolume == 0) return PlaybackResult.muted;
+      VoiceClip? clip;
+      try {
+        clip = await recordings
+            .find(text, language)
+            .timeout(const Duration(seconds: 5));
+      } catch (_) {
+        // A slow/unreadable index must not prevent offline TTS.
+      }
+      var repeatsLeft = settings.repeats;
+      if (!_current(generation)) return PlaybackResult.cancelled;
+      if (clip != null) {
+        var completed = 0;
+        for (var i = 0; i < settings.repeats; i++) {
+          RecordingResult outcome;
+          try {
+            outcome = await recordings
+                .play(clip, token, settings.voiceVolume)
+                .timeout(recordingTimeout);
+          } catch (_) {
+            outcome = RecordingResult.failed;
+          }
+          if (!_current(generation)) return PlaybackResult.cancelled;
+          if (outcome == RecordingResult.cancelled) {
+            return PlaybackResult.cancelled;
+          }
+          if (outcome != RecordingResult.completed) break;
+          completed++;
+          repeatsLeft--;
+        }
+        if (completed == settings.repeats) {
+          lastSource = VoiceSource.recording;
+          _report(generation, const AudioStatus());
+          return PlaybackResult.played;
+        }
+        // Stop the failed/timed-out player before TTS. Token prevents stopping a newer request.
+        await recordings.stop(token: token).timeout(const Duration(seconds: 2));
+        if (!_current(generation)) return PlaybackResult.cancelled;
+      }
       final voices = await _tts.getVoices.timeout(const Duration(seconds: 5));
       if (!_current(generation)) return PlaybackResult.cancelled;
       String locale(Object? value) =>
@@ -123,13 +182,14 @@ class AudioService {
           .timeout(const Duration(seconds: 5));
       await _tts.setSpeechRate(.38).timeout(const Duration(seconds: 5));
       await _tts.awaitSpeakCompletion(true).timeout(const Duration(seconds: 5));
-      for (var i = 0; i < settings.repeats; i++) {
+      for (var i = 0; i < repeatsLeft; i++) {
         if (!_current(generation)) return PlaybackResult.cancelled;
         final result = await _tts.speak(text).timeout(utteranceTimeout);
         if (!_current(generation)) return PlaybackResult.cancelled;
         if (result != 1) throw StateError('TTS speak returned $result');
       }
       _report(generation, const AudioStatus());
+      lastSource = VoiceSource.tts;
       return PlaybackResult.played;
     } catch (e) {
       if (!_current(generation)) return PlaybackResult.cancelled;
@@ -142,6 +202,7 @@ class AudioService {
           diagnostic: e.toString(),
         ),
       );
+      _stopRecording(token: token);
       try {
         await _tts.stop().timeout(const Duration(seconds: 2));
       } catch (_) {}
@@ -158,6 +219,7 @@ class AudioService {
 
   Future<void> stop() async {
     _generation++;
+    _stopRecording();
     // Route changes only need to send stop, and must never wait on the engine.
     _tts.stop().then<void>((_) {}, onError: (Object _, StackTrace _) {});
   }
@@ -165,7 +227,19 @@ class AudioService {
   void dispose() {
     _disposed = true;
     _generation++;
+    _stopRecording(token: _recordingToken);
     // Disposal cannot await native playback. Avoid leaving a timeout timer behind.
     _tts.stop().then<void>((_) {}, onError: (Object _, StackTrace _) {});
+  }
+
+  void _stopRecording({String? token}) {
+    recordings
+        .stop(token: token)
+        .then<void>((_) {}, onError: (Object _, StackTrace _) {});
+  }
+
+  void setActive(bool active) {
+    _active = active;
+    if (!active) stop();
   }
 }

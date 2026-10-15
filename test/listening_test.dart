@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/app.dart';
+import 'package:flutter_application_1/core/audio/audio_service.dart';
+import 'package:flutter_application_1/core/audio/recorded_voice.dart';
 import 'package:flutter_application_1/core/providers.dart';
 import 'package:flutter_application_1/core/storage/local_store.dart';
 import 'package:flutter_application_1/features/learning/data/learning_content.dart';
@@ -15,6 +17,11 @@ void main() {
   var available = false;
   setUp(() {
     available = false;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          RecordedVoice.nativeChannel,
+          (call) async => null,
+        );
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, (call) async {
           if (call.method == 'getVoices') {
@@ -31,10 +38,12 @@ void main() {
           return 1;
         });
   });
-  tearDown(
-    () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(channel, null),
-  );
+  tearDown(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(RecordedVoice.nativeChannel, null);
+  });
   test('unavailable speech records attempt; only audible retry completes listening', () async {
     final store = MemoryStore(),
         c = ProviderContainer(
@@ -60,6 +69,7 @@ void main() {
   testWidgets(
     'missing speech shows dismissible notice and leaves learning usable',
     (tester) async {
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
       tester.view.physicalSize = const Size(1280, 800);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetPhysicalSize);
@@ -73,6 +83,10 @@ void main() {
       await tester.pumpAndSettle();
       c.read(routerProvider).go('/learn/hangul');
       await tester.pumpAndSettle();
+      // Asset I/O needs real async execution outside the widget test clock.
+      await tester.runAsync(
+        () => c.read(audioProvider).recordings.find('ㄱ', 'ko-KR'),
+      );
       await tester.tap(find.byTooltip('ㄱ 읽어 주기'));
       await tester.pumpAndSettle();
       expect(find.text('읽어 주는 소리가 준비되지 않았어요. 그림과 글자로 함께 해요.'), findsOneWidget);
