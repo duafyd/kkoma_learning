@@ -1,5 +1,11 @@
 # 꼬마 탐험 공부방 개발 기록
 
+## 2026-10-15 한 명령 APK 릴리스 배포
+
+사용자가 로컬 명령으로 빌드·push·APK 업로드를 승인했다. `tool/publish-apk.ps1` 추가: clean main 확인, 원본 키 존재/미추적 확인, 기존 Git Credential Manager 인증 재사용, analyze/test와 빌드 순차 실행, APK 서명 검증 후 main push, GitHub Releases draft 생성·APK 업로드·크기/서버 SHA256 비교 후 공개. 서명 키나 암호를 GitHub Secrets 또는 저장소로 보내지 않는다. 일반 git push에 자동 훅을 추가하지 않음.
+
+빌드 번호는 2020년 이후 경과 초로 증가하며 source commit과 APK tag/versionCode를 릴리스에 기록. 중복·이전 번호·미커밋 변경은 중단. 기존 릴리스나 APK를 덮어쓰거나 삭제하지 않음. 실패 시 남은 draft는 이름을 보고 확인해야 함. 실제 실행 결과는 아래 후속 기록/최종 보고에서 확인. README에 단일 실행 명령 추가.
+
 ## 2026-10-15 GitHub 동기화
 
 사용자 요청으로 필기 99항목 확장과 APK 공유용 서명 설정을 main에 커밋·업로드한다. 직전 검증 결과는 analyze 문제 0 / 테스트 62개 통과 / 릴리스 빌드 및 apksigner 검증 통과이며 이번 Git 작업에서 재실행한 결과로 간주하지 않는다. 키·key.properties는 ignore/미추적 확인, 커밋 대상에 실제 서명 비밀번호가 포함되지 않았음을 검사했다. APK/build와 실행 로그는 기존 ignore 정책에 따라 제외하며 소스·문서·경로 검토 이미지를 업로드한다. 다른 PC에서는 비공개 키와 설정을 별도로 복원해야 릴리스 빌드할 수 있다.

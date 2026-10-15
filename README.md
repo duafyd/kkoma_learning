@@ -48,6 +48,20 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 
 업데이트는 같은 applicationId와 같은 서명 키를 유지하고 `pubspec.yaml`의 빌드 번호를 올려 배포합니다. 현재 앱 ID는 `com.example.flutter_application_1`이며 그대로 유지했습니다. 현재 에뮬레이터는 offline이고 실제 Galaxy Tab 설치·성능 검증은 미완료입니다. 절차는 [docs/DEVICE_VALIDATION.md](docs/DEVICE_VALIDATION.md)를 참고하세요.
 
+## APK를 GitHub Releases에 올리기
+
+변경 소스를 먼저 커밋한 뒤 프로젝트 루트에서 실행합니다:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tool/publish-apk.ps1
+```
+
+명령 하나로 analyze/test → 서명 APK 빌드 → 서명 검증 → main push → Releases APK 업로드를 순서대로 실행합니다. Git Credential Manager의 기존 GitHub 로그인을 사용하며 GitHub Secrets에 서명 키를 등록하지 않습니다. 일반 `git push`만 실행하면 APK는 올라가지 않습니다.
+
+빌드 번호는 2020년 이후 경과 초로 자동 증가하며, APK 태그는 `apk-버전-빌드번호`입니다. APK의 versionCode만 빌드 인수로 변경하고 pubspec은 수정하지 않습니다. 과거 릴리스보다 낮은 번호·중복 태그·미커밋 변경·다른 브랜치에서는 중단합니다. 업로드는 draft로 준비하고 크기/서버 해시 확인 후 공개합니다. 실패 시 draft가 남을 수 있으며 기존 릴리스·파일은 덮어쓰거나 삭제하지 않습니다. 100개를 넘긴 릴리스 이력은 최신 100개 기준으로 검사합니다.
+
+키와 key.properties는 PC에만 있고 APK만 업로드됩니다. 다른 PC에서는 원본 키 두 파일을 별도 복원해야 합니다. 구현 API는 [GitHub Releases 공식 문서](https://docs.github.com/en/rest/releases/releases)를 따릅니다.
+
 ## 구조와 저장
 
 - `lib/app`: go_router, Material 테마, 앱 생명주기.
