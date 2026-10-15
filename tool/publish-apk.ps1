@@ -54,7 +54,8 @@ try {
     $releases = @(Invoke-RestMethod -Uri "$apiBase/releases?per_page=100" -Headers $headers)
     if ($releases | Where-Object { $_.tag_name -eq $tag }) { throw "Release $tag already exists; it will not be overwritten." }
     foreach ($existing in $releases) {
-        if ($existing.tag_name -match '^apk-\d+\.\d+\.\d+-(\d+)$' -and [long]$Matches[1] -ge $BuildNumber) {
+        $existingVersion = [regex]::Match([string]$existing.tag_name, '^apk-\d+\.\d+\.\d+-(\d+)$')
+        if ($existingVersion.Success -and [long]$existingVersion.Groups[1].Value -ge $BuildNumber) {
             throw 'Build number must exceed previous APK releases.'
         }
     }
