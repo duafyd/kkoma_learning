@@ -83,8 +83,12 @@ try {
     if ($asset.digest -and $asset.digest -ne "sha256:$hash") { throw "Remote hash mismatch; draft $tag was left unpublished." }
     $published = Invoke-RestMethod -Method Patch -Uri "$apiBase/releases/$($release.id)" -Headers $headers -ContentType 'application/json' -Body '{"draft":false,"make_latest":"true"}'
     if ($published.draft) { throw "Release $tag is still a draft." }
+    # Draft asset URLs use a temporary untagged path; refresh after publication.
+    $publishedAssets = @(Invoke-RestMethod -Uri "$apiBase/releases/$($release.id)/assets" -Headers $headers)
+    $publishedAsset = $publishedAssets | Where-Object { $_.name -eq $assetName }
+    if (!$publishedAsset) { throw 'Published release asset could not be confirmed.' }
     Write-Output "RELEASE_URL=$($published.html_url)"
-    Write-Output "APK_URL=$($asset.browser_download_url)"
+    Write-Output "APK_URL=$($publishedAsset.browser_download_url)"
     Write-Output "APK_SHA256=$hash"
     Write-Output "ANDROID_BUILD_NUMBER=$BuildNumber"
 } finally {

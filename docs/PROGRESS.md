@@ -6,6 +6,14 @@
 
 빌드 번호는 2020년 이후 경과 초로 증가하며 source commit과 APK tag/versionCode를 릴리스에 기록. 중복·이전 번호·미커밋 변경은 중단. 기존 릴리스나 APK를 덮어쓰거나 삭제하지 않음. 실패 시 남은 draft는 이름을 보고 확인해야 함. 실제 실행 결과는 아래 후속 기록/최종 보고에서 확인. README에 단일 실행 명령 추가.
 
+실제 실행 성공: analyze 문제 0, 테스트 62개 통과(약 20초), 서명 릴리스 빌드 44.3초, apksigner v2 검증 통과, main push 및 APK 업로드·공개 완료. `docs/publish-apk.log`. GitHub 공개 API에서 draft=false, APK 크기 53,428,865 bytes와 SHA256 `1285a92aff62abd06cae5f6b71cfb51290c252799a5723c2c6dd13b148177b5c` 일치 확인. 배포 source commit 49e708d, versionCode 214188401.
+
+릴리스: https://github.com/duafyd/kkoma_learning/releases/tag/apk-1.0.0-214188401
+
+APK: https://github.com/duafyd/kkoma_learning/releases/download/apk-1.0.0-214188401/kkoma-1.0.0-214188401.apk
+
+동일 빌드 번호 재실행은 기존 릴리스 덮어쓰기 없이 빌드 전 중단됨을 확인(`docs/publish-apk-repeat-check.log`). 최초 실행 출력에서 draft 자산의 임시 untagged URL이 남는 문제 발견: 공개 후 assets API 재조회로 최종 URL을 출력하도록 수정. 최종 다운로드 URL은 공개 API로 확인. 이 후속 수정은 URL 표시/문서만 변경하며 앱 APK는 위 source commit과 일치. 이번 배포를 새 설치/아동 사용성 검증 완료로 간주하지 않는다.
+
 ## 2026-10-15 GitHub 동기화
 
 사용자 요청으로 필기 99항목 확장과 APK 공유용 서명 설정을 main에 커밋·업로드한다. 직전 검증 결과는 analyze 문제 0 / 테스트 62개 통과 / 릴리스 빌드 및 apksigner 검증 통과이며 이번 Git 작업에서 재실행한 결과로 간주하지 않는다. 키·key.properties는 ignore/미추적 확인, 커밋 대상에 실제 서명 비밀번호가 포함되지 않았음을 검사했다. APK/build와 실행 로그는 기존 ignore 정책에 따라 제외하며 소스·문서·경로 검토 이미지를 업로드한다. 다른 PC에서는 비공개 키와 설정을 별도로 복원해야 릴리스 빌드할 수 있다.
