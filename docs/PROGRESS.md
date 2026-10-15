@@ -158,3 +158,4 @@ flutter pub get → flutter analyze → flutter test → flutter emulators --lau
 - 기존 원격 초기 커밋과 .gitignore 규칙을 보존한 상태로 현재 Flutter 프로젝트 소스·테스트·문서·pubspec.lock을 추가한다.
 - APK/build, .tool_tmp, .dart_tool, IDE 캐시, 로컬 SDK 설정, 실행 로그, 개인 키/서명 파일은 추적하지 않는다. 서명 없이 유지 결정도 그대로 적용한다.
 - 이번 작업은 Git 설정과 업로드 범위 정리이며 앱 동작 코드는 수정하지 않았다. 기존 56개 테스트 통과 기록을 유지하며 테스트 재실행으로 보고하지 않는다.
+- 업로드 결과: 최초 비대화형 인증은 거부되었으나 Git Credential Manager의 대화형 인증 허용으로 재시도하여 성공. 소스 커밋 898ebdb를 원격 main에 push했고 기존 초기 커밋 이력을 유지했다.
