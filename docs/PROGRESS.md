@@ -26,6 +26,8 @@ API 확인: Flutter [MethodChannel 순서 보장](https://api.flutter.dev/flutte
 
 Git 반영 범위: 이번 음성 재생 연결과 이전 로컬 단계의 1~12화 삽화·상호작용·효과음·그림 제출 복구·대본/검사/회귀 테스트·문서를 함께 반영한다. `android/key.properties`, 비공개 키, build/APK, 임시 폴더와 로그는 Git 제외 상태를 확인했다. 원본 키 생성/교체, Release 생성, APK 업로드는 하지 않는다. 테스트 원문 로그는 로컬 파일이며 이 문서와 빌드 JSON에 재현 명령/결과를 남긴다.
 
+GitHub 확인: 구현 커밋 **`4475fe8cb2332d0ba2849d121a72f7da6d4cb921`**(177개 변경 파일)을 `https://github.com/duafyd/kkoma_learning.git`의 `main`에 푸시했다. `git ls-remote origin refs/heads/main`과 로컬 HEAD의 일치를 확인했고 소스 푸시 직후 작업 트리는 깨끗했다. 이 배포 결과 기록은 후속 문서 커밋으로 추가한다. Release 생성·APK 업로드·비공개 키 전송은 하지 않았다. 다음 세션은 `git pull --ff-only` 후 위 재현 명령으로 시작한다.
+
 다음 단계/재개: `tool/test.ps1`, `dart run tool/prepare_recordings.dart --check`, `dart run tool/audit_content.dart`로 재현한다. 실제 대본·한글 필순·영어 발음·문항의 교육 검수 → 1화/짧은 안내부터 실제 녹음 제작·청취 검수·등록 → 나머지 609개와 배경음악 제작 순서로 진행한다. 전체 앱의 출시 완료 백분율을 임의로 제시하지 않는다. 12화 작성은 12/12이며 실제 녹음은 0/609다. **Galaxy Tab/S25 설치·업데이트·오프라인 TTS/녹음/효과음 청취·오디오 포커스·성능/메모리·실제 강제 종료 복구 검증은 사용자의 지시대로 마지막 단계**에 수행한다.
 
 ## 중단된 그림 제출 복구·음성 제작 준비 (로컬 구현·검증 완료)
