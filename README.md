@@ -4,6 +4,10 @@
 
 ## 구현된 기능
 
+- **필기 품질 보강:** 이동 거리로 다시 샘플링한 경로를 순서대로 비교하며, 획 크기에 비례한 허용 오차·시작과 끝·과도한 길이·왕복 낙서를 검사합니다. 작은 터치 흔들림을 정리하되 의도적인 되돌아가기는 보존합니다. 2~3세 역방향 탐색은 허용합니다. 실제 아동의 손가락 입력 난이도 검수는 남아 있습니다.
+- **그림책 UI:** 도서관·숲·해안·밤 삽화 네 장, 종이색 대사 패널·화자 표시·진행 정보·부드러운 피드백, Jua 한글 글꼴, 새 홈 배너와 필기 연습장. [태블릿 스토리](docs/screenshots/story-tablet.png), [폰 스토리](docs/screenshots/story-phone.png), [필기](docs/screenshots/trace-tablet.png). 호스트 렌더 캡처이며 네 삽화를 여러 장면에 공유합니다. 제작·라이선스 기록은 [ARTWORK.md](docs/ARTWORK.md)에 있습니다.
+- **Android TTS 수정:** flutter_tts 4.2.5 Android가 반환하는 `network_required: '0'`을 오프라인 음성으로 인식하도록 수정했습니다. 기존 코드는 이 값을 거부해 로컬 음성이 있어도 읽지 못했습니다. 네트워크 음성 `'1'`은 계속 거부합니다. 기기에 한국어/영어 오프라인 음성이 설치돼 있어야 하며 실제 기기 재생 확인은 별도입니다.
+
 - 만 나이 2~5세와 별도 학습 경로 설정. 나이를 바꾸면 기본 학습 경로도 바뀝니다. 퀴즈 성공이 이어지면 한 단계씩 조정하고, 반복 시도에는 힌트·다른 길·도움 통과를 제공합니다.
 - 새 수학 활동 38개: 같은 수량 찾기 5개, 사과 그림 덧셈 15개·뺄셈 14개(0개 포함), 색 분류 2개·패턴 2개. 유형을 번갈아 배치합니다. 새 문항의 '다른 길'은 별도 쉬운 문제로 전환하며 앱 재시작 후에도 해당 문제를 이어합니다. 그림 선택 방식 수량 매칭이며 선 연결/드래그 매칭으로 보고하지 않습니다.
 - **짝꿍 바구니:** 숫자 탐험대 상단에서 여는 독립 조작 놀이입니다. 수량 드래그 매칭·크기/색/도형 분류 4유형, 단계별 12라운드(반복 연습과 배치 변화 포함). 드래그 또는 친구→바구니 터치로 진행하며 선택·배치·힌트·도움 상태를 저장합니다. 2~3세는 2개 바구니, 4~5세는 3개 바구니이며 힌트·도움 통과와 사용 시간 쉬기를 제공합니다. 부모 진도 초기화에 포함하고 다음 놀이에서 완료 배지를 한 번 기록합니다.
@@ -38,7 +42,7 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 
 2026-10-15 사용자 승인으로 기존 서명 보류를 해제하고 **APK 직접 공유용 전용 키**를 생성했습니다. 릴리스 빌드는 로컬 `android/key.properties`를 읽어 자동 서명합니다. Play Store 업로드는 하지 않습니다.
 
-최신 릴리스 빌드 성공 및 apksigner 서명 검증 통과(v2, 종료 코드 0). APK 약 51MB. 전체 테스트 98개 통과, 정적 분석 문제 없음. 자세한 결과는 PROGRESS와 `docs/sharing-apk-signature.log`를 확인하세요. 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
+필기·그림책 UI·TTS 수정 후 전체 테스트 **113개 통과**, 정적 분석 문제 없음. 최신 APK 배포·크기·서명 확인 결과는 PROGRESS의 최신 기록을 확인하세요. 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release

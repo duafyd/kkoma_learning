@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../profile/presentation/profile_vm.dart';
+import '../../story/presentation/story_illustration.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -42,6 +43,47 @@ class HomePage extends ConsumerWidget {
               error: (e, _) => const Text('설정을 불러오지 못했어요'),
             ),
             const SizedBox(height: 24),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(28),
+              child: Stack(
+                children: [
+                  const SizedBox(
+                    height: 280,
+                    width: double.infinity,
+                    child: StoryIllustration(
+                      background: 'library',
+                      character: '모아',
+                      animate: false,
+                    ),
+                  ),
+                  const Positioned.fill(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, Color(0xcc243a36)],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 20,
+                    right: 20,
+                    bottom: 18,
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: FilledButton.icon(
+                        onPressed: () => context.go('/story'),
+                        icon: const Icon(Icons.auto_stories_rounded),
+                        label: const Text('별빛 이야기 펼치기'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
             LayoutBuilder(
               builder: (context, c) => Wrap(
                 spacing: 18,
@@ -57,6 +99,14 @@ class HomePage extends ConsumerWidget {
                         child: ConstrainedBox(
                           constraints: const BoxConstraints(minHeight: 250),
                           child: Card(
+                            color: const [
+                              Color(0xffffe5b4),
+                              Color(0xffe1edce),
+                              Color(0xffdcecf2),
+                              Color(0xffffe0ce),
+                              Color(0xffeadff1),
+                              Color(0xffe6e6c9),
+                            ][entries.indexOf(e)],
                             child: InkWell(
                               borderRadius: BorderRadius.circular(24),
                               onTap: () => context.go(e.$4),
@@ -66,13 +116,21 @@ class HomePage extends ConsumerWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      e.$3,
-                                      size: 46,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary,
+                                    Container(
+                                      padding: const EdgeInsets.all(15),
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xb3ffffff),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Icon(
+                                        e.$3,
+                                        size: 46,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
                                     ),
+                                    const SizedBox(height: 12),
                                     Text(
                                       e.$1,
                                       style: Theme.of(context)

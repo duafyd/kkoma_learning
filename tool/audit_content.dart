@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_application_1/features/learning/data/learning_content.dart';
 import 'package:flutter_application_1/features/story/data/story_content.dart';
+import 'package:flutter_application_1/features/story/data/story_art.dart';
 import 'package:flutter_application_1/features/story/data/support_quizzes.dart';
 import 'package:flutter_application_1/features/math/data/sorting_content.dart';
 
@@ -33,6 +34,10 @@ void main(List<String> args) {
     }
   }
   for (final scene in storyEpisodes.expand((e) => e.scenes)) {
+    final art = storyArtAssets[scene.background];
+    if (art == null || !File(art).existsSync()) {
+      errors.add('missing story artwork ${scene.id}: ${scene.background}');
+    }
     if (scene.traceId != null &&
         !learningItems.any(
           (i) => i.id == scene.traceId && i.strokes.isNotEmpty,
@@ -88,6 +93,7 @@ void main(List<String> args) {
     },
     'tracingReview': 'Original centre-line paths; educational stroke-order review pending. Lowercase a/g use single-storey handwriting forms.',
     'episodes': storyEpisodes.length,
+    'storyIllustrations': storyArtAssets.values.toSet().toList(),
     'scenes': storyEpisodes.fold(0, (n, e) => n + e.scenes.length),
     'quizCount': learningQuizzes.length,
     'storySupportQuizCount': storySupportQuizzes.length,

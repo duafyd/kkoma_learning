@@ -8,6 +8,12 @@
   },
   "tracingReview": "Original centre-line paths; educational stroke-order review pending. Lowercase a/g use single-storey handwriting forms.",
   "episodes": 12,
+  "storyIllustrations": [
+    "assets/story/library.png",
+    "assets/story/forest.png",
+    "assets/story/coast.png",
+    "assets/story/night.png"
+  ],
   "scenes": 120,
   "quizCount": 57,
   "storySupportQuizCount": 5,

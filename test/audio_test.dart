@@ -20,7 +20,7 @@ void main() {
               {
                 'name': 'offline-ko',
                 'locale': 'ko-KR',
-                'network_required': false,
+                'network_required': '0',
               },
             ];
           }
@@ -46,6 +46,41 @@ void main() {
     await AudioService().speak('아', const ParentSettings(voiceVolume: 0));
     expect(calls.where((c) => c.method == 'speak'), isEmpty);
   });
+  test(
+    'Android string network flag selects local voice and rejects network voice',
+    () async {
+      for (final flag in ['0', '1']) {
+        calls.clear();
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, (call) async {
+              calls.add(call);
+              if (call.method == 'getVoices') {
+                return [
+                  {
+                    'name': 'android-en',
+                    'locale': 'en-US',
+                    'network_required': flag,
+                  },
+                ];
+              }
+              return 1;
+            });
+        final result = await AudioService().speak(
+          'Apple',
+          const ParentSettings(),
+          language: 'en-US',
+        );
+        expect(
+          result,
+          flag == '0' ? PlaybackResult.played : PlaybackResult.unavailable,
+        );
+        expect(
+          calls.where((c) => c.method == 'speak').length,
+          flag == '0' ? 1 : 0,
+        );
+      }
+    },
+  );
   test('unavailable language remains a text-only activity', () async {
     final audio = AudioService();
     await audio.speak('Apple', const ParentSettings(), language: 'en-US');

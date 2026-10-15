@@ -65,8 +65,17 @@ class KkomaApp extends ConsumerWidget {
         AppLifecycle(router: ref.read(routerProvider), child: child!),
     theme: ThemeData(
       useMaterial3: true,
-      scaffoldBackgroundColor: const Color(0xfffaf7ef),
-      colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff376e64)),
+      fontFamily: 'Jua',
+      scaffoldBackgroundColor: const Color(0xfff7f1e3),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color(0xff397c70),
+        surface: const Color(0xfffffcf4),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xfff7f1e3),
+        foregroundColor: Color(0xff3c5149),
+        scrolledUnderElevation: 0,
+      ),
       textTheme: const TextTheme(
         bodyMedium: TextStyle(fontSize: 19),
         titleLarge: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -74,7 +83,11 @@ class KkomaApp extends ConsumerWidget {
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           minimumSize: const Size(88, 60),
-          textStyle: const TextStyle(fontSize: 21),
+          textStyle: const TextStyle(fontFamily: 'Jua', fontSize: 21),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(

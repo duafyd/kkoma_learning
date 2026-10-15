@@ -90,7 +90,9 @@ class AudioService {
                       locale(v['locale']) == locale(language) &&
                       v['name'] is String &&
                       (v['network_required'] == false ||
-                          v['network_required'] == 'false'),
+                          v['network_required'] == 'false' ||
+                          v['network_required'] == '0' ||
+                          v['network_required'] == 0),
                 )
                 .toList()
           : <Map>[];

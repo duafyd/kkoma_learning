@@ -15,6 +15,53 @@ class TracePoint {
 class StrokePath {
   final List<TracePoint> points;
   const StrokePath(this.points);
+
+  /// Remove sub-pixel touch noise without rounding off intentional corners.
+  StrokePath simplified(double tolerance) {
+    if (points.length < 3) return this;
+    final keep = <int>{0, points.length - 1};
+    final pending = <(int, int)>[(0, points.length - 1)];
+    while (pending.isNotEmpty) {
+      final (first, last) = pending.removeLast();
+      final a = points[first], b = points[last];
+      final dx = b.x - a.x, dy = b.y - a.y;
+      final squareLength = dx * dx + dy * dy;
+      var farthest = tolerance, split = -1;
+      var peak = 0.0, peakIndex = first;
+      for (var i = first + 1; i < last; i++) {
+        final p = points[i];
+        final t = squareLength == 0
+            ? 0.0
+            : (((p.x - a.x) * dx + (p.y - a.y) * dy) / squareLength).clamp(
+                0.0,
+                1.0,
+              );
+        final distance = p.distance(TracePoint(a.x + t * dx, a.y + t * dy));
+        // Spatial simplification alone erases a collinear out-and-back scribble.
+        // Keep turning points whenever motion reverses beyond the noise budget.
+        if (squareLength > 0 &&
+            peakIndex > first &&
+            (peak - t) * math.sqrt(squareLength) > tolerance * 2) {
+          split = peakIndex;
+          break;
+        }
+        if (t > peak) {
+          peak = t;
+          peakIndex = i;
+        }
+        if (distance > farthest) {
+          farthest = distance;
+          split = i;
+        }
+      }
+      if (split != -1) {
+        keep.add(split);
+        pending.addAll([(first, split), (split, last)]);
+      }
+    }
+    return StrokePath((keep.toList()..sort()).map((i) => points[i]).toList());
+  }
+
   double get length {
     var n = 0.0;
     for (var i = 1; i < points.length; i++) {
@@ -28,6 +75,10 @@ class StrokePath {
     if (total == 0) return points;
     final result = <TracePoint>[];
     for (var s = 0; s <= count; s++) {
+      if (s == count) {
+        result.add(points.last);
+        continue;
+      }
       final target = s / count * total;
       var consumed = 0.0;
       for (var i = 1; i < points.length; i++) {
@@ -65,54 +116,51 @@ class TraceStrategy {
     if (valid.length < 2) {
       return const TraceResult(false, TraceFeedback.keepGoing, 0);
     }
-    final tolerance = age.traceTolerance;
-    final samples = stroke.samples();
-    final tracedSamples = StrokePath(valid).samples(80);
+    // Small strokes need a proportionately small corridor too. A fixed canvas
+    // tolerance used to let a scribble cover an entire syllable component.
+    final tolerance = math.min(
+      age.traceTolerance,
+      math.max(.018, stroke.length * (age.requireDirection ? .16 : .22)),
+    );
+    final samples = stroke.samples(80);
+    final drawn = StrokePath(valid).simplified(math.min(.01, tolerance * .6));
+    final tracedSamples = drawn.samples(80);
     final coverage =
         samples
             .where((p) => tracedSamples.any((v) => p.distance(v) <= tolerance))
             .length /
         samples.length;
-    final inputLength = StrokePath(valid).length;
-    if (inputLength < stroke.length * (age.level <= 3 ? .35 : .65)) {
+    final inputLength = drawn.length;
+    if (inputLength < stroke.length * (age.requireDirection ? .78 : .68)) {
       return TraceResult(false, TraceFeedback.keepGoing, coverage);
+    }
+    if (inputLength > stroke.length * (age.requireDirection ? 1.65 : 1.9)) {
+      return TraceResult(false, TraceFeedback.tryPath, coverage);
     }
     if (age.requireDirection &&
         valid.first.distance(stroke.points.first) > tolerance * 1.7) {
       return TraceResult(false, TraceFeedback.startHere, coverage);
     }
-    // Project the trace onto the guide; ignore small tremor and occasional outliers.
-    var previous = 0;
-    var reversed = 0;
-    var transitions = 0;
-    var near = 0;
-    for (final p in valid) {
-      var index = 0, distance = double.infinity, score = double.infinity;
-      for (var i = 0; i < samples.length; i++) {
-        final d = p.distance(samples[i]);
-        final candidate = d + (i - previous).abs() * .002;
-        if (candidate < score) {
-          score = candidate;
-          distance = d;
-          index = i;
-        }
+    // Both paths are sampled by travelled distance, so drawing speed does not
+    // affect matching. Corresponding positions must follow the whole guide;
+    // passing near the same points in a different order is insufficient.
+    double orderedDistance(List<TracePoint> guide) {
+      var distance = 0.0;
+      for (var i = 0; i < tracedSamples.length; i++) {
+        distance = math.max(distance, tracedSamples[i].distance(guide[i]));
       }
-      if (distance <= tolerance * 1.5) near++;
-      if ((index - previous).abs() >= 3) {
-        transitions++;
-        if (index < previous) reversed++;
-        previous = index;
+      return distance;
+    }
+
+    var distance = orderedDistance(samples);
+    if (!age.requireDirection) {
+      final reverse = samples.reversed.toList();
+      final reverseDistance = orderedDistance(reverse);
+      if (reverseDistance < distance) {
+        distance = reverseDistance;
       }
     }
-    if (age.requireDirection &&
-        transitions > 0 &&
-        reversed / transitions > .25) {
-      return TraceResult(false, TraceFeedback.followArrow, coverage);
-    }
-    if (coverage < (age.level <= 3 ? .55 : .85)) {
-      return TraceResult(false, TraceFeedback.keepGoing, coverage);
-    }
-    if (near / valid.length < .65) {
+    if (distance > tolerance) {
       return TraceResult(false, TraceFeedback.tryPath, coverage);
     }
     return TraceResult(true, TraceFeedback.complete, coverage);

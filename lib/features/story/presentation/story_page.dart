@@ -91,7 +91,7 @@ class _StoryPageState extends ConsumerState<StoryPage> {
           });
         }
         return ActivityScaffold(
-          title: '${episode.id}화 · ${episode.title}',
+          title: '${episode.id}화: ${episode.title}',
           actions: [
             IconButton(
               tooltip: '대사 다시 듣기',
@@ -159,21 +159,13 @@ class _StoryPageState extends ConsumerState<StoryPage> {
                 companion: s.flags['companion'] ?? '루루',
               );
               final controls = _controls(vm, s, settings);
-              if (c.maxWidth >= 850) {
-                return Row(
-                  children: [
-                    Expanded(flex: 5, child: picture),
-                    const SizedBox(width: 24),
-                    Expanded(flex: 4, child: ListView(children: controls)),
-                  ],
-                );
-              }
-              return ListView(
-                children: [
-                  SizedBox(height: c.maxHeight * .35, child: picture),
-                  const SizedBox(height: 18),
-                  ...controls,
-                ],
+              return _StoryBookStage(
+                picture: picture,
+                controls: controls,
+                chapter: episode.id,
+                scene: s.scene,
+                sceneCount: episode.forLevel(s.level).length,
+                goal: episode.goal,
               );
             },
           ),
@@ -185,8 +177,34 @@ class _StoryPageState extends ConsumerState<StoryPage> {
   List<Widget> _controls(StoryVM vm, StorySnapshot s, ParentSettings settings) {
     final scene = vm.machine.scene(s);
     return [
-      Text(scene.character, style: Theme.of(context).textTheme.titleLarge),
-      Text(scene.text, style: const TextStyle(fontSize: 26)),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
+          decoration: BoxDecoration(
+            color: const Color(0xfff5dfac),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Text(
+            scene.character,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w800,
+              color: Color(0xff61452f),
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(height: 16),
+      Text(
+        scene.text,
+        style: const TextStyle(
+          fontSize: 25,
+          height: 1.55,
+          fontWeight: FontWeight.w600,
+          color: Color(0xff3d493d),
+        ),
+      ),
       const SizedBox(height: 18),
       if (s.phase == StoryPhase.choice)
         Wrap(
@@ -230,9 +248,31 @@ class _StoryPageState extends ConsumerState<StoryPage> {
         Wrap(spacing: 12, runSpacing: 12, children: _support(vm, s, settings)),
       ],
       if (s.message.isNotEmpty)
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18),
-          child: Text(s.message),
+        Semantics(
+          liveRegion: true,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 18),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xffffedbe),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  s.phase == StoryPhase.success ||
+                          s.phase == StoryPhase.episodeComplete
+                      ? Icons.stars_rounded
+                      : Icons.lightbulb_rounded,
+                  color: const Color(0xffaa7829),
+                  size: 30,
+                ),
+                const SizedBox(width: 10),
+                Expanded(child: Text(s.message)),
+              ],
+            ),
+          ),
         ),
       if ([
         StoryPhase.dialogue,
@@ -304,4 +344,137 @@ class _StoryPageState extends ConsumerState<StoryPage> {
           ),
         ),
       );
+}
+
+class _StoryBookStage extends StatelessWidget {
+  final Widget picture;
+  final List<Widget> controls;
+  final int chapter, scene, sceneCount;
+  final String goal;
+  const _StoryBookStage({
+    required this.picture,
+    required this.controls,
+    required this.chapter,
+    required this.scene,
+    required this.sceneCount,
+    required this.goal,
+  });
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, c) {
+      final wide = c.maxWidth >= 700 && c.maxWidth > c.maxHeight * 1.15;
+      final heading = Padding(
+        padding: const EdgeInsets.fromLTRB(8, 4, 8, 14),
+        child: Row(
+          children: [
+            const Icon(Icons.auto_stories_rounded, color: Color(0xffbc8b36)),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                '별빛 모험 $chapter / 12',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 19,
+                ),
+              ),
+            ),
+            Text(
+              '${scene + 1} / $sceneCount',
+              style: const TextStyle(fontSize: 17),
+            ),
+          ],
+        ),
+      );
+      Widget page({required bool scroll}) {
+        final children = [
+          Text(
+            goal,
+            style: const TextStyle(
+              fontSize: 15,
+              color: Color(0xff797e68),
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 14),
+          ...controls,
+          const SizedBox(height: 8),
+        ];
+        return Container(
+          decoration: BoxDecoration(
+            color: const Color(0xfffffcf2),
+            borderRadius: BorderRadius.circular(28),
+            border: Border.all(color: const Color(0xffeadfc4), width: 2),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x153e3424),
+                blurRadius: 18,
+                offset: Offset(0, 6),
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.all(22),
+          child: scroll
+              ? ListView(children: children)
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: children,
+                ),
+        );
+      }
+
+      final illustrated = Stack(
+        fit: StackFit.expand,
+        children: [
+          picture,
+          Positioned(
+            left: 16,
+            top: 16,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: const Color(0xeefdf6df),
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                child: Text(
+                  '별빛 도서관과 사라진 이야기',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xff634b33),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+      if (wide) {
+        return Column(
+          children: [
+            heading,
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(flex: 7, child: illustrated),
+                  const SizedBox(width: 18),
+                  Expanded(flex: 5, child: page(scroll: true)),
+                ],
+              ),
+            ),
+          ],
+        );
+      }
+      return ListView(
+        children: [
+          heading,
+          AspectRatio(aspectRatio: 1.45, child: illustrated),
+          const SizedBox(height: 14),
+          page(scroll: false),
+        ],
+      );
+    },
+  );
 }
