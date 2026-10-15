@@ -40,7 +40,19 @@ class LearningVM extends AsyncNotifier<LearningSession> {
             q.subject == subject && q.minimumLevel <= state.requireValue.level,
       )
       .toList();
-  QuizDefinition get quiz => quizzes[state.requireValue.index % quizzes.length];
+  QuizDefinition get quiz {
+    final session = state.requireValue;
+    final overrides = learningQuizzes.where(
+      (q) =>
+          q.id == session.quizOverrideId &&
+          q.subject == subject &&
+          q.minimumLevel <= session.level,
+    );
+    return overrides.isNotEmpty
+        ? overrides.first
+        : quizzes[session.index % quizzes.length];
+  }
+
   Future<void> listen(LearningItem item) async {
     if (item.subject != subject) return;
     final audio = ref.read(audioProvider),
@@ -131,11 +143,19 @@ class LearningVM extends AsyncNotifier<LearningSession> {
   });
   Future<void> easier() => _transition((old) async {
     if (old.answered) return;
+    final level = (old.level - 1).clamp(2, 5);
+    final targets = learningQuizzes.where(
+      (q) =>
+          q.id == quiz.easierId &&
+          q.subject == subject &&
+          q.minimumLevel <= level,
+    );
     await _save(
       LearningSession(
-        level: (old.level - 1).clamp(2, 5),
+        level: level,
         baseLevel: old.baseLevel,
         index: old.index,
+        quizOverrideId: targets.isEmpty ? null : targets.first.id,
         message: '다른 길로 함께 가요.',
       ),
     );

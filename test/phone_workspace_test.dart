@@ -11,6 +11,8 @@ import 'package:flutter_application_1/features/drawing/presentation/drawing_vm.d
 import 'package:flutter_application_1/features/tracing/presentation/trace_canvas.dart';
 import 'package:flutter_application_1/features/tracing/presentation/trace_vm.dart';
 import 'package:flutter_application_1/features/learning/data/learning_content.dart';
+import 'package:flutter_application_1/features/learning/data/learning_repository.dart';
+import 'package:flutter_application_1/features/learning/presentation/learning_vm.dart';
 import 'package:flutter_application_1/features/story/domain/story_models.dart';
 import 'package:flutter_application_1/features/story/domain/story_machine.dart';
 import 'package:flutter_application_1/features/story/data/story_repository.dart';
@@ -171,6 +173,31 @@ void main() {
           await tester.ensureVisible(find.text('정원 그림 저장하고 계속'));
         }
         expect(tester.takeException(), isNull, reason: 'story $phase');
+      }
+      for (final id in [
+        'quantity-match-5',
+        'add-5-3',
+        'subtract-2-2',
+        'color-blue',
+        'pattern-pairs',
+      ]) {
+        await LearningRepository(store).save(
+          'math',
+          LearningSession(level: 5, baseLevel: 5, quizOverrideId: id),
+        );
+        container.invalidate(learningProvider('math'));
+        container.read(routerProvider).go('/learn/math');
+        await tester.pumpAndSettle();
+        if (find.text('함께 찾기').evaluate().isNotEmpty) {
+          await tester.tap(find.text('함께 찾기'));
+          await tester.pumpAndSettle();
+        }
+        expect(tester.takeException(), isNull, reason: 'new quiz $id');
+        final vm = container.read(learningProvider('math').notifier);
+        expect(vm.quiz.id, id);
+        await vm.answer(vm.quiz.answer);
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull, reason: 'new quiz result $id');
       }
       await tester.pumpWidget(const SizedBox());
       container.dispose();

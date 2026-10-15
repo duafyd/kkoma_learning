@@ -2,6 +2,7 @@ class LearningSession {
   final int level, index, successes, failures, hint, baseLevel;
   final bool answered, assisted;
   final String message;
+  final String? quizOverrideId;
   const LearningSession({
     required this.level,
     this.baseLevel = 3,
@@ -12,6 +13,7 @@ class LearningSession {
     this.assisted = false,
     this.message = '',
     this.hint = 0,
+    this.quizOverrideId,
   });
   Map<String, dynamic> toJson() => {
     'level': level,
@@ -23,6 +25,7 @@ class LearningSession {
     'assisted': assisted,
     'message': message,
     'hint': hint,
+    'quizOverrideId': quizOverrideId,
   };
   factory LearningSession.fromJson(Map<String, dynamic> j) => LearningSession(
     level: (j['level'] as int? ?? 3).clamp(2, 5),
@@ -34,6 +37,7 @@ class LearningSession {
     assisted: j['assisted'] as bool? ?? false,
     message: j['message'] as String? ?? '',
     hint: j['hint'] as int? ?? 0,
+    quizOverrideId: j['quizOverrideId'] as String?,
   );
   LearningSession change(Map<String, dynamic> j) =>
       LearningSession.fromJson({...toJson(), ...j});

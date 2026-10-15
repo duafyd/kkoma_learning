@@ -10,7 +10,20 @@ void main(List<String> args) {
   if (knownIds.length != learningItems.length) {
     errors.add('duplicate learning item');
   }
+  if (learningQuizzes.map((q) => q.id).toSet().length !=
+      learningQuizzes.length) {
+    errors.add('duplicate quiz');
+  }
   for (final quiz in learningQuizzes) {
+    if (quiz.easierId != null &&
+        !learningQuizzes.any(
+          (q) =>
+              q.id == quiz.easierId &&
+              q.subject == quiz.subject &&
+              q.minimumLevel < quiz.minimumLevel,
+        )) {
+      errors.add('invalid easier question ${quiz.id}');
+    }
     if (quiz.answer < 0 ||
         quiz.answer >= quiz.options.length ||
         quiz.options.toSet().length != quiz.options.length) {

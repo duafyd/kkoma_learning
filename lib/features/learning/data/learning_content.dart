@@ -1,6 +1,7 @@
 import '../domain/learning_models.dart';
 import '../../tracing/domain/trace_engine.dart';
 import '../../tracing/data/additional_paths.dart';
+import 'additional_quizzes.dart';
 
 StrokePath stroke(List<List<double>> p) =>
     StrokePath(p.map((v) => TracePoint(v[0], v[1])).toList());
@@ -178,8 +179,29 @@ final learningItems = <LearningItem>[
     ('가', '가', '가방', '🎒'),
     ('나', '나', '나무', '🌳'),
     ('모', '모', '모자', '🎩'),
+    ('다', '다', '다리', '🌉'),
+    ('라', '라', '라디오', '📻'),
+    ('마', '마', '마을', '🏡'),
+    ('바', '바', '바다', '🌊'),
+    ('사', '사', '사과', '🍎'),
+    ('아', '아', '아기', '👶'),
+    ('자', '자', '자동차', '🚗'),
+    ('차', '차', '차', '🚗'),
+    ('카', '카', '카메라', '📷'),
+    ('타', '타', '타조', '🪶'),
+    ('파', '파', '파도', '🌊'),
+    ('하', '하', '하마', '🦛'),
+    ('무', '무', '무', '🥬'),
+    ('과', '과', '과일', '🍎'),
+    ('기', '기', '기차', '🚂'),
+    ('비', '비', '비', '🌧️'),
     ('사과', '사과', '사과', '🍎'),
     ('나무', '나무', '나무', '🌳'),
+    ('바다', '바다', '바다', '🌊'),
+    ('사자', '사자', '사자', '🦁'),
+    ('하마', '하마', '하마', '🦛'),
+    ('나비', '나비', '나비', '🦋'),
+    ('아기', '아기', '아기', '👶'),
   ].map(
     (v) => LearningItem(
       id: 'h-${v.$1}',
@@ -188,9 +210,9 @@ final learningItems = <LearningItem>[
       name: v.$2,
       example: v.$3,
       picture: v.$4,
-      minimumLevel: v.$1.length > 1
+      minimumLevel: v.$1.length > 1 || v.$1 == '과'
           ? 5
-          : ['가', '나', '모'].contains(v.$1)
+          : '가나다라마바사아자차카타파하모무과기비'.contains(v.$1)
           ? 4
           : 2,
       strokes: tracePaths[v.$1] ?? [],
@@ -269,7 +291,12 @@ final learningItems = <LearningItem>[
   ),
 ];
 
-const learningQuizzes = <QuizDefinition>[
+final learningQuizzes = List<QuizDefinition>.unmodifiable([
+  ..._baseLearningQuizzes,
+  ...additionalQuizzes(),
+]);
+
+const _baseLearningQuizzes = <QuizDefinition>[
   QuizDefinition(
     id: 'h-bag',
     subject: 'hangul',

@@ -34,7 +34,7 @@ class QuizDefinition {
   final List<String> options;
   final int answer, minimumLevel;
   final QuizKind kind;
-  final String? resultVisual;
+  final String? resultVisual, easierId;
   const QuizDefinition({
     required this.id,
     required this.prompt,
@@ -46,6 +46,7 @@ class QuizDefinition {
     this.kind = QuizKind.matching,
     this.subject = 'math',
     this.resultVisual,
+    this.easierId,
   });
   bool accepts(int choice) => choice == answer;
 }
