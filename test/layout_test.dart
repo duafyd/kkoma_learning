@@ -6,6 +6,8 @@ import 'package:flutter_application_1/core/providers.dart';
 import 'package:flutter_application_1/core/storage/local_store.dart';
 import 'package:flutter_application_1/features/profile/domain/settings.dart';
 import 'package:flutter_application_1/features/profile/data/profile_repository.dart';
+import 'package:flutter_application_1/features/tracing/presentation/trace_vm.dart';
+import 'package:flutter_application_1/features/learning/data/learning_content.dart';
 
 void main() {
   for (final size in [
@@ -46,6 +48,9 @@ void main() {
         '/learn/english',
         '/learn/math',
         '/trace/h-ㅏ',
+        '/trace/h-모',
+        '/trace/e-g',
+        '/trace/n-20',
         '/drawing',
         '/story',
         '/gallery',
@@ -57,6 +62,24 @@ void main() {
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull, reason: path);
       }
+      container.read(routerProvider).go('/trace/e-A');
+      await tester.pumpAndSettle();
+      for (final path in tracePaths['A']!) {
+        await container
+            .read(traceProvider('e-A').notifier)
+            .submit(path.samples(80), 5);
+      }
+      await tester.pumpAndSettle();
+      expect(
+        tester.takeException(),
+        isNull,
+        reason: 'completed tracing layout',
+      );
+      await tester.tap(find.text('다음 글자'));
+      await tester.pumpAndSettle();
+      expect(find.text('a 따라 그리기'), findsOneWidget);
+      expect(container.read(traceProvider('e-a')).requireValue.strokeIndex, 0);
+      expect(tester.takeException(), isNull, reason: 'next lowercase tracing');
       await tester.pumpWidget(const SizedBox());
       container.dispose();
     });

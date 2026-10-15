@@ -169,6 +169,7 @@ app.*.map.json
 .widget_preview/
 /.tool_tmp/
 /android/validation-signing/
+/android/release-signing/
 
 # App dependency versions are reproducible
 !pubspec.lock

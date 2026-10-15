@@ -17,6 +17,22 @@ class TraceVM extends AsyncNotifier<TraceState> {
   bool busy = false;
   late TraceRepository repository;
   TraceVM(this.itemId);
+  String? nextItemId(int level) {
+    final current = learningItems.firstWhere((i) => i.id == itemId);
+    final available = learningItems
+        .where(
+          (i) =>
+              i.subject == current.subject &&
+              i.minimumLevel <= level &&
+              i.strokes.isNotEmpty,
+        )
+        .toList();
+    final index = available.indexWhere((i) => i.id == itemId);
+    return index >= 0 && index + 1 < available.length
+        ? available[index + 1].id
+        : null;
+  }
+
   @override
   Future<TraceState> build() async {
     repository = ref.read(traceRepositoryProvider);

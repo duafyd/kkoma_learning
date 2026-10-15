@@ -1,11 +1,11 @@
-﻿# 꼬마 탐험 공부방
+# 꼬마 탐험 공부방
 
 만 2~5세를 위한 Android 태블릿 학습 앱입니다. 공식 요구사항은 [docs/kkoma_spec.md](docs/kkoma_spec.md), 실제 구현·검증·재개 기록은 [docs/PROGRESS.md](docs/PROGRESS.md)에 있습니다. 기능 코드와 자동 테스트를 구현했으며, 녹음 음원·교육 전문가 검수·실제 태블릿 검증까지 모두 끝난 출시 제품으로 보고하지 않습니다.
 
 ## 구현된 기능
 
 - 만 나이 2~5세와 별도 학습 경로 설정. 나이를 바꾸면 기본 학습 경로도 바뀝니다. 퀴즈 성공이 이어지면 한 단계씩 조정하고, 반복 시도에는 힌트·다른 길·도움 통과를 제공합니다.
-- 한글 자음·모음·쉬운 음절/낱말, A~Z와 대소문자, 1~20 숫자: 75항목. 세기·비교·분류·패턴·조합·기초 더하기/빼기 등 19퀴즈.
+- 한글 자음·모음·쉬운 음절/낱말, A~Z·a~z, 1~20 숫자: 101항목. 소문자는 학습 단계 4 이상에서 제공. 세기·비교·분류·패턴·조합·기초 더하기/빼기 등 19퀴즈.
 - Android 오프라인 TTS 읽기. 알파벳 이름과 대표 단어, 자음 이름과 예시를 구분해 읽습니다. 기기에 해당 언어의 오프라인 음성이 없으면 글과 그림으로 계속 진행합니다.
 - 음성 재생 실패 시 안내를 표시하고 보호자 영역에서 최근 상태를 확인할 수 있습니다. 음성 실패·무음은 듣기 시도로만 기록하며 실제 재생 성공만 듣기 완료로 기록합니다. 취소된 이전 재생은 완료로 기록하지 않습니다.
 - 따라 그리기: 시작점·화살표·현재 획·시범·재시도, 연령별 판정. 시작·방향·경로 거리·완료도 평가와 손 떨림 허용. 완료 획을 저장해 앱 재시작 후 복원합니다.
@@ -15,7 +15,7 @@
 - 보호자 산술 관문, 자동 읽기/반복/음량/반응/애니메이션, 하루 사용 시간, 진도 초기화/작품 삭제/앱 종료 확인. 장면 마무리 후 쉬는 화면.
 - 가로/세로 화면, 큰 터치 영역, 벡터 그림책 배경과 모아·루루·토토·휙휙, 자체 벡터 앱 아이콘.
 
-현재 따라 그리기를 지원하는 글자는 **ㄱ ㄴ ㅁ ㅏ ㅓ ㅗ ㅜ / A B C / 1 2 3**입니다. 나머지는 듣기/보기로 제공하며, 준비되지 않은 필기 버튼은 표시하지 않습니다. 지원 획도 교육 전문가 검수는 별도로 남아 있습니다.
+따라 그리기는 **99항목**입니다: 한글 기본 자음 14개·모음 10개와 가/나/모(27), 영어 A~Z·a~z(52), 숫자 1~20(20). 현재 획 수와 시범을 표시하며 완료 후 같은 과목의 다음 글자로 이어집니다. 두 자리 숫자는 왼쪽 숫자부터 쓰고 획마다 저장합니다. 소문자 a/g는 한 층 손글씨 형태입니다. 사과/나무 낱말은 듣기/보기만 제공합니다. 경로는 직접 작성한 중심선이며 **교육 전문가의 모양·필순 검수는 미완료**입니다. [전체 경로 미리보기](docs/tracing_preview.png)에서 점검할 수 있습니다.
 
 ## 개발 환경과 실행
 
@@ -32,31 +32,21 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 
 ## APK와 설치
 
-APK 경로: `build/app/outputs/flutter-apk/app-release.apk`.
+2026-10-15 사용자 승인으로 기존 서명 보류를 해제하고 **APK 직접 공유용 전용 키**를 생성했습니다. 릴리스 빌드는 로컬 `android/key.properties`를 읽어 자동 서명합니다. Play Store 업로드는 하지 않습니다.
 
-현재 릴리스 빌드는 **서명 없음**으로 설정되어 있습니다. 사용자가 **서명 없이 유지**하기로 결정했으므로 키 생성·서명을 실행하지 않습니다. 컴파일된 APK가 있어도 서명 전에는 Android에 설치할 수 없습니다. 아래 서명 명령은 향후 사용자가 결정을 변경할 경우에만 적용합니다.
-
-검증용 키 생성이 명시적으로 승인된 뒤에만 다음 명령을 실행하세요. 이 키는 공개된 기본 암호를 쓰는 개발 검증용이며 정식 배포에 사용하면 안 됩니다.
+최신 릴리스 빌드 성공 및 apksigner 서명 검증 통과(v2, 종료 코드 0). APK 약 51MB. 전체 테스트 62개 통과, 정적 분석 문제 없음. 자세한 결과는 PROGRESS와 `docs/sharing-apk-signature.log`를 확인하세요. 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tool/sign-debug.ps1 -CreateDevelopmentKey
-# 이후에는 키를 재사용
-powershell -ExecutionPolicy Bypass -File tool/sign-debug.ps1
-adb install -r build/app/outputs/flutter-apk/app-validation.apk
+powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 ```
 
-키는 `android/validation-signing/`에 보관하고 Git에서 제외합니다. 기존 설치와 키가 다르면 업데이트가 거부될 수 있습니다. 앱 삭제는 로컬 작품/진도를 잃게 하므로 임의로 삭제하지 않습니다.
+공유 파일: `build/app/outputs/flutter-apk/app-release.apk`. 수신 기기에서 APK를 여는 앱의 '알 수 없는 앱 설치' 권한을 허용하고 설치합니다. 실제 기기 설치 결과는 별도 검증 대상입니다.
 
-디버그 실행도 기본 Android debug 키를 생성할 수 있으므로 키 생성 승인 후 실행하세요.
+**백업할 비공개 파일 두 개:** `android/release-signing/kkoma-sharing.p12`, `android/key.properties`. 두 파일은 Git에서 제외되며 비밀번호는 채팅·문서·로그에 출력하지 않습니다. USB나 본인의 안전한 저장소에 별도 백업하세요. 자동으로 외부 백업하거나 전송하지 않았습니다. APK만 공유하고 키/비밀번호는 공유하지 마세요.
 
-```powershell
-flutter emulators --launch Pixel_Tablet
-powershell -ExecutionPolicy Bypass -File tool/android.ps1 devices
-powershell -ExecutionPolicy Bypass -File tool/android.ps1 run -d emulator-5554
-powershell -ExecutionPolicy Bypass -File tool/android.ps1 test integration_test/app_flow_test.dart -d emulator-5554
-```
+다른 PC에서는 소스를 clone한 다음 두 비공개 파일을 같은 위치로 복원해야 릴리스 빌드할 수 있습니다. 키가 없으면 새 키를 생성하지 말고 원본 백업을 복원하세요. 키 생성 스크립트 `tool/create-sharing-key.ps1`는 기존 파일을 덮어쓰지 않습니다. 예전 `tool/sign-debug.ps1`은 공유 빌드에 사용하지 않습니다.
 
-현재 AVD는 offline이며 실제 Android 실행·통합 테스트를 통과했다고 주장하지 않습니다. 실기기 검증 절차는 [docs/DEVICE_VALIDATION.md](docs/DEVICE_VALIDATION.md)에 있습니다. 통합 테스트는 실제 학습 데이터를 건드리지 않는 별도 SQLite DB를 사용합니다.
+업데이트는 같은 applicationId와 같은 서명 키를 유지하고 `pubspec.yaml`의 빌드 번호를 올려 배포합니다. 현재 앱 ID는 `com.example.flutter_application_1`이며 그대로 유지했습니다. 현재 에뮬레이터는 offline이고 실제 Galaxy Tab 설치·성능 검증은 미완료입니다. 절차는 [docs/DEVICE_VALIDATION.md](docs/DEVICE_VALIDATION.md)를 참고하세요.
 
 ## 구조와 저장
 
@@ -65,7 +55,7 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 test integration_test/
 - `lib/features`: profile/parent/learning/math/tracing/drawing/story/progress/home.
 - View는 사용자 입력만 전달하고, Riverpod Notifier/AsyncNotifier ViewModel이 Repository 및 정책을 조율합니다.
 - `AgeStrategy`, `TraceStrategy`, `StoryMachine`은 별도 판정/전이 규칙입니다.
-- 학습 항목·획·문제·장면은 `learning/data/learning_content.dart`, `story/data/story_content.dart`의 별도 Dart 데이터입니다.
+- 학습 항목·문제·장면은 `learning/data/learning_content.dart`, `story/data/story_content.dart`의 별도 Dart 데이터입니다. 추가 필기 경로는 `tracing/data/additional_paths.dart`에 있으며 기존 13개 경로는 유지합니다.
 - `kkoma.db`의 documents 테이블에 설정/진도/세션/스토리/그림 초안/작품 메타데이터를 저장합니다. 진도 쓰기는 직렬화합니다. 작품 PNG는 앱 내부 artworks 디렉터리에 저장합니다.
 - 손가락 이동 버퍼는 캔버스 안에서 관리하고, 획 종료 시에만 ViewModel을 갱신합니다. 작품 PNG 생성은 화면 캡처가 아닌 동일 렌더러를 사용합니다.
 - 계정·서버·광고·결제·분석 SDK·위치·마이크 권한·외부 전송이 없습니다. Android 자동 백업을 끄고 음성은 네트워크를 요구하지 않는 TTS 음성만 선택합니다.
@@ -74,11 +64,11 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 test integration_test/
 
 테스트는 필기 방향/부분/터치/떨림, 4연령×12화 완주, 힌트/도움/분기/저장 복구, 빠른 중복 입력, 설정 동시 쓰기, 하루 사용 시간, PNG 동시 저장/다시 열기/삭제 및 실패 롤백, 중단된 삭제 복구, 음성 중복/무음/누락/시간 초과, 태블릿 3크기 전체 화면을 검증합니다. 최신 실제 실행 결과는 PROGRESS와 `docs/followup-test.log`를 확인하세요. 오디오는 호스트의 채널 mock 테스트이며 Android 기기 재생 검증과 구분합니다.
 
-2026-10-15 후속 검증: `flutter analyze` 오류/경고 없음, 테스트 **56개 통과**. 저장 지연 중 백그라운드 전환·초기 로딩 중 일시 중지·시간 저장 실패 후 재시도도 포함합니다.
+2026-10-15 필기 확장 검증 기록은 `docs/tracing-expansion-test.log`에 있습니다. 모든 경로의 4연령 정상 입력, 원형/교차 획의 역방향·부분 입력, 두 자리 숫자 순서·중단 후 복원, 연령별 다음 글자 선택을 검증합니다. 경로 검토 이미지 재생성: `flutter test tool/tracing_preview_test.dart` (Windows에서는 먼저 TEMP/TMP를 `.tool_tmp`로 설정).
 
 명세 대비 구현 범위와 누락 사항은 [docs/REQUIREMENTS_STATUS.md](docs/REQUIREMENTS_STATUS.md)에 정리했습니다.
 
-`dart run tool/audit_content.dart`는 콘텐츠 참조와 리소스를 검사하고 `docs/content_audit.json`을 생성합니다. `--require-recordings`를 추가하면 녹음이 누락될 때 실패합니다. 현재 사전 녹음 214파일, 효과음, 배경음악은 제작하지 않았습니다. 효과 설정은 현재 진동 켜기/끄기이며 음량 조절 가능한 효과음으로 보고하지 않습니다. 시스템 이모지와 TTS 발음은 기기마다 다를 수 있습니다.
+`dart run tool/audit_content.dart`는 콘텐츠 참조와 리소스를 검사하고 `docs/content_audit.json`을 생성합니다. `--require-recordings`를 추가하면 녹음이 누락될 때 실패합니다. 현재 사전 녹음 240파일, 효과음, 배경음악은 제작하지 않았습니다. 효과 설정은 현재 진동 켜기/끄기이며 음량 조절 가능한 효과음으로 보고하지 않습니다. 시스템 이모지와 TTS 발음은 기기마다 다를 수 있습니다.
 
 실제 Galaxy Tab의 필기·음성·프레임/메모리·재부팅/업데이트, 아동 사용성, 교육 전문가의 문항/필순/발음 검수, 정식 앱 ID/서명은 미완료입니다. 앱 ID는 `com.example.flutter_application_1`을 유지했습니다.
 

@@ -101,7 +101,9 @@ class _LearningPageState extends ConsumerState<LearningPage> {
                           style: const TextStyle(fontSize: 25),
                         ),
                         if (widget.subject == 'english' && settings.level >= 4)
-                          Text('${item.symbol} ↔ ${item.symbol.toLowerCase()}'),
+                          Text(
+                            '${item.symbol.toUpperCase()} ↔ ${item.symbol.toLowerCase()}',
+                          ),
                         if (widget.subject == 'math')
                           Text(
                             List.filled(int.parse(item.symbol), '●').join(' '),

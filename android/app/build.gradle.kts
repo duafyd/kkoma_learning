@@ -1,8 +1,23 @@
-﻿plugins {
+import java.util.Properties
+
+plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+val signingPropertiesFile = rootProject.file("key.properties")
+val signingProperties = Properties()
+if (signingPropertiesFile.exists()) {
+    signingPropertiesFile.inputStream().use { signingProperties.load(it) }
+    for (name in listOf("storeFile", "storePassword", "keyAlias", "keyPassword")) {
+        require(!signingProperties.getProperty(name).isNullOrBlank()) {
+            "Missing signing setting: $name in android/key.properties"
+        }
+    }
+} else if (gradle.startParameter.taskNames.any { it.contains("release", ignoreCase = true) }) {
+    error("Release signing requires android/key.properties and the original keystore. Restore your signing backup first.")
 }
 
 android {
@@ -30,9 +45,22 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        if (signingPropertiesFile.exists()) {
+            create("release") {
+                storeFile = rootProject.file(signingProperties.getProperty("storeFile"))
+                storePassword = signingProperties.getProperty("storePassword")
+                keyAlias = signingProperties.getProperty("keyAlias")
+                keyPassword = signingProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // Unsigned verification build; no signing key is created without permission.
+            if (signingPropertiesFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 }

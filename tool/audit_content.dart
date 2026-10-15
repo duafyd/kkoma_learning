@@ -36,6 +36,13 @@ void main(List<String> args) {
   final report = {
     'learningItems': learningItems.length,
     'tracingItems': learningItems.where((i) => i.strokes.isNotEmpty).length,
+    'tracingBySubject': {
+      for (final subject in ['hangul', 'english', 'math'])
+        subject: learningItems
+            .where((i) => i.subject == subject && i.strokes.isNotEmpty)
+            .length,
+    },
+    'tracingReview': 'Original centre-line paths; educational stroke-order review pending. Lowercase a/g use single-storey handwriting forms.',
     'episodes': storyEpisodes.length,
     'scenes': storyEpisodes.fold(0, (n, e) => n + e.scenes.length),
     'quizCount': learningQuizzes.length,

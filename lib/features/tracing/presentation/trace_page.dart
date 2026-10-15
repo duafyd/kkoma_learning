@@ -21,6 +21,12 @@ class TracePage extends ConsumerStatefulWidget {
 class _TracePageState extends ConsumerState<TracePage> {
   final canvasKey = GlobalKey<TraceCanvasState>();
   bool announced = false;
+  @override
+  void didUpdateWidget(covariant TracePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.itemId != widget.itemId) announced = false;
+  }
+
   Future<void> safe(Future<void> Function() action) async {
     try {
       await action();
@@ -66,6 +72,11 @@ class _TracePageState extends ConsumerState<TracePage> {
         data: (state) => Column(
           children: [
             Text(state.message),
+            Text(
+              state.done
+                  ? '${item.strokes.length}획을 모두 그렸어요!'
+                  : '${state.strokeIndex + 1} / ${item.strokes.length}획 · 빛나는 시작점에서 출발해요',
+            ),
             Expanded(
               child: TraceCanvas(
                 key: canvasKey,
@@ -101,13 +112,31 @@ class _TracePageState extends ConsumerState<TracePage> {
                           .read(usageProvider.notifier)
                           .boundary();
                       if (context.mounted) {
+                        final next = ref
+                            .read(traceProvider(widget.itemId).notifier)
+                            .nextItemId(settings.level);
                         context.go(
-                          expired ? '/rest' : '/learn/${item.subject}',
+                          expired
+                              ? '/rest'
+                              : next == null
+                              ? '/learn/${item.subject}'
+                              : '/trace/$next',
                         );
                       }
                     },
-                    child: const Text('다음 글자'),
+                    child: Text(
+                      ref
+                                  .read(traceProvider(widget.itemId).notifier)
+                                  .nextItemId(settings.level) ==
+                              null
+                          ? '목록으로'
+                          : '다음 글자',
+                    ),
                   ),
+                OutlinedButton(
+                  onPressed: () => context.go('/learn/${item.subject}'),
+                  child: const Text('글자 목록'),
+                ),
               ],
             ),
           ],

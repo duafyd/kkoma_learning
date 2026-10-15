@@ -1,9 +1,10 @@
 import '../domain/learning_models.dart';
 import '../../tracing/domain/trace_engine.dart';
+import '../../tracing/data/additional_paths.dart';
 
 StrokePath stroke(List<List<double>> p) =>
     StrokePath(p.map((v) => TracePoint(v[0], v[1])).toList());
-final tracePaths = <String, List<StrokePath>>{
+final tracePaths = additionalPaths(<String, List<StrokePath>>{
   'ㄱ': [
     stroke([
       [.25, .25],
@@ -146,7 +147,7 @@ final tracePaths = <String, List<StrokePath>>{
       [.25, .78],
     ]),
   ],
-};
+});
 
 final learningItems = <LearningItem>[
   ...[
@@ -222,17 +223,30 @@ final learningItems = <LearningItem>[
     ('X', 'Fox', '🦊'),
     ('Y', 'Yo-yo', '🪀'),
     ('Z', 'Zebra', '🦓'),
-  ].map(
-    (v) => LearningItem(
-      id: 'e-${v.$1}',
-      subject: 'english',
-      symbol: v.$1,
-      name: v.$1,
-      example: v.$2,
-      picture: v.$3,
-      language: 'en-US',
-      strokes: tracePaths[v.$1] ?? [],
-    ),
+  ].expand(
+    (v) => [
+      LearningItem(
+        id: 'e-${v.$1}',
+        subject: 'english',
+        symbol: v.$1,
+        name: v.$1,
+        example: v.$2,
+        picture: v.$3,
+        language: 'en-US',
+        strokes: tracePaths[v.$1] ?? [],
+      ),
+      LearningItem(
+        id: 'e-${v.$1.toLowerCase()}',
+        subject: 'english',
+        symbol: v.$1.toLowerCase(),
+        name: v.$1.toLowerCase(),
+        example: v.$2,
+        picture: v.$3,
+        language: 'en-US',
+        minimumLevel: 4,
+        strokes: tracePaths[v.$1.toLowerCase()] ?? [],
+      ),
+    ],
   ),
   ...List.generate(
     20,
