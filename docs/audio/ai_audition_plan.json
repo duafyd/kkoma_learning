@@ -1,0 +1,132 @@
+{
+  "status": "plan-only-not-generated",
+  "model": "gpt-audio-1.5",
+  "endpoint": "https://api.openai.com/v1/chat/completions",
+  "maxRequests": 4,
+  "inputCharacters": 126,
+  "cost": "Paid API. No charge has been made. Actual cost depends on input/output token usage and account pricing; request/token limits are not a dollar spending cap.",
+  "casting": {
+    "모아": "marin",
+    "루루": "coral",
+    "토토": "cedar",
+    "휙휙": "ash"
+  },
+  "takes": [
+    {
+      "id": "voice-ep1-choice",
+      "speaker": "모아",
+      "text": "누구와 함께 별조각을 찾을까요?",
+      "request": {
+        "model": "gpt-audio-1.5",
+        "modalities": [
+          "text",
+          "audio"
+        ],
+        "audio": {
+          "voice": "marin",
+          "format": "wav"
+        },
+        "store": false,
+        "max_completion_tokens": 1024,
+        "messages": [
+          {
+            "role": "system",
+            "content": "Perform pre-written Korean picture-book dialogue for children aged 2–5. Speak only the user text, exactly, with no introduction, commentary, music or sound effects. Keep a consistent character voice and natural Korean pronunciation. Character: 모아. Emotion: 따뜻한 초대. 포근한 이야기 길잡이. 설명을 읽기보다 아이 눈높이에서 말을 건넨다. 문장 사이 350~550ms, 질문 뒤 600~900ms 여운. 줄바꿈을 말로 읽지 않는다. 기본 속도를 일괄 늘리지 않는다."
+          },
+          {
+            "role": "user",
+            "content": "누구와 함께 별조각을 찾을까요?"
+          }
+        ]
+      },
+      "listeningReview": "pending"
+    },
+    {
+      "id": "voice-ep1-discover",
+      "speaker": "루루",
+      "text": "책장 아래가 반짝!\n작은 별조각이 숨어 있어요.",
+      "request": {
+        "model": "gpt-audio-1.5",
+        "modalities": [
+          "text",
+          "audio"
+        ],
+        "audio": {
+          "voice": "coral",
+          "format": "wav"
+        },
+        "store": false,
+        "max_completion_tokens": 1024,
+        "messages": [
+          {
+            "role": "system",
+            "content": "Perform pre-written Korean picture-book dialogue for children aged 2–5. Speak only the user text, exactly, with no introduction, commentary, music or sound effects. Keep a consistent character voice and natural Korean pronunciation. Character: 루루. Emotion: 다정한 호기심. 호기심 많은 친구. 밝고 생동감 있게, 소리 지르거나 아기 말투를 과장하지 않는다. 문장 사이 350~550ms, 질문 뒤 600~900ms 여운. 줄바꿈을 말로 읽지 않는다. 기본 속도를 일괄 늘리지 않는다."
+          },
+          {
+            "role": "user",
+            "content": "책장 아래가 반짝!\n작은 별조각이 숨어 있어요."
+          }
+        ]
+      },
+      "listeningReview": "pending"
+    },
+    {
+      "id": "voice-ep1-review",
+      "speaker": "토토",
+      "text": "작은 판에 모인 별조각을 세어 볼까요?\n하나씩 톡톡 눌러봐요.",
+      "request": {
+        "model": "gpt-audio-1.5",
+        "modalities": [
+          "text",
+          "audio"
+        ],
+        "audio": {
+          "voice": "cedar",
+          "format": "wav"
+        },
+        "store": false,
+        "max_completion_tokens": 1024,
+        "messages": [
+          {
+            "role": "system",
+            "content": "Perform pre-written Korean picture-book dialogue for children aged 2–5. Speak only the user text, exactly, with no introduction, commentary, music or sound effects. Keep a consistent character voice and natural Korean pronunciation. Character: 토토. Emotion: 따뜻한 초대. 차분하고 든든한 친구. 낱말과 수량을 또렷하게, 느려도 답답하지 않게. 문장 사이 350~550ms, 질문 뒤 600~900ms 여운. 줄바꿈을 말로 읽지 않는다. 기본 속도를 일괄 늘리지 않는다."
+          },
+          {
+            "role": "user",
+            "content": "작은 판에 모인 별조각을 세어 볼까요?\n하나씩 톡톡 눌러봐요."
+          }
+        ]
+      },
+      "listeningReview": "pending"
+    },
+    {
+      "id": "voice-ep10-talk",
+      "speaker": "휙휙",
+      "text": "나는 바람 소리가 나는 이야기를 만들고 싶어.\n다음엔 친구들의 허락을 받고 함께 만들래.",
+      "request": {
+        "model": "gpt-audio-1.5",
+        "modalities": [
+          "text",
+          "audio"
+        ],
+        "audio": {
+          "voice": "ash",
+          "format": "wav"
+        },
+        "store": false,
+        "max_completion_tokens": 1024,
+        "messages": [
+          {
+            "role": "system",
+            "content": "Perform pre-written Korean picture-book dialogue for children aged 2–5. Speak only the user text, exactly, with no introduction, commentary, music or sound effects. Keep a consistent character voice and natural Korean pronunciation. Character: 휙휙. Emotion: 따뜻한 초대. 장난기 있는 바람 친구. 가벼운 리듬, 사과 장면은 진심을 담아 작고 따뜻하게. 문장 사이 350~550ms, 질문 뒤 600~900ms 여운. 줄바꿈을 말로 읽지 않는다. 기본 속도를 일괄 늘리지 않는다."
+          },
+          {
+            "role": "user",
+            "content": "나는 바람 소리가 나는 이야기를 만들고 싶어.\n다음엔 친구들의 허락을 받고 함께 만들래."
+          }
+        ]
+      },
+      "listeningReview": "pending"
+    }
+  ]
+}

@@ -7,6 +7,10 @@ import 'package:go_router/go_router.dart';
 import '../../../core/widgets/activity_scaffold.dart';
 import '../../drawing/presentation/drawing_vm.dart';
 import '../../story/data/story_content.dart';
+import '../../../core/widgets/activity_intro.dart';
+import '../../drawing/domain/drawing_renderer.dart';
+import '../../drawing/domain/drawing.dart';
+import 'adventure_map.dart';
 import '../../story/presentation/story_vm.dart';
 import '../data/progress_repository.dart';
 
@@ -24,38 +28,49 @@ class GalleryPage extends ConsumerWidget {
       title: '내 작품 · 모험 지도',
       child: ListView(
         children: [
-          const Text('모은 별빛', style: TextStyle(fontSize: 26)),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: storyEpisodes
-                .map(
-                  (ep) => Chip(
-                    avatar: Icon(
-                      story.value?.completed.contains(ep.id) == true
-                          ? Icons.star
-                          : Icons.star_outline,
-                      color: const Color(0xffc28f21),
-                    ),
-                    label: Text('${ep.id}. ${ep.title}'),
-                  ),
-                )
-                .toList(),
+          ActivityIntro(
+            icon: Icons.explore_rounded,
+            title:
+                '모은 별빛 ${story.value?.completed.length ?? 0} / ${storyEpisodes.length}',
+            instruction: '우리가 함께 만든 이야기예요. 표지를 눌러 추억을 펼쳐 봐요.',
+          ),
+          const SizedBox(height: 20),
+          story.when(
+            loading: () => const LinearProgressIndicator(),
+            error: (_, _) => const Text('모험 지도를 열지 못했어요. 다시 들어와 주세요.'),
+            data: (s) => AdventureMap(snapshot: s),
           ),
           if (story.value?.flags['room'] != null)
             Text('내 도서관: ${story.value!.flags['room']}'),
           const SizedBox(height: 20),
-          const Text(
-            '내 그림 (보호자 영역에서 삭제할 수 있어요)',
-            style: TextStyle(fontSize: 26),
+          const ActivityIntro(
+            icon: Icons.palette_rounded,
+            title: '나의 작은 전시회',
+            instruction: '그림을 눌러 크게 봐요. 다시 그려 새 작품을 만들 수도 있어요.',
           ),
+          const SizedBox(height: 20),
           gallery.when(
             loading: () => const CircularProgressIndicator(),
             error: (e, _) => Text('작품을 열지 못했어요: $e'),
             data: (items) => items.isEmpty
-                ? const Padding(
+                ? Padding(
                     padding: EdgeInsets.all(24),
-                    child: Text('아직 작품이 없어요. 자유 그림방에서 그려 보아요!'),
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.brush_rounded,
+                          size: 56,
+                          color: Color(0xff527469),
+                        ),
+                        const SizedBox(height: 12),
+                        const Text('아직 작품이 없어요. 자유 그림방에서 그려 보아요!'),
+                        const SizedBox(height: 16),
+                        FilledButton(
+                          onPressed: () => context.go('/drawing'),
+                          child: const Text('첫 작품 그리기'),
+                        ),
+                      ],
+                    ),
                   )
                 : Wrap(
                     spacing: 16,
@@ -67,15 +82,49 @@ class GalleryPage extends ConsumerWidget {
                             child: Card(
                               child: Column(
                                 children: [
-                                  Image.file(
-                                    File(a.path),
-                                    height: 180,
-                                    width: 280,
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (_, _, _) => const SizedBox(
-                                      height: 180,
-                                      child: Center(
-                                        child: Text('이미지 파일을 찾지 못했어요'),
+                                  InkWell(
+                                    key: ValueKey('artwork-preview-${a.id}'),
+                                    onTap: () => showDialog<void>(
+                                      context: context,
+                                      builder: (dialogContext) => Dialog(
+                                        child: ConstrainedBox(
+                                          constraints: const BoxConstraints(
+                                            maxWidth: 900,
+                                            maxHeight: 700,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16),
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  child: _ArtworkPicture(a),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                        dialogContext,
+                                                      ),
+                                                  child: const Text(
+                                                    '전시회로 돌아가기',
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Container(
+                                      height: 200,
+                                      width: double.infinity,
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xffe9d8b8),
+                                        borderRadius: BorderRadius.circular(24),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: _ArtworkPicture(a),
                                       ),
                                     ),
                                   ),
@@ -119,4 +168,21 @@ class GalleryPage extends ConsumerWidget {
       ),
     );
   }
+}
+
+class _ArtworkPicture extends StatelessWidget {
+  final Artwork artwork;
+  const _ArtworkPicture(this.artwork);
+  @override
+  Widget build(BuildContext context) => Semantics(
+    label: '내가 그린 작품',
+    image: true,
+    child: Image.file(
+      File(artwork.path),
+      fit: BoxFit.contain,
+      errorBuilder: (_, _, _) => SizedBox.expand(
+        child: CustomPaint(painter: DrawingPainter(artwork.document)),
+      ),
+    ),
+  );
 }

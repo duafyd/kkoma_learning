@@ -38,7 +38,45 @@ List<StrokePath> _fit(
     )
     .toList();
 
-/// Keeps the original guides unchanged so existing saved strokes stay valid.
+/// Smooth curved letter bodies while retaining declared pen corners, stroke
+/// count, order and endpoints. Saved completed strokes keep their indices.
+StrokePath _rounded(StrokePath stroke, [Set<int> corners = const {}]) {
+  final points = stroke.points;
+  if (points.length < 3) return stroke;
+  final result = <TracePoint>[];
+  for (var i = 0; i + 1 < points.length; i++) {
+    final a = points[i], b = points[i + 1];
+    final before = points[math.max(0, i - 1)],
+        after = points[math.min(points.length - 1, i + 2)];
+    final first = i == 0 || corners.contains(i),
+        last = i + 2 == points.length || corners.contains(i + 1);
+    final m0 = TracePoint(
+      first ? b.x - a.x : (b.x - before.x) / 2,
+      first ? b.y - a.y : (b.y - before.y) / 2,
+    );
+    final m1 = TracePoint(
+      last ? b.x - a.x : (after.x - a.x) / 2,
+      last ? b.y - a.y : (after.y - a.y) / 2,
+    );
+    for (var step = 0; step < 16; step++) {
+      final t = step / 16, t2 = t * t, t3 = t2 * t;
+      double coordinate(double x, double y, double u, double v) =>
+          (2 * t3 - 3 * t2 + 1) * x +
+          (t3 - 2 * t2 + t) * u +
+          (-2 * t3 + 3 * t2) * y +
+          (t3 - t2) * v;
+      result.add(
+        TracePoint(
+          coordinate(a.x, b.x, m0.x, m1.x),
+          coordinate(a.y, b.y, m0.y, m1.y),
+        ),
+      );
+    }
+  }
+  return StrokePath([...result, points.last]);
+}
+
+/// Existing stroke counts/order/endpoints are retained for saved progress.
 Map<String, List<StrokePath>> additionalPaths(
   Map<String, List<StrokePath>> base,
 ) {
@@ -498,6 +536,53 @@ Map<String, List<StrokePath>> additionalPaths(
       _line([.25, .4, .75, .4, .25, .8, .75, .8]),
     ],
   };
+  final curves = <String, Map<int, Set<int>>>{
+    'B': {
+      1: {4},
+    },
+    'C': {0: {}},
+    'G': {
+      0: {6, 7},
+    },
+    'J': {1: {}},
+    'P': {1: {}},
+    'R': {1: {}},
+    'S': {0: {}},
+    'U': {0: {}},
+    '2': {
+      0: {5},
+    },
+    '3': {
+      0: {4},
+    },
+    '5': {
+      0: {1, 2},
+    },
+    '6': {0: {}},
+    '8': {0: {}},
+    '9': {1: {}},
+    'e': {
+      0: {1},
+    },
+    'f': {0: {}},
+    'g': {1: {}},
+    'h': {1: {}},
+    'j': {0: {}},
+    'm': {1: {}, 2: {}},
+    'n': {1: {}},
+    'r': {1: {}},
+    's': {0: {}},
+    't': {0: {}},
+    'u': {0: {}},
+  };
+  for (final entry in curves.entries) {
+    p[entry.key] = [
+      for (final (index, path) in p[entry.key]!.indexed)
+        entry.value.containsKey(index)
+            ? _rounded(path, entry.value[index]!)
+            : path,
+    ];
+  }
   // Syllables are composed in writing order, rather than font outlines.
   p['가'] = [
     ..._fit(p['ㄱ']!, 0, .05, .52, .9),

@@ -86,6 +86,7 @@ class AudioService {
     String text,
     ParentSettings settings, {
     String language = 'ko-KR',
+    String? recordingId,
   }) async {
     if (_disposed || !_active) return PlaybackResult.cancelled;
     final generation = ++_generation;
@@ -102,7 +103,7 @@ class AudioService {
       VoiceClip? clip;
       try {
         clip = await recordings
-            .find(text, language)
+            .find(text, language, id: recordingId)
             .timeout(const Duration(seconds: 5));
       } catch (_) {
         // A slow/unreadable index must not prevent offline TTS.

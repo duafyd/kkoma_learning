@@ -38,6 +38,7 @@ dependencies:
   sqflite: ^2.4.4+1
   path_provider: ^2.1.6
   flutter_tts: ^4.2.5
+  flame: ^1.38.2
 
 dev_dependencies:
   integration_test:
@@ -69,6 +70,7 @@ flutter:
     - assets/story/stage-night.png
     - assets/story/cast-v2.png
     - assets/story/cast-search-v3.png
+    - assets/story/cast-motion-v1.png
     - assets/story/ep1-quiet.png
     - assets/story/ep1-search.png
     - assets/story/ep1-map.png

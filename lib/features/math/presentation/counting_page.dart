@@ -5,48 +5,11 @@ import '../../../core/widgets/activity_scaffold.dart';
 import '../../../core/audio/audio_service.dart';
 import '../../profile/domain/settings.dart';
 import '../../profile/presentation/profile_vm.dart';
-
-class CountingState {
-  final int available;
-  final Set<int> basket;
-  const CountingState(this.available, {this.basket = const {}});
-}
-
-final countingProvider = NotifierProvider.autoDispose
-    .family<CountingVM, CountingState, int>(CountingVM.new);
-
-class CountingVM extends Notifier<CountingState> {
-  final int level;
-  CountingVM(this.level);
-  @override
-  CountingState build() => CountingState(AgeStrategy(level).maxCount);
-  void collect(int id) {
-    if (id < 0 || id >= state.available || state.basket.contains(id)) return;
-    state = CountingState(state.available, basket: {...state.basket, id});
-  }
-
-  void add() {
-    if (level < 4 || state.basket.length >= state.available) return;
-    collect(
-      List.generate(
-        state.available,
-        (i) => i,
-      ).firstWhere((i) => !state.basket.contains(i)),
-    );
-  }
-
-  void remove() {
-    if (level < 4 || state.basket.isEmpty) return;
-    state = CountingState(
-      state.available,
-      basket: {...state.basket}..remove(state.basket.last),
-    );
-  }
-
-  void reset() {
-    state = CountingState(state.available);
-  }
-}
+import '../../../core/widgets/activity_intro.dart';
+import '../../story/presentation/story_picture_quiz.dart';
+import '../../learning/domain/learning_models.dart';
+import 'counting_vm.dart';
+export 'counting_vm.dart';
 
 class CountingPage extends ConsumerWidget {
   const CountingPage({super.key});
@@ -61,7 +24,12 @@ class CountingPage extends ConsumerWidget {
       title: '사과를 모아 세어요',
       child: ListView(
         children: [
-          const Text('사과를 바구니로 옮겨요. 눌러서 넣어도 좋아요.'),
+          const ActivityIntro(
+            icon: Icons.shopping_basket_rounded,
+            title: '사과 소풍을 준비해요',
+            instruction: '사과를 바구니로 옮겨요. 눌러서 넣어도 좋아요.',
+          ),
+          const SizedBox(height: 20),
           Wrap(
             spacing: 12,
             runSpacing: 12,
@@ -73,7 +41,10 @@ class CountingPage extends ConsumerWidget {
                       data: i,
                       feedback: const Material(
                         color: Colors.transparent,
-                        child: Text('🍎', style: TextStyle(fontSize: 64)),
+                        child: QuizGlyphPicture(
+                          glyph: QuizGlyph.apple,
+                          edge: 64,
+                        ),
                       ),
                       childWhenDragging: const SizedBox(width: 78, height: 78),
                       child: Semantics(
@@ -85,7 +56,10 @@ class CountingPage extends ConsumerWidget {
                             width: 78,
                             height: 78,
                             child: Center(
-                              child: Text('🍎', style: TextStyle(fontSize: 54)),
+                              child: QuizGlyphPicture(
+                                glyph: QuizGlyph.apple,
+                                edge: 54,
+                              ),
                             ),
                           ),
                         ),
@@ -109,14 +83,16 @@ class CountingPage extends ConsumerWidget {
                 children: [
                   Text(
                     '바구니에 ${s.basket.length}개',
-                    style: const TextStyle(fontSize: 30),
+                    style: const TextStyle(fontFamily: 'Jua', fontSize: 30),
                   ),
                   Wrap(
                     spacing: 10,
                     children: s.basket
                         .map(
-                          (i) =>
-                              const Text('🍎', style: TextStyle(fontSize: 40)),
+                          (i) => const QuizGlyphPicture(
+                            glyph: QuizGlyph.apple,
+                            edge: 40,
+                          ),
                         )
                         .toList(),
                   ),
@@ -125,6 +101,31 @@ class CountingPage extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 20),
+          if (level >= 4 && s.change != null)
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  children: [
+                    Text(
+                      s.change!.delta > 0 ? '하나가 더 왔어요' : '하나를 꺼냈어요',
+                      style: const TextStyle(fontFamily: 'Jua', fontSize: 23),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      s.change!.equation,
+                      key: const ValueKey('counting-equation'),
+                      style: const TextStyle(
+                        fontFamily: 'Jua',
+                        fontSize: 32,
+                        color: Color(0xff17776b),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,

@@ -1,0 +1,6669 @@
+{
+  "educatorApproval": "pending",
+  "listeningApproval": "pending",
+  "note": "Developer structural checks do not establish age suitability, stroke-order authority or pronunciation quality.",
+  "quizzes": [
+    {
+      "id": "add-1-1",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 1개에 1개를 더 모으면?",
+      "options": [
+        "3",
+        "1",
+        "2"
+      ],
+      "answerIndex": 2,
+      "answer": "2",
+      "hint": "1개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎\n+ 🍎",
+      "resultVisual": "🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-1-2",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 1개에 2개를 더 모으면?",
+      "options": [
+        "2",
+        "3",
+        "4"
+      ],
+      "answerIndex": 1,
+      "answer": "3",
+      "hint": "1개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎\n+ 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-1-3",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 1개에 3개를 더 모으면?",
+      "options": [
+        "4",
+        "5",
+        "3"
+      ],
+      "answerIndex": 0,
+      "answer": "4",
+      "hint": "1개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎\n+ 🍎 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-2-1",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 2개에 1개를 더 모으면?",
+      "options": [
+        "2",
+        "3",
+        "4"
+      ],
+      "answerIndex": 1,
+      "answer": "3",
+      "hint": "2개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎\n+ 🍎",
+      "resultVisual": "🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-2-2",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 2개에 2개를 더 모으면?",
+      "options": [
+        "4",
+        "5",
+        "3"
+      ],
+      "answerIndex": 0,
+      "answer": "4",
+      "hint": "2개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎\n+ 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-2-3",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 2개에 3개를 더 모으면?",
+      "options": [
+        "6",
+        "4",
+        "5"
+      ],
+      "answerIndex": 2,
+      "answer": "5",
+      "hint": "2개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎\n+ 🍎 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-3-1",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 3개에 1개를 더 모으면?",
+      "options": [
+        "4",
+        "5",
+        "3"
+      ],
+      "answerIndex": 0,
+      "answer": "4",
+      "hint": "3개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎\n+ 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-3-2",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 3개에 2개를 더 모으면?",
+      "options": [
+        "6",
+        "4",
+        "5"
+      ],
+      "answerIndex": 2,
+      "answer": "5",
+      "hint": "3개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎\n+ 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-3-3",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "addition",
+      "prompt": "사과 3개에 3개를 더 모으면?",
+      "options": [
+        "5",
+        "6",
+        "7"
+      ],
+      "answerIndex": 1,
+      "answer": "6",
+      "hint": "3개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎\n+ 🍎 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-4-1",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 4개에 1개를 더 모으면?",
+      "options": [
+        "6",
+        "4",
+        "5"
+      ],
+      "answerIndex": 2,
+      "answer": "5",
+      "hint": "4개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎\n+ 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-4-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "addition",
+      "prompt": "사과 4개에 2개를 더 모으면?",
+      "options": [
+        "5",
+        "6",
+        "7"
+      ],
+      "answerIndex": 1,
+      "answer": "6",
+      "hint": "4개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎\n+ 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-4-3",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "addition",
+      "prompt": "사과 4개에 3개를 더 모으면?",
+      "options": [
+        "7",
+        "8",
+        "6"
+      ],
+      "answerIndex": 0,
+      "answer": "7",
+      "hint": "4개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎\n+ 🍎 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-5-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "addition",
+      "prompt": "사과 5개에 1개를 더 모으면?",
+      "options": [
+        "5",
+        "6",
+        "7"
+      ],
+      "answerIndex": 1,
+      "answer": "6",
+      "hint": "5개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎\n+ 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-5-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "addition",
+      "prompt": "사과 5개에 2개를 더 모으면?",
+      "options": [
+        "7",
+        "8",
+        "6"
+      ],
+      "answerIndex": 0,
+      "answer": "7",
+      "hint": "5개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎\n+ 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "add-5-3",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "addition",
+      "prompt": "사과 5개에 3개를 더 모으면?",
+      "options": [
+        "9",
+        "7",
+        "8"
+      ],
+      "answerIndex": 2,
+      "answer": "8",
+      "hint": "5개부터 하나씩 더 세어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎\n+ 🍎 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "big",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "compare",
+      "prompt": "큰 동물을 찾아요",
+      "options": [
+        "🐘",
+        "🐁"
+      ],
+      "answerIndex": 0,
+      "answer": "🐘",
+      "hint": "코끼리가 생쥐보다 커요.",
+      "visual": "🐘     🐁",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "classify",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "classify",
+      "prompt": "세모끼리 모아요",
+      "options": [
+        "●",
+        "▲"
+      ],
+      "answerIndex": 1,
+      "answer": "▲",
+      "hint": "뾰족한 모서리가 세 개예요.",
+      "visual": "▲",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "color-blue",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "classify",
+      "prompt": "파란 공과 같은 색을 찾아요",
+      "options": [
+        "🔵 파랑",
+        "🔴 빨강",
+        "🟡 노랑"
+      ],
+      "answerIndex": 0,
+      "answer": "🔵 파랑",
+      "hint": "공의 색은 파랑이에요.",
+      "visual": "🔵",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "color-red",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "classify",
+      "prompt": "빨간 공과 같은 색을 찾아요",
+      "options": [
+        "🔵 파랑",
+        "🔴 빨강",
+        "🟡 노랑"
+      ],
+      "answerIndex": 1,
+      "answer": "🔴 빨강",
+      "hint": "공의 색은 빨강이에요.",
+      "visual": "🔴",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "count2",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "count",
+      "prompt": "사과가 몇 개일까요?",
+      "options": [
+        "2",
+        "1"
+      ],
+      "answerIndex": 0,
+      "answer": "2",
+      "hint": "하나, 둘!",
+      "visual": "🍎 🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "count20",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "count",
+      "prompt": "열 개씩 두 묶음은 몇 개일까요?",
+      "options": [
+        "10",
+        "20",
+        "15"
+      ],
+      "answerIndex": 1,
+      "answer": "20",
+      "hint": "열 개와 열 개를 함께 세어요.",
+      "visual": "●●●●●●●●●●\n●●●●●●●●●●",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "count5",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "count",
+      "prompt": "별이 몇 개일까요?",
+      "options": [
+        "4",
+        "5"
+      ],
+      "answerIndex": 1,
+      "answer": "5",
+      "hint": "하나, 둘, 셋, 넷, 다섯!",
+      "visual": "⭐ ⭐ ⭐ ⭐ ⭐",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "e-apple",
+      "subject": "english",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "Apple을 찾아요",
+      "options": [
+        "🍎",
+        "🐈"
+      ],
+      "answerIndex": 0,
+      "answer": "🍎",
+      "hint": "빨간 사과예요.",
+      "visual": "A · Apple",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "e-case",
+      "subject": "english",
+      "minimumLevel": 4,
+      "kind": "matching",
+      "prompt": "A의 작은 짝을 찾아요",
+      "options": [
+        "b",
+        "a",
+        "c"
+      ],
+      "answerIndex": 1,
+      "answer": "a",
+      "hint": "대문자 A와 소문자 a가 짝이에요.",
+      "visual": "A",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "e-cat",
+      "subject": "english",
+      "minimumLevel": 3,
+      "kind": "matching",
+      "prompt": "Cat의 첫 글자를 찾아요",
+      "options": [
+        "B",
+        "C"
+      ],
+      "answerIndex": 1,
+      "answer": "C",
+      "hint": "둥글게 열린 C예요.",
+      "visual": "🐈 Cat",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "e-order",
+      "subject": "english",
+      "minimumLevel": 5,
+      "kind": "order",
+      "prompt": "다음 글자는 무엇일까요?",
+      "options": [
+        "D",
+        "C",
+        "A"
+      ],
+      "answerIndex": 1,
+      "answer": "C",
+      "hint": "A, B, C 순서예요.",
+      "visual": "A → B → ?",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "ep1-explore-shapes",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "마음에 드는 빛나는 모양을 눌러요.",
+      "options": [
+        "별",
+        "동그라미"
+      ],
+      "answerIndex": 0,
+      "answer": "별",
+      "hint": "어느 모양을 골라도 좋아요.",
+      "visual": "★ ●",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep1-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "동그라미"
+        ],
+        "choices": [
+          [
+            "별"
+          ],
+          [
+            "동그라미"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep1-star-count",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "count",
+      "prompt": "작은 판 위의 별조각은 몇 개일까요?",
+      "options": [
+        "1개",
+        "2개",
+        "3개"
+      ],
+      "answerIndex": 2,
+      "answer": "3개",
+      "hint": "그림의 별을 하나씩 눌러 세어 봐요.",
+      "visual": "★ ★ ★",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep1-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "별",
+          "별"
+        ],
+        "choices": [
+          [
+            "별"
+          ],
+          [
+            "별",
+            "별"
+          ],
+          [
+            "별",
+            "별",
+            "별"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep1-star-pair",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "matching",
+      "prompt": "별 두 개가 함께 있는 그림을 골라요.",
+      "options": [
+        "별과 별",
+        "별과 동그라미",
+        "세모와 별"
+      ],
+      "answerIndex": 0,
+      "answer": "별과 별",
+      "hint": "두 모양이 모두 뾰족한 별인지 살펴봐요.",
+      "visual": "★ ★",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep1-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "별"
+        ],
+        "choices": [
+          [
+            "별",
+            "별"
+          ],
+          [
+            "별",
+            "동그라미"
+          ],
+          [
+            "세모",
+            "별"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep1-star-shape",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "별과 같은 모양을 골라요.",
+      "options": [
+        "별",
+        "동그라미"
+      ],
+      "answerIndex": 0,
+      "answer": "별",
+      "hint": "뾰족뾰족한 끝을 살펴봐요.",
+      "visual": "★",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep1-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별"
+        ],
+        "choices": [
+          [
+            "별"
+          ],
+          [
+            "동그라미"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep10-book-pair",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "classify",
+      "prompt": "책끼리 모인 그림을 골라요.",
+      "options": [
+        "책과 잎",
+        "책과 책"
+      ],
+      "answerIndex": 1,
+      "answer": "책과 책",
+      "hint": "같은 책 두 권을 함께 찾아요.",
+      "visual": "book",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep10-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "책"
+        ],
+        "choices": [
+          [
+            "책",
+            "잎"
+          ],
+          [
+            "책",
+            "책"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep10-explore-paper",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "마음에 드는 씨앗이나 잎을 눌러요.",
+      "options": [
+        "씨앗",
+        "잎"
+      ],
+      "answerIndex": 0,
+      "answer": "씨앗",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "seed leaf",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep10-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "씨앗",
+          "잎"
+        ],
+        "choices": [
+          [
+            "씨앗"
+          ],
+          [
+            "잎"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep10-growth-order",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "order",
+      "prompt": "씨앗이 자라는 순서대로 놓인 그림을 골라요.",
+      "options": [
+        "나무, 싹, 씨앗",
+        "씨앗, 싹, 나무"
+      ],
+      "answerIndex": 1,
+      "answer": "씨앗, 싹, 나무",
+      "hint": "작은 씨앗에서 싹, 그다음 나무가 되어요.",
+      "visual": "seed sprout tree",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep10-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "씨앗",
+          "싹",
+          "나무"
+        ],
+        "choices": [
+          [
+            "나무",
+            "싹",
+            "씨앗"
+          ],
+          [
+            "씨앗",
+            "싹",
+            "나무"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep10-seed-next",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "order",
+      "prompt": "씨앗 다음에 자라는 것을 골라요.",
+      "options": [
+        "나무",
+        "싹"
+      ],
+      "answerIndex": 1,
+      "answer": "싹",
+      "hint": "씨앗에서 작은 싹이 먼저 나와요.",
+      "visual": "seed",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep10-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "씨앗"
+        ],
+        "choices": [
+          [
+            "나무"
+          ],
+          [
+            "싹"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep11-explore-sky",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "마음에 드는 별이나 동그라미 빛을 눌러요.",
+      "options": [
+        "별",
+        "동그라미"
+      ],
+      "answerIndex": 0,
+      "answer": "별",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "star circle",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep11-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "동그라미"
+        ],
+        "choices": [
+          [
+            "별"
+          ],
+          [
+            "동그라미"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep11-five-stars",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "count",
+      "prompt": "하늘에 놓은 별은 모두 몇 개일까요?",
+      "options": [
+        "4개",
+        "5개",
+        "3개"
+      ],
+      "answerIndex": 1,
+      "answer": "5개",
+      "hint": "다섯 자리에 별을 하나씩 놓아봐요.",
+      "visual": "star star star star star",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep11-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "별",
+          "별",
+          "별",
+          "별"
+        ],
+        "choices": [
+          [
+            "별",
+            "별",
+            "별",
+            "별"
+          ],
+          [
+            "별",
+            "별",
+            "별",
+            "별",
+            "별"
+          ],
+          [
+            "별",
+            "별",
+            "별"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep11-star-pattern",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "pattern",
+      "prompt": "별, 동그라미, 별 다음에 올 모양을 골라요.",
+      "options": [
+        "별",
+        "동그라미",
+        "세모"
+      ],
+      "answerIndex": 1,
+      "answer": "동그라미",
+      "hint": "별과 동그라미가 번갈아 빛나요.",
+      "visual": "star circle star",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep11-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "동그라미",
+          "별"
+        ],
+        "choices": [
+          [
+            "별"
+          ],
+          [
+            "동그라미"
+          ],
+          [
+            "세모"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep11-three-memories",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "matching",
+      "prompt": "아, A, 숫자 3이 모두 같은 그림을 골라요.",
+      "options": [
+        "오, A, 3",
+        "아, A, 3"
+      ],
+      "answerIndex": 1,
+      "answer": "아, A, 3",
+      "hint": "꽃밭의 아와 등대의 A, 다리의 3을 찾아요.",
+      "visual": "vowelA latinA three",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep11-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "아",
+          "에이",
+          "셋"
+        ],
+        "choices": [
+          [
+            "오",
+            "에이",
+            "셋"
+          ],
+          [
+            "아",
+            "에이",
+            "셋"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep12-explore-library",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "도서관에 놓고 싶은 별이나 꽃을 눌러요.",
+      "options": [
+        "별",
+        "꽃"
+      ],
+      "answerIndex": 0,
+      "answer": "별",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "star flower",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep12-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "꽃"
+        ],
+        "choices": [
+          [
+            "별"
+          ],
+          [
+            "꽃"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep12-flower-decoration",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "꽃끼리 모인 장식을 골라요.",
+      "options": [
+        "꽃과 잎",
+        "꽃과 꽃"
+      ],
+      "answerIndex": 1,
+      "answer": "꽃과 꽃",
+      "hint": "두 모양이 모두 꽃인지 살펴봐요.",
+      "visual": "flower",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep12-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "꽃"
+        ],
+        "choices": [
+          [
+            "꽃",
+            "잎"
+          ],
+          [
+            "꽃",
+            "꽃"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep12-letter-reunion",
+      "subject": "english",
+      "minimumLevel": 4,
+      "kind": "matching",
+      "prompt": "A와 a가 함께 있는 그림을 골라요.",
+      "options": [
+        "A와 b",
+        "A와 a"
+      ],
+      "answerIndex": 1,
+      "answer": "A와 a",
+      "hint": "등대에서 만난 에이의 큰 글자와 작은 글자예요.",
+      "visual": "latinA lowerA",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep12-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "에이",
+          "작은 에이"
+        ],
+        "choices": [
+          [
+            "에이",
+            "작은 비"
+          ],
+          [
+            "에이",
+            "작은 에이"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep12-star-decoration",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "별끼리 모인 장식을 골라요.",
+      "options": [
+        "별과 책",
+        "별과 별"
+      ],
+      "answerIndex": 1,
+      "answer": "별과 별",
+      "hint": "두 모양이 모두 별인지 살펴봐요.",
+      "visual": "star",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep12-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별"
+        ],
+        "choices": [
+          [
+            "별",
+            "책"
+          ],
+          [
+            "별",
+            "별"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep12-tidy-books",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "classify",
+      "prompt": "책장에 돌려놓을 책끼리 모인 그림을 골라요.",
+      "options": [
+        "책과 씨앗",
+        "책과 책"
+      ],
+      "answerIndex": 1,
+      "answer": "책과 책",
+      "hint": "흩뜨린 책은 책끼리 모아 함께 정리해요.",
+      "visual": "book",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep12-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "책"
+        ],
+        "choices": [
+          [
+            "책",
+            "씨앗"
+          ],
+          [
+            "책",
+            "책"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep2-explore-garden",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "마음에 드는 꽃이나 잎을 눌러요.",
+      "options": [
+        "꽃",
+        "잎"
+      ],
+      "answerIndex": 0,
+      "answer": "꽃",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "꽃 · 잎",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep2-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "꽃",
+          "잎"
+        ],
+        "choices": [
+          [
+            "꽃"
+          ],
+          [
+            "잎"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep2-vowel-a",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "아 소리가 나는 글자를 골라요.",
+      "options": [
+        "어",
+        "아"
+      ],
+      "answerIndex": 1,
+      "answer": "아",
+      "hint": "긴 줄의 오른쪽에 짧은 줄이 있어요. 아!",
+      "visual": "ㅏ",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep2-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "아"
+        ],
+        "choices": [
+          [
+            "어"
+          ],
+          [
+            "아"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep2-vowel-o",
+      "subject": "hangul",
+      "minimumLevel": 4,
+      "kind": "matching",
+      "prompt": "오 소리가 나는 글자를 골라요.",
+      "options": [
+        "우",
+        "아",
+        "오"
+      ],
+      "answerIndex": 2,
+      "answer": "오",
+      "hint": "가로줄 위로 짧은 줄이 올라가요. 오!",
+      "visual": "ㅗ",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep2-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "오"
+        ],
+        "choices": [
+          [
+            "우"
+          ],
+          [
+            "아"
+          ],
+          [
+            "오"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep2-vowel-pair",
+      "subject": "hangul",
+      "minimumLevel": 5,
+      "kind": "matching",
+      "prompt": "아와 오가 함께 있는 그림을 골라요.",
+      "options": [
+        "아와 오",
+        "어와 우",
+        "아와 우"
+      ],
+      "answerIndex": 0,
+      "answer": "아와 오",
+      "hint": "오른쪽 짧은 줄의 아, 위쪽 짧은 줄의 오를 찾아요.",
+      "visual": "ㅏ ㅗ",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep2-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "아",
+          "오"
+        ],
+        "choices": [
+          [
+            "아",
+            "오"
+          ],
+          [
+            "어",
+            "우"
+          ],
+          [
+            "아",
+            "우"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep3-explore-seed",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "씨앗과 잎을 살펴봐요. 마음에 드는 쪽을 눌러요.",
+      "options": [
+        "씨앗",
+        "잎"
+      ],
+      "answerIndex": 0,
+      "answer": "씨앗",
+      "hint": "씨앗도 잎도 좋아요.",
+      "visual": "씨앗 · 잎",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep3-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "씨앗",
+          "잎"
+        ],
+        "choices": [
+          [
+            "씨앗"
+          ],
+          [
+            "잎"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep3-ga-seed",
+      "subject": "hangul",
+      "minimumLevel": 5,
+      "kind": "combination",
+      "prompt": "기역과 아가 만나 만든 글자를 골라요.",
+      "options": [
+        "나",
+        "가",
+        "마"
+      ],
+      "answerIndex": 1,
+      "answer": "가",
+      "hint": "ㄱ을 왼쪽에, ㅏ를 오른쪽에 놓으면 가예요.",
+      "visual": "ㄱ + ㅏ",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep3-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "기역",
+          "아"
+        ],
+        "choices": [
+          [
+            "나"
+          ],
+          [
+            "가"
+          ],
+          [
+            "마"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep3-giyeok",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "이름이 기역인 글자를 골라요.",
+      "options": [
+        "니은",
+        "기역"
+      ],
+      "answerIndex": 1,
+      "answer": "기역",
+      "hint": "오른쪽으로 간 뒤 아래로 꺾이는 ㄱ이에요.",
+      "visual": "ㄱ",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep3-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "기역"
+        ],
+        "choices": [
+          [
+            "니은"
+          ],
+          [
+            "기역"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep3-seed-count",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "count",
+      "prompt": "작은 판 위의 씨앗은 몇 개일까요?",
+      "options": [
+        "2개",
+        "3개",
+        "1개"
+      ],
+      "answerIndex": 1,
+      "answer": "3개",
+      "hint": "작은 판 위의 씨앗만 하나씩 눌러 세어봐요.",
+      "visual": "씨앗 세 개",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep3-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "씨앗",
+          "씨앗",
+          "씨앗"
+        ],
+        "choices": [
+          [
+            "씨앗",
+            "씨앗"
+          ],
+          [
+            "씨앗",
+            "씨앗",
+            "씨앗"
+          ],
+          [
+            "씨앗"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep4-car-order",
+      "subject": "hangul",
+      "minimumLevel": 5,
+      "kind": "order",
+      "prompt": "왼쪽 가, 오른쪽 나의 순서를 골라요.",
+      "options": [
+        "나, 가",
+        "가, 나",
+        "가, 마"
+      ],
+      "answerIndex": 1,
+      "answer": "가, 나",
+      "hint": "왼쪽부터 가, 나로 읽어요.",
+      "visual": "가 → 나",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep4-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "가",
+          "나"
+        ],
+        "choices": [
+          [
+            "나",
+            "가"
+          ],
+          [
+            "가",
+            "나"
+          ],
+          [
+            "가",
+            "마"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep4-explore-cargo",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "싣고 싶은 씨앗이나 꽃을 눌러요.",
+      "options": [
+        "씨앗",
+        "꽃"
+      ],
+      "answerIndex": 0,
+      "answer": "씨앗",
+      "hint": "어느 짐을 골라도 좋아요.",
+      "visual": "씨앗 · 꽃",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep4-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "씨앗",
+          "꽃"
+        ],
+        "choices": [
+          [
+            "씨앗"
+          ],
+          [
+            "꽃"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep4-ga-car",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "combination",
+      "prompt": "기역과 아가 만나 만든 가를 골라요.",
+      "options": [
+        "나",
+        "가"
+      ],
+      "answerIndex": 1,
+      "answer": "가",
+      "hint": "ㄱ과 ㅏ를 나란히 놓으면 가예요.",
+      "visual": "ㄱ + ㅏ",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep4-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "기역",
+          "아"
+        ],
+        "choices": [
+          [
+            "나"
+          ],
+          [
+            "가"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep4-na-car",
+      "subject": "hangul",
+      "minimumLevel": 4,
+      "kind": "combination",
+      "prompt": "니은과 아가 만나 만든 나를 골라요.",
+      "options": [
+        "가",
+        "마",
+        "나"
+      ],
+      "answerIndex": 2,
+      "answer": "나",
+      "hint": "ㄴ 옆에 ㅏ를 놓으면 나예요.",
+      "visual": "ㄴ + ㅏ",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep4-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "니은",
+          "아"
+        ],
+        "choices": [
+          [
+            "가"
+          ],
+          [
+            "마"
+          ],
+          [
+            "나"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep5-a-case",
+      "subject": "english",
+      "minimumLevel": 4,
+      "kind": "matching",
+      "prompt": "대문자 A와 짝인 소문자를 골라요.",
+      "options": [
+        "작은 에이",
+        "작은 비"
+      ],
+      "answerIndex": 0,
+      "answer": "작은 에이",
+      "hint": "작은 a도 에이라는 이름이에요.",
+      "visual": "A → a",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep5-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "에이"
+        ],
+        "choices": [
+          [
+            "작은 에이"
+          ],
+          [
+            "작은 비"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep5-a-name",
+      "subject": "english",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "이름이 에이인 글자를 골라요.",
+      "options": [
+        "비",
+        "에이"
+      ],
+      "answerIndex": 1,
+      "answer": "에이",
+      "hint": "뾰족한 지붕과 가운데 가로줄이 있는 A예요.",
+      "visual": "A",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep5-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "에이"
+        ],
+        "choices": [
+          [
+            "비"
+          ],
+          [
+            "에이"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep5-apple-picture",
+      "subject": "english",
+      "minimumLevel": 5,
+      "kind": "matching",
+      "prompt": "Apple 단어를 듣고 알맞은 과일을 골라요.",
+      "options": [
+        "바나나",
+        "사과"
+      ],
+      "answerIndex": 1,
+      "answer": "사과",
+      "hint": "Apple은 빨간 사과를 부르는 말이에요.",
+      "visual": "Apple",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep5-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "사과"
+        ],
+        "choices": [
+          [
+            "바나나"
+          ],
+          [
+            "사과"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep5-explore-light",
+      "subject": "english",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "마음에 드는 사과나 별을 눌러요.",
+      "options": [
+        "사과",
+        "별"
+      ],
+      "answerIndex": 0,
+      "answer": "사과",
+      "hint": "어느 그림을 골라도 좋아요.",
+      "visual": "사과 · 별",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep5-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "사과",
+          "별"
+        ],
+        "choices": [
+          [
+            "사과"
+          ],
+          [
+            "별"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep6-bridge-three",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "count",
+      "prompt": "다리에 놓은 돌은 모두 몇 개일까요?",
+      "options": [
+        "2개",
+        "3개",
+        "4개"
+      ],
+      "answerIndex": 1,
+      "answer": "3개",
+      "hint": "빈 자리에 돌을 하나씩 놓아 세어봐요.",
+      "visual": "stone stone stone",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep6-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "돌",
+          "돌",
+          "돌"
+        ],
+        "choices": [
+          [
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌",
+            "돌"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep6-explore-bridge",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "다리에 함께 놓고 싶은 돌이나 꽃을 눌러요.",
+      "options": [
+        "돌",
+        "꽃"
+      ],
+      "answerIndex": 0,
+      "answer": "돌",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "stone flower",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep6-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "돌",
+          "꽃"
+        ],
+        "choices": [
+          [
+            "돌"
+          ],
+          [
+            "꽃"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep6-one-less",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "돌 세 개에서 하나를 빼면 몇 개일까요?",
+      "options": [
+        "2개",
+        "3개",
+        "4개"
+      ],
+      "answerIndex": 0,
+      "answer": "2개",
+      "hint": "세 개 중 하나를 가리고 남은 돌을 세어봐요.",
+      "visual": "stone stone stone",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep6-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "돌",
+          "돌",
+          "돌"
+        ],
+        "choices": [
+          [
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌",
+            "돌"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep6-one-more",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "돌 두 개에 하나 더 놓으면 몇 개일까요?",
+      "options": [
+        "1개",
+        "2개",
+        "3개"
+      ],
+      "answerIndex": 2,
+      "answer": "3개",
+      "hint": "하나, 둘 다음에 하나 더 놓아요.",
+      "visual": "stone stone",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep6-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "돌",
+          "돌"
+        ],
+        "choices": [
+          [
+            "돌"
+          ],
+          [
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep7-explore-garden",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "마음에 드는 빨간 꽃이나 파란 꽃을 눌러요.",
+      "options": [
+        "빨간 꽃",
+        "파란 꽃"
+      ],
+      "answerIndex": 0,
+      "answer": "빨간 꽃",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "redFlower blueFlower",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep7-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "빨간 꽃",
+          "파란 꽃"
+        ],
+        "choices": [
+          [
+            "빨간 꽃"
+          ],
+          [
+            "파란 꽃"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep7-leaf-pair",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "classify",
+      "prompt": "잎끼리 모인 그림을 골라요.",
+      "options": [
+        "잎과 꽃",
+        "잎과 잎"
+      ],
+      "answerIndex": 1,
+      "answer": "잎과 잎",
+      "hint": "초록 잎 두 개가 함께 있는지 살펴봐요.",
+      "visual": "leaf",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep7-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "잎"
+        ],
+        "choices": [
+          [
+            "잎",
+            "꽃"
+          ],
+          [
+            "잎",
+            "잎"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep7-red-flowers",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "classify",
+      "prompt": "빨간 꽃끼리 모인 그림을 골라요.",
+      "options": [
+        "파란 꽃 둘",
+        "빨간 꽃 둘"
+      ],
+      "answerIndex": 1,
+      "answer": "빨간 꽃 둘",
+      "hint": "모양보다 꽃잎의 빨간 색을 살펴봐요.",
+      "visual": "redFlower",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep7-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "빨간 꽃"
+        ],
+        "choices": [
+          [
+            "파란 꽃",
+            "파란 꽃"
+          ],
+          [
+            "빨간 꽃",
+            "빨간 꽃"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep7-shape-path",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "pattern",
+      "prompt": "동그라미, 세모, 동그라미 다음은 무엇일까요?",
+      "options": [
+        "세모",
+        "동그라미",
+        "꽃"
+      ],
+      "answerIndex": 0,
+      "answer": "세모",
+      "hint": "동그라미와 세모가 번갈아 나와요.",
+      "visual": "circle triangle circle",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep7-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "동그라미",
+          "세모",
+          "동그라미"
+        ],
+        "choices": [
+          [
+            "세모"
+          ],
+          [
+            "동그라미"
+          ],
+          [
+            "꽃"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep8-explore-wind",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "함께 정리하고 싶은 책이나 동그라미를 눌러요.",
+      "options": [
+        "책",
+        "동그라미"
+      ],
+      "answerIndex": 0,
+      "answer": "책",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "book circle",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep8-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "책",
+          "동그라미"
+        ],
+        "choices": [
+          [
+            "책"
+          ],
+          [
+            "동그라미"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep8-letter-basket",
+      "subject": "english",
+      "minimumLevel": 2,
+      "kind": "classify",
+      "prompt": "영어 글자끼리 모인 바구니를 골라요.",
+      "options": [
+        "A와 3",
+        "A와 C",
+        "1과 3"
+      ],
+      "answerIndex": 1,
+      "answer": "A와 C",
+      "hint": "영어 글자 A와 C를 함께 모아요.",
+      "visual": "latinA latinC",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep8-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "에이",
+          "시"
+        ],
+        "choices": [
+          [
+            "에이",
+            "셋"
+          ],
+          [
+            "에이",
+            "시"
+          ],
+          [
+            "하나",
+            "셋"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep8-number-basket",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "classify",
+      "prompt": "숫자끼리 모인 바구니를 골라요.",
+      "options": [
+        "1과 A",
+        "1과 3",
+        "A와 C"
+      ],
+      "answerIndex": 1,
+      "answer": "1과 3",
+      "hint": "숫자 1과 3을 함께 모아요.",
+      "visual": "one three",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep8-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "하나",
+          "셋"
+        ],
+        "choices": [
+          [
+            "하나",
+            "에이"
+          ],
+          [
+            "하나",
+            "셋"
+          ],
+          [
+            "에이",
+            "시"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep8-page-pattern",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "pattern",
+      "prompt": "별, 책, 별 다음에 놓을 것을 골라요.",
+      "options": [
+        "별",
+        "책",
+        "동그라미"
+      ],
+      "answerIndex": 1,
+      "answer": "책",
+      "hint": "별과 책이 번갈아 나와요.",
+      "visual": "star book star",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep8-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "별",
+          "책",
+          "별"
+        ],
+        "choices": [
+          [
+            "별"
+          ],
+          [
+            "책"
+          ],
+          [
+            "동그라미"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-english",
+      "subject": "english",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "Apple 단어와 같은 과일을 골라요.",
+      "options": [
+        "바나나",
+        "사과"
+      ],
+      "answerIndex": 1,
+      "answer": "사과",
+      "hint": "등대에서 Apple은 사과라고 배웠어요.",
+      "visual": "apple",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "사과"
+        ],
+        "choices": [
+          [
+            "바나나"
+          ],
+          [
+            "사과"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-english-case",
+      "subject": "english",
+      "minimumLevel": 4,
+      "kind": "matching",
+      "prompt": "대문자 A의 작은 글자 짝을 골라요.",
+      "options": [
+        "작은 에이",
+        "작은 비"
+      ],
+      "answerIndex": 0,
+      "answer": "작은 에이",
+      "hint": "A와 a는 에이라는 같은 이름이에요.",
+      "visual": "latinA",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "에이"
+        ],
+        "choices": [
+          [
+            "작은 에이"
+          ],
+          [
+            "작은 비"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-english-pair",
+      "subject": "english",
+      "minimumLevel": 5,
+      "kind": "matching",
+      "prompt": "A와 사과가 함께 있는 그림을 골라요.",
+      "options": [
+        "B와 사과",
+        "A와 사과"
+      ],
+      "answerIndex": 1,
+      "answer": "A와 사과",
+      "hint": "에이라는 글자와 Apple 사과를 찾아요.",
+      "visual": "latinA apple",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "에이",
+          "사과"
+        ],
+        "choices": [
+          [
+            "비",
+            "사과"
+          ],
+          [
+            "에이",
+            "사과"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-explore-path",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "좋아하는 꽃이나 별을 골라 길을 찾아요.",
+      "options": [
+        "꽃",
+        "별"
+      ],
+      "answerIndex": 0,
+      "answer": "꽃",
+      "hint": "어느 쪽을 골라도 좋아요.",
+      "visual": "flower star",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "꽃",
+          "별"
+        ],
+        "choices": [
+          [
+            "꽃"
+          ],
+          [
+            "별"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-hangul",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "combination",
+      "prompt": "기역과 아가 만나 만든 가를 골라요.",
+      "options": [
+        "나",
+        "가"
+      ],
+      "answerIndex": 1,
+      "answer": "가",
+      "hint": "나무와 기차에서 만난 가를 떠올려요.",
+      "visual": "giyeok vowelA",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "기역",
+          "아"
+        ],
+        "choices": [
+          [
+            "나"
+          ],
+          [
+            "가"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-hangul-order",
+      "subject": "hangul",
+      "minimumLevel": 5,
+      "kind": "order",
+      "prompt": "왼쪽 가, 오른쪽 나의 순서를 골라요.",
+      "options": [
+        "나, 가",
+        "가, 나"
+      ],
+      "answerIndex": 1,
+      "answer": "가, 나",
+      "hint": "기차의 가 다음 나 표지를 떠올려요.",
+      "visual": "ga na",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "가",
+          "나"
+        ],
+        "choices": [
+          [
+            "나",
+            "가"
+          ],
+          [
+            "가",
+            "나"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-hangul-vowel",
+      "subject": "hangul",
+      "minimumLevel": 4,
+      "kind": "matching",
+      "prompt": "오 소리가 나는 모음을 골라요.",
+      "options": [
+        "우",
+        "오"
+      ],
+      "answerIndex": 1,
+      "answer": "오",
+      "hint": "짧은 줄이 위로 올라간 오를 찾아요.",
+      "visual": "vowelO",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "오"
+        ],
+        "choices": [
+          [
+            "우"
+          ],
+          [
+            "오"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-math",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "count",
+      "prompt": "그림 속 돌은 몇 개일까요?",
+      "options": [
+        "2개",
+        "3개",
+        "4개"
+      ],
+      "answerIndex": 1,
+      "answer": "3개",
+      "hint": "다리에서처럼 하나씩 눌러 세어봐요.",
+      "visual": "stone stone stone",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-quiz"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "돌",
+          "돌",
+          "돌"
+        ],
+        "choices": [
+          [
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌",
+            "돌"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-math-more",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "돌 두 개에 하나 더 놓은 그림을 골라요.",
+      "options": [
+        "2개",
+        "3개"
+      ],
+      "answerIndex": 1,
+      "answer": "3개",
+      "hint": "둘 다음에 하나 더, 셋이에요.",
+      "visual": "stone stone",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-review"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "돌",
+          "돌"
+        ],
+        "choices": [
+          [
+            "돌",
+            "돌"
+          ],
+          [
+            "돌",
+            "돌",
+            "돌"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ep9-math-pattern",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "pattern",
+      "prompt": "돌, 씨앗, 돌 다음에 놓을 것을 골라요.",
+      "options": [
+        "돌",
+        "씨앗"
+      ],
+      "answerIndex": 1,
+      "answer": "씨앗",
+      "hint": "돌과 씨앗이 번갈아 나와요.",
+      "visual": "stone seed stone",
+      "resultVisual": null,
+      "sceneIds": [
+        "ep9-together"
+      ],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "돌",
+          "씨앗",
+          "돌"
+        ],
+        "choices": [
+          [
+            "돌"
+          ],
+          [
+            "씨앗"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "h-bag",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "가방의 첫 글자를 찾아요",
+      "options": [
+        "ㄱ",
+        "ㄴ"
+      ],
+      "answerIndex": 0,
+      "answer": "ㄱ",
+      "hint": "가방은 ㄱ으로 시작해요.",
+      "visual": "🎒 가방",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "h-combine",
+      "subject": "hangul",
+      "minimumLevel": 4,
+      "kind": "combination",
+      "prompt": "ㄱ과 ㅏ가 만나면?",
+      "options": [
+        "나",
+        "가",
+        "모"
+      ],
+      "answerIndex": 1,
+      "answer": "가",
+      "hint": "가방의 가예요.",
+      "visual": "ㄱ + ㅏ",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "h-tree",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "나무의 첫 글자를 찾아요",
+      "options": [
+        "ㅁ",
+        "ㄴ"
+      ],
+      "answerIndex": 1,
+      "answer": "ㄴ",
+      "hint": "나무는 ㄴ으로 시작해요.",
+      "visual": "🌳 나무",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "h-vowel",
+      "subject": "hangul",
+      "minimumLevel": 3,
+      "kind": "matching",
+      "prompt": "아 소리를 내는 글자를 찾아요",
+      "options": [
+        "ㅓ",
+        "ㅏ"
+      ],
+      "answerIndex": 1,
+      "answer": "ㅏ",
+      "hint": "오른쪽으로 작은 획이 있어요.",
+      "visual": "ㅏ",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "h-word",
+      "subject": "hangul",
+      "minimumLevel": 5,
+      "kind": "matching",
+      "prompt": "그림의 이름을 찾아요",
+      "options": [
+        "나무",
+        "사과",
+        "모자"
+      ],
+      "answerIndex": 1,
+      "answer": "사과",
+      "hint": "사와 과가 만났어요.",
+      "visual": "🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "minus",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 네 개 중 하나를 먹으면?",
+      "options": [
+        "5",
+        "3",
+        "2"
+      ],
+      "answerIndex": 1,
+      "answer": "3",
+      "hint": "네 개에서 하나를 빼요.",
+      "visual": "🍎🍎🍎🍎 − 🍎",
+      "resultVisual": "🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "more",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "compare",
+      "prompt": "어느 쪽 사과가 더 많을까요?",
+      "options": [
+        "왼쪽 2개",
+        "오른쪽 3개",
+        "같아요"
+      ],
+      "answerIndex": 1,
+      "answer": "오른쪽 3개",
+      "hint": "두 개보다 세 개가 많아요.",
+      "visual": "🍎🍎  |  🍎🍎🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "pattern",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "pattern",
+      "prompt": "다음 모양을 찾아요",
+      "options": [
+        "▲",
+        "●"
+      ],
+      "answerIndex": 1,
+      "answer": "●",
+      "hint": "동그라미와 세모가 번갈아 나와요.",
+      "visual": "● ▲ ● ▲ ?",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "pattern-pairs",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "pattern",
+      "prompt": "다음 모양은 무엇일까요?",
+      "options": [
+        "▲",
+        "■",
+        "●"
+      ],
+      "answerIndex": 2,
+      "answer": "●",
+      "hint": "동그라미 둘, 세모 하나가 반복돼요.",
+      "visual": "● ● ▲ ● ● ▲ ?",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "pattern-three",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "pattern",
+      "prompt": "다음 모양을 이어 보아요",
+      "options": [
+        "■",
+        "▲",
+        "●"
+      ],
+      "answerIndex": 0,
+      "answer": "■",
+      "hint": "동그라미, 세모, 네모 순서예요.",
+      "visual": "● ▲ ■ ● ▲ ?",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "plus",
+      "subject": "math",
+      "minimumLevel": 4,
+      "kind": "addition",
+      "prompt": "사과 두 개에 하나를 더하면?",
+      "options": [
+        "2",
+        "3",
+        "4"
+      ],
+      "answerIndex": 1,
+      "answer": "3",
+      "hint": "두 개를 세고 하나 더 세어요.",
+      "visual": "🍎🍎 + 🍎",
+      "resultVisual": "🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "quantity-match-1",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "matching",
+      "prompt": "사과와 같은 수의 물고기를 찾아요",
+      "options": [
+        "🐟 🐟",
+        "🐟 🐟 🐟",
+        "🐟"
+      ],
+      "answerIndex": 2,
+      "answer": "🐟",
+      "hint": "사과 하나에 물고기 하나씩 짝을 지어 보아요.",
+      "visual": "🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "quantity-match-2",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "matching",
+      "prompt": "사과와 같은 수의 물고기를 찾아요",
+      "options": [
+        "🐟 🐟 🐟 🐟",
+        "🐟 🐟",
+        "🐟 🐟 🐟"
+      ],
+      "answerIndex": 1,
+      "answer": "🐟 🐟",
+      "hint": "사과 하나에 물고기 하나씩 짝을 지어 보아요.",
+      "visual": "🍎 🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "quantity-match-3",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "matching",
+      "prompt": "사과와 같은 수의 물고기를 찾아요",
+      "options": [
+        "🐟 🐟 🐟",
+        "🐟 🐟 🐟 🐟",
+        "🐟 🐟"
+      ],
+      "answerIndex": 0,
+      "answer": "🐟 🐟 🐟",
+      "hint": "사과 하나에 물고기 하나씩 짝을 지어 보아요.",
+      "visual": "🍎 🍎 🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "quantity-match-4",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "matching",
+      "prompt": "사과와 같은 수의 물고기를 찾아요",
+      "options": [
+        "🐟 🐟 🐟 🐟 🐟",
+        "🐟 🐟 🐟",
+        "🐟 🐟 🐟 🐟"
+      ],
+      "answerIndex": 2,
+      "answer": "🐟 🐟 🐟 🐟",
+      "hint": "사과 하나에 물고기 하나씩 짝을 지어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "quantity-match-5",
+      "subject": "math",
+      "minimumLevel": 3,
+      "kind": "matching",
+      "prompt": "사과와 같은 수의 물고기를 찾아요",
+      "options": [
+        "🐟 🐟 🐟 🐟",
+        "🐟 🐟 🐟 🐟 🐟",
+        "🐟"
+      ],
+      "answerIndex": 1,
+      "answer": "🐟 🐟 🐟 🐟 🐟",
+      "hint": "사과 하나에 물고기 하나씩 짝을 지어 보아요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "same",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "동그란 친구를 찾아요",
+      "options": [
+        "●",
+        "▲"
+      ],
+      "answerIndex": 0,
+      "answer": "●",
+      "hint": "모서리가 없어요.",
+      "visual": "●",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "story-support-count",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "별 두 개와 같은 수를 찾아요",
+      "options": [
+        "●",
+        "● ●"
+      ],
+      "answerIndex": 1,
+      "answer": "● ●",
+      "hint": "별 하나에 동그라미 하나씩 짝을 지어요.",
+      "visual": "★ ★",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "story-support-english",
+      "subject": "english",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "등대의 A와 같은 글자를 찾아요",
+      "options": [
+        "A",
+        "B"
+      ],
+      "answerIndex": 0,
+      "answer": "A",
+      "hint": "두 다리와 가운데 선이 있는 A예요.",
+      "visual": "A",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "story-support-growth-order",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "order",
+      "prompt": "씨앗 다음에 싹이 나온 순서를 골라요.",
+      "options": [
+        "싹, 씨앗",
+        "씨앗, 싹"
+      ],
+      "answerIndex": 1,
+      "answer": "씨앗, 싹",
+      "hint": "작은 씨앗에서 초록 싹이 나와요. 씨앗이 먼저예요.",
+      "visual": "씨앗 → 싹",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending",
+      "pictures": {
+        "objects": [
+          "씨앗",
+          "싹"
+        ],
+        "choices": [
+          [
+            "싹",
+            "씨앗"
+          ],
+          [
+            "씨앗",
+            "싹"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "story-support-hangul",
+      "subject": "hangul",
+      "minimumLevel": 2,
+      "kind": "matching",
+      "prompt": "빛나는 글자와 같은 친구를 찾아요",
+      "options": [
+        "ㄴ",
+        "ㄱ"
+      ],
+      "answerIndex": 1,
+      "answer": "ㄱ",
+      "hint": "ㄱ 모양을 함께 살펴봐요.",
+      "visual": "ㄱ",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "story-support-pattern",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "pattern",
+      "prompt": "친구들이 번갈아 와요. 다음은 누구일까요?",
+      "options": [
+        "●",
+        "▲"
+      ],
+      "answerIndex": 1,
+      "answer": "▲",
+      "hint": "동그라미 다음에는 세모가 와요.",
+      "visual": "● ▲ ● ?",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "story-support-shape",
+      "subject": "math",
+      "minimumLevel": 2,
+      "kind": "classify",
+      "prompt": "동그라미와 같은 모양을 찾아요",
+      "options": [
+        "●",
+        "▲"
+      ],
+      "answerIndex": 0,
+      "answer": "●",
+      "hint": "둥글고 모서리가 없어요.",
+      "visual": "●",
+      "resultVisual": null,
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-2-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 2개에서 1개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "0",
+        "1",
+        "2"
+      ],
+      "answerIndex": 1,
+      "answer": "1",
+      "hint": "2개에서 1개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎\n− 🍎",
+      "resultVisual": "🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-2-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 2개에서 2개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "2",
+        "0",
+        "1"
+      ],
+      "answerIndex": 1,
+      "answer": "0",
+      "hint": "2개에서 2개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎\n− 🍎 🍎",
+      "resultVisual": "모두 먹어서 0개예요.",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-3-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 3개에서 1개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "2",
+        "3",
+        "1"
+      ],
+      "answerIndex": 0,
+      "answer": "2",
+      "hint": "3개에서 1개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎\n− 🍎",
+      "resultVisual": "🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-3-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 3개에서 2개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "1",
+        "2",
+        "0"
+      ],
+      "answerIndex": 0,
+      "answer": "1",
+      "hint": "3개에서 2개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎\n− 🍎 🍎",
+      "resultVisual": "🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-4-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 4개에서 1개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "4",
+        "2",
+        "3"
+      ],
+      "answerIndex": 2,
+      "answer": "3",
+      "hint": "4개에서 1개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎\n− 🍎",
+      "resultVisual": "🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-4-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 4개에서 2개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "3",
+        "1",
+        "2"
+      ],
+      "answerIndex": 2,
+      "answer": "2",
+      "hint": "4개에서 2개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎\n− 🍎 🍎",
+      "resultVisual": "🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-5-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 5개에서 1개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "3",
+        "4",
+        "5"
+      ],
+      "answerIndex": 1,
+      "answer": "4",
+      "hint": "5개에서 1개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎\n− 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-5-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 5개에서 2개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "2",
+        "3",
+        "4"
+      ],
+      "answerIndex": 1,
+      "answer": "3",
+      "hint": "5개에서 2개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎\n− 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-6-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 6개에서 1개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "5",
+        "6",
+        "4"
+      ],
+      "answerIndex": 0,
+      "answer": "5",
+      "hint": "6개에서 1개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎 🍎\n− 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-6-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 6개에서 2개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "4",
+        "5",
+        "3"
+      ],
+      "answerIndex": 0,
+      "answer": "4",
+      "hint": "6개에서 2개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎 🍎\n− 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-7-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 7개에서 1개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "7",
+        "5",
+        "6"
+      ],
+      "answerIndex": 2,
+      "answer": "6",
+      "hint": "7개에서 1개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎\n− 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-7-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 7개에서 2개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "6",
+        "4",
+        "5"
+      ],
+      "answerIndex": 2,
+      "answer": "5",
+      "hint": "7개에서 2개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎\n− 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-8-1",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 8개에서 1개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "6",
+        "7",
+        "8"
+      ],
+      "answerIndex": 1,
+      "answer": "7",
+      "hint": "8개에서 1개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎\n− 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    },
+    {
+      "id": "subtract-8-2",
+      "subject": "math",
+      "minimumLevel": 5,
+      "kind": "subtraction",
+      "prompt": "사과 8개에서 2개를 먹으면 몇 개 남을까요?",
+      "options": [
+        "5",
+        "6",
+        "7"
+      ],
+      "answerIndex": 1,
+      "answer": "6",
+      "hint": "8개에서 2개를 가리고 남은 사과를 세어요.",
+      "visual": "🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎\n− 🍎 🍎",
+      "resultVisual": "🍎 🍎 🍎 🍎 🍎 🍎",
+      "sceneIds": [],
+      "approval": "pending"
+    }
+  ],
+  "storyPaths": [
+    {
+      "level": 2,
+      "observedPlayTime": null,
+      "childObservation": "pending",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "빛을 잃은 도서관",
+          "goal": "친구와 별조각을 찾아 첫 별빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep1-start",
+              "action": "dialogue",
+              "text": "어? 이야기책의 별빛이 꺼졌어요.\n나와 함께 찾아볼래요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-choice",
+              "action": "choice",
+              "text": "누구와 함께 별조각을 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-quiz",
+              "action": "quiz",
+              "text": "책장 아래에 빛나는 모양이 있어요.\n친구와 함께 살펴볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep1-star-shape",
+                "ep1-explore-shapes"
+              ]
+            },
+            {
+              "id": "ep1-end",
+              "action": "dialogue",
+              "text": "첫 별빛이 켜졌어요! 고마워요.\n지도 속 꽃밭에 다음 조각이 있대요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "모음 꽃밭의 길",
+          "goal": "모음 소리로 꽃문을 열고 자음 나무로 가요",
+          "scenes": [
+            {
+              "id": "ep2-start",
+              "action": "dialogue",
+              "text": "지도 속 꽃밭에 도착했어요.\n어? 꽃문이 꼭 닫혀 있네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-choice",
+              "action": "choice",
+              "text": "누구와 함께 꽃문을 두드릴까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-quiz",
+              "action": "quiz",
+              "text": "꽃문이 아 소리를 기다려요.\n아, 함께 불러볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep2-vowel-a",
+                "ep2-explore-garden"
+              ]
+            },
+            {
+              "id": "ep2-end",
+              "action": "dialogue",
+              "text": "두 번째 별빛이 켜졌어요!\n꽃길 끝 자음 나무에서 루루가 손짓해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "자음 나무의 열매",
+          "goal": "기역 열매를 찾고 아와 만나 글자 씨앗을 만들어요",
+          "scenes": [
+            {
+              "id": "ep3-start",
+              "action": "dialogue",
+              "text": "자음 나무에 도착했어!\n열매를 담을 빈 바구니도 있네.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-choice",
+              "action": "choice",
+              "text": "누구와 함께 열매를 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-quiz",
+              "action": "quiz",
+              "text": "기역의 모양은 ㄱ이에요.\n이름표에서 같은 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep3-giyeok",
+                "ep3-explore-seed"
+              ]
+            },
+            {
+              "id": "ep3-end",
+              "action": "dialogue",
+              "text": "세 번째 별빛이 켜졌어요!\n씨앗 꾸러미를 싣고 소리 기차로 가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "뒤죽박죽 소리 기차",
+          "goal": "가와 나의 표지를 찾아 씨앗을 싣고 출발해요",
+          "scenes": [
+            {
+              "id": "ep4-start",
+              "action": "dialogue",
+              "text": "씨앗 꾸러미를 들고 역에 왔어요.\n어? 기차의 글자 표지가 섞였네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-choice",
+              "action": "choice",
+              "text": "누구와 씨앗 꾸러미를 실을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-quiz",
+              "action": "quiz",
+              "text": "기역과 아가 만난 가!\n가 표지가 있는 칸을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep4-ga-car",
+                "ep4-explore-cargo"
+              ]
+            },
+            {
+              "id": "ep4-end",
+              "action": "dialogue",
+              "text": "네 번째 별빛과 함께 별빛 역 도착!\n저기 꺼진 등대가 도움을 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "알파벳 등대",
+          "goal": "A의 이름과 Apple을 듣고 등대 빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep5-start",
+              "action": "dialogue",
+              "text": "등대의 큰 불이 꺼졌어요.\n글자 빛을 찾아 함께 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-choice",
+              "action": "choice",
+              "text": "누구와 등대 불을 켤까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-quiz",
+              "action": "quiz",
+              "text": "글자 이름 듣기 버튼을 눌러봐요.\n에이라는 이름의 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep5-a-name",
+                "ep5-explore-light"
+              ]
+            },
+            {
+              "id": "ep5-end",
+              "action": "dialogue",
+              "text": "다섯 번째 별빛이 켜졌어요!\n등대 빛이 숫자 다리를 비춰요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "숫자 다리와 세 개의 돌",
+          "goal": "돌 세 개를 놓고 하나 더·하나 덜을 살펴요",
+          "scenes": [
+            {
+              "id": "ep6-start",
+              "action": "dialogue",
+              "text": "졸졸, 물소리 너머 정원이 보여요.\n앗, 돌다리에 동그란 빈자리가 세 개 있어요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-quiz",
+              "action": "quiz",
+              "text": "한 개씩 옮기면 빈자리가 채워질 거야.\n나랑 돌길을 이어 볼까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep6-bridge-three",
+                "ep6-explore-bridge"
+              ]
+            },
+            {
+              "id": "ep6-end",
+              "action": "dialogue",
+              "text": "여섯 번째 별빛이 다리 위에서 반짝!\n건너편 꽃들이 하얗게 변했어요. 정원으로 가봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "색깔을 잃은 정원",
+          "goal": "색과 모양을 분류하고 나만의 그림 지도를 그려요",
+          "scenes": [
+            {
+              "id": "ep7-start",
+              "action": "dialogue",
+              "text": "어제는 알록달록했다는데…\n꽃들의 색이 옅어져 정원 길을 찾기 어려워요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-quiz",
+              "action": "quiz",
+              "text": "빨간 꽃을 모아 정원에 색을 돌려줘요.\n같은 빨간 꽃끼리 있는 바구니를 골라요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep7-red-flowers",
+                "ep7-explore-garden"
+              ]
+            },
+            {
+              "id": "ep7-end",
+              "action": "dialogue",
+              "text": "일곱 번째 별빛과 그림 지도를 챙겼어요.\n그때, 언덕 너머에서 휘이잉! 작은 목소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "바람 친구 휙휙의 실수",
+          "goal": "함께 정리하며 글자와 숫자를 구별해요",
+          "scenes": [
+            {
+              "id": "ep8-start",
+              "action": "dialogue",
+              "text": "휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…”",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-quiz",
+              "action": "quiz",
+              "text": "A와 C는 영어 글자예요.\n숫자와 섞이지 않은 영어 글자 바구니를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep8-letter-basket",
+                "ep8-explore-wind"
+              ]
+            },
+            {
+              "id": "ep8-end",
+              "action": "dialogue",
+              "text": "여덟 번째 별빛을 휙휙과 함께 챙겼어요.\n바람이 살랑, 세 갈래 길로 우리를 안내해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "세 갈래 이야기 길",
+          "goal": "내가 고른 길에서 서로 다른 복습 미션을 만나요",
+          "scenes": [
+            {
+              "id": "ep9-start",
+              "action": "dialogue",
+              "text": "꽃길, 등대길, 돌길이 나란히 보여요.\n어느 길로 가도 친구와 함께라면 좋아요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-choice",
+              "action": "choice",
+              "text": "어느 이야기 길로 먼저 가볼까요?",
+              "choices": [
+                "한글 길",
+                "영어 길",
+                "숫자 길"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-quiz",
+              "action": "quiz",
+              "text": "우리가 고른 길의 이야기를 떠올려요.\n그림과 소리를 천천히 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep9-hangul",
+                "ep9-explore-path",
+                "ep9-hangul",
+                "ep9-english",
+                "ep9-math"
+              ]
+            },
+            {
+              "id": "ep9-end",
+              "action": "dialogue",
+              "text": "아홉 번째 별빛을 찾았어요!\n세 길이 만나는 종이숲에서 빗방울 소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "비 오는 종이숲",
+          "goal": "성장 순서를 살피고 젖은 페이지를 복원해요",
+          "scenes": [
+            {
+              "id": "ep10-start",
+              "action": "dialogue",
+              "text": "토독토독, 비가 내려 책장이 서로 붙었어요.\n나뭇잎 지붕 아래에서 천천히 펼쳐볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-quiz",
+              "action": "quiz",
+              "text": "씨앗이 자라는 첫 장면을 찾아요.\n씨앗 다음에는 무엇이 나올까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep10-seed-next",
+                "ep10-explore-paper"
+              ]
+            },
+            {
+              "id": "ep10-end",
+              "action": "dialogue",
+              "text": "열 번째 별빛과 함께 마지막 그림이 나타났어요.\n별 다섯 개를 놓는 하늘 정거장이에요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "title": "마지막 별자리 퍼즐",
+          "goal": "별 다섯 개를 놓고 모양과 배운 내용을 복습해요",
+          "scenes": [
+            {
+              "id": "ep11-start",
+              "action": "dialogue",
+              "text": "도서관이 보이는 하늘 정거장에 왔어요.\n별자리 판의 빈자리가 우리를 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-quiz",
+              "action": "quiz",
+              "text": "작은 별빛도 모이면 길이 될 거야.\n우리 기억으로 별길을 이어 보자!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep11-five-stars",
+                "ep11-explore-sky"
+              ]
+            },
+            {
+              "id": "ep11-end",
+              "action": "dialogue",
+              "text": "열한 번째 별빛이 길게 이어져요!\n이제 휙휙과 함께 별빛 도서관으로 돌아가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "다시 열린 별빛 도서관",
+          "goal": "함께 정리하고 내가 고른 방에서 모험을 마쳐요",
+          "scenes": [
+            {
+              "id": "ep12-start",
+              "action": "dialogue",
+              "text": "별빛 도서관에 돌아왔어요!\n모은 이야기를 책에 담아 마지막 불을 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-choice",
+              "action": "choice",
+              "text": "우리 이야기 방을 무엇으로 꾸밀까요?",
+              "choices": [
+                "꽃 방",
+                "별 방"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-quiz",
+              "action": "quiz",
+              "text": "내가 고른 장식끼리 모아줘요.\n도서관의 마지막 불을 함께 켜요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep12-star-decoration",
+                "ep12-explore-library",
+                "ep12-flower-decoration",
+                "ep12-star-decoration"
+              ]
+            },
+            {
+              "id": "ep12-end",
+              "action": "dialogue",
+              "text": "열두 별빛이 모두 모여 도서관이 다시 열렸어요!\n옆의 새 책이 살짝 반짝… 다음 모험도 함께해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "observedPlayTime": null,
+      "childObservation": "pending",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "빛을 잃은 도서관",
+          "goal": "친구와 별조각을 찾아 첫 별빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep1-start",
+              "action": "dialogue",
+              "text": "어? 이야기책의 별빛이 꺼졌어요.\n나와 함께 찾아볼래요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-discover",
+              "action": "dialogue",
+              "text": "책장 아래가 반짝!\n작은 별조각이 숨어 있어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-choice",
+              "action": "choice",
+              "text": "누구와 함께 별조각을 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-quiz",
+              "action": "quiz",
+              "text": "책장 아래에 빛나는 모양이 있어요.\n친구와 함께 살펴볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep1-star-shape",
+                "ep1-explore-shapes"
+              ]
+            },
+            {
+              "id": "ep1-trace",
+              "action": "tracing",
+              "text": "별조각이 책으로 돌아가게\n숫자 1의 빛줄기를 그려 주세요.",
+              "choices": [],
+              "traceId": "n-1",
+              "quizIds": []
+            },
+            {
+              "id": "ep1-end",
+              "action": "dialogue",
+              "text": "첫 별빛이 켜졌어요! 고마워요.\n지도 속 꽃밭에 다음 조각이 있대요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "모음 꽃밭의 길",
+          "goal": "모음 소리로 꽃문을 열고 자음 나무로 가요",
+          "scenes": [
+            {
+              "id": "ep2-start",
+              "action": "dialogue",
+              "text": "지도 속 꽃밭에 도착했어요.\n어? 꽃문이 꼭 닫혀 있네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-discover",
+              "action": "dialogue",
+              "text": "꽃문 앞에 모음 글자가 있어요.\n소리를 찾아 문을 열어볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-choice",
+              "action": "choice",
+              "text": "누구와 함께 꽃문을 두드릴까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-quiz",
+              "action": "quiz",
+              "text": "꽃문이 아 소리를 기다려요.\n아, 함께 불러볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep2-vowel-a",
+                "ep2-explore-garden"
+              ]
+            },
+            {
+              "id": "ep2-trace",
+              "action": "tracing",
+              "text": "아 소리의 ㅏ를 그려\n꽃길에 빛을 이어 주세요.",
+              "choices": [],
+              "traceId": "h-ㅏ",
+              "quizIds": []
+            },
+            {
+              "id": "ep2-end",
+              "action": "dialogue",
+              "text": "두 번째 별빛이 켜졌어요!\n꽃길 끝 자음 나무에서 루루가 손짓해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "자음 나무의 열매",
+          "goal": "기역 열매를 찾고 아와 만나 글자 씨앗을 만들어요",
+          "scenes": [
+            {
+              "id": "ep3-start",
+              "action": "dialogue",
+              "text": "자음 나무에 도착했어!\n열매를 담을 빈 바구니도 있네.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-discover",
+              "action": "dialogue",
+              "text": "열매마다 글자 이름표가 있대.\n기역 이름표를 함께 찾아줄래?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-choice",
+              "action": "choice",
+              "text": "누구와 함께 열매를 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-quiz",
+              "action": "quiz",
+              "text": "기역의 모양은 ㄱ이에요.\n이름표에서 같은 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep3-giyeok",
+                "ep3-explore-seed"
+              ]
+            },
+            {
+              "id": "ep3-trace",
+              "action": "tracing",
+              "text": "기역 ㄱ 이름표를 그려\n씨앗 꾸러미에 달아 주세요.",
+              "choices": [],
+              "traceId": "h-ㄱ",
+              "quizIds": []
+            },
+            {
+              "id": "ep3-end",
+              "action": "dialogue",
+              "text": "세 번째 별빛이 켜졌어요!\n씨앗 꾸러미를 싣고 소리 기차로 가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "뒤죽박죽 소리 기차",
+          "goal": "가와 나의 표지를 찾아 씨앗을 싣고 출발해요",
+          "scenes": [
+            {
+              "id": "ep4-start",
+              "action": "dialogue",
+              "text": "씨앗 꾸러미를 들고 역에 왔어요.\n어? 기차의 글자 표지가 섞였네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-discover",
+              "action": "dialogue",
+              "text": "왼쪽 표지는 가 소리를 기다려요.\n나무에서 만든 가를 기억하나요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-choice",
+              "action": "choice",
+              "text": "누구와 씨앗 꾸러미를 실을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-quiz",
+              "action": "quiz",
+              "text": "기역과 아가 만난 가!\n가 표지가 있는 칸을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep4-ga-car",
+                "ep4-explore-cargo"
+              ]
+            },
+            {
+              "id": "ep4-trace",
+              "action": "tracing",
+              "text": "니은 ㄴ 표지를 그려\n다음 칸에도 이름표를 달아줘요.",
+              "choices": [],
+              "traceId": "h-ㄴ",
+              "quizIds": []
+            },
+            {
+              "id": "ep4-end",
+              "action": "dialogue",
+              "text": "네 번째 별빛과 함께 별빛 역 도착!\n저기 꺼진 등대가 도움을 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "알파벳 등대",
+          "goal": "A의 이름과 Apple을 듣고 등대 빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep5-start",
+              "action": "dialogue",
+              "text": "등대의 큰 불이 꺼졌어요.\n글자 빛을 찾아 함께 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-discover",
+              "action": "dialogue",
+              "text": "이 글자의 이름은 에이, A예요.\nApple은 사과를 부르는 영어 단어예요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-choice",
+              "action": "choice",
+              "text": "누구와 등대 불을 켤까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-quiz",
+              "action": "quiz",
+              "text": "글자 이름 듣기 버튼을 눌러봐요.\n에이라는 이름의 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep5-a-name",
+                "ep5-explore-light"
+              ]
+            },
+            {
+              "id": "ep5-trace",
+              "action": "tracing",
+              "text": "대문자 A의 빛줄기를 그려\n등대 불을 멀리 보내줘요.",
+              "choices": [],
+              "traceId": "e-A",
+              "quizIds": []
+            },
+            {
+              "id": "ep5-end",
+              "action": "dialogue",
+              "text": "다섯 번째 별빛이 켜졌어요!\n등대 빛이 숫자 다리를 비춰요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "숫자 다리와 세 개의 돌",
+          "goal": "돌 세 개를 놓고 하나 더·하나 덜을 살펴요",
+          "scenes": [
+            {
+              "id": "ep6-start",
+              "action": "dialogue",
+              "text": "졸졸, 물소리 너머 정원이 보여요.\n앗, 돌다리에 동그란 빈자리가 세 개 있어요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-discover",
+              "action": "dialogue",
+              "text": "돌을 한 개씩 옮겨볼까?\n하나, 둘, 셋! 같은 돌을 두 번 세지 않아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-quiz",
+              "action": "quiz",
+              "text": "한 개씩 옮기면 빈자리가 채워질 거야.\n나랑 돌길을 이어 볼까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep6-bridge-three",
+                "ep6-explore-bridge"
+              ]
+            },
+            {
+              "id": "ep6-trace",
+              "action": "tracing",
+              "text": "숫자 3의 굽은 길을 그려요.\n다리에서 만난 돌 세 개의 숫자예요.",
+              "choices": [],
+              "traceId": "n-3",
+              "quizIds": []
+            },
+            {
+              "id": "ep6-end",
+              "action": "dialogue",
+              "text": "여섯 번째 별빛이 다리 위에서 반짝!\n건너편 꽃들이 하얗게 변했어요. 정원으로 가봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "색깔을 잃은 정원",
+          "goal": "색과 모양을 분류하고 나만의 그림 지도를 그려요",
+          "scenes": [
+            {
+              "id": "ep7-start",
+              "action": "dialogue",
+              "text": "어제는 알록달록했다는데…\n꽃들의 색이 옅어져 정원 길을 찾기 어려워요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-discover",
+              "action": "dialogue",
+              "text": "빨간 꽃은 빨간 꽃끼리, 파란 꽃은 파란 꽃끼리!\n같은 색 친구들을 만나게 해줄까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-quiz",
+              "action": "quiz",
+              "text": "빨간 꽃을 모아 정원에 색을 돌려줘요.\n같은 빨간 꽃끼리 있는 바구니를 골라요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep7-red-flowers",
+                "ep7-explore-garden"
+              ]
+            },
+            {
+              "id": "ep7-trace",
+              "action": "drawing",
+              "text": "꽃이나 나비를 그려 나만의 지도를 만들어요.\n좋아하는 색을 골라 마음껏 그려요.",
+              "choices": [],
+              "traceId": "h-ㅗ",
+              "quizIds": []
+            },
+            {
+              "id": "ep7-end",
+              "action": "dialogue",
+              "text": "일곱 번째 별빛과 그림 지도를 챙겼어요.\n그때, 언덕 너머에서 휘이잉! 작은 목소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "바람 친구 휙휙의 실수",
+          "goal": "함께 정리하며 글자와 숫자를 구별해요",
+          "scenes": [
+            {
+              "id": "ep8-start",
+              "action": "dialogue",
+              "text": "휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…”",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-discover",
+              "action": "dialogue",
+              "text": "“미안해. 나도 이야기 속에 들어가고 싶었어.”\n괜찮아, 휙휙! 우리 같이 정리하자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-quiz",
+              "action": "quiz",
+              "text": "A와 C는 영어 글자예요.\n숫자와 섞이지 않은 영어 글자 바구니를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep8-letter-basket",
+                "ep8-explore-wind"
+              ]
+            },
+            {
+              "id": "ep8-trace",
+              "action": "tracing",
+              "text": "영어 글자 C를 그려 바구니에 표시해요.\n둥글게 돌다가 입구를 열어두어요.",
+              "choices": [],
+              "traceId": "e-C",
+              "quizIds": []
+            },
+            {
+              "id": "ep8-end",
+              "action": "dialogue",
+              "text": "여덟 번째 별빛을 휙휙과 함께 챙겼어요.\n바람이 살랑, 세 갈래 길로 우리를 안내해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "세 갈래 이야기 길",
+          "goal": "내가 고른 길에서 서로 다른 복습 미션을 만나요",
+          "scenes": [
+            {
+              "id": "ep9-start",
+              "action": "dialogue",
+              "text": "꽃길, 등대길, 돌길이 나란히 보여요.\n어느 길로 가도 친구와 함께라면 좋아요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-discover",
+              "action": "dialogue",
+              "text": "꽃길엔 한글, 등대길엔 영어, 돌길엔 숫자!\n내가 기억하는 이야기는 어느 길에 있을까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-choice",
+              "action": "choice",
+              "text": "어느 이야기 길로 먼저 가볼까요?",
+              "choices": [
+                "한글 길",
+                "영어 길",
+                "숫자 길"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-quiz",
+              "action": "quiz",
+              "text": "우리가 고른 길의 이야기를 떠올려요.\n그림과 소리를 천천히 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep9-hangul",
+                "ep9-explore-path",
+                "ep9-hangul",
+                "ep9-english",
+                "ep9-math"
+              ]
+            },
+            {
+              "id": "ep9-trace",
+              "action": "tracing",
+              "text": "세 길이 만나는 곳에 ㅏ 빛줄기를 그려요.\n꽃밭에서 만났던 모음 길을 함께 밝혀요.",
+              "choices": [],
+              "traceId": "h-ㅏ",
+              "quizIds": []
+            },
+            {
+              "id": "ep9-end",
+              "action": "dialogue",
+              "text": "아홉 번째 별빛을 찾았어요!\n세 길이 만나는 종이숲에서 빗방울 소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "비 오는 종이숲",
+          "goal": "성장 순서를 살피고 젖은 페이지를 복원해요",
+          "scenes": [
+            {
+              "id": "ep10-start",
+              "action": "dialogue",
+              "text": "토독토독, 비가 내려 책장이 서로 붙었어요.\n나뭇잎 지붕 아래에서 천천히 펼쳐볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-discover",
+              "action": "dialogue",
+              "text": "작은 씨앗 봉투 옆에 싹이 보여요.\n씨앗에 물과 햇빛을 주면 무엇이 나올까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-quiz",
+              "action": "quiz",
+              "text": "씨앗이 자라는 첫 장면을 찾아요.\n씨앗 다음에는 무엇이 나올까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep10-seed-next",
+                "ep10-explore-paper"
+              ]
+            },
+            {
+              "id": "ep10-trace",
+              "action": "tracing",
+              "text": "펼친 책에 대문자 A를 그려요.\n등대에서 만났던 글자를 다시 기억해봐요.",
+              "choices": [],
+              "traceId": "e-A",
+              "quizIds": []
+            },
+            {
+              "id": "ep10-end",
+              "action": "dialogue",
+              "text": "열 번째 별빛과 함께 마지막 그림이 나타났어요.\n별 다섯 개를 놓는 하늘 정거장이에요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "title": "마지막 별자리 퍼즐",
+          "goal": "별 다섯 개를 놓고 모양과 배운 내용을 복습해요",
+          "scenes": [
+            {
+              "id": "ep11-start",
+              "action": "dialogue",
+              "text": "도서관이 보이는 하늘 정거장에 왔어요.\n별자리 판의 빈자리가 우리를 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-discover",
+              "action": "dialogue",
+              "text": "하나씩 놓으면 별이 길을 알려줄 거야.\n별 하나를 두 번 세지 않도록 같이 짚어보자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-quiz",
+              "action": "quiz",
+              "text": "작은 별빛도 모이면 길이 될 거야.\n우리 기억으로 별길을 이어 보자!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep11-five-stars",
+                "ep11-explore-sky"
+              ]
+            },
+            {
+              "id": "ep11-trace",
+              "action": "tracing",
+              "text": "짝을 이룬 별 두 개를 보며 숫자 2를 그려요.\n곡선을 돌아 아래 가로길까지 천천히!",
+              "choices": [],
+              "traceId": "n-2",
+              "quizIds": []
+            },
+            {
+              "id": "ep11-end",
+              "action": "dialogue",
+              "text": "열한 번째 별빛이 길게 이어져요!\n이제 휙휙과 함께 별빛 도서관으로 돌아가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "다시 열린 별빛 도서관",
+          "goal": "함께 정리하고 내가 고른 방에서 모험을 마쳐요",
+          "scenes": [
+            {
+              "id": "ep12-start",
+              "action": "dialogue",
+              "text": "별빛 도서관에 돌아왔어요!\n모은 이야기를 책에 담아 마지막 불을 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-discover",
+              "action": "dialogue",
+              "text": "휙휙이 조용히 책을 내려놓아요.\n“흩뜨려서 미안해. 이제 함께 정리하고 싶어.”",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-choice",
+              "action": "choice",
+              "text": "우리 이야기 방을 무엇으로 꾸밀까요?",
+              "choices": [
+                "꽃 방",
+                "별 방"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-quiz",
+              "action": "quiz",
+              "text": "내가 고른 장식끼리 모아줘요.\n도서관의 마지막 불을 함께 켜요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep12-star-decoration",
+                "ep12-explore-library",
+                "ep12-flower-decoration",
+                "ep12-star-decoration"
+              ]
+            },
+            {
+              "id": "ep12-trace",
+              "action": "tracing",
+              "text": "마지막 모음 ㅜ를 그려 책을 마무리해요.\n가로길 아래로 짧은 빛줄기를 내려줘요.",
+              "choices": [],
+              "traceId": "h-ㅜ",
+              "quizIds": []
+            },
+            {
+              "id": "ep12-end",
+              "action": "dialogue",
+              "text": "열두 별빛이 모두 모여 도서관이 다시 열렸어요!\n옆의 새 책이 살짝 반짝… 다음 모험도 함께해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "observedPlayTime": null,
+      "childObservation": "pending",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "빛을 잃은 도서관",
+          "goal": "친구와 별조각을 찾아 첫 별빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep1-start",
+              "action": "dialogue",
+              "text": "어? 이야기책의 별빛이 꺼졌어요.\n나와 함께 찾아볼래요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-discover",
+              "action": "dialogue",
+              "text": "책장 아래가 반짝!\n작은 별조각이 숨어 있어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-choice",
+              "action": "choice",
+              "text": "누구와 함께 별조각을 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-quiz",
+              "action": "quiz",
+              "text": "책장 아래에 빛나는 모양이 있어요.\n친구와 함께 살펴볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep1-star-shape",
+                "ep1-explore-shapes"
+              ]
+            },
+            {
+              "id": "ep1-clue",
+              "action": "dialogue",
+              "text": "휙휙의 바람에 조각이 흩어졌대요.\n함께 모으면 다시 빛날 거예요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-trace",
+              "action": "tracing",
+              "text": "별조각이 책으로 돌아가게\n숫자 1의 빛줄기를 그려 주세요.",
+              "choices": [],
+              "traceId": "n-1",
+              "quizIds": []
+            },
+            {
+              "id": "ep1-review",
+              "action": "quiz",
+              "text": "작은 판에 모인 별조각을 세어 볼까요?\n하나씩 톡톡 눌러봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep1-star-count"
+              ]
+            },
+            {
+              "id": "ep1-end",
+              "action": "dialogue",
+              "text": "첫 별빛이 켜졌어요! 고마워요.\n지도 속 꽃밭에 다음 조각이 있대요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "모음 꽃밭의 길",
+          "goal": "모음 소리로 꽃문을 열고 자음 나무로 가요",
+          "scenes": [
+            {
+              "id": "ep2-start",
+              "action": "dialogue",
+              "text": "지도 속 꽃밭에 도착했어요.\n어? 꽃문이 꼭 닫혀 있네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-discover",
+              "action": "dialogue",
+              "text": "꽃문 앞에 모음 글자가 있어요.\n소리를 찾아 문을 열어볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-choice",
+              "action": "choice",
+              "text": "누구와 함께 꽃문을 두드릴까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-quiz",
+              "action": "quiz",
+              "text": "꽃문이 아 소리를 기다려요.\n아, 함께 불러볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep2-vowel-a",
+                "ep2-explore-garden"
+              ]
+            },
+            {
+              "id": "ep2-clue",
+              "action": "dialogue",
+              "text": "아는 오른쪽, 어는 왼쪽!\n짧은 줄이 어디 있는지 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-trace",
+              "action": "tracing",
+              "text": "아 소리의 ㅏ를 그려\n꽃길에 빛을 이어 주세요.",
+              "choices": [],
+              "traceId": "h-ㅏ",
+              "quizIds": []
+            },
+            {
+              "id": "ep2-review",
+              "action": "quiz",
+              "text": "꽃길에서 오 소리도 들려요.\n이번에는 어떤 모양일까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep2-vowel-o"
+              ]
+            },
+            {
+              "id": "ep2-end",
+              "action": "dialogue",
+              "text": "두 번째 별빛이 켜졌어요!\n꽃길 끝 자음 나무에서 루루가 손짓해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "자음 나무의 열매",
+          "goal": "기역 열매를 찾고 아와 만나 글자 씨앗을 만들어요",
+          "scenes": [
+            {
+              "id": "ep3-start",
+              "action": "dialogue",
+              "text": "자음 나무에 도착했어!\n열매를 담을 빈 바구니도 있네.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-discover",
+              "action": "dialogue",
+              "text": "열매마다 글자 이름표가 있대.\n기역 이름표를 함께 찾아줄래?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-choice",
+              "action": "choice",
+              "text": "누구와 함께 열매를 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-quiz",
+              "action": "quiz",
+              "text": "기역의 모양은 ㄱ이에요.\n이름표에서 같은 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep3-giyeok",
+                "ep3-explore-seed"
+              ]
+            },
+            {
+              "id": "ep3-clue",
+              "action": "dialogue",
+              "text": "기역 ㄱ과 꽃밭의 아 ㅏ가 만나면\n가방의 첫 글자 가가 되어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-trace",
+              "action": "tracing",
+              "text": "기역 ㄱ 이름표를 그려\n씨앗 꾸러미에 달아 주세요.",
+              "choices": [],
+              "traceId": "h-ㄱ",
+              "quizIds": []
+            },
+            {
+              "id": "ep3-review",
+              "action": "quiz",
+              "text": "작은 판에 꺼낸 씨앗을 세어봐요.\n하나씩 누르면 함께 셀 수 있어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep3-seed-count"
+              ]
+            },
+            {
+              "id": "ep3-end",
+              "action": "dialogue",
+              "text": "세 번째 별빛이 켜졌어요!\n씨앗 꾸러미를 싣고 소리 기차로 가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "뒤죽박죽 소리 기차",
+          "goal": "가와 나의 표지를 찾아 씨앗을 싣고 출발해요",
+          "scenes": [
+            {
+              "id": "ep4-start",
+              "action": "dialogue",
+              "text": "씨앗 꾸러미를 들고 역에 왔어요.\n어? 기차의 글자 표지가 섞였네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-discover",
+              "action": "dialogue",
+              "text": "왼쪽 표지는 가 소리를 기다려요.\n나무에서 만든 가를 기억하나요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-choice",
+              "action": "choice",
+              "text": "누구와 씨앗 꾸러미를 실을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-quiz",
+              "action": "quiz",
+              "text": "기역과 아가 만난 가!\n가 표지가 있는 칸을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep4-ga-car",
+                "ep4-explore-cargo"
+              ]
+            },
+            {
+              "id": "ep4-clue",
+              "action": "dialogue",
+              "text": "다음 칸에는 니은 ㄴ이 있어요.\n아 ㅏ와 만나면 나가 된대요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-trace",
+              "action": "tracing",
+              "text": "니은 ㄴ 표지를 그려\n다음 칸에도 이름표를 달아줘요.",
+              "choices": [],
+              "traceId": "h-ㄴ",
+              "quizIds": []
+            },
+            {
+              "id": "ep4-review",
+              "action": "quiz",
+              "text": "니은과 아의 표지를 나란히 놓아요.\n이번에는 어떤 글자가 될까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep4-na-car"
+              ]
+            },
+            {
+              "id": "ep4-end",
+              "action": "dialogue",
+              "text": "네 번째 별빛과 함께 별빛 역 도착!\n저기 꺼진 등대가 도움을 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "알파벳 등대",
+          "goal": "A의 이름과 Apple을 듣고 등대 빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep5-start",
+              "action": "dialogue",
+              "text": "등대의 큰 불이 꺼졌어요.\n글자 빛을 찾아 함께 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-discover",
+              "action": "dialogue",
+              "text": "이 글자의 이름은 에이, A예요.\nApple은 사과를 부르는 영어 단어예요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-choice",
+              "action": "choice",
+              "text": "누구와 등대 불을 켤까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-quiz",
+              "action": "quiz",
+              "text": "글자 이름 듣기 버튼을 눌러봐요.\n에이라는 이름의 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep5-a-name",
+                "ep5-explore-light"
+              ]
+            },
+            {
+              "id": "ep5-clue",
+              "action": "dialogue",
+              "text": "A라는 글자 이름과 Apple의 첫소리는 달라요.\n두 버튼으로 각각 들어봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-trace",
+              "action": "tracing",
+              "text": "대문자 A의 빛줄기를 그려\n등대 불을 멀리 보내줘요.",
+              "choices": [],
+              "traceId": "e-A",
+              "quizIds": []
+            },
+            {
+              "id": "ep5-review",
+              "action": "quiz",
+              "text": "큰 A에게 작은 글자 친구가 있어요.\n같은 이름의 작은 a를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep5-a-case"
+              ]
+            },
+            {
+              "id": "ep5-end",
+              "action": "dialogue",
+              "text": "다섯 번째 별빛이 켜졌어요!\n등대 빛이 숫자 다리를 비춰요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "숫자 다리와 세 개의 돌",
+          "goal": "돌 세 개를 놓고 하나 더·하나 덜을 살펴요",
+          "scenes": [
+            {
+              "id": "ep6-start",
+              "action": "dialogue",
+              "text": "졸졸, 물소리 너머 정원이 보여요.\n앗, 돌다리에 동그란 빈자리가 세 개 있어요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-discover",
+              "action": "dialogue",
+              "text": "돌을 한 개씩 옮겨볼까?\n하나, 둘, 셋! 같은 돌을 두 번 세지 않아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-quiz",
+              "action": "quiz",
+              "text": "한 개씩 옮기면 빈자리가 채워질 거야.\n나랑 돌길을 이어 볼까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep6-bridge-three",
+                "ep6-explore-bridge"
+              ]
+            },
+            {
+              "id": "ep6-clue",
+              "action": "dialogue",
+              "text": "돌 두 개 옆에 하나가 더 오면 셋!\n토토가 손가락으로 천천히 짚어줘요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-trace",
+              "action": "tracing",
+              "text": "숫자 3의 굽은 길을 그려요.\n다리에서 만난 돌 세 개의 숫자예요.",
+              "choices": [],
+              "traceId": "n-3",
+              "quizIds": []
+            },
+            {
+              "id": "ep6-review",
+              "action": "quiz",
+              "text": "친구에게 돌 두 개가 있어요.\n하나 더 주면 몇 개가 될까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep6-one-more"
+              ]
+            },
+            {
+              "id": "ep6-end",
+              "action": "dialogue",
+              "text": "여섯 번째 별빛이 다리 위에서 반짝!\n건너편 꽃들이 하얗게 변했어요. 정원으로 가봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "색깔을 잃은 정원",
+          "goal": "색과 모양을 분류하고 나만의 그림 지도를 그려요",
+          "scenes": [
+            {
+              "id": "ep7-start",
+              "action": "dialogue",
+              "text": "어제는 알록달록했다는데…\n꽃들의 색이 옅어져 정원 길을 찾기 어려워요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-discover",
+              "action": "dialogue",
+              "text": "빨간 꽃은 빨간 꽃끼리, 파란 꽃은 파란 꽃끼리!\n같은 색 친구들을 만나게 해줄까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-quiz",
+              "action": "quiz",
+              "text": "빨간 꽃을 모아 정원에 색을 돌려줘요.\n같은 빨간 꽃끼리 있는 바구니를 골라요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep7-red-flowers",
+                "ep7-explore-garden"
+              ]
+            },
+            {
+              "id": "ep7-clue",
+              "action": "dialogue",
+              "text": "길에는 동그라미, 세모, 동그라미가 있어요.\n모양이 번갈아 나오는 약속을 찾아봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-trace",
+              "action": "drawing",
+              "text": "꽃이나 나비를 그려 나만의 지도를 만들어요.\n좋아하는 색을 골라 마음껏 그려요.",
+              "choices": [],
+              "traceId": "h-ㅗ",
+              "quizIds": []
+            },
+            {
+              "id": "ep7-review",
+              "action": "quiz",
+              "text": "동그라미, 세모, 동그라미…\n다음 길 표지는 어떤 모양일까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep7-shape-path"
+              ]
+            },
+            {
+              "id": "ep7-end",
+              "action": "dialogue",
+              "text": "일곱 번째 별빛과 그림 지도를 챙겼어요.\n그때, 언덕 너머에서 휘이잉! 작은 목소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "바람 친구 휙휙의 실수",
+          "goal": "함께 정리하며 글자와 숫자를 구별해요",
+          "scenes": [
+            {
+              "id": "ep8-start",
+              "action": "dialogue",
+              "text": "휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…”",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-discover",
+              "action": "dialogue",
+              "text": "“미안해. 나도 이야기 속에 들어가고 싶었어.”\n괜찮아, 휙휙! 우리 같이 정리하자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-quiz",
+              "action": "quiz",
+              "text": "A와 C는 영어 글자예요.\n숫자와 섞이지 않은 영어 글자 바구니를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep8-letter-basket",
+                "ep8-explore-wind"
+              ]
+            },
+            {
+              "id": "ep8-clue",
+              "action": "dialogue",
+              "text": "글자는 글자끼리, 숫자는 숫자끼리!\n서로 달라도 모두 이야기에 필요한 친구예요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-trace",
+              "action": "tracing",
+              "text": "영어 글자 C를 그려 바구니에 표시해요.\n둥글게 돌다가 입구를 열어두어요.",
+              "choices": [],
+              "traceId": "e-C",
+              "quizIds": []
+            },
+            {
+              "id": "ep8-review",
+              "action": "quiz",
+              "text": "이번에는 1과 3을 모아요.\n숫자만 있는 바구니를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep8-number-basket"
+              ]
+            },
+            {
+              "id": "ep8-end",
+              "action": "dialogue",
+              "text": "여덟 번째 별빛을 휙휙과 함께 챙겼어요.\n바람이 살랑, 세 갈래 길로 우리를 안내해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "세 갈래 이야기 길",
+          "goal": "내가 고른 길에서 서로 다른 복습 미션을 만나요",
+          "scenes": [
+            {
+              "id": "ep9-start",
+              "action": "dialogue",
+              "text": "꽃길, 등대길, 돌길이 나란히 보여요.\n어느 길로 가도 친구와 함께라면 좋아요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-discover",
+              "action": "dialogue",
+              "text": "꽃길엔 한글, 등대길엔 영어, 돌길엔 숫자!\n내가 기억하는 이야기는 어느 길에 있을까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-choice",
+              "action": "choice",
+              "text": "어느 이야기 길로 먼저 가볼까요?",
+              "choices": [
+                "한글 길",
+                "영어 길",
+                "숫자 길"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-quiz",
+              "action": "quiz",
+              "text": "우리가 고른 길의 이야기를 떠올려요.\n그림과 소리를 천천히 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep9-hangul",
+                "ep9-explore-path",
+                "ep9-hangul",
+                "ep9-english",
+                "ep9-math"
+              ]
+            },
+            {
+              "id": "ep9-clue",
+              "action": "dialogue",
+              "text": "다른 길을 골라도 나중에 다시 만날 수 있어요.\n지금은 내 길의 작은 약속을 하나 더 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-trace",
+              "action": "tracing",
+              "text": "세 길이 만나는 곳에 ㅏ 빛줄기를 그려요.\n꽃밭에서 만났던 모음 길을 함께 밝혀요.",
+              "choices": [],
+              "traceId": "h-ㅏ",
+              "quizIds": []
+            },
+            {
+              "id": "ep9-review",
+              "action": "quiz",
+              "text": "고른 길의 두 번째 조각이에요.\n앞에서 만난 글자나 수를 다시 살펴요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep9-hangul-vowel",
+                "ep9-hangul-vowel",
+                "ep9-english-case",
+                "ep9-math-more"
+              ]
+            },
+            {
+              "id": "ep9-end",
+              "action": "dialogue",
+              "text": "아홉 번째 별빛을 찾았어요!\n세 길이 만나는 종이숲에서 빗방울 소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "비 오는 종이숲",
+          "goal": "성장 순서를 살피고 젖은 페이지를 복원해요",
+          "scenes": [
+            {
+              "id": "ep10-start",
+              "action": "dialogue",
+              "text": "토독토독, 비가 내려 책장이 서로 붙었어요.\n나뭇잎 지붕 아래에서 천천히 펼쳐볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-discover",
+              "action": "dialogue",
+              "text": "작은 씨앗 봉투 옆에 싹이 보여요.\n씨앗에 물과 햇빛을 주면 무엇이 나올까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-quiz",
+              "action": "quiz",
+              "text": "씨앗이 자라는 첫 장면을 찾아요.\n씨앗 다음에는 무엇이 나올까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep10-seed-next",
+                "ep10-explore-paper"
+              ]
+            },
+            {
+              "id": "ep10-clue",
+              "action": "dialogue",
+              "text": "씨앗에서 싹, 싹에서 나무!\n자라는 데에는 시간이 필요해요. 서두르지 않아도 돼요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-trace",
+              "action": "tracing",
+              "text": "펼친 책에 대문자 A를 그려요.\n등대에서 만났던 글자를 다시 기억해봐요.",
+              "choices": [],
+              "traceId": "e-A",
+              "quizIds": []
+            },
+            {
+              "id": "ep10-review",
+              "action": "quiz",
+              "text": "성장 그림을 처음부터 이어봐요.\n씨앗, 싹, 나무 순서인 그림을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep10-growth-order"
+              ]
+            },
+            {
+              "id": "ep10-end",
+              "action": "dialogue",
+              "text": "열 번째 별빛과 함께 마지막 그림이 나타났어요.\n별 다섯 개를 놓는 하늘 정거장이에요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "title": "마지막 별자리 퍼즐",
+          "goal": "별 다섯 개를 놓고 모양과 배운 내용을 복습해요",
+          "scenes": [
+            {
+              "id": "ep11-start",
+              "action": "dialogue",
+              "text": "도서관이 보이는 하늘 정거장에 왔어요.\n별자리 판의 빈자리가 우리를 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-discover",
+              "action": "dialogue",
+              "text": "하나씩 놓으면 별이 길을 알려줄 거야.\n별 하나를 두 번 세지 않도록 같이 짚어보자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-quiz",
+              "action": "quiz",
+              "text": "작은 별빛도 모이면 길이 될 거야.\n우리 기억으로 별길을 이어 보자!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep11-five-stars",
+                "ep11-explore-sky"
+              ]
+            },
+            {
+              "id": "ep11-clue",
+              "action": "dialogue",
+              "text": "꽃밭의 ㅏ, 등대의 A, 다리의 3!\n서로 다른 기억이 한 별자리에 모였어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-trace",
+              "action": "tracing",
+              "text": "짝을 이룬 별 두 개를 보며 숫자 2를 그려요.\n곡선을 돌아 아래 가로길까지 천천히!",
+              "choices": [],
+              "traceId": "n-2",
+              "quizIds": []
+            },
+            {
+              "id": "ep11-review",
+              "action": "quiz",
+              "text": "별, 동그라미, 별…\n다음에 놓을 모양을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep11-star-pattern"
+              ]
+            },
+            {
+              "id": "ep11-end",
+              "action": "dialogue",
+              "text": "열한 번째 별빛이 길게 이어져요!\n이제 휙휙과 함께 별빛 도서관으로 돌아가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "다시 열린 별빛 도서관",
+          "goal": "함께 정리하고 내가 고른 방에서 모험을 마쳐요",
+          "scenes": [
+            {
+              "id": "ep12-start",
+              "action": "dialogue",
+              "text": "별빛 도서관에 돌아왔어요!\n모은 이야기를 책에 담아 마지막 불을 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-discover",
+              "action": "dialogue",
+              "text": "휙휙이 조용히 책을 내려놓아요.\n“흩뜨려서 미안해. 이제 함께 정리하고 싶어.”",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-choice",
+              "action": "choice",
+              "text": "우리 이야기 방을 무엇으로 꾸밀까요?",
+              "choices": [
+                "꽃 방",
+                "별 방"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-quiz",
+              "action": "quiz",
+              "text": "내가 고른 장식끼리 모아줘요.\n도서관의 마지막 불을 함께 켜요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep12-star-decoration",
+                "ep12-explore-library",
+                "ep12-flower-decoration",
+                "ep12-star-decoration"
+              ]
+            },
+            {
+              "id": "ep12-clue",
+              "action": "dialogue",
+              "text": "흩뜨린 것을 함께 정리하니 책이 환해졌어요.\n잘못을 말하고 함께 고칠 수 있어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-trace",
+              "action": "tracing",
+              "text": "마지막 모음 ㅜ를 그려 책을 마무리해요.\n가로길 아래로 짧은 빛줄기를 내려줘요.",
+              "choices": [],
+              "traceId": "h-ㅜ",
+              "quizIds": []
+            },
+            {
+              "id": "ep12-review",
+              "action": "quiz",
+              "text": "등대에서 만난 A와 a를 기억하나요?\n같은 이름의 짝을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep12-letter-reunion"
+              ]
+            },
+            {
+              "id": "ep12-end",
+              "action": "dialogue",
+              "text": "열두 별빛이 모두 모여 도서관이 다시 열렸어요!\n옆의 새 책이 살짝 반짝… 다음 모험도 함께해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "observedPlayTime": null,
+      "childObservation": "pending",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "빛을 잃은 도서관",
+          "goal": "친구와 별조각을 찾아 첫 별빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep1-start",
+              "action": "dialogue",
+              "text": "어? 이야기책의 별빛이 꺼졌어요.\n나와 함께 찾아볼래요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-discover",
+              "action": "dialogue",
+              "text": "책장 아래가 반짝!\n작은 별조각이 숨어 있어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-choice",
+              "action": "choice",
+              "text": "누구와 함께 별조각을 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-quiz",
+              "action": "quiz",
+              "text": "책장 아래에 빛나는 모양이 있어요.\n친구와 함께 살펴볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep1-star-shape",
+                "ep1-explore-shapes"
+              ]
+            },
+            {
+              "id": "ep1-clue",
+              "action": "dialogue",
+              "text": "휙휙의 바람에 조각이 흩어졌대요.\n함께 모으면 다시 빛날 거예요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-trace",
+              "action": "tracing",
+              "text": "별조각이 책으로 돌아가게\n숫자 1의 빛줄기를 그려 주세요.",
+              "choices": [],
+              "traceId": "n-1",
+              "quizIds": []
+            },
+            {
+              "id": "ep1-review",
+              "action": "quiz",
+              "text": "작은 판에 모인 별조각을 세어 볼까요?\n하나씩 톡톡 눌러봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep1-star-count"
+              ]
+            },
+            {
+              "id": "ep1-talk",
+              "action": "dialogue",
+              "text": "천천히 살펴보니 찾을 수 있었어!\n마지막 조각도 같이 찾아보자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep1-together",
+              "action": "quiz",
+              "text": "같은 별끼리 만나면\n이야기책이 깨어난대요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep1-star-pair"
+              ]
+            },
+            {
+              "id": "ep1-end",
+              "action": "dialogue",
+              "text": "첫 별빛이 켜졌어요! 고마워요.\n지도 속 꽃밭에 다음 조각이 있대요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "모음 꽃밭의 길",
+          "goal": "모음 소리로 꽃문을 열고 자음 나무로 가요",
+          "scenes": [
+            {
+              "id": "ep2-start",
+              "action": "dialogue",
+              "text": "지도 속 꽃밭에 도착했어요.\n어? 꽃문이 꼭 닫혀 있네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-discover",
+              "action": "dialogue",
+              "text": "꽃문 앞에 모음 글자가 있어요.\n소리를 찾아 문을 열어볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-choice",
+              "action": "choice",
+              "text": "누구와 함께 꽃문을 두드릴까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-quiz",
+              "action": "quiz",
+              "text": "꽃문이 아 소리를 기다려요.\n아, 함께 불러볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep2-vowel-a",
+                "ep2-explore-garden"
+              ]
+            },
+            {
+              "id": "ep2-clue",
+              "action": "dialogue",
+              "text": "아는 오른쪽, 어는 왼쪽!\n짧은 줄이 어디 있는지 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-trace",
+              "action": "tracing",
+              "text": "아 소리의 ㅏ를 그려\n꽃길에 빛을 이어 주세요.",
+              "choices": [],
+              "traceId": "h-ㅏ",
+              "quizIds": []
+            },
+            {
+              "id": "ep2-review",
+              "action": "quiz",
+              "text": "꽃길에서 오 소리도 들려요.\n이번에는 어떤 모양일까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep2-vowel-o"
+              ]
+            },
+            {
+              "id": "ep2-talk",
+              "action": "dialogue",
+              "text": "짧은 줄을 천천히 보니 알겠어!\n나무까지 소리를 가져가자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep2-together",
+              "action": "quiz",
+              "text": "아와 오의 꽃표를 챙겨요.\n두 글자가 모두 같은 짝을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep2-vowel-pair"
+              ]
+            },
+            {
+              "id": "ep2-end",
+              "action": "dialogue",
+              "text": "두 번째 별빛이 켜졌어요!\n꽃길 끝 자음 나무에서 루루가 손짓해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "자음 나무의 열매",
+          "goal": "기역 열매를 찾고 아와 만나 글자 씨앗을 만들어요",
+          "scenes": [
+            {
+              "id": "ep3-start",
+              "action": "dialogue",
+              "text": "자음 나무에 도착했어!\n열매를 담을 빈 바구니도 있네.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-discover",
+              "action": "dialogue",
+              "text": "열매마다 글자 이름표가 있대.\n기역 이름표를 함께 찾아줄래?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-choice",
+              "action": "choice",
+              "text": "누구와 함께 열매를 찾을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-quiz",
+              "action": "quiz",
+              "text": "기역의 모양은 ㄱ이에요.\n이름표에서 같은 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep3-giyeok",
+                "ep3-explore-seed"
+              ]
+            },
+            {
+              "id": "ep3-clue",
+              "action": "dialogue",
+              "text": "기역 ㄱ과 꽃밭의 아 ㅏ가 만나면\n가방의 첫 글자 가가 되어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-trace",
+              "action": "tracing",
+              "text": "기역 ㄱ 이름표를 그려\n씨앗 꾸러미에 달아 주세요.",
+              "choices": [],
+              "traceId": "h-ㄱ",
+              "quizIds": []
+            },
+            {
+              "id": "ep3-review",
+              "action": "quiz",
+              "text": "작은 판에 꺼낸 씨앗을 세어봐요.\n하나씩 누르면 함께 셀 수 있어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep3-seed-count"
+              ]
+            },
+            {
+              "id": "ep3-talk",
+              "action": "dialogue",
+              "text": "꽃밭에서 가져온 아를 기억해?\n기역과 만나면 새 글자가 될 거야.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep3-together",
+              "action": "quiz",
+              "text": "기역 ㄱ과 아 ㅏ를 나란히 놓아요.\n두 글자가 만나면 무엇이 될까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep3-ga-seed"
+              ]
+            },
+            {
+              "id": "ep3-end",
+              "action": "dialogue",
+              "text": "세 번째 별빛이 켜졌어요!\n씨앗 꾸러미를 싣고 소리 기차로 가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "뒤죽박죽 소리 기차",
+          "goal": "가와 나의 표지를 찾아 씨앗을 싣고 출발해요",
+          "scenes": [
+            {
+              "id": "ep4-start",
+              "action": "dialogue",
+              "text": "씨앗 꾸러미를 들고 역에 왔어요.\n어? 기차의 글자 표지가 섞였네요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-discover",
+              "action": "dialogue",
+              "text": "왼쪽 표지는 가 소리를 기다려요.\n나무에서 만든 가를 기억하나요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-choice",
+              "action": "choice",
+              "text": "누구와 씨앗 꾸러미를 실을까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-quiz",
+              "action": "quiz",
+              "text": "기역과 아가 만난 가!\n가 표지가 있는 칸을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep4-ga-car",
+                "ep4-explore-cargo"
+              ]
+            },
+            {
+              "id": "ep4-clue",
+              "action": "dialogue",
+              "text": "다음 칸에는 니은 ㄴ이 있어요.\n아 ㅏ와 만나면 나가 된대요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-trace",
+              "action": "tracing",
+              "text": "니은 ㄴ 표지를 그려\n다음 칸에도 이름표를 달아줘요.",
+              "choices": [],
+              "traceId": "h-ㄴ",
+              "quizIds": []
+            },
+            {
+              "id": "ep4-review",
+              "action": "quiz",
+              "text": "니은과 아의 표지를 나란히 놓아요.\n이번에는 어떤 글자가 될까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep4-na-car"
+              ]
+            },
+            {
+              "id": "ep4-talk",
+              "action": "dialogue",
+              "text": "가, 나! 소리를 천천히 들어보니\n섞인 표지를 찾을 수 있었어.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep4-together",
+              "action": "quiz",
+              "text": "왼쪽은 가, 오른쪽은 나예요.\n왼쪽부터 차례로 표지를 놓아봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep4-car-order"
+              ]
+            },
+            {
+              "id": "ep4-end",
+              "action": "dialogue",
+              "text": "네 번째 별빛과 함께 별빛 역 도착!\n저기 꺼진 등대가 도움을 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "알파벳 등대",
+          "goal": "A의 이름과 Apple을 듣고 등대 빛을 켜요",
+          "scenes": [
+            {
+              "id": "ep5-start",
+              "action": "dialogue",
+              "text": "등대의 큰 불이 꺼졌어요.\n글자 빛을 찾아 함께 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-discover",
+              "action": "dialogue",
+              "text": "이 글자의 이름은 에이, A예요.\nApple은 사과를 부르는 영어 단어예요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-choice",
+              "action": "choice",
+              "text": "누구와 등대 불을 켤까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-quiz",
+              "action": "quiz",
+              "text": "글자 이름 듣기 버튼을 눌러봐요.\n에이라는 이름의 글자를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep5-a-name",
+                "ep5-explore-light"
+              ]
+            },
+            {
+              "id": "ep5-clue",
+              "action": "dialogue",
+              "text": "A라는 글자 이름과 Apple의 첫소리는 달라요.\n두 버튼으로 각각 들어봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-trace",
+              "action": "tracing",
+              "text": "대문자 A의 빛줄기를 그려\n등대 불을 멀리 보내줘요.",
+              "choices": [],
+              "traceId": "e-A",
+              "quizIds": []
+            },
+            {
+              "id": "ep5-review",
+              "action": "quiz",
+              "text": "큰 A에게 작은 글자 친구가 있어요.\n같은 이름의 작은 a를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep5-a-case"
+              ]
+            },
+            {
+              "id": "ep5-talk",
+              "action": "dialogue",
+              "text": "A는 글자 이름, Apple은 사과!\n천천히 따로 들어보니 다르네.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep5-together",
+              "action": "quiz",
+              "text": "등대 옆 과일 바구니를 챙겨요.\nApple 단어를 듣고 그림을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep5-apple-picture"
+              ]
+            },
+            {
+              "id": "ep5-end",
+              "action": "dialogue",
+              "text": "다섯 번째 별빛이 켜졌어요!\n등대 빛이 숫자 다리를 비춰요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "숫자 다리와 세 개의 돌",
+          "goal": "돌 세 개를 놓고 하나 더·하나 덜을 살펴요",
+          "scenes": [
+            {
+              "id": "ep6-start",
+              "action": "dialogue",
+              "text": "졸졸, 물소리 너머 정원이 보여요.\n앗, 돌다리에 동그란 빈자리가 세 개 있어요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-discover",
+              "action": "dialogue",
+              "text": "돌을 한 개씩 옮겨볼까?\n하나, 둘, 셋! 같은 돌을 두 번 세지 않아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-quiz",
+              "action": "quiz",
+              "text": "한 개씩 옮기면 빈자리가 채워질 거야.\n나랑 돌길을 이어 볼까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep6-bridge-three",
+                "ep6-explore-bridge"
+              ]
+            },
+            {
+              "id": "ep6-clue",
+              "action": "dialogue",
+              "text": "돌 두 개 옆에 하나가 더 오면 셋!\n토토가 손가락으로 천천히 짚어줘요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-trace",
+              "action": "tracing",
+              "text": "숫자 3의 굽은 길을 그려요.\n다리에서 만난 돌 세 개의 숫자예요.",
+              "choices": [],
+              "traceId": "n-3",
+              "quizIds": []
+            },
+            {
+              "id": "ep6-review",
+              "action": "quiz",
+              "text": "친구에게 돌 두 개가 있어요.\n하나 더 주면 몇 개가 될까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep6-one-more"
+              ]
+            },
+            {
+              "id": "ep6-talk",
+              "action": "dialogue",
+              "text": "내가 빨리 건너도 괜찮아.\n친구가 올 때까지 여기서 기다릴게!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep6-together",
+              "action": "quiz",
+              "text": "돌 셋 중 하나를 친구에게 주었어요.\n남은 돌을 세어볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep6-one-less"
+              ]
+            },
+            {
+              "id": "ep6-end",
+              "action": "dialogue",
+              "text": "여섯 번째 별빛이 다리 위에서 반짝!\n건너편 꽃들이 하얗게 변했어요. 정원으로 가봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "색깔을 잃은 정원",
+          "goal": "색과 모양을 분류하고 나만의 그림 지도를 그려요",
+          "scenes": [
+            {
+              "id": "ep7-start",
+              "action": "dialogue",
+              "text": "어제는 알록달록했다는데…\n꽃들의 색이 옅어져 정원 길을 찾기 어려워요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-discover",
+              "action": "dialogue",
+              "text": "빨간 꽃은 빨간 꽃끼리, 파란 꽃은 파란 꽃끼리!\n같은 색 친구들을 만나게 해줄까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-quiz",
+              "action": "quiz",
+              "text": "빨간 꽃을 모아 정원에 색을 돌려줘요.\n같은 빨간 꽃끼리 있는 바구니를 골라요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep7-red-flowers",
+                "ep7-explore-garden"
+              ]
+            },
+            {
+              "id": "ep7-clue",
+              "action": "dialogue",
+              "text": "길에는 동그라미, 세모, 동그라미가 있어요.\n모양이 번갈아 나오는 약속을 찾아봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-trace",
+              "action": "drawing",
+              "text": "꽃이나 나비를 그려 나만의 지도를 만들어요.\n좋아하는 색을 골라 마음껏 그려요.",
+              "choices": [],
+              "traceId": "h-ㅗ",
+              "quizIds": []
+            },
+            {
+              "id": "ep7-review",
+              "action": "quiz",
+              "text": "동그라미, 세모, 동그라미…\n다음 길 표지는 어떤 모양일까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep7-shape-path"
+              ]
+            },
+            {
+              "id": "ep7-talk",
+              "action": "dialogue",
+              "text": "네가 그린 지도를 작품 모음에 넣었어.\n우리가 만든 길이라 더 멋지다!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep7-together",
+              "action": "quiz",
+              "text": "길을 떠나기 전에 잎도 정리해요.\n잎끼리 모인 바구니를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep7-leaf-pair"
+              ]
+            },
+            {
+              "id": "ep7-end",
+              "action": "dialogue",
+              "text": "일곱 번째 별빛과 그림 지도를 챙겼어요.\n그때, 언덕 너머에서 휘이잉! 작은 목소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "바람 친구 휙휙의 실수",
+          "goal": "함께 정리하며 글자와 숫자를 구별해요",
+          "scenes": [
+            {
+              "id": "ep8-start",
+              "action": "dialogue",
+              "text": "휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…”",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-discover",
+              "action": "dialogue",
+              "text": "“미안해. 나도 이야기 속에 들어가고 싶었어.”\n괜찮아, 휙휙! 우리 같이 정리하자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-quiz",
+              "action": "quiz",
+              "text": "A와 C는 영어 글자예요.\n숫자와 섞이지 않은 영어 글자 바구니를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep8-letter-basket",
+                "ep8-explore-wind"
+              ]
+            },
+            {
+              "id": "ep8-clue",
+              "action": "dialogue",
+              "text": "글자는 글자끼리, 숫자는 숫자끼리!\n서로 달라도 모두 이야기에 필요한 친구예요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-trace",
+              "action": "tracing",
+              "text": "영어 글자 C를 그려 바구니에 표시해요.\n둥글게 돌다가 입구를 열어두어요.",
+              "choices": [],
+              "traceId": "e-C",
+              "quizIds": []
+            },
+            {
+              "id": "ep8-review",
+              "action": "quiz",
+              "text": "이번에는 1과 3을 모아요.\n숫자만 있는 바구니를 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep8-number-basket"
+              ]
+            },
+            {
+              "id": "ep8-talk",
+              "action": "dialogue",
+              "text": "혼자 숨기지 않고 말하니 마음이 가벼워졌어.\n다음에는 먼저 물어보고 살살 불게!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep8-together",
+              "action": "quiz",
+              "text": "별, 책, 별… 책갈피가 번갈아 놓였어요.\n다음에는 무엇을 놓을까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep8-page-pattern"
+              ]
+            },
+            {
+              "id": "ep8-end",
+              "action": "dialogue",
+              "text": "여덟 번째 별빛을 휙휙과 함께 챙겼어요.\n바람이 살랑, 세 갈래 길로 우리를 안내해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "세 갈래 이야기 길",
+          "goal": "내가 고른 길에서 서로 다른 복습 미션을 만나요",
+          "scenes": [
+            {
+              "id": "ep9-start",
+              "action": "dialogue",
+              "text": "꽃길, 등대길, 돌길이 나란히 보여요.\n어느 길로 가도 친구와 함께라면 좋아요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-discover",
+              "action": "dialogue",
+              "text": "꽃길엔 한글, 등대길엔 영어, 돌길엔 숫자!\n내가 기억하는 이야기는 어느 길에 있을까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-choice",
+              "action": "choice",
+              "text": "어느 이야기 길로 먼저 가볼까요?",
+              "choices": [
+                "한글 길",
+                "영어 길",
+                "숫자 길"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-quiz",
+              "action": "quiz",
+              "text": "우리가 고른 길의 이야기를 떠올려요.\n그림과 소리를 천천히 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep9-hangul",
+                "ep9-explore-path",
+                "ep9-hangul",
+                "ep9-english",
+                "ep9-math"
+              ]
+            },
+            {
+              "id": "ep9-clue",
+              "action": "dialogue",
+              "text": "다른 길을 골라도 나중에 다시 만날 수 있어요.\n지금은 내 길의 작은 약속을 하나 더 살펴봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-trace",
+              "action": "tracing",
+              "text": "세 길이 만나는 곳에 ㅏ 빛줄기를 그려요.\n꽃밭에서 만났던 모음 길을 함께 밝혀요.",
+              "choices": [],
+              "traceId": "h-ㅏ",
+              "quizIds": []
+            },
+            {
+              "id": "ep9-review",
+              "action": "quiz",
+              "text": "고른 길의 두 번째 조각이에요.\n앞에서 만난 글자나 수를 다시 살펴요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep9-hangul-vowel",
+                "ep9-hangul-vowel",
+                "ep9-english-case",
+                "ep9-math-more"
+              ]
+            },
+            {
+              "id": "ep9-talk",
+              "action": "dialogue",
+              "text": "네가 고른 길 이야기를 들려줘.\n다음에는 내가 고른 길도 함께 가보자!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep9-together",
+              "action": "quiz",
+              "text": "마지막 조각은 친구와 함께 찾아요.\n순서나 짝의 약속을 떠올려봐요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep9-hangul-order",
+                "ep9-hangul-order",
+                "ep9-english-pair",
+                "ep9-math-pattern"
+              ]
+            },
+            {
+              "id": "ep9-end",
+              "action": "dialogue",
+              "text": "아홉 번째 별빛을 찾았어요!\n세 길이 만나는 종이숲에서 빗방울 소리가 들려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "비 오는 종이숲",
+          "goal": "성장 순서를 살피고 젖은 페이지를 복원해요",
+          "scenes": [
+            {
+              "id": "ep10-start",
+              "action": "dialogue",
+              "text": "토독토독, 비가 내려 책장이 서로 붙었어요.\n나뭇잎 지붕 아래에서 천천히 펼쳐볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-discover",
+              "action": "dialogue",
+              "text": "작은 씨앗 봉투 옆에 싹이 보여요.\n씨앗에 물과 햇빛을 주면 무엇이 나올까?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-quiz",
+              "action": "quiz",
+              "text": "씨앗이 자라는 첫 장면을 찾아요.\n씨앗 다음에는 무엇이 나올까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep10-seed-next",
+                "ep10-explore-paper"
+              ]
+            },
+            {
+              "id": "ep10-clue",
+              "action": "dialogue",
+              "text": "씨앗에서 싹, 싹에서 나무!\n자라는 데에는 시간이 필요해요. 서두르지 않아도 돼요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-trace",
+              "action": "tracing",
+              "text": "펼친 책에 대문자 A를 그려요.\n등대에서 만났던 글자를 다시 기억해봐요.",
+              "choices": [],
+              "traceId": "e-A",
+              "quizIds": []
+            },
+            {
+              "id": "ep10-review",
+              "action": "quiz",
+              "text": "성장 그림을 처음부터 이어봐요.\n씨앗, 싹, 나무 순서인 그림을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep10-growth-order"
+              ]
+            },
+            {
+              "id": "ep10-talk",
+              "action": "dialogue",
+              "text": "나는 바람 소리가 나는 이야기를 만들고 싶어.\n다음엔 친구들의 허락을 받고 함께 만들래.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep10-together",
+              "action": "quiz",
+              "text": "마른 책들을 책끼리 모아줘요.\n다른 그림이 섞이지 않은 바구니를 골라요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep10-book-pair"
+              ]
+            },
+            {
+              "id": "ep10-end",
+              "action": "dialogue",
+              "text": "열 번째 별빛과 함께 마지막 그림이 나타났어요.\n별 다섯 개를 놓는 하늘 정거장이에요!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "title": "마지막 별자리 퍼즐",
+          "goal": "별 다섯 개를 놓고 모양과 배운 내용을 복습해요",
+          "scenes": [
+            {
+              "id": "ep11-start",
+              "action": "dialogue",
+              "text": "도서관이 보이는 하늘 정거장에 왔어요.\n별자리 판의 빈자리가 우리를 기다려요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-discover",
+              "action": "dialogue",
+              "text": "하나씩 놓으면 별이 길을 알려줄 거야.\n별 하나를 두 번 세지 않도록 같이 짚어보자.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-choice",
+              "action": "choice",
+              "text": "누구와 함께 살펴볼까요?",
+              "choices": [
+                "루루",
+                "토토"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-quiz",
+              "action": "quiz",
+              "text": "작은 별빛도 모이면 길이 될 거야.\n우리 기억으로 별길을 이어 보자!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep11-five-stars",
+                "ep11-explore-sky"
+              ]
+            },
+            {
+              "id": "ep11-clue",
+              "action": "dialogue",
+              "text": "꽃밭의 ㅏ, 등대의 A, 다리의 3!\n서로 다른 기억이 한 별자리에 모였어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-trace",
+              "action": "tracing",
+              "text": "짝을 이룬 별 두 개를 보며 숫자 2를 그려요.\n곡선을 돌아 아래 가로길까지 천천히!",
+              "choices": [],
+              "traceId": "n-2",
+              "quizIds": []
+            },
+            {
+              "id": "ep11-review",
+              "action": "quiz",
+              "text": "별, 동그라미, 별…\n다음에 놓을 모양을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep11-star-pattern"
+              ]
+            },
+            {
+              "id": "ep11-talk",
+              "action": "dialogue",
+              "text": "처음에는 조각이 너무 많아 보였어.\n하나씩 함께 모으니 커다란 이야기가 되었네!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep11-together",
+              "action": "quiz",
+              "text": "꽃밭의 ㅏ, 등대의 A, 다리의 3.\n이 세 기억이 모두 있는 그림을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep11-three-memories"
+              ]
+            },
+            {
+              "id": "ep11-end",
+              "action": "dialogue",
+              "text": "열한 번째 별빛이 길게 이어져요!\n이제 휙휙과 함께 별빛 도서관으로 돌아가요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "다시 열린 별빛 도서관",
+          "goal": "함께 정리하고 내가 고른 방에서 모험을 마쳐요",
+          "scenes": [
+            {
+              "id": "ep12-start",
+              "action": "dialogue",
+              "text": "별빛 도서관에 돌아왔어요!\n모은 이야기를 책에 담아 마지막 불을 켜볼까요?",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-discover",
+              "action": "dialogue",
+              "text": "휙휙이 조용히 책을 내려놓아요.\n“흩뜨려서 미안해. 이제 함께 정리하고 싶어.”",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-choice",
+              "action": "choice",
+              "text": "우리 이야기 방을 무엇으로 꾸밀까요?",
+              "choices": [
+                "꽃 방",
+                "별 방"
+              ],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-quiz",
+              "action": "quiz",
+              "text": "내가 고른 장식끼리 모아줘요.\n도서관의 마지막 불을 함께 켜요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep12-star-decoration",
+                "ep12-explore-library",
+                "ep12-flower-decoration",
+                "ep12-star-decoration"
+              ]
+            },
+            {
+              "id": "ep12-clue",
+              "action": "dialogue",
+              "text": "흩뜨린 것을 함께 정리하니 책이 환해졌어요.\n잘못을 말하고 함께 고칠 수 있어요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-trace",
+              "action": "tracing",
+              "text": "마지막 모음 ㅜ를 그려 책을 마무리해요.\n가로길 아래로 짧은 빛줄기를 내려줘요.",
+              "choices": [],
+              "traceId": "h-ㅜ",
+              "quizIds": []
+            },
+            {
+              "id": "ep12-review",
+              "action": "quiz",
+              "text": "등대에서 만난 A와 a를 기억하나요?\n같은 이름의 짝을 찾아요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep12-letter-reunion"
+              ]
+            },
+            {
+              "id": "ep12-talk",
+              "action": "dialogue",
+              "text": "이번엔 우리 모두가 주인공이야.\n휙휙의 바람 이야기도 함께 만들어보자!",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            },
+            {
+              "id": "ep12-together",
+              "action": "quiz",
+              "text": "떠나기 전에 책을 책끼리 정리해요.\n다음 친구도 쉽게 찾을 수 있게요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": [
+                "ep12-tidy-books"
+              ]
+            },
+            {
+              "id": "ep12-end",
+              "action": "dialogue",
+              "text": "열두 별빛이 모두 모여 도서관이 다시 열렸어요!\n옆의 새 책이 살짝 반짝… 다음 모험도 함께해요.",
+              "choices": [],
+              "traceId": null,
+              "quizIds": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

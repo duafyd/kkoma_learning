@@ -10,16 +10,86 @@ import 'package:flutter_application_1/features/learning/data/learning_content.da
 import 'package:flutter_application_1/features/story/data/story_content.dart';
 import 'package:flutter_application_1/features/story/data/story_art.dart';
 import 'package:flutter_application_1/features/story/data/support_quizzes.dart';
+import 'package:flutter_application_1/features/story/domain/scene_play.dart';
+import 'package:flutter_application_1/features/story/domain/story_machine.dart';
+import 'package:flutter_application_1/features/story/domain/story_models.dart';
 import 'package:flutter_application_1/features/math/data/sorting_content.dart';
+import 'package:flutter_application_1/features/tracing/data/prewriting_content.dart';
 
 void main(List<String> args) {
   final errors = <String>[];
+  if (ScenePlay.moments.length != storyEpisodes.length ||
+      ScenePlay.moments.map((p) => p.kind).toSet().length !=
+          storyEpisodes.length ||
+      ScenePlay.moments.any(
+        (p) => p.object.isEmpty || p.invitation.isEmpty || p.response.isEmpty,
+      )) {
+    errors.add('invalid scene play coverage');
+  }
   final speechSamples = storyEpisodes
       .expand((e) => e.scenes)
       .expand(
         (s) => [...s.speeches, ...s.speechVariants.values.expand((v) => v)],
       )
       .toList();
+  final machine = StoryMachine();
+  final letterScenes = <String>{};
+  final bookScenes = <String>{};
+  for (var episode = 0; episode < storyEpisodes.length; episode++) {
+    for (var level = 2; level <= 5; level++) {
+      final scenes = storyEpisodes[episode].forLevel(level);
+      for (var i = 0; i < scenes.length; i++) {
+        final scene = scenes[i];
+        final book = machine.bookMission(
+          StorySnapshot(
+            episode: episode,
+            scene: i,
+            level: level,
+            phase: scene.interaction,
+          ),
+        );
+        if (book != null) {
+          bookScenes.add(scene.id);
+          if (book.tracing) {
+            final item = learningItems.firstWhere(
+              (item) => item.id == scene.traceId,
+            );
+            if (book.total != item.strokes.length ||
+                book.symbol != item.symbol) {
+              errors.add('book world guide mismatch ${scene.id}');
+            }
+          } else if (book.quiz?.artwork == null ||
+              book.quiz!.artwork!.choices.length != book.quiz!.options.length) {
+            errors.add('book world choice mismatch ${scene.id}');
+          }
+        }
+        final mission = machine.letterMission(
+          StorySnapshot(
+            episode: episode,
+            scene: i,
+            level: level,
+            phase: scene.interaction,
+          ),
+        );
+        if (mission == null) continue;
+        letterScenes.add(scene.id);
+        if (mission.tracing) {
+          final item = learningItems.firstWhere(
+            (item) => item.id == scene.traceId,
+          );
+          if (mission.total != item.strokes.length) {
+            errors.add('letter world stroke mismatch ${scene.id}');
+          }
+        } else if (mission.choices.length != scene.quiz!.options.length) {
+          errors.add('letter world choice mismatch ${scene.id}');
+        }
+      }
+    }
+  }
+  if (letterScenes.length != 8) errors.add('incomplete letter world coverage');
+  if (bookScenes.length != 22) {
+    errors.add('incomplete later book world coverage');
+  }
   final samplesById = {for (final s in speechSamples) s.id: s};
   for (final sample in speechSamples) {
     final original = samplesById[sample.id]!;
@@ -64,6 +134,7 @@ void main(List<String> args) {
   for (final asset in [
     storyCastAsset,
     storySearchCastAsset,
+    storyMotionCastAsset,
     ...storySoundAssets.values,
   ]) {
     if (!File(asset).existsSync()) errors.add('missing story resource $asset');
@@ -169,9 +240,20 @@ void main(List<String> args) {
     },
     'tracingReview': 'Original centre-line paths; educational stroke-order review pending. Lowercase a/g use single-storey handwriting forms.',
     'episodes': storyEpisodes.length,
+    'prewritingItems': prewritingItems.map((i) => i.id).toList(),
+    'scenePlayMoments': ScenePlay.moments.length,
+    'worldMissionScenes': ['ep6-quiz', 'ep11-quiz'],
+    'letterMissionScenes': letterScenes.toList()..sort(),
+    'bookMissionScenes': bookScenes.toList()..sort(),
+    'bookMissionScope': 'Chapters 7-12: 17 picture quiz scenes and five tracing scenes use Flame props, saved counts/ink and finite theme reactions. Route/room variants are resolved by StoryMachine; age-two/support and chapter-eleven star placement remain on existing paths. Chapter-seven saved map is resolved by artwork ID, no new raster or walking/lip-sync frames.',
+    'letterMissionScope': 'Chapters 2/3/4/5 main letter choices use Flame taps. Tracing retains the picture and reacts only to saved strokes; finite flower-path/beacon-light/seed-parcel/train-signal direction. Age-two and support choices remain unchanged; existing bitmaps crossfade, no new door or train sprite frames.',
+    'worldMissionScope': 'Flame drag/tap world placements, original persisted order, button alternative, finite committed-success journey. Age-two/support paths retain Flutter picture choices.',
+    'scenePlayScope': 'Optional Flame prop discovery on each chapter opening, 1/2/3 props by age; committed saves, finite light/transfer reactions. Other scenes retain Flutter picture-book rendering.',
     'storyIllustrations': storyArtAssets.values.toSet().toList(),
     'storyCharacterAtlas': storyCastAsset,
     'storySearchCharacterAtlas': storySearchCastAsset,
+    'storyMotionCharacterAtlas': storyMotionCastAsset,
+    'storyCharacterMotionScope': 'Four characters with idle/open expression and two travel poses (16 frames); explicit unequal row crops, finite entry/journey animation, no phoneme-synced lip animation.',
     'storyEffects': storySoundAssets.values.toList(),
     'storySpeechSamples': {
       for (final entry in samplesById.entries)

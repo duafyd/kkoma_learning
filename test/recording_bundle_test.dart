@@ -51,7 +51,13 @@ void main() {
         line = buildVoiceCatalog().firstWhere((l) => l.id == id);
     expect(plan.errors, isEmpty);
     expect(plan.index['clips'], [
-      {'id': id, 'text': line.text, 'language': 'en-US', 'bytes': 32044},
+      {
+        'id': id,
+        'text': line.text,
+        'language': 'en-US',
+        'bytes': 32044,
+        'speaker': '학습 안내',
+      },
     ]);
   });
   test(
@@ -87,6 +93,27 @@ void main() {
       }
     },
   );
+  test('changed actor blocks silently reusing an old take', () {
+    const id = 'voice-ep3-start';
+    final line = buildVoiceCatalog().firstWhere((line) => line.id == id);
+    File('${directory.path}/$id.wav').writeAsBytesSync(_wav());
+    File('${directory.path}/recordings.json').writeAsStringSync(
+      jsonEncode({
+        'version': 1,
+        'clips': [
+          {
+            'id': id,
+            'text': line.text,
+            'language': line.language,
+            'speaker': '모아',
+          },
+        ],
+      }),
+    );
+    final plan = recordingBundlePlan(directory: directory);
+    expect(plan.errors.single, contains('speaker changed'));
+    expect(plan.index['clips'], isEmpty);
+  });
   test('malformed existing index is reported and left intact', () {
     final file = File('${directory.path}/recordings.json')
       ..writeAsStringSync('broken');

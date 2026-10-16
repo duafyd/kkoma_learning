@@ -122,6 +122,9 @@ class _ParentPageState extends ConsumerState<ParentPage> {
               onChanged: (v) => _change('animations', v),
             ),
             const Text('음성 음량'),
+            const Text(
+              '이야기 음성은 AI로 제작합니다. 준비된 음원이 없는 장면은 기기 음성(TTS)으로 읽어 줍니다.',
+            ),
             Slider(
               value: s.voiceVolume,
               onChanged: (v) => _change('voiceVolume', v),

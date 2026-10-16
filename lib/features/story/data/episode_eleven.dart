@@ -30,7 +30,8 @@ const episodeEleven = StoryEpisode(
     ),
     StoryScene(
       id: 'ep11-quiz',
-      text: '별을 끌거나 눌러 빈자리에 놓아요.\n반짝이는 별은 모두 몇 개일까요?',
+      text: '작은 별빛도 모이면 길이 될 거야.\n우리 기억으로 별길을 이어 보자!',
+      character: '토토',
       background: 'ep11-empty',
       interaction: StoryPhase.quiz,
       reaction: StoryReaction.point,

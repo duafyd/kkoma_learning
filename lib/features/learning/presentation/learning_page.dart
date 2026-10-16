@@ -9,6 +9,7 @@ import '../../profile/presentation/profile_vm.dart';
 import '../../parent/presentation/usage_vm.dart';
 import '../domain/learning_models.dart';
 import 'learning_vm.dart';
+import 'learning_card.dart';
 
 class LearningPage extends ConsumerStatefulWidget {
   final String subject;
@@ -60,6 +61,15 @@ class _LearningPageState extends ConsumerState<LearningPage> {
     return ActivityScaffold(
       title: title,
       actions: [
+        TextButton(
+          onPressed: () => setState(() => quizMode = !quizMode),
+          child: Text(quizMode ? '글자 듣기' : '함께 찾기'),
+        ),
+        if (widget.subject != 'math')
+          TextButton(
+            onPressed: () => context.go('/prewriting'),
+            child: const Text('손가락 놀이'),
+          ),
         if (widget.subject == 'math')
           TextButton(
             onPressed: () => context.go('/math/match'),
@@ -70,10 +80,6 @@ class _LearningPageState extends ConsumerState<LearningPage> {
             onPressed: () => context.go('/math/play'),
             child: const Text('사과 모으기'),
           ),
-        TextButton(
-          onPressed: () => setState(() => quizMode = !quizMode),
-          child: Text(quizMode ? '글자 듣기' : '함께 찾기'),
-        ),
       ],
       child: quizMode
           ? _quiz(vm, state, settings)
@@ -83,60 +89,21 @@ class _LearningPageState extends ConsumerState<LearningPage> {
                     ? 600
                     : 300,
                 mainAxisExtent:
-                    340 + (MediaQuery.textScalerOf(context).scale(25) - 25) * 6,
+                    310 + (MediaQuery.textScalerOf(context).scale(25) - 25) * 7,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),
               itemCount: vm.items.length,
               itemBuilder: (context, index) {
                 final item = vm.items[index];
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: TextButton(
-                            onPressed: () => _readItem(item, settings),
-                            child: Text(
-                              item.symbol,
-                              style: const TextStyle(fontSize: 66),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '${item.picture} ${item.example}',
-                          style: const TextStyle(fontSize: 25),
-                        ),
-                        if (widget.subject == 'english' && settings.level >= 4)
-                          Text(
-                            '${item.symbol.toUpperCase()} ↔ ${item.symbol.toLowerCase()}',
-                          ),
-                        if (widget.subject == 'math')
-                          Text(
-                            List.filled(int.parse(item.symbol), '●').join(' '),
-                            maxLines: 2,
-                            style: const TextStyle(fontSize: 15),
-                          ),
-                        Wrap(
-                          spacing: 8,
-                          children: [
-                            IconButton(
-                              tooltip: '${item.symbol} 읽어 주기',
-                              onPressed: () => _readItem(item, settings),
-                              icon: const Icon(Icons.volume_up),
-                            ),
-                            if (item.strokes.isNotEmpty)
-                              OutlinedButton(
-                                onPressed: () =>
-                                    context.go('/trace/${item.id}'),
-                                child: const Text('따라 그리기'),
-                              ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                return LearningCard(
+                  item: item,
+                  showLetterPair:
+                      widget.subject == 'english' && settings.level >= 4,
+                  onListen: () => _readItem(item, settings),
+                  onTrace: item.strokes.isEmpty
+                      ? null
+                      : () => context.go('/trace/${item.id}'),
                 );
               },
             ),

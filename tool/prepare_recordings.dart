@@ -43,6 +43,12 @@ import 'voice_catalog.dart';
       );
       continue;
     }
+    if (old?['speaker'] != null && old!['speaker'] != line.speaker) {
+      errors.add(
+        '${line.id}: speaker changed; recast and review this take before updating its index entry',
+      );
+      continue;
+    }
     final bytes = file.readAsBytesSync(), issue = validateVoiceWav(bytes);
     if (issue != null) {
       errors.add('${line.id}: $issue');
@@ -53,6 +59,7 @@ import 'voice_catalog.dart';
       'text': line.text,
       'language': line.language,
       'bytes': bytes.length,
+      'speaker': line.speaker,
     });
   }
   if (root.existsSync()) {

@@ -111,6 +111,7 @@ void main() {
             var restored = await c.read(storyProvider.future);
             expect(restored.phase, StoryPhase.success);
             expect(restored.pendingDrawing, isNull);
+            expect(restored.flags['gardenArtwork'], artwork.id);
             expect(restored.flags['companion'], '토토');
             expect(
               (await c.read(drawingRepositoryProvider).list()).single.id,

@@ -31,7 +31,8 @@ const episodeSix = StoryEpisode(
     ),
     StoryScene(
       id: 'ep6-quiz',
-      text: '돌을 끌거나 톡 눌러 빈자리를 채워요.\n돌은 모두 몇 개일까요?',
+      text: '한 개씩 옮기면 빈자리가 채워질 거야.\n나랑 돌길을 이어 볼까?',
+      character: '토토',
       background: 'ep6-bridge',
       interaction: StoryPhase.quiz,
       reaction: StoryReaction.point,

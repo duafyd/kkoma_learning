@@ -23,7 +23,7 @@ void main(List<String> args) {
   }
   final missing = entries.where((e) => e['fileStatus'] == 'missing').length;
   final report = {
-    'scope': 'Fixed learning/trace names, quiz prompts, scene dialogue and explicit age/success/choice variants, story samples, sorting prompts, story counts 1–5.',
+    'scope': 'Fixed learning/trace names, quiz prompts, scene dialogue and explicit age/success/choice variants, scene play invitations/responses, story samples, sorting prompts, story counts 1–5.',
     'excluded': [
       'Dynamic hint/error/help/completion messages and compound sorting feedback remain TTS; not an exhaustive runtime utterance list.',
       'Listening review is manual; format-valid files are not automatically marked reviewed. Exact transcript/locale playback is connected via assets/audio/recordings.json.',
@@ -50,6 +50,10 @@ void main(List<String> args) {
       'file',
       'file_status',
       'listening_review',
+      'speaker',
+      'emotion',
+      'delivery',
+      'pacing',
     ],
     for (final e in entries)
       [
@@ -62,6 +66,10 @@ void main(List<String> args) {
         e['file'],
         e['fileStatus'],
         'pending',
+        (e['performance'] as Map)['speaker'],
+        (e['performance'] as Map)['emotion'],
+        (e['performance'] as Map)['delivery'],
+        (e['performance'] as Map)['pacing'],
       ],
   ];
   File('docs/audio/voice_scripts.csv').writeAsStringSync(

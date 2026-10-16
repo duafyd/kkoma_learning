@@ -20,7 +20,8 @@ class ActivityScaffold extends StatelessWidget {
         message: title,
         child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
       ),
-      leading: IconButton(
+      leading: IconButton.filledTonal(
+        style: IconButton.styleFrom(backgroundColor: Colors.white),
         tooltip: '집으로',
         icon: const Icon(Icons.home_rounded),
         onPressed: () => context.go('/'),

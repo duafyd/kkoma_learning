@@ -3,7 +3,7 @@ import '../../learning/domain/learning_models.dart';
 const bridgeThree = QuizDefinition(
   id: 'ep6-bridge-three',
   subject: 'math',
-  prompt: '작은 다리판에 놓을 돌은 몇 개일까요?',
+  prompt: '다리에 놓은 돌은 모두 몇 개일까요?',
   visual: 'stone stone stone',
   options: ['2개', '3개', '4개'],
   answer: 1,
@@ -252,7 +252,7 @@ const routeEnglish = QuizDefinition(
 const routeMath = QuizDefinition(
   id: 'ep9-math',
   subject: 'math',
-  prompt: '작은 판의 돌은 몇 개일까요?',
+  prompt: '그림 속 돌은 몇 개일까요?',
   visual: 'stone stone stone',
   options: ['2개', '3개', '4개'],
   answer: 1,
@@ -473,7 +473,7 @@ const paperBooks = QuizDefinition(
 const skyFive = QuizDefinition(
   id: 'ep11-five-stars',
   subject: 'math',
-  prompt: '작은 별자리판에 놓을 별은 몇 개일까요?',
+  prompt: '하늘에 놓은 별은 모두 몇 개일까요?',
   visual: 'star star star star star',
   options: ['4개', '5개', '3개'],
   answer: 1,

@@ -1,4 +1,244 @@
+# 소스 전달 검사와 GitHub 반영 (진행 중, 2026-10-16)
+
+요청: “다 하고 다음단게 진행하고 깃에 올리자”. 이번 요청으로 기존 로컬 개선 전체의 소스 커밋/푸시를 승인받았다. 아래 과거 단계의 Git 보류 기록은 당시 상태이며 이번 소스 전달에는 적용하지 않는다. APK 공개 업로드는 이번에 요청하지 않았으므로 기존 공개 파일을 유지한다. 유료 음원 제작·실기기 검증 보류는 유지한다.
+
+- [x] 원격 fetch 및 main/origin/main 분기 없음(0/0), 기존 미커밋 변경 보존.
+- [x] `tool/verify-source.ps1` 추가: 비공개 파일/설치 패키지 경로 차단, analyze/전체 테스트, 음원 인덱스·대본·연기 지침·검토 자료 재생성 일치, 콘텐츠 감사, 작업/스테이지 공백 검사. 네트워크 음성 생성·자동 배포 없음.
+- [x] `docs/SOURCE_HANDOFF.md`에 다른 PC 개발/서명 키 별도 복원/외부 검수와 보류 조건 정리. README의 깨진 명령 문장과 오래된 음원357개 설명을 현재671대본/등록0개로 수정.
+- [x] 실제 Git 임시 저장소2개에서 가짜 `.p12`/`.apk`를 추적한 경우 테스트 실행 전 거절·종료1 확인. PowerShell 구문 검사 통과. 비공개 경로 후보0/알려진 credential 형식 후보0. 원본 키 두 파일의 ignore 확인, 값 출력 없음.
+- [x] 최종 소스 전달 검사: analyze 문제0 / 전체415개 통과(테스트138초), 음원 인덱스/671대본/352스토리 take/118문항/48경로 재생성 일치, 콘텐츠 오류0, 작업/스테이지 공백 검사 통과. 전체 명령 종료0, `docs/source-handoff-verify.log`(로컬). Windows 줄바꿈 비교도 CRLF/LF 동등·내용 변경 검출을 따로 확인했고 최종 PS 구문 오류0이다. Dart build hooks의 stderr가 외부 PowerShell 로그에 NativeCommandError 형식으로 표시되지만 실제 명령 종료0 및 모든 검사 성공을 확인했다.
+- [ ] 검토한 프로젝트 파일 커밋/푸시 및 원격 SHA 확인.
+
+최신 로컬 APK는 기존 **214290482**를 유지한다. SHA256 `9a049dba63379dcc880fa818c78e0f0faf244762061727d1c14af3ac092cc7ee`를 다시 확인했다. 이번 추가는 개발 검증 스크립트/문서이며 앱 바이너리 변경은 없다. 이전 에뮬레이터 통합1개/서명 v2 검증 기록은 아래에 있다. 현재 단계에서 실기기·음성·APK 공개 배포를 새로 수행했다고 보고하지 않는다.
+
+다음: 소스가 GitHub에 반영되면 다른 PC는 이 저장소를 clone해 같은 검증 명령으로 이어간다. 교육자 검수·아동 관찰·실기기·음원 제작 결과가 오면 ID별 수정/회귀를 진행한다. 유료 생성 보류와 실제 기기 마지막 검수 방침을 임의로 해제하지 않는다.
+
+# 음원·실기기 외 로컬 완성도 마무리 (로컬 구현·호스트/에뮬레이터 검증 완료, 2026-10-16)
+
+요청: 음원 제작과 실기기 테스트를 제외한 남은 작업을 진행한다. Git 푸시/APK 업로드도 별도 요청 전에는 하지 않는다. 기존 미커밋 작업·저장 데이터·공유 키를 보존한다.
+
+- [x] 홈 이어하기/장별 모험 지도·작품 전시, 수학/그림방의 그림책 색·도구·안내 통일.
+- [x] 유아용 점·선·원 준비 운동과 저장/시범/다음 연습, 전체 필기 경로의 기계적 검사·시각 검토 자료.
+- [x] 기존 캐릭터와 일관된 투명 동작 atlas 제작·실제 프레임 사용, 유한 이동/인사·무동작/복원/백그라운드 처리.
+- [x] 수학 조작의 더하기·빼기 원인/결과와 그림 도장/완료 피드백 보완, 기존 진도/저장 복구 회귀.
+- [x] 기능별 analyze/test, 최종 전체 검사·캡처·콘텐츠 감사·서명 APK 로컬 빌드, README/요구사항/재개 기록.
+
+범위 구분: 전문 교육자 검수·아동 관찰은 자동 코드 검사로 대체할 수 없다. 대본/필순/난이도의 검토 자료와 로컬 검사를 준비하고 외부 확인은 별도로 남긴다. 음원/음악 제작·기기 설치·실제 청취/터치/성능 검증은 이번 요청에서 제외한다. 새 패키지·유료 API·서버를 도입하지 않는다.
+
+구현1/준비 운동: 별도 `prewritingItems`에 점·가로길·세로길·동그라미·물결·산길 6종을 추가했다. 기존 학습122항목과 구분해 `/prewriting`에서 접근하며, 기존 TraceVM/Repository/시범/코칭/다음 활동/초기화를 공유한다. 점만 전용 PrewritingStrategy로 가까운 탭을 받고 일반 글자·숫자는 탭을 계속 거절한다. 취소·저장 복원·3화면·보호자 초기화 4개 집중 검사 통과. 첫 전체 검사에서 600px/글자1.5배 수학 상단 액션이 넘쳤고 손가락 놀이의 중복 수학 액션을 제거해 수정했다. 이후 UI 단계 전체 analyze 문제0/404개 통과(124초, `docs/polish-ui-full.log`).
+
+구현2/화면·수학·그림: 홈 표지는 실제 저장 화/장면, 모험 지도는 12개 표지·목표·완료 상태와 현재 화 이어하기를 제공한다. 다른 표지 미리보기는 진도를 바꾸지 않는다. 작품은 확대/다시 그리기, PNG가 없어도 저장 문서로 화면에 복원한다. 그림방은 공통 안내·색 이름·글꼴 독립 꽃/나비/별/원/세모 도장, 넓은 태블릿 옆 도구와 폰 캔버스 우선 배치를 사용한다. 기존 5종 emoji 도장도 같은 의미로 다시 렌더하며 기존 PNG 파일은 변경하지 않는다. 수학 Counting 상태/VM을 UI에서 분리하고 실제 추가/제거에 따른 수식·사과 소품을 표시한다. Sorting의 새 선 잇기는 기존 VM/판정/저장을 그대로 사용하고 드래그·탭/스크롤 대안·취소·힌트·저장 실패/복원에 대응한다. 선은 저장 성공한 짝만 남으며 바구니 보기로 돌아가도 결과를 공유한다. 새 흐름7개 통과. 최초 작품함3개 검사는 가상화 목록을 스크롤하기 전에 찾던 테스트 오류였고 실제 스크롤로 수정해 통과했다.
+
+구현3/캐릭터: imagegen 스킬의 내장 이미지 도구를 사용해 `assets/story/cast-motion-v1.png`를 새로 만들었다. 4인물×idle/입 열기/이동 A/B의 실제16프레임이며 기존 캐릭터 디자인을 참조했다. 균일 격자 요청이 지켜지지 않아 명시적 행 경계를 사용하고 alpha·소스 영역·실제 컷 몽타주를 확인했다. 재배치 시도본은 `docs/art-review/cast-motion-packing-attempt.png`에 남기고 앱에는 넣지 않았다. 프롬프트는 `docs/cast_motion_prompt.txt`/`cast_motion_packing_prompt.txt`. `StoryCastFrame`이 1024px 캐시 이미지의 실제 프레임을 그리며, 정상 등장과 돌다리/별길 이동에 유한 두 포즈를 교대한다. 인사 때 입 열린 표정을 사용하지만 음소에 맞춘 립싱크는 아니다. 기존 탐색/가리키기 포즈도 유지한다. 동작 끄기/복원/백그라운드에는 정지하고 진도 판정에 관여하지 않는다. 실제 투명도/16소스/걸음 변화/중단·동작 줄이기/화면 컷 3개 통과.
+
+구현4/필기·검토 자료: 25개 영문/숫자 곡선과 이를 포함한 복합 숫자의 꺾인 몸통을 부드럽게 만들었다. 의도한 모서리, 획 수·순서·시작/끝점은 유지하고 기존 완료 잉크·진도 인덱스를 초기화하지 않는다. 기존 ㅊ 짧은 획 수정도 유지한다. 128개 실제 경로를 4연령에서 전체 수용·부분/탭/가로지르기 거절로 검사했다. `docs/review/`에 시작점·획 번호·다른 색 경로6장, 128항목 좌표 JSON, 실제118개 문항 JSON/CSV, 4연령×12화 경로와 검토 지침을 제공한다. 내부 구조 검사는 통과했지만 교육자 승인·청취·아동 관찰은 전부 pending이다. 곡선/기존 필기 집중22개 통과(`docs/polish-curves.log`), 프레임/검토5개 통과(`docs/polish-review.log`).
+
+화면 확인: 3크기×글자1/1.5배의 새 흐름6개 재통과(`docs/polish-final-capture.log`, 7초), `docs/screenshots/polish-{home,prewriting,dot,curve,drawing,counting,connection,gallery,exhibition}-{tablet,phone,landscape}-{1.0,1.5}.png` 54장. `cast-motion-review.png`로 실제16컷도 확인했다. 이는 호스트 이미지이며 실기기 검증이 아니다. 최종 전체 검사/감사/빌드는 아래에 기록한다.
+
+에뮬레이터: 설치된 Pixel_Tablet/WHPX를 확인했다. 기존 emulator-5554는 offline이며 이를 종료하거나 데이터를 변경하지 않았다. 같은 AVD의 read-only 시도는 기존 인스턴스 잠금 때문에 실패했다. 대신 `.tool_tmp/polish-avds`에 별도 KkomaPolish AVD를 만들고 5580 포트/숨김 창/무음/2GB RAM/SwiftShader로 시작했다. 실제 기기는 조작하지 않는다. 기존 Android 통합 검사의 오래된 홈/제목 선택자를 현재 UI로 고치고 별도 DB의 준비 운동 저장 확인도 추가했다. 부팅 및 실행 결과는 최종 기록에 반영한다.
+
+최종 자동 검사: `tool/test.ps1` **analyze 문제0 / 전체415개 통과**(직전393 + 준비 운동4 + 화면/연결7 + 경로/검토2 + 캐릭터3 + 화면6, 170초, 종료0, `docs/polish-full-test.log`). `BOOK_CAPTURE` 등 기존 검사도 기본 전체 검사에 포함되며 파일 생성은 각 opt-in 플래그에서만 수행한다. `prepare_recordings.dart --check`/`audit_content.dart` 종료0, 콘텐츠 오류0, 122기존 학습 + 준비 운동6종/12화, 음원은671개 미제작/0등록으로 유지한다. `export_content_review.dart` 종료0, 검토 문항118개·연령/화 경로48개. `git diff --check`도 통과했다.
+
+Android 실행 결과: 새 KkomaPolish 에뮬레이터 API35/2560×1600가 약79초에 부팅됐다. 기존/실제 기기의 데이터는 사용하지 않았다. PowerShell을 통한 `-d ... --timeout ...` 전달은 Flutter가 위치 인자로 오인해 최초 실행이 실패했고 `--device-id=emulator-5580 --timeout=120s`로 수정했다. 디버그 APK 빌드122.1초/설치 후 통합1개가13초에 통과했다. DB 재개 후 점 연습의 `done`도 직접 확인하는 assert를 추가해 재실행했고, 최종 빌드43.5초/검사7초 **1개 통과·종료0**(`docs/polish-android-integration-final.log`). 실제 Android SQLite·프로필 저장·홈/이야기 이동·선택 진도·준비 운동 저장·DB 닫기/다시 열기를 확인했다. 이는 음성/프레임/실기기 성능 또는 전체12화 Android 완주 검사가 아니다. 검사가 끝난 뒤 이번에 만든5580만 `adb emu kill`로 종료했고 기존5554는 조작하지 않았다. 테스트 AVD와 로그는 `.tool_tmp`/로컬 로그에 남겨 다음에 재사용할 수 있다.
+
+재개/제약: 유료 음원 생성, 음악 제작, 실제 기기 설치/청취/필기/성능, Git 푸시/APK 업로드는 하지 않는다. 교육자 승인·아동 관찰·별도 보안 저장소의 키 백업 확인은 사람이 해야 하며 자동 검사 통과로 대체하지 않는다. 새 동작은16프레임의 단순 포즈 전환이고 음소 립싱크·긴 걷기 사이클 제작을 완료했다고 보고하지 않는다. 문항/그림체의 전문 검수도 대기다. 마지막 릴리스 빌드/서명 결과는 아래에 추가한다.
+
+최종 로컬 APK: `tool/android.ps1 build apk --release --build-number=214290482` 성공(Gradle68.2초, 종료0). **1.0.0 (214290482)**, **149,998,465 bytes /143.0MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키로 apksigner **v2 true / 서명자1** 확인, aapt 버전 확인. SHA256 `9a049dba63379dcc880fa818c78e0f0faf244762061727d1c14af3ac092cc7ee`. 결과 `docs/polish_build.json`, 로컬 로그 `docs/polish-build.log`/`docs/polish-signature.log`/`docs/polish-package.log`. 최종 추가 analyze도 문제0(4.1초, `docs/polish-final-analyze.log`). 기존 KGP/flutter_tts 미래 호환·Cupertino 폰트·JDK native 경고는 남지만 현재 debug/release 빌드·서명은 통과했다. 새 패키지/키/결제 서비스/사용자 데이터 삭제를 하지 않았다. **Git 커밋/푸시·APK 업로드 없음**. 공개 APK는214232596, 최신 로컬 파일은214290482다.
+
+재개 명령: `tool/test.ps1`; `.tool_tmp`를 TEMP/TMP로 지정해 `flutter test --concurrency=1 --dart-define=POLISH_CAPTURE=true test/polish_capture_test.dart`, `flutter test --concurrency=1 --dart-define=REVIEW_EXPORT=true test/content_review_test.dart`, `flutter test --concurrency=1 --dart-define=CAST_CAPTURE=true test/story_cast_frame_test.dart`; `dart run tool/export_content_review.dart`; `dart run tool/prepare_recordings.dart --check`; `dart run tool/audit_content.dart`. Android 통합은 실제 기기 대신 별도 에뮬레이터를 선택하고 `tool/android.ps1 test integration_test/app_flow_test.dart --device-id=<ID> --timeout=120s`를 사용한다. 새 로컬 보완 범위는 완료했고, 외부 교육 검수/아동 관찰의 결과가 오면 자료의 ID를 기준으로 수정한다. 실기기·음원 제작은 사용자 요청 때까지 보류한다.
+
+# 7~12화 본문 미션 연출 마무리 (로컬 구현·자동 검증 완료, 2026-10-16)
+
+사용자 요청: 다음 화부터 마지막 화까지 이어서 진행한다. 기존 로컬 작업·공유 서명을 보존하고, 유료 음성 생성·Git 푸시/APK 업로드·실기기 테스트는 보류한다.
+
+- [x] 7화 꽃 색/모양, 8화 휙휙 바구니, 9화 세 갈래 복습, 10화 성장 책장, 11화 복습, 12화 선택한 방의 정리를 본문 안의 입력/결과로 연결.
+- [x] 8~12화 필기를 이야기 그림과 함께 유지하고 저장된 획만 장면에 반영. 11화 기존 필수 별 배치 및 7화 그림 저장/중단 복구 유지.
+- [x] 연령·분기·도움·힌트·저장 실패·중복 입력·복원·애니메이션 끄기와 폰/태블릿 회귀 테스트 및 시각 확인.
+- [x] analyze/전체 test, 콘텐츠/음원 감사, 로컬 릴리스 빌드·서명 검증, README/결과/재개 기록.
+
+실제 음원은 0개이고 TTS 대안을 사용하는 상태다. 이번 범위는 기존 삽화 위의 장면별 소품 상호작용/유한 연출이며, 새 캐릭터 걷기·입모양 프레임이나 AI 연기 음원을 제작했다고 보고하지 않는다.
+
+구현: 순수 `BookMission`은 StoryMachine이 결정한 실제 분기 문제/저장된 획·세기만 투영한다. Flame `BookMissionStage/Game`은 7~12화 퀴즈 17장면과 필기 5장면을 담당한다. 7화 꽃·잎/패턴에 따른 꽃길, 8화 글자·숫자 정리와 C 바구니/종이 이동, 9화 선택한 길의 빛줄기, 10화 씨앗·싹·나무와 펼친 책, 11화 복습과 숫자 2의 별 연결, 12화 선택한 꽃/별 장식과 ㅜ 이야기책이다. 정답/힌트/지원은 기존 Machine, 저장은 VM/Repository가 맡으며 저장 실패에는 변화하지 않는다. 선택판은 성공 후 1.8초 안에 사라지고 결과가 장면에 남는다. 무동작·시스템 동작 줄이기·복원은 즉시 최종 상태, 대기는 엔진 정지, 백그라운드 저장 후에는 연출을 다시 시작하지 않는다. 만 2세/쉬운 경로와 11화 기존 별 드래그는 유지한다. 버튼 대안도 유지한다.
+
+7화 지도: 제출 완료 CAS에 작품 ID를 `flags.gardenArtwork`로 함께 기록한다. 새 필수 저장 필드/마이그레이션 없이 구버전은 지도가 없는 채로 정상 진행한다. Provider가 정확한 ID로 작품 문서를 찾아 정원 그림 속에 재표시하며, 다른 최신 그림/임시 초안으로 바꾸지 않는다. 보호자가 작품을 삭제했다면 지도를 숨긴다. 중단/부분 PNG/메타데이터/조건부 저장 경합 회귀를 유지하고 재개 시 같은 ID도 검사한다.
+
+중간 검사: 신규 23개(순수 분기/연령/힌트·획, 터치 크기, 중복/백그라운드/동작 줄이기 2개, 6개 화×3크기 실제 장면/필기 18개, 지도 식별/삭제 1개)가 통과했다. 첫 집중 검사에서 지도 삭제 mock이 예전 목록을 재사용해 1개 실패했고, 실제 GalleryVM처럼 새 상태를 발행하도록 테스트를 수정해 재통과했다. lint의 중괄호 안내도 수정 후 전체 검사를 진행한다. `BOOK_CAPTURE=true` 최종 23개 통과(13초, `docs/chapters-final-capture.log`), `book-{7..12}-{choices,reaction,result,trace,written}-{tablet,phone,landscape}.png` 84장(7화는 그림 미션이라 trace/written 제외). 실제 이미지에서 글꼴 누락과 작은 미리보기 위쪽 잘림을 확인해 수정했으며, 결과 소품이 배우 얼굴을 가리는 위치도 조정했다. 호스트 렌더이고 Android 손가락/청취/프레임 검증이 아니다.
+
+콘텐츠: export_voice_scripts/export_story_studio/prepare_recordings/--check/audit_content 종료0, 122항목/12화/콘텐츠 오류0. 9화 숫자 질문의 '작은 판'을 '그림 속'으로 바꿔 화면과 맞췄다. 671개 대본 ID·실제 녹음0·음성 비용 보류는 유지한다. 감사에 본문 22장면/실제 획 수/그림 선택 검사와 범위를 추가했다. 전체 검사 및 빌드 최종 결과는 아래에 추가한다.
+
+최종 검사: `powershell -ExecutionPolicy Bypass -File tool/test.ps1` **flutter analyze 문제0 / 전체393개 통과**(직전370 + 신규23, 테스트118초, 종료0). `docs/chapters-full-test.log`. 기존 12화×4연령 완주, 분기/도움/필기/그림 PNG/저장 경합/오디오 회귀를 포함한다. 기존 장별 66개 위젯 검사는 접힌 버튼 대안을 열어 종전 입력/저장 실패 검증을 그대로 수행한다. 새 지도 ID를 중단 복구 검사에도 추가했다. 최종 `BOOK_CAPTURE=true` 23개/84장 및 `git diff --check`도 통과했다.
+
+로컬 APK: `tool/android.ps1 build apk --release --build-number=214274816` 성공(Gradle56.5초, 종료0). **1.0.0 (214274816)**, **147,724,730 bytes /140.9MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 서명 apksigner **v2 true / 서명자1**, aapt 버전 확인. SHA256 `a802896271bdb6d4991b327419d4e967c3975aaa5f81090a590a10c40bda4c95`. 결과 `docs/chapters_build.json`; 로컬 로그 `docs/chapters-build.log`/`docs/chapters-signature.log`/`docs/chapters-package.log`. 기존 KGP/flutter_tts 미래 호환성·미사용 Cupertino 폰트·JDK native 경고는 남아 있지만 현재 빌드/서명은 통과했다. 키를 새로 만들거나 데이터 삭제를 하지 않았다. **Git 커밋/푸시·APK 업로드 없음**, 공개 배포판은 여전히214232596이다.
+
+남은 범위: 이번 본문 상호작용/필기 연출은 마지막12화까지 구현·호스트 검증했다. 모든 대사 장면의 게임화·전면적인 새 삽화/캐릭터 걷기·입모양 프레임·새 음악·전문가 교육/필순/발음 검수·아동 사용성 관찰·실제 Android 설치/손가락/청취/성능은 완료가 아니다. 연기 음원 실제 제작/청취는 비용 보류 때문에 진행하지 않았고, 현재 여전히671개 음원 미제작/0등록·TTS 대안이다. 실기기는 사용자가 정한 마지막 단계에 수행한다.
+
+재개: 미커밋 작업을 유지한다. 주요 새 파일 `domain/book_mission.dart`, `presentation/book_mission_stage.dart`, `test/book_mission_test.dart`; Machine/Page/Illustration/PictureQuiz/StoryVM 및 감사/기존 장별·그림 복구 검사도 수정했다. `tool/test.ps1`; TEMP/TMP를 `.tool_tmp`로 지정한 뒤 `flutter test --concurrency=1 --dart-define=BOOK_CAPTURE=true test/book_mission_test.dart`; `dart run tool/prepare_recordings.dart --check`; `dart run tool/audit_content.dart`. UI/연출을 더 바꾸면 현재84장과 비교하고 기기 검증은 별도 유지한다. 음원 유료 생성·Git 푸시/APK 업로드는 새로운 명시 요청 없이는 실행하지 않는다. 이후 후보는 전체 시각 일관성/교육 검수 보완과 최종 실제 기기 검사이며, 비용 보류는 일반 앱 개발 중단을 뜻하지 않는다.
+
+# AI 연기 음원 준비·3/4화 장면 상호작용 (코드·자동 검증 완료 / 음원 생성 비용 보류, 2026-10-16)
+
+요청: 단순 기기 TTS 수준을 넘어 인물·감정이 살아 있는 스토리 음성을 목표로 하고, 다음 단계를 가능한 범위까지 진행한다. 실제 음원이 없는 부분을 완성으로 보고하지 않는다. 현재 연결된 음성 생성 서비스·승인된 유료 호출은 없으므로, 인물별 정확한 클립 선택·연기 제작 자료·검증을 구현한다. 사용자는 캐릭터별 AI 연기 음성을 선택했고 실제 생성 비용은 보류했다. 결제/음원 생성 호출 없이 독립 개발을 진행했다.
+
+- [x] 같은 대사도 캐릭터/장면별로 정확한 녹음 ID를 고르는 재생 경로, 자동/수동 읽기·취소 회귀.
+- [x] 전체 스토리의 인물별 캐스팅·감정·호흡·발음 제작 지침 및 파일 품질 검사 자료.
+- [x] 3화 자음 열매/씨앗·4화 소리 기차의 실제 터치·필기 결과 연출, 기존 진도/도움 유지.
+- [x] 실패·복원·연령·모션·화면 크기 회귀와 캡처, 전체 analyze/test·감사·로컬 APK/서명.
+
+음성 구현: `RecordedVoice.find`/`AudioService.speak`에 선택적 녹음 ID를 추가했다. 스토리 자동/수동 읽기·소품 완료·개수·글자 샘플은 정확한 ID + 원문 + 언어를 사용하므로 다른 캐릭터의 같은 대사를 가져오지 않는다. 일반 학습의 기존 텍스트 검색은 유지한다. `StoryMachine.narrationId`는 순수 규칙이고 모든 연령/장면/선택/쉬운 길/배치 전후를 대본과 대조한다. 화면이 바뀐 뒤 예약된 이전 자동 읽기도 차단했다. 기존 녹음 인덱스 화자가 바뀌면 재제작·검수를 요구한다.
+
+제작 자료: 전체 대본 671개(한564/영107)에 인물·감정·연기·호흡 지침을 추가했고, 그중 스토리 문맥 352개 take의 캐스팅별 시연 후보를 `docs/audio/story_studio.json`에 내보낸다. `voice_quality.dart`는 PCM의 sample peak/RMS·무음·클리핑 경고를 측정하며 LUFS/연기/청취 승인을 자동 판정하지 않는다. `STORY_DIRECTION.md`가 제작·검수 기준이다. 실제 파일은 여전히 0개, 배경음악 미제작이며 기본 음성은 TTS다.
+
+사용자 선호 반영: 캐릭터별 AI 연기 음성을 선택했다. OpenAI Docs 스킬로 공식 API·현재 모델/종료 일정을 확인하고 `generate_ai_auditions.dart`를 추가했다. 일반 REST `gpt-audio-1.5`로 인물별 짧은 시연 4개를 만드는 선택적 개발 도구이며 앱에 Realtime/서버/API 키를 넣지 않는다. 기본 실행은 계획만 생성하고 네트워크/키 읽기/결제가 없다. 실제 `--execute`는 별도 비용 승인과 환경변수 키가 필요하다. 이 PC에서 키가 미설정임만 확인했고 값을 읽거나 출력하지 않았다. 실제 API 호출 0회/생성 음원 0개. `ai_audition_plan.json`/`AI_AUDITIONS.md`에 대상 대본·목소리 후보·요청·검수 절차가 있다. mock 3개로 staging/원문/기존 파일 보존/불완전 응답을 검증했으며 실제 서비스 연동/발음/연기 품질을 검증했다고 보고하지 않는다. 보호자 설정에 AI 제작 방식과 TTS 대안을 안내한다.
+
+장면 구현: `LetterMission`을 3화 ㄴ/ㄱ 열매 선택·ㄱ 이름표와 4화 나/가 표지 선택·ㄴ 이름표로 확장했다. 같은 Flame 엔진이 저장된 정답·획만 읽어 열매에서 씨앗 꾸러미로의 이동/라벨, 열차 이름표 빛·출발 신호/유한 증기를 렌더한다. ㄱ/ㄴ은 각각 준비된 1획 경로를 사용한다. 힌트 선택 강조를 네 종류 모두에 연결하고, 기존 만 2세/쉬운 길·저장 형식은 보존했다. 기차 전체를 분리한 새 주행 프레임·새 캐릭터/배경/음원은 만들지 않았다. 본문 글자 연출은 이제 2~5화의 8장면이며 6/11화 배치와 12화 도입 탐색도 유지한다.
+
+중간 검증: 오디오·번들·연기/PCM·2~5화 집중 58개 통과. 장면/오디오 캡처 실행 49개, 추가 시각 수정 후 장면 17개 재통과. 3/4화 30장을 새로 추가해 `letter-{2,3,4,5}-{choices,opening,trace,partial,complete}-{tablet,phone,landscape}.png` 총 60장. 1획인 3/4화의 partial 캡처는 첫 획 완료 상태다. 호스트 폰트/렌더이며 실제 Android 청취·터치/성능 검증이 아니다. 기존 353 + 오디오/PCM/ID 8 + 장면 6 = 전체 367개/analyze 문제 0 통과(107초, `docs/adventure-test.log`). 이후 사용자 AI 선택으로 추가한 시연 도구 3개·보호자 안내까지 포함한 최종 결과는 아래에 기록한다. 최초 번들 테스트는 새 speaker 필드를 기대값에 반영하지 않아 1개 실패했고 갱신 후 재통과했다. lint도 수정 후 재검증한다.
+
+최종 시각 보완: 휴대폰 완료 캡처에서 씨앗 꾸러미 끈이 ㄱ 뒤로 비쳐 다른 글자처럼 보일 수 있어, 불투명 종이 이름표가 끈을 가리도록 수정했다. 캡처17개 재통과(docs/adventure-label-capture.log) 및 실제 이미지로 ㄱ 모양을 재확인했다. 이후 전체 검사370개/analyze 문제0을 다시 통과했고 아래 APK에 최종 이름표 수정도 포함했다.
+
+최종 검증: `tool/test.ps1` **analyze 문제 0 / 전체 370개 통과**(직전353 + 음성/PCM/정확한 ID8 + 3/4화 화면6 + AI 시연 도구 mock3, 110초, 종료 코드0). `docs/adventure-final-test.log`. 최종 캡처 실행 `LETTER_CAPTURE=true` 장면17개 통과(`docs/adventure-final-capture.log`). 무료 `generate_ai_auditions.dart` 실행으로 계획 파일을 만들었고 API 호출0·생성 WAV0을 확인했다. `export_voice_scripts.dart`, `export_story_studio.dart`, `prepare_recordings.dart` 및 `--check`, `audit_content.dart` 모두 종료 코드0, 콘텐츠 오류0. 녹음 필수 생산 검사는 `export_story_studio.dart --require-recordings`가 미제작352개 때문에 예상대로 종료1(`docs/performance-required.log`)이며 이를 성공으로 숨기지 않는다. `git diff --check`도 통과했다.
+
+로컬 APK: `tool/android.ps1 build apk --release --build-number=214272709` 성공(52.6초, 종료 코드0). **1.0.0 (214272709)**, **147,544,510 bytes / 140.7MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키 apksigner **v2 검증 통과 / 서명자1**, aapt 버전 확인. SHA256 `04e06981c2c31e7ce597e56e442b43d10b1dce240eedfb7b3df942bd22adb0a4`. 결과 `docs/adventure_build.json`, 로컬 로그 `docs/adventure-final-build.log`/`docs/adventure-final-signature.log`/`docs/adventure-final-package.log`. 기존 KGP/flutter_tts 마이그레이션·Cupertino 폰트·JDK native 경고는 남아 있지만 빌드/서명은 성공했다. 앞선 중간 APK는 최신 파일로 대체됐으며 Git 커밋/푸시·Release/APK 업로드는 하지 않았다. 공개 APK는 여전히 214232596이다.
+
+**음원 비용 결정(2026-10-16):** 사용자가 AI 시연4개 유료 생성 질문에 “비용 사용은 아직 보류”라고 답했다. 실제 생성은 실행하지 않았고 유료 API 도입/결제/키 발급을 하지 않았다. 현재 API 키도 미설정이다. AI 캐릭터 음성의 선호는 유지하지만 유료 생성 재개는 사용자의 새로운 명시 요청 전까지 수행하지 않는다. 앱의 실제 음성은 여전히 기기 TTS 대안이며 성우급 AI 음원 제작/청취 완료가 아니다. 이 보류는 일반 앱 개발 중단 요청이 아니다.
+
+남은 작업/다음: 실제 AI 시연·한국어 발음/감정·캐스팅 확정·352개 스토리 음원 제작은 비용 보류 상태다. 전체671개 음원·배경음악도 미제작이다. 독립 개발의 다음 후보는 7화 색 정원/8화 휙휙의 협동 사건을 그림 속 행동/결과로 강화하는 작업이다. 모든 중간 장면의 게임화, 캐릭터 걷기/입모양 프레임, 새 삽화의 그림체 통일, 교육·필순·발음 검수, 아동 관찰, Android 실제 설치/음성/터치/성능은 남아 있다. 실기기는 마지막에 유지한다.
+
+재개: 미커밋 작업을 보존하고 본 항목/`AI_AUDITIONS.md`를 먼저 읽는다. `tool/test.ps1`; TEMP/TMP를 `.tool_tmp`로 지정해 `flutter test --concurrency=1 --dart-define=LETTER_CAPTURE=true test/letter_mission_test.dart`; `dart run tool/export_voice_scripts.dart`, `dart run tool/export_story_studio.dart`, `dart run tool/prepare_recordings.dart --check`, `dart run tool/audit_content.dart`. AI 도구는 `dart run tool/generate_ai_auditions.dart`의 무료 계획 생성만 허용된 현재 범위다. `--execute`는 비용 보류 해제·환경변수 키 설정 후에만 검토한다. 주요 변경: core/audio 두 파일, StoryMachine/StoryPage/StoryVM, LetterMission/Stage/StoryIllustration, ParentPage, 음성 카탈로그/번들/품질/시연 도구와 관련 회귀 테스트. API 키를 소스·로그·채팅에 넣지 않으며 기존 서명 키와 로컬 데이터를 변경/삭제하지 않는다.
+
+기존 미커밋 작업·서명 키를 보존한다. Git 푸시/APK 업로드는 하지 않으며 실기기 검증은 마지막에 유지한다.
+
+# 꽃문·등대의 글자 미션과 필기 연결 (로컬 구현·자동 검증 완료, 2026-10-16)
+
+- [x] 2·5화 글자 선택을 그림 속 터치로 연결하고 기존 VM/저장·쉬운 길·접근성 유지.
+- [x] 필기 중 그림책 장면 유지, 확정된 획에 따른 꽃길·등대 빛 변화, 성공 연출·무동작·복원 처리.
+- [x] 실제 터치·잘못된 입력·저장 실패·획 복원·연령·가로/세로 회귀 및 화면 캡처.
+- [x] 전체 analyze/test, 콘텐츠 감사, 로컬 릴리스 빌드·서명 검증, README·재개 기록 갱신.
+
+구현: `LetterMission`은 기존 StorySnapshot에서 2·5화 주 퀴즈/필기만 투영한다. Flame `LetterMissionStage/Game`의 TapCallbacks가 기존 VM 답안 명령을 호출하며 판정·저장 규칙은 기존 State Machine/Repository에 남는다. 새 진도 필드·의존성·이미지/음원·서명 키는 추가하지 않았다. 필기 CanvasWorkspace에 그림책을 유지하고, 저장된 ㅏ 2획/A 3획에 따라 꽃길/등대 빛을 1.6초 이내로 연결한다. 정답 후 배경은 기존 삽화 사이를 1초 전환하며 문짝을 관절로 여는 새 애니메이션은 아니다. 초기 복원·무동작·백그라운드는 즉시 확정 상태를 보여주고, 대기 시 엔진은 정지한다. 2세 탐색과 쉬운 길은 기존 UI를 유지하며 그림 속 선택의 버튼 대안도 제공한다.
+
+검증: 기존 장별/연령/저장 76개 통과 후 신규 11개를 추가했다. `tool/test.ps1` analyze 문제 0 / 전체 353개 통과(104초, `docs/letter-test.log`). 마지막 테스트 보강 후 별도 analyze 문제 0, `LETTER_CAPTURE=true` 11개 통과(`docs/letter-capture.log`). 낙서·취소·저장 실패에는 빛이 증가하지 않고, 실제 획 입력·복원·가로/세로 회전·다음 이야기·두 탭 중복 차단·백그라운드 저장·무동작/애니메이션 중단을 검증했다. 좁은 꽃문 터치 영역 중첩을 조정했고, 부동소수점 경계 검사의 정밀도와 Flutter 백그라운드 프레임 지연을 반영해 테스트를 수정했다. 소스의 lint도 수정 후 재검증했다. 최초 실패를 통과로 보고하지 않는다.
+
+시각: `docs/screenshots/letter-{2,5}-{choices,opening,trace,partial,complete}-{tablet,phone,landscape}.png` 30장. 실제 삽화·캐릭터·문패·꽃길/등대 빛을 호스트에서 캡처했다. 캐릭터가 길을 가리던 크기와 낮은 가로 화면의 완료 버튼 위치를 수정했다. 이는 Android 실기기/아동 사용성·터치감·성능 검증을 대신하지 않는다.
+
+콘텐츠: `prepare_recordings.dart --check`와 `audit_content.dart` 종료 코드 0. 122항목·12화, 글자 장면 4곳의 획 수/선택지 검사 추가, 콘텐츠 오류 0. 대본 671개(한564/영107), 실제 녹음 0개·배경음악 미제작은 유지한다. 이번 작업의 새로운 안내는 화면/기존 장면 음성으로 제공하며 새 녹음을 만들었다고 보고하지 않는다. 변경 파일: `letter_mission.dart`, `letter_mission_stage.dart`, StoryMachine/StoryIllustration/StoryPage/StoryPictureQuiz, `letter_mission_test.dart`, 기존 장별 버튼 대안 테스트, 감사·README·요구사항 대조표.
+
+로컬 APK: `tool/android.ps1 build apk --release --build-number=214266319` 성공(49.4초, 종료 코드 0). **1.0.0 (214266319)**, **147,528,126 bytes / 140.7MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키로 apksigner **v2 검증 통과 / 서명자 1**, aapt 버전 확인. SHA256 `cd351de7349c50eac98cb713d141f012f29d8fe37c8a32e8b425418351798e68`. 결과 `docs/letter_build.json`, 로컬 로그 `docs/letter-build.log`/`docs/letter-signature.log`/`docs/letter-package.log`. 기존 KGP/flutter_tts 마이그레이션·미사용 Cupertino 폰트·JDK native 경고는 남아 있지만 빌드/서명은 성공했다. `git diff --check` 통과. Git 커밋/푸시·Release/APK 업로드는 하지 않았다. 공개 GitHub APK는 여전히 214232596이며 이번 로컬 기능을 포함하지 않는다.
+
+남은 작업/다음: 이번 범위는 2·5화 주 글자 선택과 필기 장면 4곳이다. 전체 중간 장면의 연출·캐릭터 걷기/입모양 프레임·과목별 새 삽화·실제 녹음/음악·교육 검수·아동 사용성·실기기는 아직 끝나지 않았다. 다음 후보는 3화 자음 열매/글자 씨앗과 4화 소리 기차에서 선택·필기 결과가 장면 사건으로 이어지는 상호작용이다. 새 아트가 필요한 부분은 별도 제작/일관성 검수를 거쳐야 하며 기존 그림 이동을 새 프레임 애니메이션이라고 보고하지 않는다. 실기기 설치/업데이트·청취·성능은 사용자 지시대로 마지막에 수행한다.
+
+재개: 기존 미커밋 작업을 보존하고 PROGRESS 최신 항목과 `letter_mission.dart`, `letter_mission_stage.dart`, `story_page.dart`, `letter_mission_test.dart`를 먼저 확인한다. `tool/test.ps1`; `.tool_tmp`를 TEMP/TMP로 지정해 `flutter test --concurrency=1 --dart-define=LETTER_CAPTURE=true test/letter_mission_test.dart`; `dart run tool/prepare_recordings.dart --check`; `dart run tool/audit_content.dart`. 호스트 캡처는 테스트 전용 Windows 한글/아이콘 폰트를 로드하며 Android 폰트를 대신 검증하지 않는다. 데이터 초기화/키 재생성은 하지 않으며 Git/APK 배포는 별도 명시 요청 때만 수행한다.
+
+실기기 검증은 마지막에 수행한다. Git 커밋/푸시 및 APK 업로드는 이번 요청에 포함되지 않는다. 이전 미커밋 작업과 서명 키를 보존한다.
+
 # 꼬마 탐험 공부방 개발 기록
+
+## 그림 속 핵심 미션 / 돌다리·별자리 연출 확장 (로컬 구현·자동 검증 완료, 2026-10-16)
+
+사용자 다음 단계 요청. 도입 탐색을 넘어 6화 돌 3개·11화 별 5개 필수 배치를 Flame 그림 속 조작으로 옮기고, 저장된 배치와 정답 성공이 실제 장면의 길/빛/동료 이동으로 이어지게 한다. 기존 미커밋 수정·연령별 탐색/대체 퀴즈·저장 형식은 보존한다. 새 패키지·유료 서비스·음원/서명 키 제작·Git/APK 업로드는 하지 않는다. 실기기는 마지막에 유지한다.
+
+- [x] 본문 그림 속 돌/별 드래그·탭·접근성 입력과 기존 VM/State Machine 배치 연결, 버튼 대안 접기.
+- [x] 배치 저장 후 경로/수량 변화·서사 피드백, 실제 정답 성공 후 건너기/별빛 길 연출·복원 시 재생 금지.
+- [x] 실패/잘못된 자리·동시 입력·중단/크기 변경·애니메이션 끄기·도움 경로 회귀, 폰/태블릿 캡처.
+- [x] analyze/test·콘텐츠/음원 감사·로컬 APK/서명, README/남은 작업·재개 기록 갱신.
+
+API 확인: [Flame 공식 Drag events](https://docs.flame-engine.org/latest/flame/inputs/drag_events.html)와 설치된 1.38.2 `DragCallbacks`/이벤트 소스를 확인한다. 드래그는 표현 계층이며 배치 수집·정답 판단·진도 저장은 기존 StoryVM/StoryMachine/Repository가 처리한다.
+
+구현 범위: `WorldMission`은 6화 돌 3개/11화 별 5개 장면의 연출 지시를 데이터로 제공한다. `WorldMissionStage/Game`은 실제 Flame TapCallbacks/DragCallbacks로 본문 삽화 안의 소품을 옮기고, 놓을 위치를 기존 `placeObject(piece,slot)` 명령에 보낸다. 한 번의 저장이 끝날 때까지 표현 계층도 입력을 잠근다. 이미 놓은 소품·잘못된 순서·중복 처리는 기존 State Machine이 판단하며, 확정된 `observedObjects` 외에 새 진도 필드를 만들지 않았다. 기존 저장을 그대로 이어 쓴다. 만 2세와 쉬운 대체 문제는 기존 그림 선택을 유지한다. 기존 Flutter 배치 판은 ‘버튼으로 놓기’ 아래 접어서 남기고 같은 VM 명령을 사용한다.
+
+장면 연출: 6화 대상 위치를 1536×1024 원본의 실제 다리 구멍에 맞췄다. Image의 cover/초점과 같은 변환으로 터치 위치를 계산하며, 저장된 자리만 기존 완성 삽화에서 타원으로 잘라 겹쳐 실제 돌 질감을 복원한다. 래스터 이미지를 새로 생성하거나 수정한 것이 아니다. 11화는 하늘의 별길 노드를 하나씩 채우고 빛줄기를 연결한다. 배치만 끝내서는 정답 처리하지 않으며, 개수 선택의 정답 저장이 성공해야 2.4초 동료 이동·빛 연출이 시작된다. 엔진은 정지 상태에서도 입력 때 한 프레임씩 다시 그리며 유한 연출 후 정지한다. 저장된 성공 상태를 처음 열면 최종 위치를 바로 보여 주며 동료 이동을 재생하지 않는다. 이동은 기존 투명 캐릭터의 위치 애니메이션이며 새 걷기 프레임/관절 애니메이션을 제작한 것은 아니다.
+
+서사/음성: 6·11화 수학 미션의 화자를 토토로 정리하고, 배치 전에는 길 잇기 안내, 배치 후에는 개수 질문을 읽는다. 더 이상 화면과 음성이 ‘작은 판’을 지시하지 않는다. 일반 스토리에서도 성공 후 큰 본문이 결과 대사로 바뀌고, 같은 성공 문구를 아래 상자에 중복 표시하지 않는다. 기존 TTS/녹음 우선 재생 경로에 맞춰 고정 대본 2개를 추가하고 변경된 대사/질문도 manifest에서 갱신했다. 현재 671개 ID(한 564/영 107), 실제 녹음은 여전히 0개다.
+
+집중 검증/수정: 새 세계 미션 11개와 기존 배치/그림 회귀 8개, 총 19개 통과(`docs/world-focused.log`). 첫 검사에서 ExpansionTile 아래 Material이 없어 잉크가 가려지는 Flutter 진단과, 애니메이션을 끈 성공 전이 중 형제 위젯 알림 시점 문제가 드러났다. Material 표면을 추가하고 이동 알림을 프레임 뒤에 전달하도록 수정한 후 재검증했다. 배경 위에서 떠 보이던 돌 자리는 실제 삽화 좌표와 질감 복원으로 고쳤다. 저장 지연 중 연타·두 손가락·취소·회전·백그라운드 완료, 애니메이션/시스템 동작 줄이기·복원 시 정지가 검증 범위다. 기존 6·11화 배치 판 검사는 접힌 버튼 대안을 먼저 열어 예전 드래그/탭 검사를 그대로 수행하도록 갱신했다. 최종 전체 검사/캡처/빌드 결과는 아래에 기록한다.
+
+최종 자동 검증: `tool/test.ps1` **analyze 문제 0 / 전체 342개 통과**(직전 331 + 새 11, 테스트 96초, 종료 코드 0). 로컬 `docs/world-test.log`. 기존 12화×4단계 완주/스토리 분기·도움·그림·필기·오디오·저장 경합과 6크기×글자 1/1.5배 등 회귀를 포함한다. 새 세계 미션의 3크기 기본 조작 외에 기존 장면 검사가 폰/가로/태블릿의 확대 글자와 버튼 대안도 검사한다. `git -c core.autocrlf=false -c core.whitespace=cr-at-eol diff --check`도 통과했다.
+
+최종 시각 확인: `flutter test --concurrency=1 --dart-define=WORLD_CAPTURE=true test/world_mission_test.dart` **11개 통과**(`docs/world-capture.log`). `docs/screenshots/world-{6,11}-{before,journey,after}-{tablet,phone,landscape}.png` **18장** 생성. 태블릿 돌 배치 전/복원 후, 폰 완료 대사, 별자리 이동 중·가로 완료 화면을 열어 실제 좌표/큰 터치/질감/화자/결과 문구를 확인했다. 호스트 캡처용 글꼴만 테스트에서 로드하며 Android 기기 글꼴/프레임/실제 손가락 검증을 대체하지 않는다.
+
+콘텐츠 검사: `export_voice_scripts.dart`, `prepare_recordings.dart` 및 `--check`, `audit_content.dart` 모두 종료 코드 0. **122학습 / 12화 / 도입 놀이 12곳 / 본문 세계 미션 2곳 / 콘텐츠 오류 0**. 대본은 **671개(한 564/영 107) 미제작**, 실제 녹음 0개·기존 합성 효과음 3개를 유지한다. 새 대본 2개와 변경된 대사·질문은 제작 목록/인덱스/감사에 반영했고, 음원 제작·실제 청취 검수 완료로 보고하지 않는다.
+
+로컬 APK: `tool/android.ps1 build apk --release --build-number=214265371` 성공(84.4초, 종료 코드 0). **1.0.0 (214265371)**, **147,495,358 bytes / 140.7MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키로 apksigner **v2 검증 통과 / 서명자 1**, aapt 버전 확인. SHA256 `7c864f9fa0616a99feb027d9c8217dc56f9fee0d9f52eaa5c672489c1d37867e`. 결과 `docs/world_build.json`; 로컬 `docs/world-build.log`/`docs/world-signature.log`. 이전과 같은 KGP/flutter_tts·Cupertino 폰트·JDK native 경고가 남아 있지만 빌드/서명은 성공했다. 새 키 생성·Git 커밋/푸시·Release/APK 업로드는 하지 않았다.
+
+완료 범위/다음: 이번 단계는 기존 도입 놀이 12곳에 더해 **6·11화의 본문 배치 미션 두 곳**을 그림 속 상호작용으로 확장한 것이다. 모든 중간 장면의 게임화, 새 캐릭터 걷기/입모양 프레임, 과목별 그림체 통일, 실제 녹음/음악을 끝낸 것은 아니다. 다음 후보는 2화 꽃문·5화 등대에서 필기/문제 성공이 장면 오브젝트의 상태 변화와 연결되는 연출이다. 교육·필순·발음 검수와 아동 관찰도 남아 있다. 실기기 설치/업데이트·청취·성능 검증은 사용자 지시대로 마지막에 유지한다. 소스와 새 APK는 앞선 미커밋 작업을 포함해 로컬에만 있고 GitHub 배포 APK는 여전히 214232596이다.
+
+재개: `tool/test.ps1`; 캡처는 TEMP/TMP를 프로젝트 `.tool_tmp`로 지정한 뒤 `flutter test --concurrency=1 --dart-define=WORLD_CAPTURE=true test/world_mission_test.dart`; 대본/번들은 `dart run tool/export_voice_scripts.dart`, `dart run tool/prepare_recordings.dart --check`, `dart run tool/audit_content.dart`. 핵심 파일은 `world_mission.dart`, `world_mission_stage.dart`, `world_mission_layout.dart`, `story_illustration.dart`, `story_machine.dart`다. 배치 저장 형식은 기존 observedObjects이며 별도 마이그레이션이나 데이터 삭제를 하지 않는다. Git/APK 배포는 새 명시 요청 때만 수행한다.
+
+## 스토리 장면 놀이·필기 경험 보강 / Flame 적용 (로컬 구현·자동 검증 완료, 2026-10-16)
+
+사용자 요청: 스토리와 한글/영어 따라 그리기의 품질 개선, Flame 2D 엔진 도입 고려. 기존 미커밋 UI/ㅊ 수정·저장 파일을 유지한다. 공식 Flame 문서와 stable 패키지를 확인하고 장면 내 소품/반응 렌더링에만 엔진을 적용한다. 저장·정답·분기·학습 완료는 기존 Repository/State Machine/Strategy가 담당한다. Flutter 접근성/대화/보호자 UI를 유지한다. 새 유료 서비스·마이크·서명 키·Git/APK 업로드 없음.
+
+- [x] Flame 의존성/API 호환 확인, 12화 장면 놀이 데이터와 탐색 저장/복원·효과 연결.
+- [x] 장면 소품 터치/수집 반응·유한 효과·무동작/백그라운드 엔진 정지, Flutter 접근성 대안.
+- [x] 필기 중 순수 Dart 코칭·진행 피드백, 곡선 시작 화살표·펜 자국·시범/현재 획 표시 보강.
+- [x] 실제 입력/잘못된 입력·저장 실패·재개·연령·회전·엔진 생명주기 회귀 및 캡처 검사.
+- [x] 전체 analyze/test·감사·로컬 APK/서명, 실제 적용 범위·미제작/미검증·재개 기록.
+
+적용 범위(2026-10-16): Flame **1.38.2** stable + 전이 의존성 ordered_set **8.0.1**(둘 다 MIT)을 추가했다. [공식 GameWidget](https://docs.flame-engine.org/latest/flame/game_widget.html)·[TapCallbacks](https://docs.flame-engine.org/latest/flame/inputs/tap_events.html) 문서와 설치된 1.38.2 소스로 크기/입력/정지/생명주기 API를 확인했다. 모든 정적 그림책 페이지를 엔진으로 바꾸지 않고 각 화의 첫 대사 장면 12곳에만 `ScenePlayStage`/`ScenePlayGame`을 얹는다. 배경·실제 투명 캐릭터·대사/선택/퀴즈는 Flutter를 유지한다. 정답/저장/분기는 엔진에 넣지 않았다.
+
+장면 놀이: 별·꽃·열매·기차표·등불·돌·물감·이야기 조각·길잡이 등불·잎·마지막 별빛·책의 12개 소품과 초대/완료 대사를 작성했다. 만 2/3/4~5세에 1/2/3개를 찾는다. 소품 탭은 VM → State Machine → Repository 저장을 거쳐 확정된 `sceneFinds`만 반영하며 중복/범위 밖/퀴즈 중 입력은 무시한다. 이전 저장에 필드가 없어도 빈 목록으로 복원하고 새 장면 이동·지원하지 않는 수준/상태에서 정리한다. 선택 놀이여서 기존 이어하기·다음 버튼·힌트/도움 경로를 막지 않는다. 발견 후 빛줄기/짧은 입자·소품 이동·캐릭터 반응을 보여 주고 가만히 있을 때 엔진을 정지한다. 접근성 조작은 동일 VM 명령을 사용한다. 초기 복원에는 효과음을 재생하지 않는다. 자동 읽기/다시 듣기에 놀이 지시를 포함하고 마지막 발견 후 반응 대사를 읽으며 음소거/자동 읽기 설정을 따른다. 실제 녹음은 추가하지 않았다.
+
+필기: `TraceCoach`는 현재 입력만 순차적으로 검사하는 순수 Dart 코칭이다. 시작점·밝은 길 복귀·방향·끝점 안내와 진행 막대를 제공하지만 합격/저장/점수는 만들지 않는다. 기존 `TraceStrategy`의 최종 판정·왕복/부분 획 방지와 앞선 ㅊ 보완은 유지했다. 현재 획을 다음 획보다 위에 그리고, 곡선의 첫 미세 선분 대신 이동 거리로 화살표 위치·접선을 계산한다. 획마다 한 번의 시범·움직이는 펜 끝을 보여 주며 그리기 시작/움직임 끄기에는 중단한다. 손을 떼기 전에는 완료하지 않고 취소/획 변경/연령 변경에서 버퍼를 정리한다. 잉크만 화면에서 부드럽게 보이며 판정에는 원래 좌표를 보낸다. 큰 태블릿 가로 화면은 캔버스/옆 안내판, 좁은 세로/가로 폰은 기존 독립 캔버스·스크롤 도구를 유지한다. 포인터 이동은 로컬 Notifier/캔버스만 갱신한다.
+
+검증 중 발견/수정: 첫 집중 13개 중 엔진/코칭 기능은 통과했지만 새 테스트의 SemanticsHandle 정리가 누락된 2건을 수정했다. 이후 13개 모두 통과했다. 화면 캡처에서 좁은 화면의 제목 장식이 첫 소품을 가리는 실제 문제를 확인했고 중복 제목 장식을 제거했다. 수정 후 폰·가로 폰에서도 3개 모두 실제 탭으로 수집하는 검사와 ㅊ/곡선/필기 취소·시범을 확인했다. 현재 획을 가로지르는 미래 획의 덧칠과 낮은 화면의 도구 공간도 보강했다. 최종 전체 검사/빌드는 아래에 실제 결과를 기록한다.
+
+추가 마무리: 애니메이션 끄기/숨김 때 남던 소품 이동·입자를 즉시 지우고, 다시 보여도 반응을 재생하지 않게 하는 회귀 검사를 추가했다. 수집 완료 후에도 '별빛이 꺼졌어요'라는 기존 대사를 남기지 않도록 본문과 읽기를 완료 반응으로 전환하고 복원 상태도 검증했다. 단계별 중간 검사 330개/331개와 별도로 마지막 대사 변경까지 포함해 전체 검사를 다시 실행했다.
+
+최종 자동 검증: `powershell -ExecutionPolicy Bypass -File tool/test.ps1` **analyze 문제 0 / 전체 331개 통과**(테스트 92초, 종료 코드 0, 로컬 `docs/experience-test.log`). 앞선 312개 + 새 19개(`scene_play_test.dart` 10, `trace_coach_test.dart` 6, `experience_test.dart` 3). 12화×4단계 탐색 저장/복원·잘못된 입력·기존 미션 자유 진행, 12종 Flame 렌더/탭/정지 중 크기 변경, 실제 실패 저장/접근성/생명주기/애니메이션 중단, 모든 획의 4단계 코칭·역방향/낙서 방지, 폰/가로/태블릿 실제 필기/취소/시범과 기존 전체 회귀를 포함한다. `git -c core.autocrlf=false -c core.whitespace=cr-at-eol diff --check`도 통과했다.
+
+최종 캡처: `EXPERIENCE_CAPTURE=true`로 `test/experience_test.dart` 3개를 실행해 모두 통과했다(로컬 `docs/experience-capture.log`). `docs/screenshots/experience-{story,restored,hangul,english,demo}-{tablet,phone,landscape}.png` **15장**을 생성했다. 태블릿 전후 장면/한글/영어/이동 중 펜, 폰 소품·필기, 낮은 가로 필기 화면을 열어 확인했다. 호스트 한글/아이콘 폰트를 캡처 테스트에서만 로드했고 앱 번들에 복사하지 않았다. Android 실제 화면·터치 느낌·프레임/메모리 측정을 대신하지 않는다.
+
+콘텐츠/오디오: `export_voice_scripts.dart`, `prepare_recordings.dart` 및 `--check`, `audit_content.dart` 모두 종료 코드 0. **122학습 / 12화 / 장면 놀이 12곳 / 콘텐츠 오류 0 / 실제 녹음 0개**. 장면 놀이 초대/반응/2·5단계 복원 조합 60개 ID를 대본에 추가해 **669개(한국어 562·영어 107)**가 미제작으로 남는다. 기존 609개를 녹음했다고 보고하지 않는다. manifest/CSV/번들 인덱스/감사 및 음성 제작 안내를 함께 갱신했다.
+
+로컬 APK: `tool/android.ps1 build apk --release --build-number=214240100` 성공(55.3초, 종료 코드 0). **1.0.0 (214240100)**, **147,036,566 bytes / 140.2MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유용 키로 apksigner **v2 검증 통과, 서명자 1**, aapt 버전 확인. SHA256 `6764499556b5fc0597833f59750d5b78635894531c3c10f570e07a4fb4b078db`. 결과는 `docs/experience_build.json`, 로컬 로그 `docs/experience-build.log`/`docs/experience-signature.log`. 기존 KGP/flutter_tts 마이그레이션·미사용 Cupertino 폰트·JDK native 경고는 남지만 빌드와 서명 검증은 성공했다. 새 키를 만들거나 기존 키 내용을 출력하지 않았다.
+
+남은 품질 작업/재개: 이번 엔진 적용은 12화 **도입 장면의 선택 탐색**이다. 모든 중간 장면의 독자적인 게임 연출, 프레임별 캐릭터 걷기/표정/입모양, 과목별 새 개별 삽화, 실제 음성/음악은 제작 완료가 아니다. 다음은 핵심 중간 미션을 장면별 행동·결과로 확장하고 전용 캐릭터 동작을 제작하는 일이며, 이후 교육·필순/발음·아동 사용성 검수가 필요하다. 실기기 설치/업데이트·청취·성능은 사용자 지시대로 마지막에 수행한다. Git 커밋/푸시·Release/APK 업로드는 하지 않았고 GitHub의 214232596 배포판에는 이번 및 앞선 UI/ㅊ 후속 수정이 없다. 변경 사항은 이전 미커밋 작업과 함께 로컬에 있다. 재개 시 `flutter pub get`, `tool/test.ps1`, 음성 manifest/감사 명령을 실행한다. 캡처는 TEMP/TMP를 `.tool_tmp`로 설정 후 `flutter test --concurrency=1 --dart-define=EXPERIENCE_CAPTURE=true test/experience_test.dart`. 현재 APK 서명/버전 결과는 위 JSON이 기준이다.
+
+## 화면 품질 1차 개편 (로컬 구현·자동 검증 완료)
+
+사용자 피드백: 앱이 싸구려처럼 보임. 기존 그림책 지향을 기준으로 홈·학습·스토리의 구도와 글꼴 위계/표면/버튼을 함께 정리한다. 기존 실제 삽화를 재사용하며 신규 AI 이미지·음성·유료 서비스·패키지를 추가하지 않는다. 앞서 미커밋 ㅊ 수정과 저장 상태를 보존한다. 이번 요청에는 Git 푸시/Release/APK 업로드를 포함하지 않는다.
+
+- [x] 공용 색/글꼴/버튼/표면 규칙과 공통 활동 헤더 정리.
+- [x] 홈: 모험 표지 + 과목별 그림 책장, 저장소 기술 설명을 어린이 첫 화면에서 제거.
+- [x] 학습: 과목별 글자 카드·읽기/필기 행동 위계, 실제 콘텐츠/읽기/이동 유지.
+- [x] 스토리: 그림 비중과 내용 크기에 맞는 대사 패널, 반응형/퀴즈/필기/그림 회귀 유지.
+- [x] 실제 호스트 화면 캡처 확인·수정, 6크기×2글자 배율 회귀와 전체 analyze/test, 로컬 빌드·미검증 기록.
+
+구성: `app_theme.dart`에 종이색/잉크색/청록/금색·제목 Jua/본문 기본 sans-serif·버튼/카드 규칙을 모았다. Android 본문은 시스템 Roboto 및 한글 대체 글꼴을 사용하며 새 폰트/패키지를 번들에 추가하지 않았다. 홈은 태블릿에서 모험 표지와 과목 책장 4개, 작품/지도 줄을 한 화면에 배치하고 좁은 화면은 세로 스크롤한다. 과목 표지는 기존 꽃문/등대/다리/정원 삽화를 재사용한다. 가짜 학습 진도·보상·새 콘텐츠 수를 표시하지 않는다. 스토리 표지는 버튼 영역을 그림 아래에 확보해 캐릭터를 가리지 않는다.
+
+학습/스토리: 학습 데이터·읽기 VM·경로는 유지하고 `LearningCard`로 과목 색/큰 글자/단어/읽기/필기 버튼을 구성한다. 확대 글자에서 핵심 모드 전환이 밀리지 않게 '함께 찾기'를 첫 행동으로 두었으며 수학 두 조작 모드도 유지한다. 일반 학습 카드의 그림은 기존 이모지를 사용하며 새 122종 삽화를 제작했다고 보고하지 않는다. 스토리의 태블릿 가로 배치를 8:5로 조정하고, 대사 스크롤은 내용 높이까지 줄어드는 패널로 만들어 짧은 대사 뒤의 큰 빈 상자를 없앴다. 높이가 낮은 가로 폰에서는 좁은 옆 패널 대신 높이를 제한한 그림과 전체 폭 대사를 세로로 스크롤한다. 명시적 스토리 전이·저장·TTS·필기 판정 로직은 변경하지 않았다.
+
+검증 중 발견: 첫 집중 검사에서 확대 글자의 수학 '함께 찾기'가 가로 도구 목록 뒤로 밀리는 실제 문제를 수정했다. 새 탐색 테스트의 lazy 목록 항목 찾기/스크롤 뒤 프레임 대기·음소거 효과음 설정을 보강했다. 첫 캡처의 비어 있는 그림/네모 글자는 호스트 테스트가 이미지 디코딩·폰트를 준비하기 전 캡처한 결과였다. 캡처 모드에서만 해당 자산을 미리 읽고 호스트 한글/아이콘/이모지 폰트를 로드하도록 수정했다. Windows 폰트 파일을 앱에 복사하지 않았다. 본문/텍스트 버튼의 기본 글꼴과 이모지 fallback을 명시하고, 축소 대사 패널은 유한 장면에 맞는 SingleChildScrollView/Column으로 단순화했다. analyze 인수 순서 lint 1건도 수정했다.
+
+회귀 수정: 첫 전체 검사 310개 통과/2개 실패였다. 분류 놀이의 스크롤 직후 프레임 대기 없이 누르던 테스트를 실제 화면 갱신 뒤 누르도록 보강했다. 낮은 가로 폰의 도움 메뉴 검사는 높이 125px 뷰포트에서 200px씩 이동해 버튼을 건너뛰는 것을 디버그로 확인하고, 스크롤 단위를 실제 높이에 맞게 줄였다. 제품에서도 이 크기는 전체 폭 대사로 바꿔 지나치게 좁은 패널을 피했다. 기대한 배치 수/원래 미션 복귀 결과는 유지한다. 이후 새 홈/학습/스토리 탐색·회전/도움·실제 드래그 분류 집중 11개가 모두 통과했다(`docs/design-visual-test.log`). 최종 전체 검사와 빌드는 아래에 별도로 기록한다.
+
+시각 확인: 홈/한글/스토리 시작/대사 위치 × 태블릿 1280×800·폰 360×780·가로 폰 780×360의 호스트 캡처 12장을 생성했다(`docs/screenshots/design-{home,hangul,story,story-dialogue}-{tablet,phone,landscape}.png`). 홈 태블릿·폰, 한글 카드, 스토리 태블릿·가로 대사 화면을 열어 비교했다. ㅊ 수정과 함께 실제 기기 확인은 남아 있다. 캡처의 본문/이모지는 호스트 폰트를 사용하므로 Android 기기 글꼴과 정확히 같은 픽셀로 검증한 것이 아니다.
+
+최종 자동 검사: `tool/test.ps1` **analyze 문제 0 / 전체 312개 통과**(직전 309+새 탐색 3, 테스트 83초), 로컬 `docs/design-test.log`. 6개 크기×글자 1/1.5배의 기존 레이아웃 12개와 모든 스토리·필기·그림·저장·오디오 회귀를 포함한다. 수정 후 성공을 확인했으며 첫 전체 검사 2건 실패를 통과로 기록하지 않았다. 앱의 교육 적합성·사용성·실기기 성능을 자동 검사만으로 완료 처리하지 않는다.
+
+로컬 APK: `tool/android.ps1 build apk --release --build-number=214238199` 성공(49.2초, 종료 코드 0). **1.0.0 (214238199)**, **146,380,842 bytes / 139.6MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유용 키로 apksigner v2 검증 통과(종료 코드 0, 서명자 1), aapt 버전 확인. SHA256 `a8e26b125d1b7713bd2becaded76d331d1d5ba60545ea2b33cda2eac43ab90a7`. `docs/design_build.json`, 로컬 `docs/design-build.log`/`docs/design-signature.log`. ㅊ 첫 획 수정도 포함한다. 기존 Kotlin 플러그인 마이그레이션/Cupertino 폰트/JDK 경고는 유지하며 빌드/서명은 성공했다. 번들 인덱스 검사 통과(음성 0), 콘텐츠 감사 오류 0(122학습·12화·609개 녹음 미제작)도 재확인했다.
+
+완료 범위/다음: 홈·일반 학습 카드·그림책 대사 및 공용 스타일의 첫 개편이다. 모든 과목의 개별 사물 삽화·퀴즈 그림의 그림체 통일·캐릭터 프레임/입모양·실제 녹음/음악 제작을 끝낸 것으로 보고하지 않는다. 다음 품질 작업은 과목별 개별 삽화와 퀴즈/반응 연출을 같은 시각 언어로 확장하고 아동 사용성 피드백을 받는 것이다. 실기기 성능/글꼴/청취·최종 설치 검증은 사용자 지시대로 마지막 단계에 유지한다. 이번 수정의 Git 커밋/푸시·Release/APK 업로드·키 생성·데이터 삭제는 하지 않았다. GitHub의 214232596 APK는 이전 배포판이다. 재개 명령은 `tool/test.ps1`, 캡처는 TEMP/TMP를 `.tool_tmp`로 설정 후 `flutter test --dart-define=DESIGN_CAPTURE=true test/design_navigation_test.dart`이며 캡처 모드만 호스트 폰트를 미리 읽는다.
+
+## ㅊ의 짧은 첫 획 입력 보완 (로컬 구현·자동 검증 완료)
+
+사용자 증상: 한글 자음 ㅊ의 맨 위 짧은 첫 획이 잘 넘어가지 않음. 첫 획 길이 0.13에 비례한 허용 폭(4~5단계 0.0208)이 작고, 좁은 캔버스에서 시작 번호 원·종료 원·방향 화살표가 짧은 길을 가리는 점을 확인했다. 기존 획 좌표·획 수·저장 데이터는 유지하며 짧은 직선의 손가락 오차와 표시를 보완한다. Git/APK 재업로드는 이번 요청에 포함하지 않는다. 실기기는 최종 단계라는 사용자 지시를 유지한다.
+
+- [x] 실제 ㅊ 첫 획에 작은 평행 오차/끝점 오차를 넣은 실패 재현과 탭·부분·역방향·낙서 회귀 검사.
+- [x] 짧은 직선에만 제한된 오차 보완, 렌더링과 판정의 허용 폭 공유.
+- [x] 짧은 획의 번호/시작점/화살표 겹침 해소, 폰·낮은 가로·태블릿 포인터/진도 복원 검사.
+- [x] analyze/test, 로컬 APK 빌드·서명 검증, 실제 실행 결과와 미검증 기록.
+
+원인/구현: 첫 획 길이 0.13에서 4~5단계 판정 반경은 캔버스의 0.0208, 2~3단계는 0.0286이었다. 수평으로 0.03만 어긋난 온전한 선이 4연령 모두 실패하는 것을 `docs/chieut-before-test.log`로 재현했다(긍정 4개 실패, 낙서 방지 4개 통과). `TraceStrategy.toleranceFor`로 판정/표시의 폭을 공유하고, 길이 0.18 이하의 두 점 직선만 기존 폭과 `min(0.035, 획 길이×0.28, 연령 허용 폭)` 중 큰 값을 쓴다. ㅊ 첫 획은 0.035가 되며 긴 획·곡선의 판정은 유지한다. 최소 길이·과도한 길이·방향·순서 검사는 그대로 유지한다. 공용 캔버스를 쓰는 스토리도 같은 정책으로 표시한다.
+
+표시: 짧게 표시되는 획은 번호 배지를 선 옆으로 옮기고 시작/종료 원을 줄인다. 화살표의 시작·끝·촉 크기를 선 길이에 비례시켜, 작은 캔버스에서 고정 18px 시작이 화살표 끝을 지나던 문제를 없앴다. 배경 길의 반경은 판정 정책 값과 일치하도록 그린다. 원래 ㅊ 좌표/4획과 저장 ID/형식은 바꾸지 않았다.
+
+집중 확인: 기존 필기 판정·낙서/역방향/부분·확장 검사를 포함한 33개 통과(`docs/chieut-focused-test.log`). 신규 포인터 검사는 폰 360×780·가로 780×360·태블릿 1280×800, 글자 1.5배에서 탭/부분 획 거절 → 작은 오차가 있는 첫 획 통과 → 새 VM에서 다음 획 복원 → 남은 획 완료·성공 1회 저장을 검사했다. 캡처 3장을 열어 번호·화살표·시작/종료 표시를 확인했다(`docs/screenshots/chieut-first-{phone,landscape,tablet}.png`). Flutter 호스트 렌더이며 실제 기기 화면/손가락 테스트가 아니다. 시각 검사 최초 실행의 '긴 획 허용 폭은 연령 상한과 같다'는 신규 테스트 기대 1건은 기존 길이 비례 상한을 빠뜨려 실패했다. 기대를 기존 기준 수치로 고쳤으며 판정 코드를 그 기대에 맞춰 바꾸지 않았다.
+
+최종 자동 검사: `tool/test.ps1` **analyze 문제 0 / 전체 309개 통과**(기존 297+신규 12, 테스트 86초), `docs/chieut-test.log`. `dart run tool/audit_content.dart` 콘텐츠 오류 0. 122학습·12화·609개 미제작 대본을 유지한다. 테스트는 새 판정 정책의 실제 실패 재현과 터치/저장 복구를 검사하며 실기기 손가락 검증을 대체하지 않는다. 검수 중인 원본 획 좌표를 바꾸거나 기존 사용자의 진도를 삭제하지 않았다.
+
+수정본 로컬 APK: `tool/android.ps1 build apk --release --build-number=214236654` 성공(51.5초, 종료 코드 0). **1.0.0 (214236654)**, **146,381,126 bytes / 139.6MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 키로 apksigner v2 검증 통과(종료 코드 0, 서명자 1), aapt 버전 확인. SHA256 `7d72f5db496ad14d167d06aa161b289face7496e3f09db6483b508b298d53a3e`. `docs/chieut_build.json`, 로컬 `docs/chieut-build.log`/`docs/chieut-signature.log` 참조. 기존 Kotlin 플러그인 마이그레이션/Cupertino 폰트/JDK 경고는 유지되며 빌드/서명은 성공했다. 새 키 생성·실제 기기 설치·Git 커밋/푸시·Release/APK 업로드는 하지 않았다. 기존 GitHub 공유 APK 214232596에는 이 수정이 아직 없다.
+
+다음 확인: 실제 손가락에서 짧은 첫 획 재시도와 정상 다음 획 이동을 확인한다(사용자 지시대로 기기 검증은 최종 단계). 재현 명령은 `tool/test.ps1`, 캡처는 `flutter test --dart-define=CHIEUT_CAPTURE=true test/chieut_trace_test.dart`이며 Windows TEMP는 `tool/test.ps1`과 같이 `.tool_tmp`로 지정한다. 수정본 배포는 별도 명시 요청 때 수행한다. 아직 미완료인 녹음·음악·교육 검수/실기기 검증은 아래 기록을 유지한다.
 
 ## 후속 요청: 검증 APK 공유 배포 (완료)
 

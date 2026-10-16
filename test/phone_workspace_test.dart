@@ -175,15 +175,15 @@ void main() {
             container.read(storyProvider).requireValue.supportSceneId,
             isNotNull,
           );
+          final missionScroll = find
+              .byWidgetPredicate(
+                (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
+              )
+              .last;
           await tester.scrollUntilVisible(
             find.text('원래 미션').hitTestable(),
-            200,
-            scrollable: find
-                .byWidgetPredicate(
-                  (w) =>
-                      w is Scrollable && w.axisDirection == AxisDirection.down,
-                )
-                .last,
+            (tester.getSize(missionScroll).height * .6).clamp(24, 120),
+            scrollable: missionScroll,
           );
           await tester.tap(find.text('원래 미션'));
           await tester.pumpAndSettle();

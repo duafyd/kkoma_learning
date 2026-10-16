@@ -5,13 +5,17 @@ import 'package:go_router/go_router.dart';
 import '../../../core/audio/audio_service.dart';
 import '../../../core/widgets/activity_scaffold.dart';
 import '../../../core/widgets/canvas_workspace.dart';
-import '../../learning/data/learning_content.dart';
+import '../data/trace_catalog.dart';
+import '../data/prewriting_content.dart';
 import '../../learning/domain/learning_speech.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../profile/domain/settings.dart';
 import '../../parent/presentation/usage_vm.dart';
 import 'trace_vm.dart';
 import 'trace_canvas.dart';
+import 'trace_coach_bar.dart';
+import '../domain/trace_coach.dart';
+import '../domain/trace_engine.dart';
 
 class TracePage extends ConsumerStatefulWidget {
   final String itemId;
@@ -22,6 +26,13 @@ class TracePage extends ConsumerStatefulWidget {
 
 class _TracePageState extends ConsumerState<TracePage> {
   final canvasKey = GlobalKey<TraceCanvasState>();
+  final preview = ValueNotifier<TracePreview?>(null);
+  @override
+  void dispose() {
+    preview.dispose();
+    super.dispose();
+  }
+
   bool announced = false;
   @override
   void didUpdateWidget(covariant TracePage oldWidget) {
@@ -43,7 +54,7 @@ class _TracePageState extends ConsumerState<TracePage> {
 
   @override
   Widget build(BuildContext context) {
-    final matches = learningItems.where(
+    final matches = traceItems.where(
       (i) => i.id == widget.itemId && i.strokes.isNotEmpty,
     );
     if (matches.isEmpty) {
@@ -54,6 +65,8 @@ class _TracePageState extends ConsumerState<TracePage> {
     }
     final item = matches.first,
         asyncState = ref.watch(traceProvider(widget.itemId));
+    final prewriting = item.subject == 'prewriting';
+    final listRoute = prewriting ? '/prewriting' : '/learn/${item.subject}';
     final settings =
         ref.watch(settingsProvider).value ?? const ParentSettings();
     if (!announced && settings.autoRead) {
@@ -71,17 +84,22 @@ class _TracePageState extends ConsumerState<TracePage> {
       });
     }
     return ActivityScaffold(
-      title: '${item.symbol} 따라 그리기',
+      title: prewriting ? '${item.name} 놀이' : '${item.symbol} 따라 그리기',
       child: asyncState.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Text('길을 열지 못했어요: $e'),
         data: (state) => CanvasWorkspace(
+          tabletSidePanel: true,
           canvas: TraceCanvas(
             key: canvasKey,
             strokes: item.strokes,
             state: state,
-            tolerance: AgeStrategy(settings.level).traceTolerance,
+            strategy: prewriting
+                ? PrewritingStrategy(AgeStrategy(settings.level))
+                : TraceStrategy(AgeStrategy(settings.level)),
+            semanticLabel: prewriting ? item.example : null,
             animate: settings.animations,
+            onPreview: (value) => preview.value = value,
             onStroke: (p) => safe(
               () => ref
                   .read(traceProvider(widget.itemId).notifier)
@@ -90,25 +108,56 @@ class _TracePageState extends ConsumerState<TracePage> {
           ),
           controls: Column(
             children: [
-              Text(state.message),
-              Text(
-                state.done
-                    ? '${item.strokes.length}획을 모두 그렸어요!'
-                    : '${state.strokeIndex + 1} / ${item.strokes.length}획 · 빛나는 시작점에서 출발해요',
+              if (prewriting)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: Text(
+                    item.example,
+                    style: const TextStyle(fontFamily: 'Jua', fontSize: 24),
+                  ),
+                ),
+              if (MediaQuery.sizeOf(context).width >= 1000)
+                Text(
+                  item.symbol,
+                  style: const TextStyle(
+                    fontFamily: 'Jua',
+                    fontSize: 64,
+                    color: Color(0xff286458),
+                  ),
+                ),
+              TraceCoachBar(
+                preview: preview,
+                stroke: state.strokeIndex,
+                total: item.strokes.length,
+                done: state.done,
+                completionPrompt: prewriting
+                    ? '다음 모양도 만나 볼까?'
+                    : '다음 글자도 만나 볼까?',
               ),
+              if (state.message.isNotEmpty)
+                ValueListenableBuilder(
+                  valueListenable: preview,
+                  builder: (context, value, _) => ExcludeSemantics(
+                    excluding: value != null,
+                    child: Opacity(
+                      opacity: value == null ? 1 : 0,
+                      child: Text(state.message),
+                    ),
+                  ),
+                ),
               Wrap(
                 spacing: 12,
                 runSpacing: 8,
                 children: [
+                  FilledButton(
+                    onPressed: () => canvasKey.currentState?.demonstrate(),
+                    child: const Text('시범 보기'),
+                  ),
                   OutlinedButton(
                     onPressed: () => safe(
                       ref.read(traceProvider(widget.itemId).notifier).reset,
                     ),
                     child: const Text('지우고 다시 하기'),
-                  ),
-                  FilledButton(
-                    onPressed: () => canvasKey.currentState?.demonstrate(),
-                    child: const Text('시범 보기'),
                   ),
                   if (state.done)
                     FilledButton(
@@ -124,7 +173,7 @@ class _TracePageState extends ConsumerState<TracePage> {
                             expired
                                 ? '/rest'
                                 : next == null
-                                ? '/learn/${item.subject}'
+                                ? listRoute
                                 : '/trace/$next',
                           );
                         }
@@ -135,12 +184,14 @@ class _TracePageState extends ConsumerState<TracePage> {
                                     .nextItemId(settings.level) ==
                                 null
                             ? '목록으로'
+                            : prewriting
+                            ? '다음 모양'
                             : '다음 글자',
                       ),
                     ),
                   OutlinedButton(
-                    onPressed: () => context.go('/learn/${item.subject}'),
-                    child: const Text('글자 목록'),
+                    onPressed: () => context.go(listRoute),
+                    child: Text(prewriting ? '모양 목록' : '글자 목록'),
                   ),
                 ],
               ),

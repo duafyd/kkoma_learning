@@ -1,0 +1,13 @@
+﻿{
+    "version":  "1.0.0",
+    "buildNumber":  214274816,
+    "bytes":  147724730,
+    "MiB":  140.9,
+    "sha256":  "a802896271bdb6d4991b327419d4e967c3975aaa5f81090a590a10c40bda4c95",
+    "signature":  "verified v2",
+    "tests":  393,
+    "analyze":  "no issues",
+    "change":  "Chapters 7-12: 17 Flame picture quizzes and five saved-ink scene reactions, exact-ID saved garden map display; paid voice production held, actual recorded clips zero",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false
+}

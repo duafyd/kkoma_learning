@@ -5,6 +5,10 @@ import '../../tracing/domain/trace_engine.dart';
 import '../data/story_content.dart';
 import '../data/support_quizzes.dart';
 import 'story_models.dart';
+import 'scene_play.dart';
+import 'world_mission.dart';
+import 'letter_mission.dart';
+import 'book_mission.dart';
 
 class StoryMachine {
   final List<StoryEpisode> episodes;
@@ -12,14 +16,99 @@ class StoryMachine {
     : episodes = episodes ?? storyEpisodes;
   StoryScene scene(StorySnapshot s) =>
       episodes[s.episode].forLevel(s.level)[s.scene];
-  String text(StorySnapshot s) => s.level == 2 && s.supportSceneId == null
-      ? scene(s).exploreText ?? scene(s).text
-      : scene(s).text;
-  String narration(StorySnapshot s) => s.phase == StoryPhase.success
-      ? s.message
-      : s.phase == StoryPhase.quiz
-      ? quiz(s).prompt
-      : text(s);
+  LetterMission? letterMission(StorySnapshot s) =>
+      LetterMission.forScene(s, scene(s));
+  BookMission? bookMission(StorySnapshot s) {
+    final current = scene(s);
+    final world = BookMission.worldFor(s, current);
+    if (world == null) return null;
+    final tracing = current.interaction == StoryPhase.tracing;
+    final item = tracing
+        ? learningItems.firstWhere((i) => i.id == current.traceId)
+        : null;
+    return BookMission(
+      sceneId: current.id,
+      world: world,
+      solved: s.phase == StoryPhase.success,
+      completed: s.strokes.length,
+      total: item?.strokes.length ?? 0,
+      observed: s.observedObjects,
+      hints: s.hints,
+      quiz: tracing ? null : quiz(s),
+      symbol: item?.symbol ?? '',
+      variation:
+          s.flags[current.variationFlag] ??
+          s.flags['route'] ??
+          s.flags['room'] ??
+          '',
+    );
+  }
+
+  WorldMission? worldMission(StorySnapshot s) =>
+      s.supportSceneId == null &&
+          [StoryPhase.quiz, StoryPhase.success].contains(s.phase) &&
+          scene(s).quiz != null
+      ? WorldMission.forQuiz(quiz(s))
+      : null;
+  String text(StorySnapshot s) {
+    if (s.phase == StoryPhase.success && s.message.isNotEmpty) return s.message;
+    final play = ScenePlay.forSnapshot(s);
+    if (play != null && s.sceneFinds.length == play.count(s.level)) {
+      return play.response;
+    }
+    return s.level == 2 && s.supportSceneId == null
+        ? scene(s).exploreText ?? scene(s).text
+        : scene(s).text;
+  }
+
+  String narration(StorySnapshot s) {
+    if (s.phase == StoryPhase.success) return s.message;
+    if (s.phase == StoryPhase.quiz) {
+      final mission = worldMission(s);
+      return mission != null && !canAnswer(s)
+          ? '${text(s)} ${mission.instruction}'
+          : quiz(s).prompt;
+    }
+    final play = ScenePlay.forSnapshot(s);
+    if (play == null) return text(s);
+    return s.sceneFinds.length == play.count(s.level)
+        ? play.response
+        : '${text(s)} ${play.invitation}';
+  }
+
+  /// Exact take identity keeps the same words in different scenes/characters
+  /// from borrowing another actor's recording. Dynamic assistance stays TTS.
+  String? narrationId(StorySnapshot s) {
+    final current = scene(s);
+    if (s.phase == StoryPhase.success) {
+      if (s.level == 2 && s.message == current.exploreSuccessText) {
+        return 'voice-${current.id}-explore-success';
+      }
+      if (current.successText.isNotEmpty && s.message == current.successText) {
+        return 'voice-${current.id}-success';
+      }
+      if (current.flag != null &&
+          current.choices.contains(s.flags[current.flag])) {
+        final index = current.choices.indexOf(s.flags[current.flag]!);
+        return 'voice-${current.id}-choice-$index';
+      }
+      return null;
+    }
+    if (s.phase == StoryPhase.quiz) {
+      if (worldMission(s) != null && !canAnswer(s)) {
+        return 'voice-${current.id}-world';
+      }
+      return 'voice-quiz-${quiz(s).id}';
+    }
+    final play = ScenePlay.forSnapshot(s);
+    if (play != null) {
+      return s.sceneFinds.length == play.count(s.level)
+          ? 'voice-scene-play-${s.episode + 1}-response'
+          : 'voice-scene-play-${s.episode + 1}-level-${s.level == 2 ? 2 : 5}';
+    }
+    return 'voice-${current.id}${s.level == 2 && current.exploreText != null ? '-explore' : ''}';
+  }
+
   String background(StorySnapshot s) {
     final current = scene(s);
     return s.phase == StoryPhase.success
@@ -48,6 +137,12 @@ class StoryMachine {
             scene(s).interaction != StoryPhase.drawing)) {
       return restore(s.change({'pendingDrawing': null}));
     }
+    final play = ScenePlay.forSnapshot(s);
+    s = s.change({
+      'sceneFinds': s.sceneFinds
+          .where((i) => play != null && i >= 0 && i < play.count(s.level))
+          .toList(),
+    });
     if (s.observedObjects.isNotEmpty) {
       final art = scene(s).quiz != null ? quiz(s).artwork : null;
       final valid = art != null && art.countOnTap && s.supportSceneId == null
@@ -84,6 +179,7 @@ class StoryMachine {
         'strokes': exact >= 0 ? s.toJson()['strokes'] : [],
         'supportSceneId': exact >= 0 ? s.supportSceneId : null,
         'observedObjects': exact >= 0 ? s.observedObjects : [],
+        'sceneFinds': exact >= 0 ? s.sceneFinds : [],
       }),
     );
   }
@@ -162,6 +258,7 @@ class StoryMachine {
         'message': '',
         'supportSceneId': null,
         'observedObjects': [],
+        'sceneFinds': [],
       });
     }
     if (s.phase != StoryPhase.dialogue && s.phase != StoryPhase.success) {
@@ -185,6 +282,20 @@ class StoryMachine {
       'message': '',
       'supportSceneId': null,
       'observedObjects': [],
+      'sceneFinds': [],
+    });
+  }
+
+  StorySnapshot discoverSceneProp(StorySnapshot s, int index) {
+    final play = ScenePlay.forSnapshot(s);
+    if (play == null ||
+        index < 0 ||
+        index >= play.count(s.level) ||
+        s.sceneFinds.contains(index)) {
+      return s;
+    }
+    return s.change({
+      'sceneFinds': [...s.sceneFinds, index],
     });
   }
 

@@ -238,6 +238,12 @@ void main() {
         c.read(routerProvider).go('/story');
         await tester.pumpAndSettle();
         final board = find.byType(StoryPlacementBoard);
+        await tester.ensureVisible(
+          find.byKey(const ValueKey('placement-alternative')),
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('버튼으로 놓기'));
+        await tester.pumpAndSettle();
         await Scrollable.ensureVisible(tester.element(board), alignment: .3);
         await tester.pumpAndSettle();
         final answer = find.byKey(const ValueKey('picture-answer-1'));

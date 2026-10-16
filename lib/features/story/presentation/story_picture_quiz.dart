@@ -12,6 +12,9 @@ class StoryPictureQuiz extends StatelessWidget {
   final int hints;
   final bool animate;
   final bool answerEnabled;
+  final bool worldPlacement;
+  final bool sceneChoices;
+  final String sceneInstruction;
   final ValueChanged<int> onAnswer, onObserve;
   final void Function(int, int)? onPlace;
   const StoryPictureQuiz({
@@ -21,6 +24,9 @@ class StoryPictureQuiz extends StatelessWidget {
     required this.hints,
     required this.animate,
     this.answerEnabled = true,
+    this.worldPlacement = false,
+    this.sceneChoices = false,
+    this.sceneInstruction = '그림 속 글자를 눌러요.',
     required this.onAnswer,
     required this.onObserve,
     this.onPlace,
@@ -30,12 +36,55 @@ class StoryPictureQuiz extends StatelessWidget {
   Widget build(BuildContext context) {
     final artwork = quiz.artwork!;
     final motion = animate && !MediaQuery.disableAnimationsOf(context);
+    if (sceneChoices) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(quiz.prompt, style: const TextStyle(fontSize: 25, height: 1.4)),
+          const SizedBox(height: 8),
+          Text(sceneInstruction, style: const TextStyle(fontSize: 19)),
+          Material(
+            color: Colors.transparent,
+            child: ExpansionTile(
+              key: const ValueKey('letter-choice-alternative'),
+              title: const Text('버튼으로 고르기'),
+              children: [
+                StoryPictureQuiz(
+                  quiz: quiz,
+                  observed: observed,
+                  hints: hints,
+                  animate: animate,
+                  answerEnabled: answerEnabled,
+                  onAnswer: onAnswer,
+                  onObserve: onObserve,
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(quiz.prompt, style: const TextStyle(fontSize: 25, height: 1.4)),
         const SizedBox(height: 16),
-        if (artwork.arrangement != QuizArrangement.tray)
+        if (worldPlacement)
+          Material(
+            color: Colors.transparent,
+            child: ExpansionTile(
+              key: const ValueKey('placement-alternative'),
+              title: const Text('버튼으로 놓기'),
+              children: [
+                StoryPlacementBoard(
+                  artwork: artwork,
+                  placed: observed,
+                  onPlace: onPlace ?? (_, _) {},
+                ),
+              ],
+            ),
+          )
+        else if (artwork.arrangement != QuizArrangement.tray)
           StoryPlacementBoard(
             artwork: artwork,
             placed: observed,
@@ -200,15 +249,38 @@ class QuizGlyphPicture extends StatelessWidget {
         ),
       );
     }
-    return CustomPaint(size: Size.square(edge), painter: _GlyphPainter(glyph));
+    return CustomPaint(
+      size: Size.square(edge),
+      painter: QuizGlyphPainter(glyph),
+    );
   }
 }
 
-class _GlyphPainter extends CustomPainter {
+class QuizGlyphPainter extends CustomPainter {
   final QuizGlyph glyph;
-  _GlyphPainter(this.glyph);
+  QuizGlyphPainter(this.glyph);
   @override
   void paint(Canvas canvas, Size size) {
+    if (glyph.symbol != null) {
+      final text = TextPainter(
+        text: TextSpan(
+          text: glyph.symbol,
+          style: TextStyle(
+            fontFamily: 'Jua',
+            fontSize: size.shortestSide * .83,
+            height: 1.1,
+            color: const Color(0xff315f59),
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      )..layout(maxWidth: size.width);
+      text.paint(
+        canvas,
+        Offset((size.width - text.width) / 2, (size.height - text.height) / 2),
+      );
+      text.dispose();
+      return;
+    }
     final center = Offset(size.width / 2, size.height / 2),
         r = size.shortestSide * .4;
     final path = Path();
@@ -439,6 +511,6 @@ class _GlyphPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _GlyphPainter oldDelegate) =>
+  bool shouldRepaint(covariant QuizGlyphPainter oldDelegate) =>
       oldDelegate.glyph != glyph;
 }

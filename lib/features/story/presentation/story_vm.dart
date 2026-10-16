@@ -7,6 +7,7 @@ import '../../profile/presentation/profile_vm.dart';
 import '../../tracing/domain/trace_engine.dart';
 import '../../drawing/data/drawing_repository.dart';
 import '../../drawing/presentation/drawing_vm.dart';
+import '../../drawing/domain/drawing.dart';
 import '../data/story_repository.dart';
 import '../domain/story_models.dart';
 import '../domain/story_machine.dart';
@@ -17,6 +18,18 @@ final storyRepositoryProvider = Provider(
 final storyProvider = AsyncNotifierProvider<StoryVM, StorySnapshot>(
   StoryVM.new,
 );
+
+/// Resolve the saved map by identity, never by "latest artwork" or draft.
+final storyGardenMapProvider = Provider<AsyncValue<Artwork?>>((ref) {
+  final id = ref.watch(storyProvider).asData?.value.flags['gardenArtwork'];
+  if (id == null) return const AsyncData(null);
+  return ref.watch(galleryProvider).whenData((artworks) {
+    for (final artwork in artworks) {
+      if (artwork.id == id) return artwork;
+    }
+    return null; // It may have been removed in the parent gallery.
+  });
+});
 
 class StoryVM extends AsyncNotifier<StorySnapshot> {
   final machine = StoryMachine();
@@ -51,6 +64,8 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
   }
 
   Future<void> advance() => _transition(machine.advance);
+  Future<void> discoverSceneProp(int i) =>
+      _transition((s) => machine.discoverSceneProp(s, i));
   Future<void> choose(int i) => _transition((s) => machine.choose(s, i));
   Future<void> answer(int i) => _transition((s) => machine.answer(s, i));
   Future<void> hint() => _transition(machine.hint);
@@ -104,6 +119,10 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
     if (ref.mounted) ref.invalidate(galleryProvider);
     final next = machine.drawingComplete(submitted).change({
       'pendingDrawing': null,
+      'flags': {
+        ...submitted.flags,
+        'gardenArtwork': submitted.pendingDrawing!.id,
+      },
     });
     if (await repository.replaceIfCurrent(submitted, next)) return next;
     return await repository.load() ?? machine.begin(level);
@@ -126,6 +145,7 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
           sample.text,
           ref.read(settingsProvider).value ?? const ParentSettings(),
           language: sample.language,
+          recordingId: 'voice-story-${sample.id}',
         );
   }
 }

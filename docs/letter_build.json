@@ -1,0 +1,13 @@
+{
+    "version":  "1.0.0",
+    "buildNumber":  214266319,
+    "bytes":  147528126,
+    "MiB":  140.7,
+    "sha256":  "cd351de7349c50eac98cb713d141f012f29d8fe37c8a32e8b425418351798e68",
+    "signature":  "verified v2",
+    "tests":  353,
+    "analyze":  "no issues",
+    "change":  "Chapters 2/5 Flame letter choices and picture-book tracing connected to saved strokes, finite flower-path/beacon reaction, committed-success crossfade, accessible buttons, quiet restore and responsive completion; includes prior local improvements",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false
+}

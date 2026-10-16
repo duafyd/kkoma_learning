@@ -14,8 +14,10 @@ import '../features/progress/presentation/gallery_page.dart';
 import '../features/parent/presentation/rest_page.dart';
 import '../features/parent/presentation/usage_vm.dart';
 import 'lifecycle.dart';
+import 'app_theme.dart';
 import '../features/math/presentation/counting_page.dart';
 import '../features/math/presentation/sorting_page.dart';
+import '../features/tracing/presentation/prewriting_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final router = GoRouter(
@@ -24,6 +26,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       if (ref.read(usageProvider.notifier).expired &&
           (path.startsWith('/learn') ||
               path.startsWith('/trace') ||
+              path == '/prewriting' ||
               path.startsWith('/math') ||
               path == '/story' ||
               path == '/drawing')) {
@@ -33,6 +36,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     },
     routes: [
       GoRoute(path: '/', builder: (_, _) => const HomePage()),
+      GoRoute(path: '/prewriting', builder: (_, _) => const PrewritingPage()),
       GoRoute(path: '/parent', builder: (_, _) => const ParentPage()),
       GoRoute(path: '/rest', builder: (_, _) => const RestPage()),
       GoRoute(path: '/math/play', builder: (_, _) => const CountingPage()),
@@ -67,46 +71,6 @@ class KkomaApp extends ConsumerWidget {
     routerConfig: ref.watch(routerProvider),
     builder: (context, child) =>
         AppLifecycle(router: ref.read(routerProvider), child: child!),
-    theme: ThemeData(
-      useMaterial3: true,
-      fontFamily: 'Jua',
-      scaffoldBackgroundColor: const Color(0xfff7f1e3),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xff397c70),
-        surface: const Color(0xfffffcf4),
-      ),
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xfff7f1e3),
-        foregroundColor: Color(0xff3c5149),
-        scrolledUnderElevation: 0,
-      ),
-      textTheme: const TextTheme(
-        bodyMedium: TextStyle(fontSize: 19),
-        titleLarge: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-      ),
-      filledButtonTheme: FilledButtonThemeData(
-        style: FilledButton.styleFrom(
-          minimumSize: const Size(88, 60),
-          textStyle: const TextStyle(fontFamily: 'Jua', fontSize: 21),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(minimumSize: const Size(88, 60)),
-      ),
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(minimumSize: const Size(60, 60)),
-      ),
-      cardTheme: const CardThemeData(
-        elevation: 0,
-        color: Color(0xffedf1e5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(24)),
-        ),
-      ),
-    ),
+    theme: StorybookTheme.data,
   );
 }

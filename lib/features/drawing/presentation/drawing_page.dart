@@ -6,10 +6,12 @@ import '../../parent/presentation/usage_vm.dart';
 
 import '../../../core/widgets/activity_scaffold.dart';
 import '../../../core/widgets/canvas_workspace.dart';
+import '../../../core/widgets/activity_intro.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../tracing/domain/trace_engine.dart';
 import '../domain/drawing.dart';
 import '../domain/drawing_renderer.dart';
+import '../domain/drawing_stamps.dart';
 import 'drawing_vm.dart';
 
 class DrawingPage extends ConsumerStatefulWidget {
@@ -45,7 +47,7 @@ class _DrawingPageState extends ConsumerState<DrawingPage> {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Text('그림을 불러오지 못했어요: $e'),
         data: (h) => CanvasWorkspace(
-          controlsFirst: true,
+          tabletSidePanel: true,
           canvas: DrawingCanvas(
             document: h.current,
             color: color,
@@ -57,6 +59,18 @@ class _DrawingPageState extends ConsumerState<DrawingPage> {
           ),
           controls: Column(
             children: [
+              if (MediaQuery.sizeOf(context).width >= 1000)
+                const ActivityIntro(
+                  icon: Icons.palette_rounded,
+                  title: '나만의 작은 그림책',
+                  instruction: '색을 고르고 마음껏 그려요. 완성하면 작품으로 간직해요.',
+                )
+              else
+                const Text(
+                  '색을 고르고 마음껏 그려요',
+                  style: TextStyle(fontFamily: 'Jua', fontSize: 22),
+                ),
+              const SizedBox(height: 16),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
@@ -69,17 +83,19 @@ class _DrawingPageState extends ConsumerState<DrawingPage> {
                     0xff4289b5,
                     0xff8648a6,
                     0xff222222,
-                  ].map(
-                    (c) => IconButton(
-                      tooltip: '색상 $c',
-                      style: IconButton.styleFrom(backgroundColor: Color(c)),
+                  ].indexed.map(
+                    (entry) => IconButton(
+                      tooltip: ['초록', '빨강', '노랑', '파랑', '보라', '검정'][entry.$1],
+                      style: IconButton.styleFrom(
+                        backgroundColor: Color(entry.$2),
+                      ),
                       onPressed: () => setState(() {
-                        color = c;
+                        color = entry.$2;
                         eraser = false;
                         stamp = null;
                       }),
                       icon: Icon(
-                        color == c && !eraser
+                        color == entry.$2 && !eraser && stamp == null
                             ? Icons.check
                             : Icons.circle_outlined,
                         color: Colors.white,
@@ -178,14 +194,22 @@ class _DrawingPageState extends ConsumerState<DrawingPage> {
                     ),
                   ),
                   if (older)
-                    ...['🌼', '🦋', '⭐', '●', '▲'].map(
+                    ...drawingStamps.map(
                       (s) => IconButton(
-                        tooltip: '$s 도장',
+                        tooltip: '${s.$2} 도장',
                         onPressed: () => setState(() {
-                          stamp = s;
+                          stamp = s.$1;
                           eraser = false;
                         }),
-                        icon: Text(s),
+                        style: IconButton.styleFrom(
+                          backgroundColor: stamp == s.$1
+                              ? const Color(0xffdbece4)
+                              : Colors.white,
+                        ),
+                        icon: DrawingStampPicture(
+                          stamp: s.$1,
+                          color: Color(color),
+                        ),
                       ),
                     ),
                 ],

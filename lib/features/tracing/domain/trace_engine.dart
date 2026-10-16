@@ -108,6 +108,25 @@ class TraceResult {
 class TraceStrategy {
   final AgeStrategy age;
   const TraceStrategy(this.age);
+  bool acceptsTap(StrokePath stroke) => false;
+
+  /// Shared by evaluation and the visible corridor. Short straight marks need
+  /// room for finger placement, bounded by their own length to retain direction.
+  double toleranceFor(StrokePath stroke) {
+    final length = stroke.length;
+    var tolerance = math.min(
+      age.traceTolerance,
+      math.max(.018, length * (age.requireDirection ? .16 : .22)),
+    );
+    if (stroke.points.length == 2 && length <= .18) {
+      tolerance = math.max(
+        tolerance,
+        math.min(age.traceTolerance, math.min(.035, length * .28)),
+      );
+    }
+    return tolerance;
+  }
+
   TraceResult evaluate(StrokePath stroke, List<TracePoint> input) {
     // A tap and excursions outside the canvas cannot complete a stroke.
     final valid = input
@@ -118,10 +137,7 @@ class TraceStrategy {
     }
     // Small strokes need a proportionately small corridor too. A fixed canvas
     // tolerance used to let a scribble cover an entire syllable component.
-    final tolerance = math.min(
-      age.traceTolerance,
-      math.max(.018, stroke.length * (age.requireDirection ? .16 : .22)),
-    );
+    final tolerance = toleranceFor(stroke);
     final samples = stroke.samples(80);
     final drawn = StrokePath(valid).simplified(math.min(.01, tolerance * .6));
     final tracedSamples = drawn.samples(80);

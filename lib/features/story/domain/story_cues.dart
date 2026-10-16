@@ -10,6 +10,9 @@ class StoryCues {
       return null; // Restore is silent; rewards are not replayed.
     }
     if (pageId(before) != pageId(after)) return StorySound.pageTurn;
+    if (before.sceneFinds.length < after.sceneFinds.length) {
+      return StorySound.sparkle;
+    }
     if (before.observedObjects.length < after.observedObjects.length) {
       return StorySound.friend;
     }

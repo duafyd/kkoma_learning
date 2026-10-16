@@ -16,8 +16,12 @@ import '../../profile/domain/settings.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../tracing/presentation/trace_canvas.dart';
 import '../../tracing/presentation/trace_vm.dart';
+import '../../tracing/domain/trace_engine.dart';
+import '../../tracing/domain/trace_coach.dart';
+import '../../tracing/presentation/trace_coach_bar.dart';
 import '../domain/story_models.dart';
 import '../domain/story_cues.dart';
+import '../domain/scene_play.dart';
 import 'story_illustration.dart';
 import 'story_page_turn.dart';
 import 'story_picture_quiz.dart';
@@ -35,6 +39,7 @@ class _StoryPageState extends ConsumerState<StoryPage>
   bool active = true;
   int gardenColor = 0xffe9a845;
   bool gardenEraser = false;
+  final tracePreview = ValueNotifier<TracePreview?>(null);
   @override
   void initState() {
     super.initState();
@@ -44,6 +49,7 @@ class _StoryPageState extends ConsumerState<StoryPage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    tracePreview.dispose();
     super.dispose();
   }
 
@@ -79,13 +85,34 @@ class _StoryPageState extends ConsumerState<StoryPage>
       final cue = StoryCues.between(previous?.asData?.value, after);
       final before = previous?.asData?.value;
       final parent = ref.read(settingsProvider).asData?.value;
+      final play = ScenePlay.forSnapshot(after);
+      if (before != null &&
+          parent != null &&
+          parent.autoRead &&
+          parent.voiceVolume > 0 &&
+          play != null &&
+          StoryCues.pageId(before) == StoryCues.pageId(after) &&
+          before.sceneFinds.length < play.count(after.level) &&
+          after.sceneFinds.length == play.count(after.level)) {
+        ref
+            .read(audioProvider)
+            .speak(
+              play.response,
+              parent,
+              recordingId: 'voice-scene-play-${after.episode + 1}-response',
+            );
+      }
       if (before != null &&
           parent != null &&
           parent.voiceVolume > 0 &&
           before.observedObjects.length < after.observedObjects.length) {
         ref
             .read(audioProvider)
-            .speak('${after.observedObjects.length}개', parent);
+            .speak(
+              '${after.observedObjects.length}개',
+              parent,
+              recordingId: 'voice-count-${after.observedObjects.length}',
+            );
       }
       if (cue != null) {
         final volume =
@@ -121,8 +148,16 @@ class _StoryPageState extends ConsumerState<StoryPage>
         if (lastRead != readKey && settings.autoRead) {
           lastRead = readKey;
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted) {
-              ref.read(audioProvider).speak(vm.machine.narration(s), settings);
+            if (mounted &&
+                active &&
+                ref.read(storyProvider).asData?.value == s) {
+              ref
+                  .read(audioProvider)
+                  .speak(
+                    vm.machine.narration(s),
+                    settings,
+                    recordingId: vm.machine.narrationId(s),
+                  );
             }
           });
         }
@@ -133,7 +168,11 @@ class _StoryPageState extends ConsumerState<StoryPage>
               tooltip: '대사 다시 듣기',
               onPressed: () => ref
                   .read(audioProvider)
-                  .speak(vm.machine.narration(s), settings),
+                  .speak(
+                    vm.machine.narration(s),
+                    settings,
+                    recordingId: vm.machine.narrationId(s),
+                  ),
               icon: const Icon(Icons.volume_up),
             ),
           ],
@@ -179,44 +218,97 @@ class _StoryPageState extends ConsumerState<StoryPage>
                       ),
                     );
                   }
-                  if (s.phase == StoryPhase.tracing) {
+                  final letter = vm.machine.letterMission(s);
+                  final book = vm.machine.bookMission(s);
+                  if (s.phase == StoryPhase.tracing ||
+                      ((letter?.tracing == true || book?.tracing == true) &&
+                          s.phase == StoryPhase.success)) {
                     final item = learningItems.firstWhere(
                       (i) => i.id == scene.traceId,
                     );
                     return CanvasWorkspace(
+                      tabletSidePanel: true,
                       canvas: TraceCanvas(
                         key: traceKey,
                         strokes: item.strokes,
                         state: TraceState(
                           strokeIndex: s.strokes.length,
                           completed: s.strokes,
+                          done: s.phase == StoryPhase.success,
                         ),
                         animate: settings.animations,
-                        tolerance: AgeStrategy(s.hints >= 3 ? 2 : s.level)
-                            .traceTolerance,
+                        onPreview: (value) => tracePreview.value = value,
+                        strategy: TraceStrategy(
+                          AgeStrategy(s.hints >= 3 ? 2 : s.level),
+                        ),
                         onStroke: (p) => safe(() => vm.trace(p)),
                       ),
                       controls: Column(
                         children: [
-                          Text(scene.text),
-                          ..._speechButtons(vm, s),
-                          Text(s.message),
-                          Wrap(
-                            spacing: 12,
-                            runSpacing: 8,
-                            children: [
-                              OutlinedButton(
-                                onPressed: () =>
-                                    traceKey.currentState?.demonstrate(),
-                                child: const Text('시범 보기'),
-                              ),
-                              OutlinedButton(
-                                onPressed: () => safe(vm.resetStrokes),
-                                child: const Text('다시 그리기'),
-                              ),
-                              ..._support(vm, s, settings),
-                            ],
+                          Text(
+                            s.phase == StoryPhase.success
+                                ? vm.machine.text(s)
+                                : letter?.purpose ??
+                                      book?.purpose ??
+                                      scene.text,
+                            style: const TextStyle(
+                              fontFamily: 'Jua',
+                              fontSize: 23,
+                            ),
                           ),
+                          if (s.phase == StoryPhase.success)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: FilledButton.icon(
+                                onPressed: nextScene,
+                                icon: const Icon(Icons.auto_stories_rounded),
+                                label: const Text('다음 이야기'),
+                              ),
+                            ),
+                          if (letter != null || book != null) ...[
+                            const SizedBox(height: 12),
+                            AspectRatio(
+                              aspectRatio: 1.65,
+                              child: StoryIllustration(
+                                key: ValueKey('trace-world-${scene.id}'),
+                                background: vm.machine.background(s),
+                                character: scene.character,
+                                companion: s.flags['companion'] ?? '루루',
+                                animate: settings.animations,
+                                active: active,
+                                reactionId: '${scene.id}-${s.phase}',
+                                celebrate: s.phase == StoryPhase.success,
+                                letterMission: letter,
+                                bookMission: book,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                          ],
+                          TraceCoachBar(
+                            preview: tracePreview,
+                            stroke: s.strokes.length,
+                            total: item.strokes.length,
+                            done: s.phase == StoryPhase.success,
+                          ),
+                          ..._speechButtons(vm, s),
+                          if (s.phase != StoryPhase.success) Text(s.message),
+                          if (s.phase != StoryPhase.success)
+                            Wrap(
+                              spacing: 12,
+                              runSpacing: 8,
+                              children: [
+                                OutlinedButton(
+                                  onPressed: () =>
+                                      traceKey.currentState?.demonstrate(),
+                                  child: const Text('시범 보기'),
+                                ),
+                                OutlinedButton(
+                                  onPressed: () => safe(vm.resetStrokes),
+                                  child: const Text('다시 그리기'),
+                                ),
+                                ..._support(vm, s, settings),
+                              ],
+                            ),
                         ],
                       ),
                     );
@@ -229,7 +321,8 @@ class _StoryPageState extends ConsumerState<StoryPage>
                     character: scene.character,
                     animate: settings.animations,
                     companion: s.flags['companion'] ?? '루루',
-                    reactionId: '${scene.id}-${s.phase.name}-${s.message}',
+                    reactionId:
+                        '${scene.id}-${s.phase.name}-${s.message}-${s.sceneFinds.length}',
                     reaction:
                         s.phase == StoryPhase.success ||
                             s.phase == StoryPhase.episodeComplete
@@ -237,7 +330,37 @@ class _StoryPageState extends ConsumerState<StoryPage>
                         : scene.reaction,
                     celebrate:
                         s.phase == StoryPhase.success ||
-                        s.phase == StoryPhase.episodeComplete,
+                        s.phase == StoryPhase.episodeComplete ||
+                        (ScenePlay.forSnapshot(s) != null &&
+                            s.sceneFinds.length ==
+                                ScenePlay.forSnapshot(s)!.count(s.level)),
+                    scenePlay: ScenePlay.forSnapshot(s),
+                    playCount: ScenePlay.forSnapshot(s)?.count(s.level) ?? 0,
+                    sceneFinds: s.sceneFinds,
+                    active: active,
+                    letterMission: letter,
+                    bookMission: book,
+                    gardenMap:
+                        s.episode == 6 &&
+                            book == null &&
+                            ((scene.interaction == StoryPhase.drawing &&
+                                    s.phase == StoryPhase.success) ||
+                                scene.id == 'ep7-talk' ||
+                                scene.id == 'ep7-end')
+                        ? ref
+                              .watch(storyGardenMapProvider)
+                              .asData
+                              ?.value
+                              ?.document
+                        : null,
+                    onObserve: (i) => safe(() => vm.observeObject(i)),
+                    onChoose: (i) => safe(() => vm.answer(i)),
+                    worldMission: vm.machine.worldMission(s),
+                    missionPlaced: s.observedObjects,
+                    missionSolved: s.phase == StoryPhase.success,
+                    onPlace: (piece, slot) =>
+                        safe(() => vm.placeObject(piece, slot)),
+                    onDiscover: (i) => safe(() => vm.discoverSceneProp(i)),
                     onCharacterTap: () => ref
                         .read(effectsProvider)
                         .play(StorySound.friend, settings.effectsVolume),
@@ -262,6 +385,10 @@ class _StoryPageState extends ConsumerState<StoryPage>
                     scene: s.scene,
                     sceneCount: episode.forLevel(s.level).length,
                     goal: episode.goal,
+                    mission:
+                        vm.machine.worldMission(s) != null ||
+                        letter != null ||
+                        book != null,
                   );
                 },
               ),
@@ -299,11 +426,58 @@ class _StoryPageState extends ConsumerState<StoryPage>
         style: const TextStyle(
           fontSize: 25,
           height: 1.55,
-          fontWeight: FontWeight.w600,
-          color: Color(0xff3d493d),
+          fontFamily: 'Jua',
+          fontWeight: FontWeight.w400,
+          color: Color(0xff283b49),
         ),
       ),
       const SizedBox(height: 18),
+      if (ScenePlay.forSnapshot(s) case final play?) ...[
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xffe5f2e9),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                s.sceneFinds.length == play.count(s.level)
+                    ? '함께 찾았어! 다음 이야기가 기다려.'
+                    : play.invitation,
+                style: const TextStyle(
+                  fontFamily: 'Jua',
+                  fontSize: 21,
+                  color: Color(0xff286458),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  for (var i = 0; i < play.count(s.level); i++)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Icon(
+                        s.sceneFinds.contains(i)
+                            ? Icons.stars_rounded
+                            : Icons.star_outline_rounded,
+                        color: const Color(0xff99712d),
+                        size: 28,
+                      ),
+                    ),
+                  Text(
+                    '${s.sceneFinds.length} / ${play.count(s.level)}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+      ],
       ..._speechButtons(vm, s),
       if (s.phase == StoryPhase.choice)
         Wrap(
@@ -320,6 +494,13 @@ class _StoryPageState extends ConsumerState<StoryPage>
       if (s.phase == StoryPhase.quiz) ...[
         if (vm.machine.quiz(s).artwork != null)
           StoryPictureQuiz(
+            sceneChoices:
+                vm.machine.letterMission(s) != null ||
+                vm.machine.bookMission(s) != null,
+            sceneInstruction: vm.machine.bookMission(s) != null
+                ? '그림 속 소품을 눌러 골라요.'
+                : '그림 속 글자를 눌러요.',
+            worldPlacement: vm.machine.worldMission(s) != null,
             answerEnabled: vm.machine.canAnswer(s),
             quiz: vm.machine.quiz(s),
             observed: s.observedObjects,
@@ -360,7 +541,7 @@ class _StoryPageState extends ConsumerState<StoryPage>
         ],
         Wrap(spacing: 12, runSpacing: 12, children: _support(vm, s, settings)),
       ],
-      if (s.message.isNotEmpty)
+      if (s.message.isNotEmpty && s.phase != StoryPhase.success)
         Semantics(
           liveRegion: true,
           child: Container(
@@ -538,6 +719,7 @@ class _StoryBookStage extends StatelessWidget {
   final List<Widget> controls;
   final int chapter, scene, sceneCount;
   final String goal;
+  final bool mission;
   const _StoryBookStage({
     required this.picture,
     required this.controls,
@@ -545,12 +727,16 @@ class _StoryBookStage extends StatelessWidget {
     required this.scene,
     required this.sceneCount,
     required this.goal,
+    this.mission = false,
   });
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
     builder: (context, c) {
-      final wide = c.maxWidth >= 700 && c.maxWidth > c.maxHeight * 1.15;
+      final wide =
+          c.maxWidth >= 700 &&
+          c.maxHeight >= 400 &&
+          c.maxWidth > c.maxHeight * 1.15;
       final heading = Padding(
         padding: const EdgeInsets.fromLTRB(8, 4, 8, 14),
         child: Row(
@@ -610,33 +796,7 @@ class _StoryBookStage extends StatelessWidget {
         );
       }
 
-      final illustrated = Stack(
-        fit: StackFit.expand,
-        children: [
-          picture,
-          Positioned(
-            left: 16,
-            top: 16,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: const Color(0xeefdf6df),
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                child: Text(
-                  '별빛 도서관과 사라진 이야기',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xff634b33),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      );
+      final illustrated = picture;
       if (wide) {
         return Column(
           children: [
@@ -645,9 +805,15 @@ class _StoryBookStage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Expanded(flex: 7, child: illustrated),
+                  Expanded(flex: 8, child: illustrated),
                   const SizedBox(width: 18),
-                  Expanded(flex: 5, child: page(scroll: true)),
+                  Expanded(
+                    flex: 5,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: page(scroll: true),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -657,7 +823,12 @@ class _StoryBookStage extends StatelessWidget {
       return _BookScroll(
         children: [
           heading,
-          AspectRatio(aspectRatio: 1.45, child: illustrated),
+          if (mission)
+            SizedBox(height: 300, child: illustrated)
+          else if (c.maxHeight < 400)
+            SizedBox(height: c.maxHeight * .70, child: illustrated)
+          else
+            AspectRatio(aspectRatio: 1.45, child: illustrated),
           const SizedBox(height: 14),
           page(scroll: false),
         ],
@@ -685,6 +856,12 @@ class _BookScrollState extends State<_BookScroll> {
   Widget build(BuildContext context) => Scrollbar(
     controller: controller,
     thumbVisibility: true,
-    child: ListView(controller: controller, children: widget.children),
+    child: SingleChildScrollView(
+      controller: controller,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: widget.children,
+      ),
+    ),
   );
 }

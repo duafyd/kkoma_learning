@@ -4,8 +4,20 @@
 
 ## 구현된 기능
 
+- **음원·실기기 외 로컬 완성도 보완(최신):** 손가락 준비 운동 6종(점/가로/세로/원/물결/산길), 현재 화를 보여주는 홈, 12화 모험 표지 지도와 작품 확대 전시, 그림 도장/도구·수학 원인과 결과 안내를 보완했습니다. 짝꿍 바구니는 선으로 잇기와 탭 대안을 함께 제공합니다. 영문·숫자 25개 곡선을 부드럽게 만들고 획 수·순서·시작/끝점과 기존 저장을 유지합니다. 기존 학습122 + 준비 운동6 = 경로128항목입니다. 캐릭터 4인×4포즈의 [새 16프레임](assets/story/cast-motion-v1.png)을 내장 이미지 도구로 제작해 등장/이동/표정에 연결했습니다([프롬프트](docs/cast_motion_prompt.txt)); 두 이동 포즈와 열린 입 표정이며 음소 립싱크는 아닙니다. [검토 자료](docs/review/README.md)는 경로128·문항118·연령/화별 경로48개이며 전문가 승인은 대기입니다. 호스트 analyze 문제0/전체415개 통과, 3크기×글자1/1.5배 캡처54장을 확인했습니다. 별도 태블릿 에뮬레이터의 Android 저장/재개 통합1개도 통과했고 로컬 서명 APK **1.0.0 (214290482)** 빌드·v2 검증을 마쳤습니다([결과](docs/polish_build.json)). Git/APK 업로드는 하지 않았습니다. [홈](docs/screenshots/polish-home-tablet-1.0.png) · [작품함](docs/screenshots/polish-gallery-tablet-1.0.png) · [곡선](docs/review/english-lower.png).
+- **7~12화 본문 상호작용(이전 로컬):** 꽃 색/모양, 휙휙 바구니, 세 갈래 복습, 종이숲 성장, 하늘 복습, 선택한 도서관 방의 총 17개 퀴즈를 그림 속 Flame 소품으로 고릅니다. 8~12화 필기 5곳도 이야기 그림을 유지하고 저장된 획에 따라 바구니·길·책·별이 변합니다. 성공 후 선택판은 사라지고 장면 결과가 남습니다. 7화에서 저장한 실제 그림을 정확한 작품 ID로 다시 보여줍니다. 만 2세/도움·버튼 대안·기존 11화 별 배치와 저장 복구를 유지합니다. [휙휙 바구니](docs/screenshots/book-8-choices-tablet.png) · [마지막 필기](docs/screenshots/book-12-written-tablet.png). analyze 문제0 / 전체 **393개 테스트 통과**, 3크기 캡처84장. 로컬 APK **1.0.0 (214274816)** 빌드·v2 서명 검증 성공([결과](docs/chapters_build.json)). Git/APK 업로드는 하지 않았습니다. 실기기 검증과 실제 연기 음원 제작은 남아 있습니다.
+- **스토리 연기 음원 준비·3/4화 확장(이전 로컬):** 스토리 자동/수동 읽기와 글자 소리 버튼이 장면별 정확한 녹음 ID를 요청해 같은 대사를 다른 인물의 파일로 재생하지 않도록 했다. 모아·루루·토토·휙휙의 연기/감정/호흡 지침, 352개 스토리 take의 제작 자료와 PCM 품질 경고를 추가했다. **실제 녹음 0개이며 현재 소리는 TTS 대안**이다. [성우 연기 제작 지침](docs/audio/STORY_DIRECTION.md). 사용자 선택은 캐릭터별 AI 연기이며 [시연 4개 생성 계획](docs/audio/AI_AUDITIONS.md)과 무료 dry-run 도구를 준비했다. 사용자가 비용 사용을 보류했으므로 실제 생성은 대기한다. 3화 열매 선택·씨앗 꾸러미/ㄱ 이름표, 4화 표지 선택·ㄴ 필기/출발 신호와 증기를 연결했다. 새 기차 주행 프레임은 아니다. [열매 선택](docs/screenshots/letter-3-choices-tablet.png) · [기차 필기](docs/screenshots/letter-4-complete-tablet.png). 최종 analyze 문제 0 / 전체 **370개 통과**, 로컬 APK **1.0.0 (214272709)** 빌드·v2 서명 검증 성공([결과](docs/adventure_build.json)). Git/APK 업로드는 하지 않았다.
+
+- **꽃문·등대와 필기 연결(이전 로컬):** 2화 꽃문의 ㅓ/ㅏ, 5화 등대의 B/A를 그림 속에서 직접 누릅니다. 필기 중에도 그림책 장면을 유지하고, 저장된 ㅏ의 2획·A의 3획에 따라 꽃길과 바다 빛길이 차례로 살아납니다. 완료한 필기와 다음 이야기 버튼을 함께 보여줍니다. 잘못된 선·취소·저장 실패에는 빛을 채우지 않으며, 재개·무동작·백그라운드는 성공 연출을 반복하지 않습니다. 만 2세/쉬운 길과 버튼 대안도 유지합니다. [꽃길 필기](docs/screenshots/letter-2-complete-tablet.png) · [등대 선택](docs/screenshots/letter-5-choices-phone.png). analyze 문제 0 / 전체 **353개 통과**, 로컬 APK **1.0.0 (214266319)** 빌드·v2 서명 검증 성공([결과](docs/letter_build.json)). 남은 작업은 PROGRESS 상단을 따릅니다. 기존 배경의 전환과 코드로 그린 빛 연출이며 새 캐릭터 프레임 제작은 아닙니다. Git/APK 업로드는 하지 않았습니다.
+
+- **그림 속 돌다리·별자리 미션(이전 로컬):** 6화는 삽화의 실제 빈자리에 돌 3개를 끌어 놓고, 11화는 하늘에 별 5개를 놓아 빛길을 잇습니다. 배치 저장 뒤에만 그림이 바뀌고 정답 성공 후 동료가 이동합니다. 기존 버튼 방식·만 2세/도움 경로·진도 저장을 유지하며, 재개 시 성공 연출을 반복하지 않습니다. [돌다리](docs/screenshots/world-6-after-tablet.png) · [별자리](docs/screenshots/world-11-after-tablet.png). 동료 이동은 기존 투명 그림의 위치 연출이며 새 걷기 프레임은 아닙니다. analyze 문제 0 / 전체 **342개 통과**, 로컬 APK **1.0.0 (214265371)** 빌드·v2 서명 검증 성공([결과](docs/world_build.json)). 남은 작업과 재개 기록은 PROGRESS 상단을 기준으로 합니다.
+
+- **Flame 장면 놀이·필기 경험 보강(직전 로컬):** 12화 각 도입 장면에서 사건에 맞는 소품을 찾고 빛을 모읍니다. 2/3/4~5단계의 1/2/3개 탐색, 실제 탭/접근성 조작, 저장 후 반응과 이어하기, 유한 연출 후 엔진 정지를 구현했습니다. 한글·영어·숫자 공용 필기에 획별 자동 시범/펜 끝·실시간 경로 코칭·곡선 화살표·태블릿 옆 안내판을 추가했습니다. 기존 낙서/부분 획 판정과 ㅊ 보완을 유지합니다. [장면 놀이](docs/screenshots/experience-story-tablet.png) · [빛 회수](docs/screenshots/experience-restored-tablet.png) · [한글 필기](docs/screenshots/experience-hangul-tablet.png) · [영어 필기](docs/screenshots/experience-english-phone.png). analyze 문제 0 / 전체 **331개 테스트 통과**, 로컬 APK **1.0.0 (214240100)** 빌드·v2 서명 검증 성공([결과](docs/experience_build.json)). 상세 기록은 PROGRESS 상단을 따릅니다. 전 장면 게임화·캐릭터 걷기 프레임·실제 음원 제작을 완료한 것은 아니며 Git/APK 업로드는 하지 않았습니다.
+
+- **화면 품질 1차 개편(로컬 후속):** 태블릿 홈을 모험 표지·그림 책장으로 구성하고, 과목별 학습 카드와 공용 글꼴/색/버튼을 정리했습니다. 스토리는 그림 비중을 키우고 짧은 대사의 빈 상자를 줄이며, 낮은 가로 폰은 전체 폭 대사로 읽습니다. [홈 캡처](docs/screenshots/design-home-tablet.png) · [스토리 캡처](docs/screenshots/design-story-tablet.png). analyze 문제 0 / 전체 312개 통과, 로컬 APK `1.0.0 (214238199)` 빌드·v2 서명 검증 성공([결과](docs/design_build.json)). 캡처는 호스트 렌더이며 실기기·아동 사용성 검증은 남아 있습니다. 기존 GitHub 배포 APK에는 아직 이 개편과 아래 ㅊ 수정이 없습니다.
+- **ㅊ 첫 획 입력 보완(후속 로컬 수정):** 짧은 직선에서 작은 손가락 위치·끝점 오차를 허용하고, 좁은 화면의 번호 배지를 옆으로 옮겨 선과 화살표를 가리지 않게 했습니다. 탭·부분 획·낙서·4~5단계 역방향 거절은 유지합니다. analyze 문제 0 / 전체 309개 테스트 통과. 아래의 기존 배포 APK에는 이 수정이 아직 포함되지 않았습니다.
 - **녹음 우선 재생:** 대본 원문·언어가 일치하는 번들 WAV를 먼저 재생하고, 누락/실패에는 오프라인 TTS로 대체합니다. 완료 응답·반복·음량·중단·백그라운드 취소를 처리합니다. 실제 녹음 파일은 아직 **0개**이며, 현재는 TTS를 사용합니다. [음원 등록 절차](docs/audio/README.md)를 따릅니다.
-- **저장 복구·음성 제작 준비:** 7화 그림 제출을 먼저 저장하고 고정 작품 ID로 PNG/작품/진도를 마무리해, 중단 후 재시작과 저장 실패 재시도에서 중복 제출을 막습니다. 부모 진도 초기화를 늦은 저장이 덮지 않도록 조건부 저장을 사용합니다. 영어 소문자는 표시를 유지하면서 글자 이름 읽기는 대문자로 요청합니다. [음성 대본 609개와 검수 안내](docs/audio/README.md)는 제작 준비 자료이며 녹음·실제 청취 검수가 완료된 것은 아닙니다.
+- **저장 복구·음성 제작 준비:** 7화 그림 제출을 먼저 저장하고 고정 작품 ID로 PNG/작품/진도를 마무리해, 중단 후 재시작과 저장 실패 재시도에서 중복 제출을 막습니다. 부모 진도 초기화를 늦은 저장이 덮지 않도록 조건부 저장을 사용합니다. 영어 소문자는 표시를 유지하면서 글자 이름 읽기는 대문자로 요청합니다. [음성 대본 671개와 검수 안내](docs/audio/README.md)는 제작 준비 자료이며 녹음·실제 청취 검수가 완료된 것은 아닙니다.
 - **6~12화 전체 보강:** 돌다리 세 돌 배치 → 색 정원과 그림 지도 → 휙휙과 글자/숫자 정리 → 세 갈래 복습 → 종이숲 성장 순서 → 다섯 별 배치 → 도서관 재개장까지 70개 기본 장면을 개별 작성했습니다. 전용 그림 15장, 일반 그림 퀴즈 28종과 만 2세 탐색 7종을 추가했습니다. 9화는 고른 길에 따라 세 번의 복습이 달라지고, 12화는 꽃 방/별 방 선택이 실제 결말 그림에 반영됩니다. 7화 그림은 자유 그림과 별도로 이어 그리며 6색·지우개·undo/redo·작품 저장을 제공합니다. [돌다리](docs/screenshots/ep6-after-tablet.png) · [색 정원](docs/screenshots/ep7-after-tablet.png) · [별자리](docs/screenshots/ep11-after-tablet.png) · [꽃 방](docs/screenshots/ep12-flowers-tablet.png) · [마지막 장면](docs/screenshots/ep12-ending-tablet.png). 캡처는 Flutter 호스트 렌더입니다.
 - **4·5화 이야기 보강:** 씨앗을 가·나 표지의 기차에 싣고, 꺼진 등대에서 A 빛을 켭니다. 한글 조합/순서·A/a 짝·Apple 과일 카드와 만 2세 자유 탐색을 제공합니다. `A 이름 듣기`와 `Apple 단어 듣기`는 영어 음성으로 각각 재생하며, 가/나 소리는 한국어로 들려줍니다. 듣기만으로 미션을 통과시키지 않습니다. [소리 기차](docs/screenshots/ep4-ready-tablet.png) · [켜진 등대](docs/screenshots/ep5-lit-tablet.png) · [폰 듣기 버튼](docs/screenshots/ep5-speech-phone.png).
 - **2·3화 이야기 보강:** 모음 소리로 꽃문을 열고, 기역 열매를 찾아 앞 화의 아와 합쳐 가를 만듭니다. 전용 배경 4장, 꽃문/열매의 Flutter 글자 이름표, 한글 카드·씨앗 세기·만 2세 탐색 변형을 추가했습니다. 성공 저장 후 그림이 바뀌며 오답/저장 실패에는 바뀌지 않습니다. [닫힌 꽃문](docs/screenshots/ep2-gate-tablet.png) · [열린 꽃문](docs/screenshots/ep2-open-tablet.png) · [기역 열매](docs/screenshots/ep3-tree-tablet.png) · [가 만들기](docs/screenshots/ep3-ga-tablet.png).
@@ -40,15 +52,20 @@ Flutter **stable 3.47.7**, Dart **3.13.5**, Android minSdk **24**, target/compil
 
 ```powershell
 flutter pub get
+powershell -ExecutionPolicy Bypass -File tool/verify-source.ps1 # 전체 소스 전달 검사
 powershell -ExecutionPolicy Bypass -File tool/test.ps1
 dart run tool/audit_content.dart
 dart run tool/export_voice_scripts.dart
+dart run tool/export_story_studio.dart
+dart run tool/generate_ai_auditions.dart # 무료 계획만 생성, API 호출 없음
 dart run tool/prepare_recordings.dart
 dart run tool/prepare_recordings.dart --check
 powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 ```
 
 `tool/test.ps1`은 한글 사용자 TEMP 경로에서 flutter_tester가 종료되는 Windows 문제를 피합니다. `tool/android.ps1`은 원래 SDK를 이동하지 않고 `.tool_tmp/android-sdk` Junction을 사용해 JNI/CMake의 한글 경로 문제를 피합니다. 원본 SDK는 `%LOCALAPPDATA%/Android/Sdk`에서 찾습니다. Kotlin incremental 캐시는 C: 패키지 캐시와 D: 프로젝트의 드라이브 차이 때문에 비활성화했습니다.
+
+새 화면 캡처는 `POLISH_CAPTURE=true`, 경로 검토 자료는 `REVIEW_EXPORT=true`로 해당 테스트를 실행합니다. [교육 검토 자료 재생성](docs/review/README.md)과 PROGRESS의 검사 명령을 참고하세요. 별도 Pixel Tablet 에뮬레이터(API35)의 Android 통합1개도 통과했습니다. 고유한 테스트 DB로 저장/이동/필기 완료/DB 재개를 검사하며 실제 아이 진도를 사용하지 않습니다. 실행 중인 대상 ID를 확인한 다음 `tool/android.ps1 test integration_test/app_flow_test.dart --device-id=<에뮬레이터ID> --timeout=120s`로 실행합니다. PowerShell에서는 옵션의 값에 `=`를 사용합니다.
 
 ## APK와 설치
 
@@ -68,7 +85,7 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 
 다른 PC에서는 소스를 clone한 다음 두 비공개 파일을 같은 위치로 복원해야 릴리스 빌드할 수 있습니다. 키가 없으면 새 키를 생성하지 말고 원본 백업을 복원하세요. 키 생성 스크립트 `tool/create-sharing-key.ps1`는 기존 파일을 덮어쓰지 않습니다. 예전 `tool/sign-debug.ps1`은 공유 빌드에 사용하지 않습니다.
 
-업데이트는 같은 applicationId와 같은 서명 키를 유지하고 `pubspec.yaml`의 빌드 번호를 올려 배포합니다. 현재 앱 ID는 `com.example.flutter_application_1`이며 그대로 유지했습니다. 현재 에뮬레이터는 offline이고 실제 Galaxy Tab 설치·성능 검증은 미완료입니다. 절차는 [docs/DEVICE_VALIDATION.md](docs/DEVICE_VALIDATION.md)를 참고하세요.
+업데이트는 같은 applicationId와 같은 서명 키를 유지하고 `pubspec.yaml`의 빌드 번호를 올려 배포합니다. 현재 앱 ID는 `com.example.flutter_application_1`이며 그대로 유지했습니다. 별도 태블릿 에뮬레이터에서 Android 저장/이동/필기/DB 재개를 검사했으며 실제 Galaxy Tab 설치·성능 검증은 미완료입니다. 절차는 [docs/DEVICE_VALIDATION.md](docs/DEVICE_VALIDATION.md)를 참고하세요.
 
 ## APK를 GitHub Releases에 올리기
 
@@ -104,8 +121,9 @@ powershell -ExecutionPolicy Bypass -File tool/publish-apk.ps1
 
 명세 대비 구현 범위와 누락 사항은 [docs/REQUIREMENTS_STATUS.md](docs/REQUIREMENTS_STATUS.md)에 정리했습니다.
 
-`dart run tool/audit_content.dart
-dart run tool/export_voice_scripts.dart`는 콘텐츠 참조·배경·캐릭터·이야기 효과음 리소스를 검사하고 `docs/content_audit.json`을 생성합니다. `--require-recordings`를 추가하면 녹음이 누락될 때 실패합니다. 현재 사전 녹음 357파일과 배경음악은 미제작입니다. 이야기 효과음 3개는 `dart run tool/generate_story_sounds.dart`로 재현할 수 있는 자체 합성 소리이며 녹음 대사가 아닙니다. 시스템 이모지와 TTS 발음은 기기마다 다를 수 있습니다.
+`dart run tool/audit_content.dart`는 콘텐츠 참조·배경·캐릭터·이야기 효과음 리소스를 검사하고 `docs/content_audit.json`을 생성합니다. `--require-recordings`를 추가하면 녹음이 누락될 때 실패합니다. 현재 고정 대본 **671개에 대한 등록 음원은 0개**이며 배경음악도 미제작입니다. 대본은 `export_voice_scripts.dart`, 스토리 연기 지침은 `export_story_studio.dart`로 재생성합니다. `generate_ai_auditions.dart`의 기본 실행은 계획만 만들며 API를 호출하지 않습니다. 유료 생성은 계속 보류합니다. 이야기 효과음 3개는 `dart run tool/generate_story_sounds.dart`로 재현할 수 있는 자체 합성 소리이며 녹음 대사가 아닙니다. 시스템 이모지와 TTS 발음은 기기마다 다를 수 있습니다.
+
+다른 PC로 소스를 옮겨 개발하거나 Git에 올리기 전에는 `tool/verify-source.ps1`을 실행합니다. 비공개 파일 경로, analyze/전체 테스트, 생성 자료 일치와 콘텐츠 감사를 묶어 검사하며 자동 푸시나 APK 업로드는 하지 않습니다. [소스 전달·보류 항목·다음 검수](docs/SOURCE_HANDOFF.md)를 참고하세요.
 
 실제 Galaxy Tab의 필기·음성·프레임/메모리·재부팅/업데이트, 아동 사용성, 교육 전문가의 문항/필순/발음 검수, 정식 앱 ID/서명은 미완료입니다. 앱 ID는 `com.example.flutter_application_1`을 유지했습니다.
 

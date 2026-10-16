@@ -103,6 +103,7 @@ void main() {
           );
           final second = find.byKey(const ValueKey('sorting-piece-1'));
           await tester.ensureVisible(second);
+          await tester.pumpAndSettle();
           await tester.tap(second);
           await tester.pumpAndSettle();
           expect(c.read(sortingProvider(5)).requireValue.selected, 1);
@@ -112,6 +113,7 @@ void main() {
             ),
           );
           await tester.ensureVisible(secondTarget);
+          await tester.pumpAndSettle();
           await tester.tap(secondTarget);
           await tester.pumpAndSettle();
           expect(c.read(sortingProvider(5)).requireValue.placed.length, 2);

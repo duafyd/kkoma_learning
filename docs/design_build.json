@@ -1,0 +1,12 @@
+{
+    "version":  "1.0.0",
+    "buildNumber":  214238199,
+    "bytes":  146380842,
+    "MiB":  139.6,
+    "sha256":  "a8e26b125d1b7713bd2becaded76d331d1d5ba60545ea2b33cda2eac43ab90a7",
+    "signature":  "verified v2",
+    "tests":  312,
+    "change":  "Storybook home, learning cards, shared typography and responsive dialogue; includes chieut fix",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false
+}

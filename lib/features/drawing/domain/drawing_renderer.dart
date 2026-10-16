@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'drawing.dart';
+import 'drawing_stamps.dart';
 
 class DrawingPainter extends CustomPainter {
   final DrawingDocument document;
@@ -15,14 +16,14 @@ class DrawingPainter extends CustomPainter {
       Offset p(int i) =>
           Offset(line.points[i].x * size.width, line.points[i].y * size.height);
       if (line.stamp != null) {
-        final text = TextPainter(
-          text: TextSpan(
-            text: line.stamp,
-            style: TextStyle(fontSize: size.shortestSide * .12),
-          ),
-          textDirection: TextDirection.ltr,
-        )..layout();
-        text.paint(canvas, p(0) - Offset(text.width / 2, text.height / 2));
+        final edge = size.shortestSide * .12;
+        canvas.save();
+        canvas.translate(p(0).dx - edge / 2, p(0).dy - edge / 2);
+        DrawingStampPainter(
+          line.stamp!,
+          Color(line.color),
+        ).paint(canvas, Size.square(edge));
+        canvas.restore();
         continue;
       }
       final paint = Paint()

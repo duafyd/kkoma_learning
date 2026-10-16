@@ -1,0 +1,14 @@
+﻿{
+    "version":  "1.0.0",
+    "buildNumber":  214290482,
+    "bytes":  149998465,
+    "MiB":  143,
+    "sha256":  "9a049dba63379dcc880fa818c78e0f0faf244762061727d1c14af3ac092cc7ee",
+    "signature":  "verified v2",
+    "tests":  415,
+    "androidIntegrationTests":  1,
+    "analyze":  "no issues",
+    "change":  "Prewriting six activities, curved guides, saved-story home and gallery map/exhibition, font-independent drawing stamps, concrete arithmetic and saved line pairing, four-character sixteen-frame motion atlas; no audio production or physical-device tests",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false
+}

@@ -57,10 +57,15 @@ class RecordedVoice {
     }
   }
 
-  Future<VoiceClip?> find(String text, String language) async {
+  Future<VoiceClip?> find(String text, String language, {String? id}) async {
     if (_clips == null) await (_index ??= _load());
     return _clips!
-        .where((c) => c.text == text && c.language == language)
+        .where(
+          (c) =>
+              c.text == text &&
+              c.language == language &&
+              (id == null || c.id == id),
+        )
         .firstOrNull;
   }
 

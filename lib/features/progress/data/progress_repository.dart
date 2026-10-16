@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/storage/local_store.dart';
-import '../../learning/data/learning_content.dart';
+import '../../tracing/data/trace_catalog.dart';
 
 final progressRepositoryProvider = Provider(
   (ref) => ProgressRepository(ref.watch(storeProvider)),
@@ -41,7 +41,7 @@ class ProgressRepository {
     for (final subject in ['hangul', 'english', 'math']) {
       await store.remove('session-$subject');
     }
-    for (final item in learningItems) {
+    for (final item in traceItems) {
       await store.remove('trace-${item.id}');
     }
   }

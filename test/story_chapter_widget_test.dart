@@ -97,7 +97,23 @@ void main() {
                 .widget<StoryIllustration>(find.byType(StoryIllustration))
                 .background;
             expect(background(), scenes[index].background);
-            await reveal(find.byType(StoryPictureQuiz), 120);
+            await reveal(find.byType(StoryPictureQuiz).first, 120);
+            if ([1, 2, 3, 4, 6, 7, 8, 9, 11].contains(ep)) {
+              final alternative = find.byKey(
+                const ValueKey('letter-choice-alternative'),
+              );
+              await reveal(alternative, 100);
+              await tester.tap(find.text('버튼으로 고르기'));
+              await tester.pumpAndSettle();
+            }
+            if (ep == 5 || ep == 10) {
+              final alternative = find.byKey(
+                const ValueKey('placement-alternative'),
+              );
+              await reveal(alternative, 100);
+              await tester.tap(find.text('버튼으로 놓기'));
+              await tester.pumpAndSettle();
+            }
             final vm = c.read(storyProvider.notifier);
             if (!vm.machine.canAnswer(c.read(storyProvider).requireValue)) {
               final objects = vm.machine

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../data/story_art.dart';
 import '../domain/story_models.dart';
+import 'story_cast_frame.dart';
 
 /// A separate transparent paper puppet, not a moving crop of the background.
 class StoryCharacter extends StatefulWidget {
@@ -12,6 +13,7 @@ class StoryCharacter extends StatefulWidget {
   final bool animate, celebrate, faceLeft;
   final VoidCallback? onTap;
   final StoryReaction reaction;
+  final double? travelProgress;
   const StoryCharacter({
     super.key,
     required this.character,
@@ -22,13 +24,15 @@ class StoryCharacter extends StatefulWidget {
     this.reactionId = '',
     this.onTap,
     this.reaction = StoryReaction.greet,
+    this.travelProgress,
   });
   @override
   State<StoryCharacter> createState() => _StoryCharacterState();
 }
 
 class _StoryCharacterState extends State<StoryCharacter>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+  bool quietTravel = false;
   late final movement = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 1200),
@@ -36,6 +40,7 @@ class _StoryCharacterState extends State<StoryCharacter>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     if (widget.animate) movement.forward();
   }
 
@@ -61,8 +66,18 @@ class _StoryCharacterState extends State<StoryCharacter>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     movement.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      quietTravel = true;
+      movement.stop();
+      movement.value = 1;
+    }
   }
 
   @override
@@ -120,6 +135,31 @@ class _StoryCharacterState extends State<StoryCharacter>
             final animate =
                 widget.animate && !MediaQuery.disableAnimationsOf(context);
             final t = animate ? movement.value : 1.0;
+            final travel = widget.travelProgress;
+            final walking =
+                animate &&
+                !quietTravel &&
+                ((travel != null && travel > 0 && travel < 1) ||
+                    (travel == null && t > 0 && t < .9));
+            final pose = walking
+                ? (((travel ?? t) * 14).floor().isEven
+                      ? CastPose.stepA
+                      : CastPose.stepB)
+                : animate && t > .2 && t < .7
+                ? CastPose.open
+                : CastPose.idle;
+            final frame =
+                widget.reaction == StoryReaction.search ||
+                    widget.reaction == StoryReaction.point
+                ? child
+                : Transform.flip(
+                    flipX: widget.faceLeft,
+                    child: StoryCastFrame(
+                      character: widget.character,
+                      pose: pose,
+                      edge: widget.edge,
+                    ),
+                  );
             final wave =
                 math.sin(
                   t *
@@ -139,7 +179,7 @@ class _StoryCharacterState extends State<StoryCharacter>
                 angle: wave * .055,
                 child: Transform.scale(
                   scale: celebrating ? 1 + math.sin(t * math.pi) * .07 : 1,
-                  child: child,
+                  child: frame,
                 ),
               ),
             );

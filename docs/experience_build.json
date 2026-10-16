@@ -1,0 +1,13 @@
+{
+    "version":  "1.0.0",
+    "buildNumber":  214240100,
+    "bytes":  147036566,
+    "MiB":  140.2,
+    "sha256":  "6764499556b5fc0597833f59750d5b78635894531c3c10f570e07a4fb4b078db",
+    "signature":  "verified v2",
+    "tests":  331,
+    "analyze":  "no issues",
+    "change":  "Flame chapter-opening scene play, committed discoveries and finite effects; shared tracing live coaching, arc-length arrows, per-stroke pen demonstration and tablet workspace; includes prior UI/chieut fixes",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false
+}

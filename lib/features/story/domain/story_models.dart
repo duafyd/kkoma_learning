@@ -95,6 +95,7 @@ class StorySnapshot {
   final String message;
   final String? supportSceneId;
   final List<int> observedObjects;
+  final List<int> sceneFinds;
   final Artwork? pendingDrawing;
   const StorySnapshot({
     this.episode = 0,
@@ -110,6 +111,7 @@ class StorySnapshot {
     this.message = '',
     this.supportSceneId,
     this.observedObjects = const [],
+    this.sceneFinds = const [],
     this.pendingDrawing,
   });
   Map<String, dynamic> toJson() => {
@@ -126,6 +128,7 @@ class StorySnapshot {
     'message': message,
     'supportSceneId': supportSceneId,
     'observedObjects': observedObjects,
+    'sceneFinds': sceneFinds,
     'pendingDrawing': pendingDrawing?.toJson(),
   };
   factory StorySnapshot.fromJson(Map<String, dynamic> j) => StorySnapshot(
@@ -155,6 +158,11 @@ class StorySnapshot {
           )
         : null,
     observedObjects: (j['observedObjects'] as List? ?? const [])
+        .whereType<int>()
+        .where((i) => i >= 0)
+        .toSet()
+        .toList(),
+    sceneFinds: (j['sceneFinds'] as List? ?? const [])
         .whereType<int>()
         .where((i) => i >= 0)
         .toSet()

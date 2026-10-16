@@ -1,0 +1,13 @@
+{
+    "version":  "1.0.0",
+    "buildNumber":  214265371,
+    "bytes":  147495358,
+    "MiB":  140.7,
+    "sha256":  "7c864f9fa0616a99feb027d9c8217dc56f9fee0d9f52eaa5c672489c1d37867e",
+    "signature":  "verified v2",
+    "tests":  342,
+    "analyze":  "no issues",
+    "change":  "Flame world drag/tap bridge and constellation missions, committed scenery restoration and finite companion journey, accessible button alternative, success dialogue and instruction narration; includes prior local improvements",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false
+}

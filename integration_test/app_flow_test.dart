@@ -8,6 +8,9 @@ import 'package:flutter_application_1/core/storage/local_store.dart';
 import 'package:flutter_application_1/features/profile/data/profile_repository.dart';
 import 'package:flutter_application_1/features/profile/domain/settings.dart';
 import 'package:flutter_application_1/features/story/data/story_repository.dart';
+import 'package:flutter_application_1/features/story/presentation/story_page.dart';
+import 'package:flutter_application_1/features/tracing/presentation/trace_canvas.dart';
+import 'package:flutter_application_1/features/tracing/presentation/trace_vm.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +25,8 @@ void main() {
         level: 3,
         autoRead: false,
         animations: false,
+        voiceVolume: 0,
+        effectsVolume: 0,
       ),
     );
     final c = ProviderContainer(
@@ -31,9 +36,11 @@ void main() {
       UncontrolledProviderScope(container: c, child: const KkomaApp()),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.text('오늘의 모험'));
+    final openStory = find.text('별빛 이야기 펼치기');
+    await tester.ensureVisible(openStory);
+    await tester.tap(openStory);
     await tester.pumpAndSettle();
-    expect(find.text('1화 · 빛을 잃은 도서관'), findsOneWidget);
+    expect(find.byType(StoryPage), findsOneWidget);
     await tester.tap(find.text('다음 장면'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('다음 장면'));
@@ -42,11 +49,23 @@ void main() {
     await tester.pumpAndSettle();
     final snapshot = await StoryRepository(store).load();
     expect(snapshot!.flags['companion'], '토토');
+    c.read(routerProvider).go('/trace/p-dot');
+    await tester.pumpAndSettle();
+    final canvas = find
+        .descendant(
+          of: find.byType(TraceCanvas),
+          matching: find.byType(CustomPaint),
+        )
+        .first;
+    await tester.tapAt(tester.getCenter(canvas));
+    await tester.pumpAndSettle();
+    expect(c.read(traceProvider('p-dot')).requireValue.done, isTrue);
     await tester.pumpWidget(const SizedBox());
     c.dispose();
     await store.db.close();
     final reopened = await SqliteStore.open(fileName: fileName);
     expect((await ProfileRepository(reopened).load()).age, 4);
+    expect((await reopened.read('trace-p-dot'))!['done'], isTrue);
     expect(
       (await StoryRepository(reopened).load())!.toJson(),
       snapshot.toJson(),

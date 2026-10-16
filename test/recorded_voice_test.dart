@@ -19,6 +19,7 @@ import 'package:flutter_application_1/features/profile/domain/settings.dart';
 import 'package:flutter_application_1/features/progress/data/progress_repository.dart';
 import 'package:flutter_application_1/features/story/data/story_repository.dart';
 import 'package:flutter_application_1/features/story/domain/story_models.dart';
+import 'package:flutter_application_1/features/story/domain/story_machine.dart';
 import 'package:flutter_application_1/features/story/presentation/story_vm.dart';
 
 class _Bundle extends CachingAssetBundle {
@@ -141,6 +142,116 @@ void main() {
     expect((await recordings.find('A', 'en-US'))!.id, 'voice-test-a');
     expect(bundle.loads, 1);
   });
+  test(
+    'same words use the requested actor take and never borrow a different ID',
+    () async {
+      final manifest = jsonEncode({
+        'version': 1,
+        'clips': [
+          {
+            'id': 'voice-lulu',
+            'text': '안녕',
+            'language': 'ko-KR',
+            'bytes': 32044,
+          },
+          {
+            'id': 'voice-moa',
+            'text': '안녕',
+            'language': 'ko-KR',
+            'bytes': 32044,
+          },
+        ],
+      });
+      final recordings = RecordedVoice(bundle: _Bundle(manifest));
+      expect(
+        (await recordings.find('안녕', 'ko-KR', id: 'voice-moa'))!.id,
+        'voice-moa',
+      );
+      expect(await recordings.find('안녕', 'ko-KR', id: 'voice-toto'), isNull);
+      expect(await recordings.find('안녕!', 'ko-KR', id: 'voice-moa'), isNull);
+      expect(await recordings.find('안녕', 'en-US', id: 'voice-moa'), isNull);
+    },
+  );
+  test(
+    'exact recording ID reaches native playback; missing take uses TTS',
+    () async {
+      final audio = service();
+      expect(
+        await audio.speak(
+          'A',
+          const ParentSettings(),
+          language: 'en-US',
+          recordingId: 'voice-test-a',
+        ),
+        PlaybackResult.played,
+      );
+      expect(plays.single['id'], 'voice-test-a');
+      plays.clear();
+      expect(
+        await audio.speak(
+          'A',
+          const ParentSettings(),
+          language: 'en-US',
+          recordingId: 'voice-other-actor',
+        ),
+        PlaybackResult.played,
+      );
+      expect(plays, isEmpty);
+      expect(audio.lastSource, VoiceSource.tts);
+    },
+  );
+  testWidgets(
+    'story automatic and manual narration request the scene actor take',
+    (tester) async {
+      final store = MemoryStore();
+      const snapshot = StorySnapshot(episode: 2, scene: 1, level: 5);
+      final machine = StoryMachine();
+      final text = machine.narration(snapshot),
+          id = machine.narrationId(snapshot)!;
+      final audio = service(
+        manifest: jsonEncode({
+          'version': 1,
+          'clips': [
+            {
+              'id': 'voice-another-actor',
+              'text': text,
+              'language': 'ko-KR',
+              'bytes': 32044,
+            },
+            {'id': id, 'text': text, 'language': 'ko-KR', 'bytes': 32044},
+          ],
+        }),
+      );
+      await ProfileRepository(store).save(
+        const ParentSettings(
+          age: 5,
+          level: 5,
+          autoRead: true,
+          animations: false,
+        ),
+      );
+      await StoryRepository(store).save(snapshot);
+      final c = ProviderContainer(
+        overrides: [
+          storeProvider.overrideWithValue(store),
+          audioProvider.overrideWithValue(audio),
+        ],
+      );
+      await tester.pumpWidget(
+        UncontrolledProviderScope(container: c, child: const KkomaApp()),
+      );
+      await tester.pumpAndSettle();
+      c.read(routerProvider).go('/story');
+      await tester.pumpAndSettle();
+      expect(plays.map((p) => p['id']), [id]);
+      await tester.tap(find.byTooltip('대사 다시 듣기'));
+      await tester.pumpAndSettle();
+      expect(plays.map((p) => p['id']), [id, id]);
+      expect(c.read(storyProvider).requireValue.phase, StoryPhase.dialogue);
+      await tester.pumpWidget(const SizedBox.shrink());
+      c.dispose();
+    },
+  );
   test('duplicate IDs invalidate the whole index rather than choose ambiguous audio', () async {
     final value = jsonDecode(_manifest()) as Map;
     (value['clips'] as List).add((value['clips'] as List).first);
@@ -158,7 +269,8 @@ void main() {
   test(
     'story sample uses the recording without passing or changing the mission',
     () async {
-      final store = MemoryStore(), audio = service();
+      final store = MemoryStore(),
+          audio = service(manifest: _manifest(id: 'voice-story-letter-a-name'));
       await ProfileRepository(store)
           .save(const ParentSettings(age: 5, level: 5, autoRead: false));
       const snapshot = StorySnapshot(
@@ -181,7 +293,7 @@ void main() {
         PlaybackResult.played,
       );
       expect(audio.lastSource, VoiceSource.recording);
-      expect(plays.single['id'], 'voice-test-a');
+      expect(plays.single['id'], 'voice-story-letter-a-name');
       expect(
         (await StoryRepository(store).load())!.toJson(),
         snapshot.toJson(),

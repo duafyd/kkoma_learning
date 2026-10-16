@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../learning/data/learning_content.dart';
+import '../data/trace_catalog.dart';
+import '../data/prewriting_content.dart';
 import '../../profile/domain/settings.dart';
 import '../../progress/data/progress_repository.dart';
 import '../domain/trace_engine.dart';
@@ -18,8 +19,8 @@ class TraceVM extends AsyncNotifier<TraceState> {
   late TraceRepository repository;
   TraceVM(this.itemId);
   String? nextItemId(int level) {
-    final current = learningItems.firstWhere((i) => i.id == itemId);
-    final available = learningItems
+    final current = traceItems.firstWhere((i) => i.id == itemId);
+    final available = traceItems
         .where(
           (i) =>
               i.subject == current.subject &&
@@ -37,7 +38,7 @@ class TraceVM extends AsyncNotifier<TraceState> {
   Future<TraceState> build() async {
     repository = ref.read(traceRepositoryProvider);
     final saved = TraceState.fromJson(await repository.load(itemId) ?? {});
-    final item = learningItems.firstWhere((i) => i.id == itemId);
+    final item = traceItems.firstWhere((i) => i.id == itemId);
     if (saved.strokeIndex < 0 ||
         saved.strokeIndex > item.strokes.length ||
         saved.completed.length != saved.strokeIndex) {
@@ -57,9 +58,11 @@ class TraceVM extends AsyncNotifier<TraceState> {
     final progress = ref.read(progressRepositoryProvider);
     try {
       final old = state.requireValue,
-          item = learningItems.firstWhere((i) => i.id == itemId);
-      final result = TraceStrategy(AgeStrategy(level))
-          .evaluate(item.strokes[old.strokeIndex], input);
+          item = traceItems.firstWhere((i) => i.id == itemId);
+      final strategy = item.subject == 'prewriting'
+          ? PrewritingStrategy(AgeStrategy(level))
+          : TraceStrategy(AgeStrategy(level));
+      final result = strategy.evaluate(item.strokes[old.strokeIndex], input);
       if (!result.accepted) {
         const messages = {
           TraceFeedback.startHere: '빛나는 점에서 다시 시작해 볼까요?',

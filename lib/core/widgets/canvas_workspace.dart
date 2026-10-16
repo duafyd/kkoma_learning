@@ -5,11 +5,13 @@ class CanvasWorkspace extends StatefulWidget {
   final Widget canvas;
   final Widget controls;
   final bool controlsFirst;
+  final bool tabletSidePanel;
   const CanvasWorkspace({
     super.key,
     required this.canvas,
     required this.controls,
     this.controlsFirst = false,
+    this.tabletSidePanel = false,
   });
 
   @override
@@ -39,12 +41,18 @@ class _CanvasWorkspaceState extends State<CanvasWorkspace> {
           ),
         ),
       );
-      if (bounds.maxWidth >= 600 && bounds.maxHeight < 450) {
+      if ((bounds.maxWidth >= 600 && bounds.maxHeight < 450) ||
+          (widget.tabletSidePanel &&
+              bounds.maxWidth >= 1000 &&
+              bounds.maxWidth > bounds.maxHeight * 1.2)) {
         return Row(
           children: [
             Expanded(child: widget.canvas),
             const SizedBox(width: 12),
-            SizedBox(width: bounds.maxWidth * .42, child: tools),
+            SizedBox(
+              width: bounds.maxWidth * (bounds.maxHeight < 450 ? .42 : .32),
+              child: tools,
+            ),
           ],
         );
       }

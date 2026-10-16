@@ -38,6 +38,7 @@ const storyArtAssets = {
 };
 const storyCastAsset = 'assets/story/cast-v2.png';
 const storySearchCastAsset = 'assets/story/cast-search-v3.png';
+const storyMotionCastAsset = 'assets/story/cast-motion-v1.png';
 const storyCharacterCells = {'루루': 0, '토토': 1, '모아': 2, '휙휙': 3};
 
 ({double x, double y}) storyArtFocus(String background) =>
