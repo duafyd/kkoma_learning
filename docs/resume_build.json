@@ -1,0 +1,16 @@
+{
+    "date":  "2026-10-16",
+    "version":  "1.0.0",
+    "buildNumber":  214299083,
+    "bytes":  150178945,
+    "MiB":  143.2,
+    "sha256":  "1e54f633e42d763b85c41b30989d1b2e30e3a92e08f7af09a85c38a0840943eb",
+    "signature":  "verified v2",
+    "tests":  448,
+    "androidIntegrationTests":  3,
+    "analyze":  "no issues",
+    "change":  "Read-only home learning resume, batch local reads, atomic checkpoint timestamps, stable quiz identity and safe ink/session restoration",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false,
+    "sourceState":  "Uncommitted local follow-up after 727d454"
+}

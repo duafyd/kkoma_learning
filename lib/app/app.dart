@@ -46,7 +46,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/drawing', builder: (_, _) => const DrawingPage()),
       GoRoute(
         path: '/learn/:subject',
-        builder: (_, s) => LearningPage(subject: s.pathParameters['subject']!),
+        builder: (_, s) => LearningPage(
+          subject: s.pathParameters['subject']!,
+          initialQuizMode: s.uri.queryParameters['mode'] == 'quiz',
+        ),
       ),
       GoRoute(
         path: '/trace/:id',

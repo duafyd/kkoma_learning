@@ -13,14 +13,29 @@ import 'learning_card.dart';
 
 class LearningPage extends ConsumerStatefulWidget {
   final String subject;
-  const LearningPage({super.key, required this.subject});
+  final bool initialQuizMode;
+  const LearningPage({
+    super.key,
+    required this.subject,
+    this.initialQuizMode = false,
+  });
   @override
   ConsumerState<LearningPage> createState() => _LearningPageState();
 }
 
 class _LearningPageState extends ConsumerState<LearningPage> {
-  bool quizMode = false;
+  late bool quizMode = widget.initialQuizMode;
   String? autoReadKey;
+  @override
+  void didUpdateWidget(covariant LearningPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.subject != widget.subject ||
+        oldWidget.initialQuizMode != widget.initialQuizMode) {
+      quizMode = widget.initialQuizMode;
+      autoReadKey = null;
+    }
+  }
+
   Future<void> safe(Future<void> Function() action) async {
     try {
       await action();
@@ -155,7 +170,7 @@ class _LearningPageState extends ConsumerState<LearningPage> {
             q.options.length,
             (i) => FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: state.hint >= 2 && i == q.answer
+                backgroundColor: state.hint >= 2 && q.accepts(i)
                     ? const Color(0xffc69424)
                     : null,
               ),

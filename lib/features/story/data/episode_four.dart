@@ -7,6 +7,7 @@ const trainSyllableSounds = [
 ];
 const episodeFourExplore = QuizDefinition(
   id: 'ep4-explore-cargo',
+  isExploration: true,
   subject: 'hangul',
   prompt: '싣고 싶은 씨앗이나 꽃을 눌러요.',
   visual: '씨앗 · 꽃',

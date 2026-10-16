@@ -6,6 +6,7 @@ import '../../../app/app_theme.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../story/presentation/story_illustration.dart';
 import '../../story/presentation/story_vm.dart';
+import '../../progress/presentation/learning_resume_panel.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -71,6 +72,7 @@ class HomePage extends ConsumerWidget {
                   error: (_, _) => const Text('설정을 불러오지 못했어요'),
                 ),
                 const SizedBox(height: 24),
+                const LearningResumePanel(),
                 Card(
                   child: ListTile(
                     leading: const Icon(

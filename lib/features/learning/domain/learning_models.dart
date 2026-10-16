@@ -91,6 +91,9 @@ class QuizDefinition {
   final List<String> options;
   final int answer, minimumLevel;
   final QuizKind kind;
+
+  /// Exploration has no wrong option; [answer] is unused in that mode.
+  final bool isExploration;
   final String? resultVisual, easierId;
   final QuizArtwork? artwork;
   const QuizDefinition({
@@ -102,10 +105,14 @@ class QuizDefinition {
     required this.hint,
     this.minimumLevel = 2,
     this.kind = QuizKind.matching,
+    this.isExploration = false,
     this.subject = 'math',
     this.resultVisual,
     this.easierId,
     this.artwork,
   });
-  bool accepts(int choice) => choice == answer;
+  bool accepts(int choice) =>
+      choice >= 0 &&
+      choice < options.length &&
+      (isExploration || choice == answer);
 }

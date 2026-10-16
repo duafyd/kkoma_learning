@@ -170,7 +170,7 @@ class StoryPictureQuiz extends StatelessWidget {
               runSpacing: 12,
               alignment: WrapAlignment.center,
               children: List.generate(quiz.options.length, (i) {
-                final highlighted = hints >= 2 && i == quiz.answer;
+                final highlighted = hints >= 2 && quiz.accepts(i);
                 return SizedBox(
                   width: width,
                   child: FilledButton.tonal(

@@ -1,0 +1,16 @@
+{
+    "date":  "2026-10-16",
+    "version":  "1.0.0",
+    "buildNumber":  214325262,
+    "bytes":  150178941,
+    "MiB":  143.2,
+    "sha256":  "de85b2ae2c5c7deaea38ee3214a84be5c6ff64398d5ff82c9eed7e36c8925428",
+    "signature":  "verified v2, one signer",
+    "tests":  466,
+    "androidIntegrationTests":  4,
+    "analyze":  "no issues",
+    "change":  "Stable story episode/page identity, legacy numeric restoration, scene-local invariant recovery, pending drawing identity and raw-document conditional saves",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false,
+    "sourceState":  "Uncommitted local follow-up after 727d454"
+}

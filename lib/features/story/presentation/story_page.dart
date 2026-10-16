@@ -341,7 +341,7 @@ class _StoryPageState extends ConsumerState<StoryPage>
                     letterMission: letter,
                     bookMission: book,
                     gardenMap:
-                        s.episode == 6 &&
+                        episode.id == 7 &&
                             book == null &&
                             ((scene.interaction == StoryPhase.drawing &&
                                     s.phase == StoryPhase.success) ||
@@ -525,8 +525,7 @@ class _StoryPageState extends ConsumerState<StoryPage>
               vm.machine.quiz(s).options.length,
               (i) => FilledButton(
                 style: FilledButton.styleFrom(
-                  backgroundColor:
-                      s.hints >= 2 && i == vm.machine.quiz(s).answer
+                  backgroundColor: s.hints >= 2 && vm.machine.quiz(s).accepts(i)
                       ? const Color(0xffc69430)
                       : null,
                 ),

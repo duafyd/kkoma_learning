@@ -95,7 +95,7 @@ void main() {
       expect(find.byTooltip('음성 안내 닫기'), findsNothing);
       await tester.tap(find.text('함께 찾기'));
       await tester.pumpAndSettle();
-      expect(find.text('가방의 첫 글자를 찾아요'), findsOneWidget);
+      expect(find.text('가방의 첫 자음을 찾아요'), findsOneWidget);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
       c.dispose();

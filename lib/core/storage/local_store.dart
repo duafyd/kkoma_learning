@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 abstract class LocalStore {
   Future<Map<String, dynamic>?> read(String key);
+  Future<Map<String, Map<String, dynamic>>> readMany(Iterable<String> keys);
   Future<void> write(String key, Map<String, dynamic> value);
   Future<void> remove(String key);
   Future<bool> writeIfUnchanged(
@@ -35,6 +36,29 @@ class SqliteStore implements LocalStore {
     return Map<String, dynamic>.from(
       jsonDecode(rows.first['value'] as String) as Map,
     );
+  }
+
+  @override
+  Future<Map<String, Map<String, dynamic>>> readMany(
+    Iterable<String> keys,
+  ) async {
+    final ids = keys.toSet().toList();
+    final result = <String, Map<String, dynamic>>{};
+    // Stay below SQLite's variable limit, including older Android versions.
+    for (var start = 0; start < ids.length; start += 400) {
+      final batch = ids.skip(start).take(400).toList();
+      final rows = await db.query(
+        'documents',
+        where: 'id IN (${List.filled(batch.length, '?').join(',')})',
+        whereArgs: batch,
+      );
+      for (final row in rows) {
+        result[row['id'] as String] = Map<String, dynamic>.from(
+          jsonDecode(row['value'] as String) as Map,
+        );
+      }
+    }
+    return result;
   }
 
   @override
@@ -73,6 +97,20 @@ class MemoryStore implements LocalStore {
       : Map<String, dynamic>.from(
           jsonDecode(jsonEncode(documents[key])) as Map,
         );
+  @override
+  Future<Map<String, Map<String, dynamic>>> readMany(
+    Iterable<String> keys,
+  ) async {
+    final result = <String, Map<String, dynamic>>{};
+    for (final key in keys.toSet()) {
+      final value = await read(key);
+      if (value != null) {
+        result[key] = value;
+      }
+    }
+    return result;
+  }
+
   @override
   Future<void> write(String key, Map<String, dynamic> value) async {
     documents[key] = Map<String, dynamic>.from(

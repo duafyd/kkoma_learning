@@ -3,6 +3,7 @@ import '../domain/story_models.dart';
 
 const episodeThreeExplore = QuizDefinition(
   id: 'ep3-explore-seed',
+  isExploration: true,
   subject: 'hangul',
   prompt: '씨앗과 잎을 살펴봐요. 마음에 드는 쪽을 눌러요.',
   visual: '씨앗 · 잎',

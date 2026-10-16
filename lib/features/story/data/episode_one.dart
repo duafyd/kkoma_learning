@@ -7,6 +7,7 @@ const _star = QuizGlyph.star,
 
 const episodeOneExplore = QuizDefinition(
   id: 'ep1-explore-shapes',
+  isExploration: true,
   subject: 'math',
   prompt: '마음에 드는 빛나는 모양을 눌러요.',
   visual: '★ ●',

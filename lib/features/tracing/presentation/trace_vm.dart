@@ -37,14 +37,11 @@ class TraceVM extends AsyncNotifier<TraceState> {
   @override
   Future<TraceState> build() async {
     repository = ref.read(traceRepositoryProvider);
-    final saved = TraceState.fromJson(await repository.load(itemId) ?? {});
     final item = traceItems.firstWhere((i) => i.id == itemId);
-    if (saved.strokeIndex < 0 ||
-        saved.strokeIndex > item.strokes.length ||
-        saved.completed.length != saved.strokeIndex) {
-      return const TraceState();
-    }
-    return saved;
+    return TraceState.restore(
+      await repository.load(itemId),
+      item.strokes.length,
+    );
   }
 
   Future<void> _save(TraceState next) async {

@@ -87,6 +87,8 @@ class StoryEpisode {
 
 class StorySnapshot {
   final int episode, scene, level, attempts, hints;
+  final int? episodeId;
+  final String? sceneId;
   final StoryPhase phase;
   final Map<String, String> flags;
   final List<int> completed;
@@ -100,6 +102,8 @@ class StorySnapshot {
   const StorySnapshot({
     this.episode = 0,
     this.scene = 0,
+    this.episodeId,
+    this.sceneId,
     this.level = 3,
     this.attempts = 0,
     this.hints = 0,
@@ -117,6 +121,8 @@ class StorySnapshot {
   Map<String, dynamic> toJson() => {
     'episode': episode,
     'scene': scene,
+    'episodeId': episodeId,
+    'sceneId': sceneId,
     'level': level,
     'attempts': attempts,
     'hints': hints,
@@ -134,6 +140,8 @@ class StorySnapshot {
   factory StorySnapshot.fromJson(Map<String, dynamic> j) => StorySnapshot(
     episode: j['episode'] as int? ?? 0,
     scene: j['scene'] as int? ?? 0,
+    episodeId: j['episodeId'] as int?,
+    sceneId: j['sceneId'] as String?,
     level: (j['level'] as int? ?? 3).clamp(2, 5),
     attempts: j['attempts'] as int? ?? 0,
     hints: j['hints'] as int? ?? 0,

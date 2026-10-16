@@ -311,8 +311,7 @@ class BookMissionGame extends FlameGame {
       }
       for (var i = 0; i < q.options.length; i++) {
         final rect = choiceRect(viewport, q.options.length, i);
-        final selected =
-            (mission.solved || mission.hints >= 2) && i == q.answer;
+        final selected = (mission.solved || mission.hints >= 2) && q.accepts(i);
         _choice(canvas, rect, q.artwork!.choices[i], q.options[i], selected);
       }
       canvas.restore();

@@ -27,13 +27,18 @@ class ScenePlay {
       ? 2
       : 3;
 
-  static ScenePlay? forSnapshot(StorySnapshot s) =>
-      s.scene == 0 &&
-          s.phase == StoryPhase.dialogue &&
-          s.episode >= 0 &&
-          s.episode < moments.length
-      ? moments[s.episode]
-      : null;
+  static ScenePlay? forSnapshot(StorySnapshot s) {
+    final episode = s.episodeId ?? s.episode + 1;
+    final opening = s.sceneId == null
+        ? s.scene == 0
+        : s.sceneId == 'ep$episode-start';
+    return opening &&
+            s.phase == StoryPhase.dialogue &&
+            episode >= 1 &&
+            episode <= moments.length
+        ? moments[episode - 1]
+        : null;
+  }
 
   static const moments = [
     ScenePlay(

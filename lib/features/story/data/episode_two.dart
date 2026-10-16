@@ -3,6 +3,7 @@ import '../domain/story_models.dart';
 
 const episodeTwoExplore = QuizDefinition(
   id: 'ep2-explore-garden',
+  isExploration: true,
   subject: 'hangul',
   prompt: '마음에 드는 꽃이나 잎을 눌러요.',
   visual: '꽃 · 잎',

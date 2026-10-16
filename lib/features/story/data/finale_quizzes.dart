@@ -640,6 +640,7 @@ const libraryBooks = QuizDefinition(
 
 const ep6Explore = QuizDefinition(
   id: 'ep6-explore-bridge',
+  isExploration: true,
   subject: 'math',
   prompt: '다리에 함께 놓고 싶은 돌이나 꽃을 눌러요.',
   visual: 'stone flower',
@@ -662,6 +663,7 @@ const ep6Explore = QuizDefinition(
 
 const ep7Explore = QuizDefinition(
   id: 'ep7-explore-garden',
+  isExploration: true,
   subject: 'math',
   prompt: '마음에 드는 빨간 꽃이나 파란 꽃을 눌러요.',
   visual: 'redFlower blueFlower',
@@ -684,6 +686,7 @@ const ep7Explore = QuizDefinition(
 
 const ep8Explore = QuizDefinition(
   id: 'ep8-explore-wind',
+  isExploration: true,
   subject: 'math',
   prompt: '함께 정리하고 싶은 책이나 동그라미를 눌러요.',
   visual: 'book circle',
@@ -706,6 +709,7 @@ const ep8Explore = QuizDefinition(
 
 const ep9Explore = QuizDefinition(
   id: 'ep9-explore-path',
+  isExploration: true,
   subject: 'math',
   prompt: '좋아하는 꽃이나 별을 골라 길을 찾아요.',
   visual: 'flower star',
@@ -728,6 +732,7 @@ const ep9Explore = QuizDefinition(
 
 const ep10Explore = QuizDefinition(
   id: 'ep10-explore-paper',
+  isExploration: true,
   subject: 'math',
   prompt: '마음에 드는 씨앗이나 잎을 눌러요.',
   visual: 'seed leaf',
@@ -750,6 +755,7 @@ const ep10Explore = QuizDefinition(
 
 const ep11Explore = QuizDefinition(
   id: 'ep11-explore-sky',
+  isExploration: true,
   subject: 'math',
   prompt: '마음에 드는 별이나 동그라미 빛을 눌러요.',
   visual: 'star circle',
@@ -772,6 +778,7 @@ const ep11Explore = QuizDefinition(
 
 const ep12Explore = QuizDefinition(
   id: 'ep12-explore-library',
+  isExploration: true,
   subject: 'math',
   prompt: '도서관에 놓고 싶은 별이나 꽃을 눌러요.',
   visual: 'star flower',

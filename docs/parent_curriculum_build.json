@@ -1,0 +1,16 @@
+{
+    "date":  "2026-10-16",
+    "version":  "1.0.0",
+    "buildNumber":  214296551,
+    "bytes":  150162305,
+    "MiB":  143.2,
+    "sha256":  "1602d81aef5206f76723791e2f53126b1f6196481a5096cfd6b7aa09ef0d4754",
+    "signature":  "verified v2",
+    "tests":  435,
+    "androidIntegrationTests":  2,
+    "analyze":  "no issues",
+    "change":  "Guarded read-only curriculum/stroke/quiz preview, optional automatic quiz-level ceiling with legacy defaults and preserved achievements, truthful TTS notice",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false,
+    "sourceState":  "Uncommitted local follow-up after 727d454"
+}

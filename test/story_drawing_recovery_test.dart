@@ -89,6 +89,50 @@ class _PausedDrawing extends DrawingRepository {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  for (final removed in [false, true]) {
+    testWidgets(
+      'pending drawing with ${removed ? 'removed page' : 'stale positions'} respects page identity',
+      (tester) async {
+        await tester.runAsync(() async {
+          final dir = await Directory.systemTemp.createTemp('garden-identity-');
+          final store = MemoryStore();
+          final repo = DrawingRepository(store, () async => dir);
+          final artwork = await repo.prepare(_flower);
+          await StoryRepository(store)
+              .save(_garden.change({'pendingDrawing': artwork.toJson()}));
+          final raw = (await store.read('story'))!;
+          await store.write('story', {
+            ...raw,
+            'episode': 999,
+            'scene': -1,
+            if (removed) 'sceneId': 'removed-garden-page',
+          });
+          final before = await store.read('story');
+          final c = await _container(store, dir);
+          try {
+            final restored = await c.read(storyProvider.future);
+            expect(restored.episodeId, 7);
+            expect(restored.pendingDrawing, isNull);
+            if (removed) {
+              expect(restored.sceneId, 'ep7-start');
+              expect(restored.phase, StoryPhase.dialogue);
+              expect(await repo.list(), isEmpty);
+              expect(await store.read('story'), before);
+              expect(await dir.list().length, 0);
+            } else {
+              expect(restored.phase, StoryPhase.success);
+              expect(restored.sceneId, 'ep7-trace');
+              expect((await repo.list()).single.id, artwork.id);
+              expect(restored.flags['gardenArtwork'], artwork.id);
+            }
+          } finally {
+            c.dispose();
+            await dir.delete(recursive: true);
+          }
+        });
+      },
+    );
+  }
   for (final point in ['intent', 'partial-png', 'png', 'metadata']) {
     testWidgets(
       'restart after $point recovers one valid PNG and one completed garden mission',

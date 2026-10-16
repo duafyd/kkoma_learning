@@ -2,6 +2,7 @@ import '../../learning/data/learning_content.dart';
 import '../../learning/domain/learning_models.dart';
 import '../../profile/domain/settings.dart';
 import '../../tracing/domain/trace_engine.dart';
+import '../../tracing/domain/trace_state.dart';
 import '../data/story_content.dart';
 import '../data/support_quizzes.dart';
 import 'story_models.dart';
@@ -103,8 +104,8 @@ class StoryMachine {
     final play = ScenePlay.forSnapshot(s);
     if (play != null) {
       return s.sceneFinds.length == play.count(s.level)
-          ? 'voice-scene-play-${s.episode + 1}-response'
-          : 'voice-scene-play-${s.episode + 1}-level-${s.level == 2 ? 2 : 5}';
+          ? 'voice-scene-play-${episodes[s.episode].id}-response'
+          : 'voice-scene-play-${episodes[s.episode].id}-level-${s.level == 2 ? 2 : 5}';
     }
     return 'voice-${current.id}${s.level == 2 && current.exploreText != null ? '-explore' : ''}';
   }
@@ -125,12 +126,69 @@ class StoryMachine {
       scene(s).speeches;
 
   StorySnapshot restore(StorySnapshot s) {
-    if (s.episode < 0 || s.episode >= episodes.length) {
-      return const StorySnapshot();
+    final episodeIndex = s.episodeId == null
+        ? s.episode
+        : episodes.indexWhere((e) => e.id == s.episodeId);
+    if (episodeIndex < 0 || episodeIndex >= episodes.length) {
+      return _enter(s, 0, 0);
     }
-    if (s.scene < 0 ||
-        s.scene >= episodes[s.episode].forLevel(s.level).length) {
-      return StorySnapshot(level: s.level);
+    final episode = episodes[episodeIndex];
+    final scenes = episode.forLevel(s.level);
+    var index = s.sceneId == null
+        ? s.scene
+        : scenes.indexWhere((current) => current.id == s.sceneId);
+    if (index < 0 || index >= scenes.length) {
+      // A known but now ineligible scene moves to the next eligible page.
+      // A removed/unknown page restarts this chapter, retaining season choices.
+      final authored = episode.scenes.indexWhere((p) => p.id == s.sceneId);
+      index = authored < 0
+          ? 0
+          : scenes.indexWhere((p) => episode.scenes.indexOf(p) > authored);
+      return _enter(s, episodeIndex, index < 0 ? scenes.length - 1 : index);
+    }
+    s = s.change({
+      'episode': episodeIndex,
+      'episodeId': episode.id,
+      'scene': index,
+      'sceneId': scenes[index].id,
+      'attempts': s.attempts.clamp(0, 1000000000),
+      'hints': s.hints.clamp(0, 3),
+    });
+    final current = scene(s);
+    final support =
+        s.supportSceneId == current.id &&
+        [StoryPhase.quiz, StoryPhase.tracing].contains(current.interaction);
+    final terminal =
+        index == scenes.length - 1 &&
+        (s.phase == StoryPhase.episodeComplete ||
+            (s.phase == StoryPhase.finished &&
+                episodeIndex == episodes.length - 1));
+    if ((s.supportSceneId != null && !support) ||
+        !(s.phase == current.interaction ||
+            s.phase == StoryPhase.success ||
+            terminal ||
+            (support && s.phase == StoryPhase.quiz))) {
+      return _enter(s, episodeIndex, index);
+    }
+    if (current.interaction == StoryPhase.tracing && !support && !terminal) {
+      final item = learningItems.firstWhere((i) => i.id == current.traceId);
+      final ink = TraceState.restore({
+        'strokeIndex': s.strokes.length,
+        'completed': s.toJson()['strokes'],
+      }, item.strokes.length);
+      if (ink.completed.length != s.strokes.length ||
+          (s.phase == StoryPhase.success && !s.assisted && !ink.done)) {
+        return _enter(s, episodeIndex, index);
+      }
+      s = s.change({
+        'strokes': ink.toJson()['completed'],
+        if (s.phase == StoryPhase.tracing && ink.done) ...{
+          'phase': 'success',
+          'message': current.successText.isNotEmpty
+              ? current.successText
+              : '길을 잘 따라갔어요!',
+        },
+      });
     }
     if (s.pendingDrawing != null &&
         (s.phase != StoryPhase.drawing ||
@@ -155,7 +213,28 @@ class StoryMachine {
     return s;
   }
 
+  StorySnapshot _enter(StorySnapshot s, int episode, int index) {
+    final current = episodes[episode].forLevel(s.level)[index];
+    return s.change({
+      'episode': episode,
+      'episodeId': episodes[episode].id,
+      'scene': index,
+      'sceneId': current.id,
+      'phase': current.interaction.name,
+      'attempts': 0,
+      'hints': 0,
+      'strokes': [],
+      'assisted': false,
+      'message': '',
+      'supportSceneId': null,
+      'observedObjects': [],
+      'sceneFinds': [],
+      'pendingDrawing': null,
+    });
+  }
+
   StorySnapshot relevel(StorySnapshot s, int level) {
+    s = restore(s);
     if (s.level == level) return s;
     final episode = episodes[s.episode],
         newScenes = episodes[s.episode].forLevel(level);
@@ -171,10 +250,12 @@ class StoryMachine {
           );
     final index = next >= 0 ? next : newScenes.length - 1;
     final phase = exact >= 0 ? s.phase : newScenes[index].interaction;
+    if (exact < 0) return _enter(s.change({'level': level}), s.episode, index);
     return restore(
       s.change({
         'level': level,
         'scene': index,
+        'sceneId': newScenes[index].id,
         'phase': phase.name,
         'strokes': exact >= 0 ? s.toJson()['strokes'] : [],
         'supportSceneId': exact >= 0 ? s.supportSceneId : null,
@@ -186,6 +267,8 @@ class StoryMachine {
 
   StorySnapshot begin(int level) => StorySnapshot(
     level: level,
+    episodeId: episodes.first.id,
+    sceneId: episodes.first.forLevel(level).first.id,
     phase: episodes.first.forLevel(level).first.interaction,
   );
   QuizDefinition quiz(StorySnapshot s) {
@@ -247,19 +330,7 @@ class StoryMachine {
         return s.change({'phase': 'finished', 'message': '모든 별빛을 모았어요!'});
       }
       final next = s.episode + 1;
-      return s.change({
-        'episode': next,
-        'scene': 0,
-        'phase': episodes[next].forLevel(s.level).first.interaction.name,
-        'attempts': 0,
-        'hints': 0,
-        'strokes': [],
-        'assisted': false,
-        'message': '',
-        'supportSceneId': null,
-        'observedObjects': [],
-        'sceneFinds': [],
-      });
+      return _enter(s, next, 0);
     }
     if (s.phase != StoryPhase.dialogue && s.phase != StoryPhase.success) {
       return s;
@@ -268,22 +339,11 @@ class StoryMachine {
     if (s.scene + 1 == scenes.length) {
       return s.change({
         'phase': 'episodeComplete',
-        'completed': {...s.completed, s.episode + 1}.toList(),
-        'message': '별빛 ${s.episode + 1}을 모았어요!',
+        'completed': {...s.completed, episodes[s.episode].id}.toList(),
+        'message': '별빛 ${episodes[s.episode].id}을 모았어요!',
       });
     }
-    return s.change({
-      'scene': s.scene + 1,
-      'phase': scenes[s.scene + 1].interaction.name,
-      'attempts': 0,
-      'hints': 0,
-      'strokes': [],
-      'assisted': false,
-      'message': '',
-      'supportSceneId': null,
-      'observedObjects': [],
-      'sceneFinds': [],
-    });
+    return _enter(s, s.episode, s.scene + 1);
   }
 
   StorySnapshot discoverSceneProp(StorySnapshot s, int index) {

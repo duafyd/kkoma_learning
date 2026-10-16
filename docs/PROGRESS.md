@@ -1,3 +1,112 @@
+# 스토리 카탈로그 배포 검사·누적 변경/APK 공개 (진행 중, 2026-10-16)
+
+사용자 요청: 다음 작업 진행 후 Git과 APK까지 모두 업로드. 이번 요청으로 누적 로컬 소스와 최신 서명 APK의 GitHub 공개 전달을 승인받았다. 기존72파일·저장 데이터·원본 공유 키를 보존하고 음원 제작/결제·실기기는 계속 보류한다.
+
+- [x] 스토리의 빈 경로·중복/빈 ID·부적격 단계·누락 필기/퀴즈/분기/선택을 순수 검사기로 검출하고 콘텐츠 감사에 연결.
+- [x] 배포 명령이 전체 소스 검사(테스트·생성 자료·콘텐츠 감사·비공개 파일 제외)를 실행하도록 보완. PowerShell 빌드 번호를 명시적 --build-number=값으로 전달.
+- [ ] 새 집중 테스트·analyze, 누적 소스 검토·커밋, 전체 검사 및 기존 키 서명 APK 빌드.
+- [ ] 원격 main 푸시·draft APK 업로드 크기/해시 확인·공개·원격 커밋/다운로드 검증·최종 기록.
+
+중간 결과: analyze0(3.9초), 새 카탈로그9개+장면 ID16개 집중25개 통과(1초, docs/catalog-publish-focused.log), 콘텐츠 감사0오류. 현재12화/671대본·실제 음원0/검토127문항은 그대로다. GitHub 기존 인증의 저장소 쓰기 권한을 확인했고 비밀 값은 출력하지 않았다. Windows PowerShell에서 REST 배열을 @()로 감싸면 한 개의 중첩 배열이 되어 기존 릴리스 버전별 검사를 건너뛸 수 있음을 발견해 직접 배열 할당/업로드 자산 단일 선택으로 수정했다. 읽기 전용 실서버 조회에서 기존5개 릴리스/빌드5개를 각각 파싱했고 최대214232596을 확인했다. PowerShell 구문 검사 통과, Git 후보 비공개 파일0/95MiB초과0/자격 증명 패턴 일치0. 현재 구체적인 공개 변경 내역은 docs/RELEASE_NOTES.md에 준비했으며 아직 공개 전이다.
+
+실행 전 계획: 신규 검사는 콘텐츠 구조만 판단하며 교육/필순/청취 승인을 만들지 않는다. 실제 스토리 대본·장면 순서·저장 데이터는 변경하지 않는다. 공개 APK는 build 폴더를 소스 Git에 넣는 대신 기존 GitHub Releases 절차로 올린다. 키/비밀번호/환경변수는 출력·업로드하지 않는다. 전체 검사나 빌드/서명이 실패하면 원인을 수정하고 공개 전에 재검사한다. 자동 푸시는 이번 명시 요청에 한해서 실행한다.
+
+# 스토리 ID 기반 이어하기·복원 보강 (로컬 구현·검증 완료, 2026-10-16)
+
+요청: 보류 항목을 제외하고 계속 진행. 기존62개 미커밋 파일·저장 데이터·공유 키를 보존한다. 음원 제작/결제·실기기·Git 푸시/APK 업로드는 수행하지 않는다.
+
+- [x] 에피소드/장면 ID 저장, 기존 숫자 저장 호환, 장면 삽입/재정렬/삭제/연령 변경 복원.
+- [x] 분기·힌트·쉬운 길·도움·획의 동일 장면 재개 및 기존 그림 제출 조건부 저장 경합 회귀. 숫자 위치가 틀린 그림 intent의 동일 ID 복구와 삭제 장면의 자동 그림 미생성도 확인.
+- [x] 전체 analyze/test·Android 에뮬레이터·로컬 서명 APK 검증, README/재개 문서 갱신.
+
+중간 검사: analyze 문제0(2.2초), 신규16개 + 기존 이야기/지원/그림 중단 복구31개 = 집중47개 통과(5초, docs/story-identity-focused.log). 신규 검사는 장면/화 재정렬·삽입·삭제·부적격/연령 변경·잘못된 지원/단계·부분/완료/손상 획·조건부 저장·실패 후 VM 상태 및 4연령×12화 체크포인트 왕복이다. 실제 기본/지원 흐름 전체 기존 회귀도 유지한다. 이 중간 시점에는 전체 검사·추가 그림2개·Android/APK가 결과 대기였으며 최종 결과는 아래에 기록한다.
+
+첫 전체 검사: analyze0 /465통과·1실패(167초, docs/story-identity-full.log). 실패는 녹음 재생 회귀가 ID 필드가 없는 수동 객체와 새 저장 문서를 비교한 기대값 차이였다. 실제 ID 저장 변경을 반영해 듣기 직전의 원본 저장 문서와 듣기 후 원문을 그대로 비교하도록 수정했다(재생이 진도를 바꾸지 않는 검증 유지). 수정 후 음성/신규 ID/그림 복구 집중65개 통과(6초, docs/story-identity-retry-focused.log). 추가 그림2개는 ID가 맞고 숫자가 틀린 제출의 같은 작품 복구와 제거된 장면의 PNG 미생성을 확인한다. 새 기대값/기존 회귀 포함 전체 소스 검사를 다시 실행했고 최종 결과는 아래와 같다. 변경 Dart47개 format0변경, 공백 검사 통과, Git 후보 비공개 키/설정/APK0개, HEAD727d454 그대로다.
+
+최종 호스트 검사: `tool/verify-source.ps1` analyze 문제0 /전체466개 통과(직전448 + ID16 + 그림2, 테스트154초, docs/story-identity-final-full.log, 종료0). 생성 보고서 일치·음원 인덱스·콘텐츠 감사0오류·공백 검사를 통과했다. 외부 PowerShell 로그의 NativeCommandError 형식 build hooks stderr는 기존 Flutter 출력이며 실제 종료0과 Source verification passed를 확인했다. 실제 등록 음원0/671대본·352스토리 take·검토127문항/48경로·외부 승인은 그대로다. Android4개와 로컬 APK도 아래 결과로 확인했다.
+
+Android 검사: 격리 KkomaPolish5580/API35/2560×1600/320dpi/2GB/SwiftShader를 숨김·무음으로 재사용했다. 부팅51.2초, debug 빌드56.2초/설치1.43초, 통합4개 통과(23초, docs/story-identity-android.log, 종료0). 새 검사에서 숫자 기반 옛 문서 읽기 무변경·지원 전환 후 ID 저장·틀린 숫자/유효 ID의 실제 DB 닫기/재개·StoryPage·지원/선택 유지·힌트/성공 재저장·다시 DB 재개를 확인했다. 기존3개(배치/홈 이어하기, 만2세 탐색, 보호자/준비 운동/이야기)도 유지했다. 고유 테스트 DB만 사용했으며 사용자/실기기 데이터·기존5554 offline은 건드리지 않았다. 사용한5580은 종료했다. 실제 APK 업데이트/OS 강제 종료/재부팅/청취·손가락·프레임 성능을 완료 처리하지 않는다.
+
+정책: 유효한 ID는 숫자 위치보다 우선한다. 제거된 장면의 성공/획/힌트를 다른 장면에 붙이지 않고 같은 화의 안전한 장면부터 다시 연다. 장기 선택 flags와 화 완료 기록은 보존한다. ID 없는 과거 저장은 기존 숫자로 해석하며 일반 진도 조회만으로 원문을 덮어쓰지 않는다. 유효한 pendingDrawing 제출 재개는 기존대로 같은 작품을 저장·완료하는 복구 쓰기를 수행한다. 교육자 승인·아동 관찰·실기기 청취/성능은 자동 검사로 완료 처리하지 않는다.
+
+최종 APK: `tool/android.ps1 build apk --release --build-number=214325262` 종료0(Gradle68.2초). **1.0.0 (214325262)**, **150,178,941 bytes /143.2MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키로 apksigner **v2 true/서명자1**, aapt 버전 확인. SHA256 `de85b2ae2c5c7deaea38ee3214a84be5c6ff64398d5ff82c9eed7e36c8925428`. 결과 `docs/story_resume_build.json`, 로컬 로그 `docs/story-identity-build.log`/`story-identity-signature.log`/`story-identity-package.log`. 기존 KGP/flutter_tts 미래 호환 및 미사용 Cupertino 폰트 경고는 남지만 debug/release·서명 검증은 성공했다. 새 패키지/서비스/키/유료 음원/사용자 데이터 삭제/실기기/커밋/푸시/APK 업로드 없음. 공개 소스727d454/공개 APK214232596와 로컬 빌드를 구분한다.
+
+재개: `tool/verify-source.ps1`; TEMP/TMP를 `.tool_tmp`로 지정한 `flutter test --concurrency=1 test/story_resume_identity_test.dart test/story_drawing_recovery_test.dart test/recorded_voice_test.dart`; 격리 에뮬레이터의 `tool/android.ps1 test integration_test/app_flow_test.dart --device-id=<ID> --timeout=180s`. 저장 문서 형식에 맞지 않는 타입 전체를 임의 복원하는 범용 복구기는 아니며, ID 없는 과거 데이터의 이미 바뀐 옛 순서는 추측하지 않는다. 같은 ID를 전혀 다른 학습 과제로 재사용하지 않는다. 실제 릴리스 업데이트/잠금/강제 종료/재부팅/손가락/청취/메모리는 최종 기기에서 검증한다. 코드로 확인 가능한 이번 안정화·소스 검사·로컬 패키지는 완료했다. 남은 음원/음악 제작·교육자 승인/아동 관찰·실기기 검증은 외부 결과/보류 해제가 필요하고, 결과가 오면 해당 ID의 콘텐츠·판정을 수정한다. Git/APK 공개 전달은 별도 요청 때만 진행한다.
+
+마감 확인: 변경 Dart47파일 format0변경·공백 검사 통과, Git 후보 비공개 키/설정/APK0개. 기존62파일을 포함해72파일 미커밋이며 HEAD727d454를 유지했다. 최신 APK 해시/크기와 JSON의 일치를 재확인했다. 테스트용5580 종료, 기존5554 offline 유지. 문서/빌드 결과 외에 최종 전체 검사 뒤 Dart 코드를 변경하지 않았다.
+
+# 학습 이어하기·저장 상태 복원 보강 (로컬 구현·검증 완료, 2026-10-16)
+
+요청: 다음 단계. 이전 미커밋46파일과 키/저장 데이터를 보존한다. 저장 완료된 필기·퀴즈에 홈 이어하기를 제공하고 잘못된 상태가 재개 시 오류/엉뚱한 완료로 이어지지 않게 보완한다. 음원 제작·실기기 테스트·Git/APK 업로드 보류 유지.
+
+- [x] TraceState/학습 세션의 복원 불변식 보강, 퀴즈 ID 기반 재개 및 기존 데이터 호환. 원본 저장 문서를 자동 삭제하지 않음.
+- [x] 저장 문서 안에 동일 쓰기로 수정 시각을 기록하고 로컬 일괄 조회로 최근 미완료 필기/퀴즈를 선택. 초기 로딩/읽기 오류는 기존 홈 이용을 막지 않음.
+- [x] 홈 이어하기 카드와 퀴즈 직접 진입, 초기화/완료/단계 상한/새 컨테이너·DB 재개/실패·폰/태블릿 회귀 및 analyze/test·Android·로컬 APK·문서.
+
+구현: TraceState.restore가 저장된 완료 획 수로 done을 정규화해 마지막 인덱스/done=false의 다음 입력 오류와 부분 획/done=true의 잘못된 완료를 막는다. 잘못된 형식/인덱스/빈 획은 안전한 시작 상태로 보이고 원본은 자동 삭제/덮어쓰기하지 않는다. 기존 판정에서 무시하던 화면 밖 꼬리는 복원 시에도 유효한 캔버스 잉크만 그린다. LearningSession은 quizId를 옵션 필드로 저장해 문항 삽입/재정렬 뒤 같은 ID를 재개하고 다음 인덱스도 맞춘다. 제거/부적격 ID에는 과거 answered/hint를 새 문제에 붙이지 않으며 과거 ID 없는 데이터와 쉬운 문제 override는 호환한다. 상한/완료 기록 정책도 유지한다.
+
+저장/홈: TraceRepository/LearningRepository는 `_updatedAt`을 본문과 같은 한 번의 쓰기에 넣는다. 별도 북마크나 읽을 때 저장하는 동작은 없다. LocalStore.readMany는 SQLite에서 요청한131문서를 IN 쿼리1회로 조회하며 일반 호출의 큰 키 목록은400개씩 나눈다(스키마 버전 변경 없음). MemoryStore도 누락/중복/반환값 분리를 지원한다. 읽기 전용 LearningResumeRepository가 현재 선택 경로 내 미완료 필기1개와 저장된 함께 찾기1개를 골라 홈에 표시한다. 시각이 없는 과거 기록은 카탈로그 순서로 선택하고 최신이라고 단정하지 않는다. 완료한 필기/부적격 항목은 제외한다. 카드의 과목/글자와 URI는 고정 콘텐츠로 구성하며 임의 저장 URL을 실행하지 않는다. 퀴즈 카드는 `/learn/<과목>?mode=quiz`로 실제 문제 화면을 바로 연다. 로딩은 홈을 막지 않고 읽기 실패에는 해당 카드 영역의 재시도를 제공한다.
+
+중간 검사: 최초 analyze의 스타일4건과 새 테스트의 사용되지 않은 import1건은 수정했다. analyze 문제0(2.2초). 새13개+기존 세션/저장 경합/보호자 검사 **집중30개 통과**(8초, `docs/resume-focused.log`). 정상/손상/모순 필기, 문항 순서/제거/과거 데이터, ID·수정 시각 저장/새 컨테이너 재개, 실패 시 본문·시각 유지, 완료 초기화 후 카드 제거, 상한, 오류 재시도 및3화면·글자1.5배 이동을 확인했다. `RESUME_CAPTURE=true` 새13개도 통과(2초, `docs/resume-capture.log`), 실제 글꼴을 opt-in 로드한 `docs/screenshots/resume-home-{360x780,780x360,1280x800}.png`3장. 호스트 화면이며 실기기 검증이 아니다. 전체/Android/서명 APK 결과는 아래에 기록한다.
+
+최종 호스트 검사: 첫 전체 검사 analyze0/448개 통과(142초, `docs/resume-full.log`). 이후 음수 문제 인덱스가 이전 answered/hint를 새 문제에 붙이지 않도록 현재 문제 초기화를 보강하고 같은 문항 복원 테스트에 회귀 assert를 추가했다. 최종 `tool/verify-source.ps1` **analyze 문제0 / 전체448개 통과**(직전435+새13,161초, 종료0, `docs/resume-final-full.log`). 생성 자료 일치·음원 인덱스·콘텐츠 감사0오류·공백 검사도 통과했다. 실제 음원0/671대본·전문 검수 pending은 그대로다. Android 새 통합 검사는 DB 재개·빈/403키 조회(400+3 분할)·홈에서 퀴즈/다음 획 진입을 확인하도록 추가했다. 중복/반환값 분리는 호스트 검사에 포함한다.
+
+Android 결과: 같은 격리 KkomaPolish5580(API35/2560×1600/320dpi/SwiftShader/2GB)를 숨김·무음으로 재사용하고 부팅43.2초. debug 빌드34.8초/설치1.5초, **통합3개 통과**(20초, 종료0, `docs/resume-android.log`). 새 검사가 SQLite403키 조회·빈 조회·DB 닫기/다시 열기·홈 퀴즈 모드/힌트2 복원·필기1획 복원·읽기 후 원문 유지까지 확인했다. 기존 탐색/보호자/준비 운동/이야기 복구2개도 유지했다. 사용한 DB는 고유한 테스트 파일이고 실기기/아이 데이터를 쓰지 않았다. 테스트용5580만 종료했으며 기존5554 offline은 조작하지 않았다. 실제 손가락/청취/성능 또는 전체12화 기기 완주 검증은 아니다. 서명 APK 결과는 아래에 추가한다.
+
+최종 APK: `tool/android.ps1 build apk --release --build-number=214299083` 종료0(Gradle59.8초). **1.0.0 (214299083)**, **150,178,945 bytes /143.2MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키 apksigner **v2 true/서명자1**, aapt 버전 확인. SHA256 `1e54f633e42d763b85c41b30989d1b2e30e3a92e08f7af09a85c38a0840943eb`. 결과 `docs/resume_build.json`, 로컬 로그 `docs/resume-build.log`/`resume-signature.log`/`resume-package.log`. 기존 KGP/flutter_tts 미래 호환·Cupertino 폰트 경고는 유지되지만 debug/release 빌드·서명은 통과했다. 새 패키지/서비스/키 생성·유료 음원·사용자 데이터 삭제·실기기·Git 커밋/푸시·APK 업로드 없음. 원격 소스727d454/공개 APK214232596와 최신 로컬214299083을 구분한다.
+
+재개: `tool/verify-source.ps1`; `.tool_tmp`를 TEMP/TMP로 지정한 `flutter test --concurrency=1 --dart-define=RESUME_CAPTURE=true test/learning_resume_test.dart`; 테스트용 에뮬레이터를 선택한 `tool/android.ps1 test integration_test/app_flow_test.dart --device-id=<ID> --timeout=180s`. 저장된 체크포인트의 복원을 검사했으며 손을 떼기 전 버퍼/OS 강제 종료/재부팅·업데이트는 실제 기기 마지막 검증 항목이다. 다음은 보호자/교육자 피드백의 ID별 반영과 최종 기기 검증이며 교육자 승인·아동 관찰은 pending이다. 음원 비용·실기기 보류를 유지하고 Git/최신 APK 전달은 별도 요청 때만 진행한다.
+
+마감 확인: 변경 Dart38파일 format0변경·공백 검사 통과, Git 후보 비공개 키/설정/APK0개. HEAD727d454 그대로/이전 두 후속 포함62파일 미커밋이다. adb에서5580 종료와 기존5554 offline 유지를 확인했다.
+
+# 보호자 학습 미리보기·자동 단계 범위 조절 (로컬 구현·검증 완료, 2026-10-16)
+
+요청: 다음 단계 진행. 이전 미커밋31파일과 저장/공유 키를 보존한다. 교육자 승인 없이 검수를 완료 처리하지 않고, 보호자가 현재 경로의 실제 콘텐츠를 확인하고 함께 찾기 퀴즈의 자동 단계 상승을 조절하도록 보완한다. 음원 제작·실기기 테스트·Git/APK 업로드는 계속 보류한다.
+
+- [x] 기존 기본값을 유지하는 '함께 찾기 자동 단계 올리기' 설정 저장/복원. 끄면 보호자 선택 경로를 상한으로 사용하며 쉬운 길·완료 기록은 유지.
+- [x] 보호자 관문 안에서 선택 경로별 글자/문항/에피소드 미리보기와 실제 획 보기. 전문가 최종 검수 전임을 정확히 표시하고 미리보기가 진도를 바꾸지 않게 구현.
+- [x] 과거 설정 호환·저장 실패·상한 복원·다음 문제·좁은 화면/확대 글자 회귀, analyze/test·Android 검증·로컬 APK·문서 갱신.
+
+구현: ParentSettings의 `autoAdvanceLearning`은 기존 설정에 없으면 true로 복원해 기존 자동 적응을 유지한다. 끄면 LearningVM의 다음 문제는 선택 level을 상한으로 사용하고 이전 높은 세션 진입은 `LearningSession.cappedAt`으로 현재 문제만 새로 만든다. 이전 문제의 정답/힌트/override를 다른 문제에 붙이지 않고 위치와 완료 기록을 보존한다. 쉬운 길은 계속 사용할 수 있다. 보호자 관문 안의 `LearningOverview`/파생 Provider가 선택 경로의 실제 글자·함께 찾기 문항·준비 운동·12화 장면 수를 집계한다. 획 미리보기는 실제 TraceCanvas와 획 이동/시범을 쓰지만 TraceVM/저장/음성/학습 이동을 호출하지 않는다. 문제 미리보기에는 원문·선택·참고 답·힌트를 보여 주고 만2세 수용 정책을 설명한다. 자동 적응으로 현재 학습 세션이 기본 경로보다 높을 수 있다는 점과 전문가 검수 전임도 보호자에게 표시한다. 현재 AI 음원0개에 맞게 음성 안내 문구도 준비 중/TTS로 정정했다.
+
+중간 검사: 최초 전체 검사 analyze0/433통과·2실패(138초, `docs/parent-curriculum-full.log`). 태블릿 AlertDialog의 intrinsic 크기 계산이 TraceCanvas LayoutBuilder까지 도달하는 실제 레이아웃 오류는 명시적 정사각 크기로 수정했다. 낮은 가로 화면의 테스트는 스크롤 전 버튼을 누르거나 스크롤 후 frame을 기다리지 않은 문제였고 실제 조작 가능한 Switch/헤더를 스크롤 후 pump해 확인하도록 고쳤다. 설정 설명도 짧은 subtitle과 별도 본문으로 나눴다. 이후 새8개+기존 세션5개 **집중13개 통과**(4초, `docs/parent-curriculum-focused-final.log`), analyze0(2.3초). 과거 설정 호환/기본 적응 유지/상한/진도 보존/실패·동시 설정/3화면·글자1.5배/관문/미리보기 무저장을 확인했다.
+
+캡처: `PARENT_CAPTURE=true` 새8개 재통과(3초, `docs/parent-curriculum-capture-final.log`). `docs/screenshots/parent-{guide,quiz}-{360x780,780x360,1280x800}.png`6장을 저장했다. 호스트 캡처이며 실제 기기 검증이 아니다. Jua/한글 대체/MaterialIcons 글꼴을 opt-in으로 로드했다. 호스트 가방 emoji는 대체 글꼴에 없어 사각형으로 보이지만 단어 원문은 유지되며 Android 그림/발음 검수를 완료한 것으로 보지 않는다. 최초 캡처는 fake async 안의 파일 I/O를 기다려 멈춰 해당 PARENT_CAPTURE 프로세스 트리만 종료했고 `tester.runAsync`로 수정해 재통과했다. 사용자 앱/데이터/다른 프로세스는 종료하거나 삭제하지 않았다.
+
+최종 호스트 검사: `tool/verify-source.ps1` **analyze 문제0 / 전체435개 통과**(직전427+새8,154초, 종료0, `docs/parent-curriculum-final-full.log`). 대본/스토리 지침/127문항·48경로 재생성 일치,671대본·음원0, 콘텐츠 오류0, 공백 검사 통과. 기존 NativeCommandError 형식의 build hooks stderr가 외부 로그에 표시되지만 실제 종료0 및 검사 성공을 확인했다. 캡처는 명시적인 opt-in에서만 파일을 생성한다. Android2개 검사와 APK 결과는 아래에 추가한다.
+
+Android 검사: 이전과 같은 격리 KkomaPolish5580/API35/2560×1600/320dpi/2GB/SwiftShader를 숨김·무음으로 재사용했다. 기존5554 offline은 조작하지 않았다. 부팅53.6초, debug 빌드42.5초/설치1.46초, **통합2개 통과**(19초, 종료0, `docs/parent-curriculum-android.log`). 기존 두 검사에 보호자 관문·자동 올림 끄기 저장/DB 재개·실제 획 미리보기·미리보기 h-ㅏ 진도 미생성을 추가했다. 고유한 테스트 DB를 사용하며 기존 이야기/준비 운동 진도 복구도 유지했다. 실행 후 이번5580만 종료했고 실제 기기/아이 데이터는 사용하지 않았다. 실제 발음/손가락/성능/전체12화 Android 완주 검증은 여전히 남아 있다.
+
+최종 APK: `tool/android.ps1 build apk --release --build-number=214296551` 종료0(Gradle65.4초). **1.0.0 (214296551)**, **150,162,305 bytes /143.2MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키로 apksigner **v2 true/서명자1**, aapt 버전 확인. SHA256 `1602d81aef5206f76723791e2f53126b1f6196481a5096cfd6b7aa09ef0d4754`. 결과 `docs/parent_curriculum_build.json`, 로컬 로그 `docs/parent-curriculum-build.log`/`parent-curriculum-signature.log`/`parent-curriculum-package.log`. 기존 KGP/flutter_tts 미래 호환·Cupertino 폰트 경고는 유지되지만 debug/release 빌드·서명은 통과했다. 패키지/서버/키 생성·유료 음원·사용자 데이터 삭제·실기기 테스트·Git 커밋/푸시·APK 업로드 없음. 원격 소스727d454/공개 APK214232596와 최신 로컬214296551을 구분한다.
+
+재개 명령: `tool/verify-source.ps1`; `.tool_tmp`를 TEMP/TMP로 지정한 `flutter test --concurrency=1 --dart-define=PARENT_CAPTURE=true test/parent_curriculum_test.dart`; 테스트용 에뮬레이터를 선택한 `tool/android.ps1 test integration_test/app_flow_test.dart --device-id=<ID> --timeout=180s`. 다음은 실제 보호자/교육자 피드백을 항목 ID로 받아 필순·모양·문항/난이도를 수정하고 회귀 검사한다. 자동 검사와 보호자 미리보기는 교육자 승인/아동 관찰을 대신하지 않는다. 음원 비용·실기기 보류는 유지하고 Git/최신 APK 전달은 별도 요청 때만 진행한다.
+
+마감 확인: 변경 Dart26파일 format0변경·공백 검사 통과, Git 후보 비공개 키/설정/APK0개. HEAD727d454 그대로/이전 콘텐츠 보완 포함46파일 미커밋이다. adb에서5580 종료와 기존5554 offline 유지를 확인했다.
+
+# 콘텐츠 정합성 검토·탐색 규칙 명시 (로컬 구현·검증 완료, 2026-10-16)
+
+요청: 다음 단계 진행. 전문가 검토를 자동 승인하지 않고, 코드로 확인 가능한 문항/안내/검토 자료 불일치를 수정한다. 기존 저장 ID·진도·공유 서명을 보존하며 음원 제작·실기기·추가 Git 푸시/APK 업로드는 수행하지 않는다.
+
+- [x] 12개 자유 탐색 문항을 명시적인 무정답 선택으로 모델링하고 힌트/검토 자료가 한 선택을 정답처럼 표시하지 않게 수정.
+- [x] 실제 StoryMachine을 이용해 연령별·분기별 노출 문항을 검토 자료에 반영하고 중복 ID 충돌/그림 선택 모호성/수량 정합성 검사 보강.
+- [x] 한글 첫 자음 문제 안내 수정, 회귀 테스트·analyze/전체 test·감사·로컬 APK와 문서 갱신.
+
+발견: 기존 탐색은 StoryMachine의 만2세 정책에서 모든 유효 선택을 수용하지만 QuizDefinition/export에는 answer0으로만 표현된다. 기존 연령별 검토 자료의 quizIds도 실제 필터/분기 결과 대신 일반/탐색/모든 변형을 함께 기록해 검수자가 노출 문제를 잘못 이해할 수 있다. h-bag/h-tree는 ㄱ/ㄴ을 요구하면서 첫 '글자'라고 표현한다. 이번 단계에서 구조와 표현을 바로잡으며 발음·필순·연령 적합성의 전문 검수는 계속 pending이다.
+
+구현: `QuizDefinition.isExploration`과 범위 검사,12개 탐색 데이터/힌트 강조를 통일했다. 정답 인덱스나 기존 ID·저장 형식은 변경하지 않았다. 순수 `validateQuiz`가 선택/그림/수량을 검사하고, `buildContentReview`는 서로 다른 정의의 ID 충돌을 거절한다. `audit_content`도 같은 검토 검사를 실행한다. schemaVersion2 검토 JSON/CSV는 탐색 정답을 비우고 모든 허용 선택을 명시하며 실제 연령·flag별 primary/support/branches를 기록한다. 필기 도움9개(e-A/e-C/h-ㄱ/h-ㄴ/h-ㅏ/h-ㅜ/n-1/n-2/n-3)를 추가해 카탈로그는 **127개**다. 이는 새 학습 개념127개가 아니라 과목/스토리/도움을 합친 검토 단위다. `docs/review/FINDINGS.md`에 발견과 조치를 남겼다.
+
+중간 검증: analyze 문제0(44.3초), 새12개+기존 콘텐츠/듣기/1화9개 집중 **21개 통과**(4초 테스트 시간, `docs/review-rules-focused-final.log`). 최초 집중 명령에 존재하지 않는 story_exploration_test.dart를 넣어 파일 로딩1개가 실패했고 실제 episode_one_test.dart로 정정해 재통과했다. 이는 앱 검사의 실패가 아니라 잘못된 파일명 지정이었다(`docs/review-rules-focused.log`). 대본/스토리 지침/검토 자료/음원 인덱스 check/콘텐츠 감사는 모두 종료0,671대본·352스토리 take·음원0개·콘텐츠 오류0. 실제 API/실기기/교육자 검수를 실행하지 않았다.
+
+최종 호스트 검증: `tool/verify-source.ps1` **analyze 문제0 / 전체427개 통과**(직전415 + 새12, 테스트132초, 종료0, `docs/review-rules-full.log`). 생성 자료 일치·음원 인덱스·콘텐츠 감사0오류·공백 검사도 통과했다. Android 통합 검사 추가 뒤 최종 analyze도 문제0(4.1초, `docs/review-rules-final-analyze.log`).
+
+Android 검증: 기존 offline5554는 그대로 두고 전 단계의 별도 KkomaPolish(5580/API35/2560×1600/SwiftShader)를 숨김·무음으로 재사용했다. 부팅43.4초, debug 빌드53.5초/설치2.35초, **통합2개 통과**(26초, 종료0, `docs/review-rules-android-integration.log`). 새 검사는 별도 DB/만2세에서 힌트2회·두 번째 그림 선택·성공/시도 저장·DB 재개를 확인하고 기존 프로필/이동/준비 운동/재개도 유지했다. 검사 후 이번5580만 `adb emu kill`로 종료했다. 실제 기기나 실제 아이 데이터는 사용하지 않았으며 발음·성능·전체12화 Android 완주 검증은 아니다. 릴리스 APK 빌드/서명 결과는 아래에 추가한다.
+
+최종 APK: `tool/android.ps1 build apk --release --build-number=214293100` 종료0(Gradle71.6초). **1.0.0 (214293100)**, **149,998,465 bytes /143.0MiB**, `build/app/outputs/flutter-apk/app-release.apk`. 기존 공유 키로 apksigner **v2 true/서명자1** 및 aapt 버전 확인. SHA256 `6d731e18574432f8feb0de790439f43acb49946fa31b6401cfb6c186a27d2b7e`. 결과 `docs/review_rules_build.json`, 로컬 로그 `docs/review-rules-build.log`/`review-rules-signature.log`/`review-rules-package.log`. 기존 KGP/flutter_tts 미래 호환·Cupertino 폰트 경고는 유지되지만 debug/release 빌드와 서명은 성공했다. Git 커밋/푸시·APK 업로드·유료 음원 제작·실기기 테스트는 하지 않았다. 원격 소스 최신은 이전727d454, 공개 APK는214232596, 최신 로컬 파일은214293100이다.
+
+재개: `tool/verify-source.ps1`; `dart run tool/export_content_review.dart`; 별도 에뮬레이터를 선택한 `tool/android.ps1 test integration_test/app_flow_test.dart --device-id=<ID> --timeout=120s`. 이 단계의 기계적 오류 수정은 완료다. 다음은 `docs/review/FINDINGS.md`/JSON/CSV를 기준으로 전문가가 글자 모양·필순·문항의 적합성을 확인하고, 검수 피드백이 오면 해당 ID를 수정한다. 새 판정을 전문 검수 통과로 보고하지 않는다. 음원 비용/실기기 보류는 유지한다. Git 및 최신 APK 전달은 별도 요청이 있을 때만 진행한다.
+
+마감 확인: 변경 Dart18파일 format 검사0변경, `git diff --check` 통과, Git 후보의 비공개 키/설정/APK0개. HEAD는 이전727d454 그대로이며 이번 로컬 변경31파일은 미커밋이다. adb 목록에서5580 종료 및 기존5554 offline 상태를 확인했다.
+
 # 소스 전달 검사와 GitHub 반영 (완료, 2026-10-16)
 
 요청: “다 하고 다음단게 진행하고 깃에 올리자”. 이번 요청으로 기존 로컬 개선 전체의 소스 커밋/푸시를 승인받았다. 아래 과거 단계의 Git 보류 기록은 당시 상태이며 이번 소스 전달에는 적용하지 않는다. APK 공개 업로드는 이번에 요청하지 않았으므로 기존 공개 파일을 유지한다. 유료 음원 제작·실기기 검증 보류는 유지한다.

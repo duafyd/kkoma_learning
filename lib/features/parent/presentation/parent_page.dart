@@ -8,6 +8,7 @@ import '../../../core/audio/sound_effects.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../domain/parent_gate.dart';
 import 'progress_controls.dart';
+import 'learning_overview_panel.dart';
 
 class ParentPage extends ConsumerStatefulWidget {
   const ParentPage({super.key});
@@ -83,6 +84,21 @@ class _ParentPageState extends ConsumerState<ParentPage> {
               4,
               5,
             ], (n) => _change('level', n)),
+            SwitchListTile(
+              key: const ValueKey('auto-advance-learning'),
+              title: const Text('함께 찾기 자동 단계 올리기'),
+              subtitle: const Text('끄면 보호자가 고른 경로까지만 자동으로 올라가요.'),
+              value: s.autoAdvanceLearning,
+              onChanged: (v) => _change('autoAdvanceLearning', v),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Text(
+                '이미 올라간 단계는 다음 진입 때 선택 경로로 돌아오며 현재 문제를 새로 시작해요. 완료 기록은 유지돼요.',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            LearningOverviewPanel(level: s.level, animations: s.animations),
             _dropdown('하루 사용 시간 (분)', s.minutes, [
               5,
               10,
@@ -122,9 +138,7 @@ class _ParentPageState extends ConsumerState<ParentPage> {
               onChanged: (v) => _change('animations', v),
             ),
             const Text('음성 음량'),
-            const Text(
-              '이야기 음성은 AI로 제작합니다. 준비된 음원이 없는 장면은 기기 음성(TTS)으로 읽어 줍니다.',
-            ),
+            const Text('캐릭터별 AI 음성은 준비 중이며, 현재는 기기 음성(TTS)으로 읽어 줍니다.'),
             Slider(
               value: s.voiceVolume,
               onChanged: (v) => _change('voiceVolume', v),

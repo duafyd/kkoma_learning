@@ -1,6 +1,6 @@
 class ParentSettings {
   final int age, level, minutes, helpAfter, repeats;
-  final bool autoRead, help, animations;
+  final bool autoRead, help, animations, autoAdvanceLearning;
   final double voiceVolume, effectsVolume, musicVolume;
   const ParentSettings({
     this.age = 3,
@@ -11,6 +11,7 @@ class ParentSettings {
     this.autoRead = true,
     this.help = true,
     this.animations = true,
+    this.autoAdvanceLearning = true,
     this.voiceVolume = .7,
     this.effectsVolume = .3,
     this.musicVolume = 0,
@@ -24,6 +25,7 @@ class ParentSettings {
     'autoRead': autoRead,
     'help': help,
     'animations': animations,
+    'autoAdvanceLearning': autoAdvanceLearning,
     'voiceVolume': voiceVolume,
     'effectsVolume': effectsVolume,
     'musicVolume': musicVolume,
@@ -37,6 +39,7 @@ class ParentSettings {
     autoRead: j['autoRead'] as bool? ?? true,
     help: j['help'] as bool? ?? true,
     animations: j['animations'] as bool? ?? true,
+    autoAdvanceLearning: j['autoAdvanceLearning'] as bool? ?? true,
     voiceVolume: (j['voiceVolume'] as num? ?? .7).toDouble().clamp(0, 1),
     effectsVolume: (j['effectsVolume'] as num? ?? .3).toDouble().clamp(0, 1),
     musicVolume: (j['musicVolume'] as num? ?? 0).toDouble().clamp(0, 1),

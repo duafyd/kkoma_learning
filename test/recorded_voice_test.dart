@@ -280,6 +280,7 @@ void main() {
         phase: StoryPhase.quiz,
       );
       await StoryRepository(store).save(snapshot);
+      final beforeListening = await store.read('story');
       final c = ProviderContainer(
         overrides: [
           storeProvider.overrideWithValue(store),
@@ -294,10 +295,7 @@ void main() {
       );
       expect(audio.lastSource, VoiceSource.recording);
       expect(plays.single['id'], 'voice-story-letter-a-name');
-      expect(
-        (await StoryRepository(store).load())!.toJson(),
-        snapshot.toJson(),
-      );
+      expect(await store.read('story'), beforeListening);
     },
   );
 

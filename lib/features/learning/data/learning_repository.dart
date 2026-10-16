@@ -9,9 +9,15 @@ class LearningRepository {
     if (saved == null || saved['baseLevel'] != level) {
       return LearningSession(level: level, baseLevel: level);
     }
-    return LearningSession.fromJson(saved);
+    try {
+      return LearningSession.fromJson(saved);
+    } on TypeError {
+      return LearningSession(level: level, baseLevel: level);
+    }
   }
 
-  Future<void> save(String subject, LearningSession s) =>
-      store.write('session-$subject', s.toJson());
+  Future<void> save(String subject, LearningSession s) => store.write(
+    'session-$subject',
+    {...s.toJson(), '_updatedAt': DateTime.now().toUtc().toIso8601String()},
+  );
 }

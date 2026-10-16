@@ -62,7 +62,7 @@ class BookMission {
     }
     // The five-star placement has its own drag stage and rules.
     if (scene.id == 'ep11-quiz') return null;
-    return switch (s.episode + 1) {
+    return switch (s.episodeId ?? s.episode + 1) {
       7 => BookWorld.garden,
       8 => BookWorld.wind,
       9 => BookWorld.crossroads,

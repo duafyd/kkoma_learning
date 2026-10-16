@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'voice_catalog.dart';
 import 'prepare_recordings.dart';
+import 'export_content_review.dart' show buildContentReview;
 
 import 'package:flutter_application_1/core/audio/sound_assets.dart';
 
@@ -13,11 +14,39 @@ import 'package:flutter_application_1/features/story/data/support_quizzes.dart';
 import 'package:flutter_application_1/features/story/domain/scene_play.dart';
 import 'package:flutter_application_1/features/story/domain/story_machine.dart';
 import 'package:flutter_application_1/features/story/domain/story_models.dart';
+import 'package:flutter_application_1/features/story/domain/story_validation.dart';
 import 'package:flutter_application_1/features/math/data/sorting_content.dart';
 import 'package:flutter_application_1/features/tracing/data/prewriting_content.dart';
 
 void main(List<String> args) {
   final errors = <String>[];
+  errors.addAll(
+    validateStoryCatalog(
+      storyEpisodes,
+      traceIds: learningItems
+          .where((i) => i.strokes.isNotEmpty)
+          .map((i) => i.id)
+          .toSet(),
+    ),
+  );
+  // Stop before traversing malformed pages with the story machine/exporters.
+  if (errors.isNotEmpty) {
+    stderr.writeln('Story catalog validation failed:\n${errors.join('\n')}');
+    exitCode = 1;
+    return;
+  }
+  var reviewQuizCount = 0;
+  var explorationQuizCount = 0;
+  try {
+    final review = buildContentReview();
+    final entries = review['quizzes'] as List;
+    reviewQuizCount = entries.length;
+    explorationQuizCount = entries
+        .where((q) => q['answerMode'] == 'exploration')
+        .length;
+  } on StateError catch (error) {
+    errors.add('quiz review: ${error.message}');
+  }
   if (ScenePlay.moments.length != storyEpisodes.length ||
       ScenePlay.moments.map((p) => p.kind).toSet().length !=
           storyEpisodes.length ||
@@ -261,6 +290,8 @@ void main(List<String> args) {
     },
     'scenes': storyEpisodes.fold(0, (n, e) => n + e.scenes.length),
     'quizCount': learningQuizzes.length,
+    'reviewQuizCount': reviewQuizCount,
+    'explorationQuizCount': explorationQuizCount,
     'storySupportQuizCount': storySupportQuizzes.length,
     'illustratedStoryQuizCount': illustratedQuizzes
         .where((q) => q.artwork != null)

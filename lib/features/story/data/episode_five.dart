@@ -17,6 +17,7 @@ const lighthouseSounds = [
 ];
 const episodeFiveExplore = QuizDefinition(
   id: 'ep5-explore-light',
+  isExploration: true,
   subject: 'english',
   prompt: '마음에 드는 사과나 별을 눌러요.',
   visual: '사과 · 별',

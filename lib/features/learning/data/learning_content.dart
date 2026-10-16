@@ -300,7 +300,7 @@ const _baseLearningQuizzes = <QuizDefinition>[
   QuizDefinition(
     id: 'h-bag',
     subject: 'hangul',
-    prompt: '가방의 첫 글자를 찾아요',
+    prompt: '가방의 첫 자음을 찾아요',
     visual: '🎒 가방',
     options: ['ㄱ', 'ㄴ'],
     answer: 0,
@@ -309,7 +309,7 @@ const _baseLearningQuizzes = <QuizDefinition>[
   QuizDefinition(
     id: 'h-tree',
     subject: 'hangul',
-    prompt: '나무의 첫 글자를 찾아요',
+    prompt: '나무의 첫 자음을 찾아요',
     visual: '🌳 나무',
     options: ['ㅁ', 'ㄴ'],
     answer: 1,

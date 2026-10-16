@@ -1,0 +1,16 @@
+{
+    "date":  "2026-10-16",
+    "version":  "1.0.0",
+    "buildNumber":  214293100,
+    "bytes":  149998465,
+    "MiB":  143,
+    "sha256":  "6d731e18574432f8feb0de790439f43acb49946fa31b6401cfb6c186a27d2b7e",
+    "signature":  "verified v2",
+    "tests":  427,
+    "androidIntegrationTests":  2,
+    "analyze":  "no issues",
+    "change":  "Explicit free-choice exploration, equal hints, consonant prompts, runtime age/branch/help review coverage (127 entries), quiz collision/picture/count validation",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false,
+    "sourceState":  "Uncommitted local follow-up after 727d454"
+}

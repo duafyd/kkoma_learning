@@ -38,10 +38,10 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
   Future<StorySnapshot> build() async {
     final settings = await ref.watch(settingsProvider.future);
     var saved = await ref.read(storyRepositoryProvider).load();
+    saved = saved == null ? null : machine.restore(saved);
     if (saved?.pendingDrawing != null &&
         saved!.phase == StoryPhase.drawing &&
-        machine.scene(machine.restore(saved)).interaction ==
-            StoryPhase.drawing) {
+        machine.scene(saved).interaction == StoryPhase.drawing) {
       saved = await _finishDrawing(saved);
     }
     return saved == null
@@ -113,7 +113,7 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
     // A second VM or a parent reset may have superseded this pending save.
     final current = await repository.load();
     if (current?.pendingDrawing?.id != submitted.pendingDrawing!.id) {
-      return current ?? machine.begin(level);
+      return current == null ? machine.begin(level) : machine.restore(current);
     }
     await drawing.savePrepared(submitted.pendingDrawing!);
     if (ref.mounted) ref.invalidate(galleryProvider);
@@ -125,7 +125,8 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
       },
     });
     if (await repository.replaceIfCurrent(submitted, next)) return next;
-    return await repository.load() ?? machine.begin(level);
+    final latest = await repository.load();
+    return latest == null ? machine.begin(level) : machine.restore(latest);
   }
 
   Future<void> resetStrokes() => _transition((s) => s.change({'strokes': []}));

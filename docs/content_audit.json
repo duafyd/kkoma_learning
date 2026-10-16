@@ -128,6 +128,8 @@
   },
   "scenes": 120,
   "quizCount": 57,
+  "reviewQuizCount": 127,
+  "explorationQuizCount": 12,
   "storySupportQuizCount": 6,
   "illustratedStoryQuizCount": 55,
   "sortingRoundsPerLevel": {

@@ -12,6 +12,8 @@ class TraceRepository {
   final LocalStore store;
   TraceRepository(this.store);
   Future<Map<String, dynamic>?> load(String id) => store.read('trace-$id');
-  Future<void> save(String id, TraceState s) =>
-      store.write('trace-$id', s.toJson());
+  Future<void> save(String id, TraceState s) => store.write('trace-$id', {
+    ...s.toJson(),
+    '_updatedAt': DateTime.now().toUtc().toIso8601String(),
+  });
 }

@@ -26,7 +26,11 @@ class LearningVM extends AsyncNotifier<LearningSession> {
   Future<LearningSession> build() async {
     final repository = ref.read(learningRepositoryProvider);
     final settings = await ref.read(settingsProvider.future);
-    return repository.load(subject, settings.level);
+    final saved = await repository.load(subject, settings.level);
+    final resumed = settings.autoAdvanceLearning
+        ? saved
+        : saved.cappedAt(settings.level);
+    return resumed.restoredFor(_questions(resumed.level));
   }
 
   List<LearningItem> get items => learningItems
@@ -35,24 +39,11 @@ class LearningVM extends AsyncNotifier<LearningSession> {
             i.subject == subject && i.minimumLevel <= state.requireValue.level,
       )
       .toList();
-  List<QuizDefinition> get quizzes => learningQuizzes
-      .where(
-        (q) =>
-            q.subject == subject && q.minimumLevel <= state.requireValue.level,
-      )
+  List<QuizDefinition> _questions(int level) => learningQuizzes
+      .where((q) => q.subject == subject && q.minimumLevel <= level)
       .toList();
-  QuizDefinition get quiz {
-    final session = state.requireValue;
-    final overrides = learningQuizzes.where(
-      (q) =>
-          q.id == session.quizOverrideId &&
-          q.subject == subject &&
-          q.minimumLevel <= session.level,
-    );
-    return overrides.isNotEmpty
-        ? overrides.first
-        : quizzes[session.index % quizzes.length];
-  }
+  List<QuizDefinition> get quizzes => _questions(state.requireValue.level);
+  QuizDefinition get quiz => state.requireValue.question(quizzes);
 
   Future<void> listen(LearningItem item) async {
     if (item.subject != subject) return;
@@ -69,8 +60,11 @@ class LearningVM extends AsyncNotifier<LearningSession> {
   }
 
   Future<void> _save(LearningSession next) async {
-    await ref.read(learningRepositoryProvider).save(subject, next);
-    if (ref.mounted) state = AsyncData(next);
+    final sealed = next.change({
+      'quizId': next.question(_questions(next.level)).id,
+    });
+    await ref.read(learningRepositoryProvider).save(subject, sealed);
+    if (ref.mounted) state = AsyncData(sealed);
   }
 
   // Every quiz command shares one guard, including hints and navigation.
@@ -104,10 +98,8 @@ class LearningVM extends AsyncNotifier<LearningSession> {
           : '이쪽도 살펴볼까요?',
       'hint': success ? 0 : failures,
     });
-    final repository = ref.read(learningRepositoryProvider);
     await ref.read(progressRepositoryProvider).record(current.id, success);
-    await repository.save(subject, next);
-    if (ref.mounted) state = AsyncData(next);
+    await _save(next);
   });
   Future<void> showHint() => _transition((old) async {
     if (old.answered) return;
@@ -118,7 +110,6 @@ class LearningVM extends AsyncNotifier<LearningSession> {
     if (!settings.help || old.failures < settings.helpAfter || old.answered) {
       return;
     }
-    final repository = ref.read(learningRepositoryProvider);
     final next = old.change({
       'answered': true,
       'assisted': true,
@@ -127,12 +118,15 @@ class LearningVM extends AsyncNotifier<LearningSession> {
     await ref
         .read(progressRepositoryProvider)
         .record(quiz.id, true, assisted: true);
-    await repository.save(subject, next);
-    if (ref.mounted) state = AsyncData(next);
+    await _save(next);
   });
   Future<void> next() => _transition((old) async {
     if (!old.answered) return;
-    final level = AgeStrategy(old.level).adapt(old.successes, old.failures);
+    final settings = ref.read(settingsProvider).value ?? const ParentSettings();
+    final proposed = AgeStrategy(old.level).adapt(old.successes, old.failures);
+    final level = settings.autoAdvanceLearning
+        ? proposed
+        : proposed.clamp(2, settings.level);
     await _save(
       LearningSession(
         level: level,
