@@ -1,5 +1,9 @@
 # 소스 전달과 다음 작업
 
+2026-10-17 소스 공개 묶음은 성공 피드백/필기 판정/12화 스토리 수집 재개편과 수집 지도 일관성 보완을 포함한다. canonical 본문은 chapter_direction.dart이며 storyEpisodes를 통해 실행·대본·검토 자료에 적용한다. StoryQuest.collectedFrom이 새 book-fragment-<화> flags와 과거 completed를 중복 없이 합쳐 이야기와 모험 지도에 같은 조각을 표시한다. 읽기만으로 보상을 지급하지 않는다. 실제 저장 뒤 Flame 이동과 효과음을 요청하고 복원에는 재연하지 않는다. 도입 소품 찾기는 조각 회수/본 미션 완료와 구분한다. docs/STORY_REWORK.md와 PROGRESS 상단을 먼저 읽는다. 최종 Git 커밋/원격 일치는 PROGRESS에 기록하며 APK Release 업로드는 이번 범위가 아니다.
+
+빌드 결과 JSON은 생성 당시의 소스를 설명한다. 최신 소스 검사는 docs/source_validation.json(analyze0/전체567), 로컬 APK는 docs/collection_build.json(214363192)이다. docs/story_rework_build.json(214329986)은 직전 재개편의 결과이며 공개 결과 docs/published_build.json(214325690)과 다르다. 이번 Android 재실행은 에뮬레이터 ADB 연결 실패로 미실행이며 직전5개 통과와 구분한다. 소스 push만으로 공개 APK가 갱신되지는 않는다.
+
 2026-10-17 누적 구현 소스40bd63f를 main에 공개했고, APK1.0.0(214325690)도 GitHub Releases에 공개했다. 최신 결과는 docs/published_build.json과 PROGRESS 상단을 따른다. 이전 단계의 로컬/미업로드는 당시 기록이며 이번 공개에 포함됐다. 다음 변경의 공개는 다시 별도 사용자 요청 기준을 유지한다.
 
 ## 다른 PC에서 이어서 개발
@@ -31,5 +35,5 @@ powershell -ExecutionPolicy Bypass -File tool/verify-source.ps1
 
 - 음원: 실제 등록 음원은 0개다. 고정 대본 671개와 AI 시연 계획은 준비됐지만 비용 사용은 보류다. `generate_ai_auditions.dart --execute`는 실행하지 않는다. 현재 음성은 기기 TTS 대안이다.
 - 교육 검수: `docs/review/`의 128경로·127문항(필기 도움9개 포함)·48개 연령/화 경로를 ID별로 검토하고 근거를 기록한다. 탐색12개는 단일 정답이 없다. 자동 검사 통과로 pending 승인을 바꾸지 않는다.
-- 실기기: 사용자의 마지막 단계 요청을 유지한다. 나중에 `docs/DEVICE_VALIDATION.md`에 따라 실제 필기·소리·성능·업데이트를 확인한다. 최신 에뮬레이터 통합4개 통과는 이를 대신하지 않는다.
+- 실기기: 사용자의 마지막 단계 요청을 유지한다. 나중에 `docs/DEVICE_VALIDATION.md`에 따라 실제 필기·소리·성능·업데이트를 확인한다. 에뮬레이터 통합 검사는 이를 대신하지 않는다.
 - 검수 피드백이 오면 해당 경로/문항/장면 ID를 수정하고 집중 회귀와 전체 소스 검사를 실행한다. 저장 형식과 기존 공유 서명은 보존한다.

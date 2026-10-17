@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/activity_scaffold.dart';
 import '../../drawing/presentation/drawing_vm.dart';
-import '../../story/data/story_content.dart';
+import '../../story/domain/story_quest.dart';
 import '../../../core/widgets/activity_intro.dart';
 import '../../drawing/domain/drawing_renderer.dart';
 import '../../drawing/domain/drawing.dart';
@@ -30,9 +30,12 @@ class GalleryPage extends ConsumerWidget {
         children: [
           ActivityIntro(
             icon: Icons.explore_rounded,
-            title:
-                '모은 별빛 ${story.value?.completed.length ?? 0} / ${storyEpisodes.length}',
-            instruction: '우리가 함께 만든 이야기예요. 표지를 눌러 추억을 펼쳐 봐요.',
+            title: story.when(
+              data: (s) => '별조각 ${StoryQuest.collectedFrom(s).length} / 12',
+              loading: () => '수집책을 여는 중이에요',
+              error: (_, _) => '수집책을 다시 열어 주세요',
+            ),
+            instruction: '조각으로 책의 빈칸을 채워요.\n표지를 눌러 이야기를 만나요.',
           ),
           const SizedBox(height: 20),
           story.when(

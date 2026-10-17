@@ -99,7 +99,7 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(chapter);
         await tester.pumpAndSettle();
-        expect(find.text('함께 모은 별빛 1'), findsOneWidget);
+        expect(find.text('함께 모은 책등 조각 1'), findsOneWidget);
         await tester.tap(find.text('지도 보기'));
         await tester.pumpAndSettle();
         expect(c.read(storyProvider).requireValue.toJson(), before);

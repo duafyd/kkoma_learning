@@ -68,6 +68,36 @@ class StoryScene {
     this.speechVariants = const {},
     this.choices = const [],
   });
+
+  StoryScene reword({
+    required String text,
+    String? success,
+    String? exploreSuccess,
+    String? explore,
+  }) => StoryScene(
+    id: id,
+    text: text,
+    background: background,
+    character: character,
+    interaction: interaction,
+    minimumLevel: minimumLevel,
+    quiz: quiz,
+    traceId: traceId,
+    flag: flag,
+    choices: choices,
+    reaction: reaction,
+    successText: success ?? successText,
+    successBackground: successBackground,
+    exploreQuiz: exploreQuiz,
+    exploreSuccessText: exploreSuccess ?? exploreSuccessText,
+    exploreText: explore ?? exploreText,
+    speeches: speeches,
+    variationFlag: variationFlag,
+    quizVariants: quizVariants,
+    backgroundVariants: backgroundVariants,
+    successBackgroundVariants: successBackgroundVariants,
+    speechVariants: speechVariants,
+  );
 }
 
 class StoryEpisode {

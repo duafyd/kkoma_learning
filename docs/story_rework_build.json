@@ -1,0 +1,20 @@
+{
+    "date":  "2026-10-17",
+    "version":  "1.0.0",
+    "buildNumber":  214329986,
+    "bytes":  150392013,
+    "MiB":  143.4,
+    "sha256":  "bfdcf9219e176dee81fb3cdbb944c9b0e2994bd25cafaed16cc63ee9d0b567f4",
+    "signature":  "verified v2, one signer",
+    "tests":  489,
+    "androidIntegrationTests":  5,
+    "analyze":  "no issues",
+    "change":  "Committed-success sound and visible feedback; forgiving age tracing with scribble rejection; rewritten 120-page narrative and Flame physical fragment/12-slot book collection with legacy progress",
+    "captures":  48,
+    "artScope":  "Existing raster scenery and character compositing reused; Flame physical obstacles, fragments and book are code-drawn; no new cast frames or acting recordings",
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false,
+    "sourceState":  "Uncommitted local rework after 6dcaad7",
+    "audio":  "0 recordings, offline TTS fallback; real-device listening held",
+    "physicalDeviceValidation":  "held"
+}

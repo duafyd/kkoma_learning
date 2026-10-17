@@ -2735,7 +2735,7 @@
     },
     {
       "id": "voice-ep1-choice",
-      "text": "누구와 함께 별조각을 찾을까요?",
+      "text": "책을 들어 줄 친구를 골라 줘.\n나는 아래에 낀 조각을 찾아볼게!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -2804,7 +2804,7 @@
     },
     {
       "id": "voice-ep1-clue",
-      "text": "휙휙의 바람에 조각이 흩어졌대요.\n함께 모으면 다시 빛날 거예요.",
+      "text": "휙휙이 창문을 열다가 책을 떨어뜨렸대.\n친구들이 다치지 않게 함께 꺼내자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -2829,7 +2829,7 @@
     },
     {
       "id": "voice-ep1-discover",
-      "text": "책장 아래가 반짝!\n작은 별조각이 숨어 있어요.",
+      "text": "첫 조각은 책장 아래에 끼었어.\n빛나는 별 모양을 찾아 꺼내 주자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -2854,7 +2854,7 @@
     },
     {
       "id": "voice-ep1-end",
-      "text": "첫 별빛이 켜졌어요! 고마워요.\n지도 속 꽃밭에 다음 조각이 있대요.",
+      "text": "오른쪽 별조각을 눌러 빈칸에 담아 줘.\n조각 뒤 지도에는 꽃문이 그려져 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -2879,7 +2879,7 @@
     },
     {
       "id": "voice-ep1-quiz",
-      "text": "책장 아래에 빛나는 모양이 있어요.\n친구와 함께 살펴볼까요?",
+      "text": "책 밑의 조각과 같은 모양을 찾으면\n어느 틈에 끼었는지 알 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -2904,7 +2904,7 @@
     },
     {
       "id": "voice-ep1-quiz-explore-success",
-      "text": "예쁜 빛을 골랐어요! 친구와 책에 모아봐요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -2926,7 +2926,7 @@
     },
     {
       "id": "voice-ep1-quiz-success",
-      "text": "반짝! 책에 맞는 별조각을 찾았어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -2948,7 +2948,7 @@
     },
     {
       "id": "voice-ep1-review",
-      "text": "작은 판에 모인 별조각을 세어 볼까요?\n하나씩 톡톡 눌러봐요.",
+      "text": "조각 옆에 떨어진 작은 별을 세어 줘.\n빠뜨린 별이 없는지 확인하자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -2973,7 +2973,7 @@
     },
     {
       "id": "voice-ep1-review-success",
-      "text": "하나, 둘, 셋! 별조각은 모두 세 개예요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -2995,7 +2995,7 @@
     },
     {
       "id": "voice-ep1-start",
-      "text": "어? 이야기책의 별빛이 꺼졌어요.\n나와 함께 찾아볼래요?",
+      "text": "바람에 책등의 별조각 12개가 흩어졌어!\n위의 빈칸을 다시 채우면 도서관 책이 열려.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3020,7 +3020,7 @@
     },
     {
       "id": "voice-ep1-talk",
-      "text": "천천히 살펴보니 찾을 수 있었어!\n마지막 조각도 같이 찾아보자.",
+      "text": "서두르지 않으니 작은 별도 보이네.\n별 둘을 짝지어 책을 받쳐 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3045,7 +3045,7 @@
     },
     {
       "id": "voice-ep1-together",
-      "text": "같은 별끼리 만나면\n이야기책이 깨어난대요.",
+      "text": "별 두 개가 있는 받침을 찾아 줘.\n친구가 책을 내려놓을 수 있게!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3070,7 +3070,7 @@
     },
     {
       "id": "voice-ep1-together-success",
-      "text": "별과 별이 만났어요! 이야기책이 반짝여요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3092,7 +3092,7 @@
     },
     {
       "id": "voice-ep1-trace",
-      "text": "별조각이 책으로 돌아가게\n숫자 1의 빛줄기를 그려 주세요.",
+      "text": "숫자 1처럼 곧은 길을 그려 줘.\n그 길을 따라 조각을 책 밖으로 꺼낼 거야.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3117,7 +3117,7 @@
     },
     {
       "id": "voice-ep1-trace-success",
-      "text": "빛줄기가 이어졌어요! 별조각이 책으로 돌아왔어요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3139,7 +3139,7 @@
     },
     {
       "id": "voice-ep10-choice",
-      "text": "누구와 함께 살펴볼까요?",
+      "text": "책장을 함께 잡아 줄 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3208,7 +3208,7 @@
     },
     {
       "id": "voice-ep10-clue",
-      "text": "씨앗에서 싹, 싹에서 나무!\n자라는 데에는 시간이 필요해요. 서두르지 않아도 돼요.",
+      "text": "씨앗에서 싹이 나고 나무가 자라.\n그림을 보며 책장을 하나씩 펴 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3233,7 +3233,7 @@
     },
     {
       "id": "voice-ep10-discover",
-      "text": "작은 씨앗 봉투 옆에 싹이 보여요.\n씨앗에 물과 햇빛을 주면 무엇이 나올까?",
+      "text": "책에는 씨앗이 자라는 그림이 있어.\n순서를 맞추면 어느 쪽부터 펼칠지 알 수 있대.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3258,7 +3258,7 @@
     },
     {
       "id": "voice-ep10-end",
-      "text": "열 번째 별빛과 함께 마지막 그림이 나타났어요.\n별 다섯 개를 놓는 하늘 정거장이에요!",
+      "text": "마른 책에서 나온 조각을 수집책에 담아 줘.\n책 속 지도가 하늘 계단을 보여 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3283,7 +3283,7 @@
     },
     {
       "id": "voice-ep10-quiz",
-      "text": "씨앗이 자라는 첫 장면을 찾아요.\n씨앗 다음에는 무엇이 나올까요?",
+      "text": "씨앗이 자라는 순서대로 그림을 찾아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3308,7 +3308,7 @@
     },
     {
       "id": "voice-ep10-quiz-explore",
-      "text": "동글한 씨앗과 초록 잎이 보여요.\n좋아하는 그림을 톡 눌러요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -3332,7 +3332,7 @@
     },
     {
       "id": "voice-ep10-quiz-explore-success",
-      "text": "씨앗과 잎을 만났어요! 친구들이 책장을 살살 펼쳐줘요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3354,7 +3354,7 @@
     },
     {
       "id": "voice-ep10-quiz-success",
-      "text": "씨앗에서 싹이 나왔어요! 붙었던 책장이 펼쳐지고 그림이 돌아왔어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3376,7 +3376,7 @@
     },
     {
       "id": "voice-ep10-review",
-      "text": "성장 그림을 처음부터 이어봐요.\n씨앗, 싹, 나무 순서인 그림을 찾아요.",
+      "text": "다음에 자랄 모습을 찾아 책장을 이어 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3401,7 +3401,7 @@
     },
     {
       "id": "voice-ep10-review-success",
-      "text": "씨앗, 싹, 나무! 이야기도 작은 시작에서 자라나요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3423,7 +3423,7 @@
     },
     {
       "id": "voice-ep10-start",
-      "text": "토독토독, 비가 내려 책장이 서로 붙었어요.\n나뭇잎 지붕 아래에서 천천히 펼쳐볼까요?",
+      "text": "열 번째 조각이 젖은 책장 사이에 붙었어.\n찢지 않게 책을 펴고 말려 주자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3448,7 +3448,7 @@
     },
     {
       "id": "voice-ep10-talk",
-      "text": "나는 바람 소리가 나는 이야기를 만들고 싶어.\n다음엔 친구들의 허락을 받고 함께 만들래.",
+      "text": "휙휙이 약한 바람으로 책을 말리고 있어.\n붙어 있던 조각도 떨어졌네!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3473,7 +3473,7 @@
     },
     {
       "id": "voice-ep10-together",
-      "text": "마른 책들을 책끼리 모아줘요.\n다른 그림이 섞이지 않은 바구니를 골라요.",
+      "text": "성장 그림을 한 번 더 차례대로 놓아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3498,7 +3498,7 @@
     },
     {
       "id": "voice-ep10-together-success",
-      "text": "책들을 가지런히 모았어요! 휙휙이 살랑 바람으로 말려줘요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3520,7 +3520,7 @@
     },
     {
       "id": "voice-ep10-trace",
-      "text": "펼친 책에 대문자 A를 그려요.\n등대에서 만났던 글자를 다시 기억해봐요.",
+      "text": "A 받침을 그려 펼친 책을 받쳐 줘.\n바람이 책 사이를 지나 말릴 수 있게.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3545,7 +3545,7 @@
     },
     {
       "id": "voice-ep10-trace-success",
-      "text": "A가 책장 위에서 반짝! 비에 젖었던 이야기도 이어졌어요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3567,7 +3567,7 @@
     },
     {
       "id": "voice-ep11-choice",
-      "text": "누구와 함께 살펴볼까요?",
+      "text": "마지막 길을 함께 만들 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3636,7 +3636,7 @@
     },
     {
       "id": "voice-ep11-clue",
-      "text": "꽃밭의 ㅏ, 등대의 A, 다리의 3!\n서로 다른 기억이 한 별자리에 모였어요.",
+      "text": "별 하나를 놓을 때마다 길이 한 칸 생겨.\n빠진 곳이 없는지 함께 확인하자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3661,7 +3661,7 @@
     },
     {
       "id": "voice-ep11-discover",
-      "text": "하나씩 놓으면 별이 길을 알려줄 거야.\n별 하나를 두 번 세지 않도록 같이 짚어보자.",
+      "text": "등대에서 가져온 빛으로 빈자리가 보여.\n가까운 별부터 하나씩 놓자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3686,7 +3686,7 @@
     },
     {
       "id": "voice-ep11-end",
-      "text": "열한 번째 별빛이 길게 이어져요!\n이제 휙휙과 함께 별빛 도서관으로 돌아가요.",
+      "text": "계단 끝 조각을 수집책에 담아 줘.\n열두 번째 조각은 도서관 문 안쪽에 있대!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3711,7 +3711,7 @@
     },
     {
       "id": "voice-ep11-quiz",
-      "text": "작은 별빛도 모이면 길이 될 거야.\n우리 기억으로 별길을 이어 보자!",
+      "text": "별 다섯을 빈자리에 차례대로 놓아 줘.\n친구가 건널 수 있도록 길을 잇자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3736,7 +3736,7 @@
     },
     {
       "id": "voice-ep11-quiz-explore",
-      "text": "반짝 별과 동글동글 동그라미!\n마음에 드는 그림으로 별길을 밝혀요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -3760,7 +3760,7 @@
     },
     {
       "id": "voice-ep11-quiz-explore-success",
-      "text": "반짝반짝! 친구들이 별자리를 밝혀주었어요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3782,7 +3782,7 @@
     },
     {
       "id": "voice-ep11-quiz-success",
-      "text": "하나, 둘, 셋, 넷, 다섯! 별 다섯 개가 도서관으로 가는 빛길을 만들었어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3804,7 +3804,7 @@
     },
     {
       "id": "voice-ep11-quiz-world",
-      "text": "작은 별빛도 모이면 길이 될 거야.\n우리 기억으로 별길을 이어 보자! 별을 끌거나 톡 눌러, 하늘의 빈자리를 이어 줘.",
+      "text": "별 다섯을 빈자리에 차례대로 놓아 줘.\n친구가 건널 수 있도록 길을 잇자. 별을 끌거나 톡 눌러, 하늘의 빈자리를 이어 줘.",
       "language": "ko-KR",
       "category": "world-mission",
       "contexts": [
@@ -3826,7 +3826,7 @@
     },
     {
       "id": "voice-ep11-review",
-      "text": "별, 동그라미, 별…\n다음에 놓을 모양을 찾아요.",
+      "text": "지금까지 만난 표지를 찾아 길 끝을 확인해 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3851,7 +3851,7 @@
     },
     {
       "id": "voice-ep11-review-success",
-      "text": "다음은 동그라미! 번갈아 놓인 별길의 약속을 찾았어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3873,7 +3873,7 @@
     },
     {
       "id": "voice-ep11-start",
-      "text": "도서관이 보이는 하늘 정거장에 왔어요.\n별자리 판의 빈자리가 우리를 기다려요.",
+      "text": "열한 번째 조각이 하늘 계단 끝에 있어.\n흩어진 별 다섯을 이어야 건너갈 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3898,7 +3898,7 @@
     },
     {
       "id": "voice-ep11-talk",
-      "text": "처음에는 조각이 너무 많아 보였어.\n하나씩 함께 모으니 커다란 이야기가 되었네!",
+      "text": "휙휙도 별을 붙잡아 주고 있어.\n함께 고치니 계단 끝까지 올 수 있었네!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3923,7 +3923,7 @@
     },
     {
       "id": "voice-ep11-together",
-      "text": "꽃밭의 ㅏ, 등대의 A, 다리의 3.\n이 세 기억이 모두 있는 그림을 찾아요.",
+      "text": "돌아갈 길의 표지를 마지막으로 찾아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3948,7 +3948,7 @@
     },
     {
       "id": "voice-ep11-together-success",
-      "text": "ㅏ, A, 3! 우리 기억들이 마지막 별빛에 모였어요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -3970,7 +3970,7 @@
     },
     {
       "id": "voice-ep11-trace",
-      "text": "짝을 이룬 별 두 개를 보며 숫자 2를 그려요.\n곡선을 돌아 아래 가로길까지 천천히!",
+      "text": "숫자 2를 그려 두 별 사이에 다리를 달아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -3995,7 +3995,7 @@
     },
     {
       "id": "voice-ep11-trace-success",
-      "text": "숫자 2도 반짝! 별 친구들이 짝을 이루었어요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4017,7 +4017,7 @@
     },
     {
       "id": "voice-ep12-choice",
-      "text": "우리 이야기 방을 무엇으로 꾸밀까요?",
+      "text": "책이 열리면 함께 읽을 방을 무엇으로 꾸밀까?",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4086,7 +4086,7 @@
     },
     {
       "id": "voice-ep12-clue",
-      "text": "흩뜨린 것을 함께 정리하니 책이 환해졌어요.\n잘못을 말하고 함께 고칠 수 있어요.",
+      "text": "조각은 예쁜 빛만 내는 보물이 아니야.\n도서관 책등에 딱 맞는 열두 개의 열쇠였어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4111,7 +4111,7 @@
     },
     {
       "id": "voice-ep12-discover",
-      "text": "휙휙이 조용히 책을 내려놓아요.\n“흩뜨려서 미안해. 이제 함께 정리하고 싶어.”",
+      "text": "휙휙이 서랍을 조심히 열었어.\n이제 창문도, 책도 살살 다룰게.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4136,7 +4136,7 @@
     },
     {
       "id": "voice-ep12-end",
-      "text": "열두 별빛이 모두 모여 도서관이 다시 열렸어요!\n옆의 새 책이 살짝 반짝… 다음 모험도 함께해요.",
+      "text": "마지막 조각을 눌러 수집책에 담아 줘.\n12칸을 채우고 도서관에서 함께 책을 읽자!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4161,7 +4161,7 @@
     },
     {
       "id": "voice-ep12-quiz",
-      "text": "내가 고른 장식끼리 모아줘요.\n도서관의 마지막 불을 함께 켜요.",
+      "text": "고른 방의 장식끼리 모아 서랍 앞을 비워 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4186,7 +4186,7 @@
     },
     {
       "id": "voice-ep12-quiz-explore",
-      "text": "꽃과 별이 모두 예뻐요.\n마음에 드는 그림을 눌러 마지막 불을 켜요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -4210,7 +4210,7 @@
     },
     {
       "id": "voice-ep12-quiz-explore-success",
-      "text": "반짝! 내가 고른 방에서 친구들이 함께 웃어요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4232,7 +4232,7 @@
     },
     {
       "id": "voice-ep12-quiz-success",
-      "text": "같은 장식을 모았어요! 내가 고른 방에 이야기 빛이 환하게 켜졌어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4254,7 +4254,7 @@
     },
     {
       "id": "voice-ep12-review",
-      "text": "등대에서 만난 A와 a를 기억하나요?\n같은 이름의 짝을 찾아요.",
+      "text": "A와 a 이름표를 짝지어 같은 책장에 꽂아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4279,7 +4279,7 @@
     },
     {
       "id": "voice-ep12-review-success",
-      "text": "A와 a가 다시 만났어요! 배운 기억이 책 속에 남았어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4301,7 +4301,7 @@
     },
     {
       "id": "voice-ep12-start",
-      "text": "별빛 도서관에 돌아왔어요!\n모은 이야기를 책에 담아 마지막 불을 켜볼까요?",
+      "text": "도서관으로 돌아왔어! 마지막 조각은 책상 서랍에 있어.\n정리한 뒤12칸을 모두 채워 책을 열자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4326,7 +4326,7 @@
     },
     {
       "id": "voice-ep12-talk",
-      "text": "이번엔 우리 모두가 주인공이야.\n휙휙의 바람 이야기도 함께 만들어보자!",
+      "text": "우리가 고친 길과 친구들이 이 책에 남을 거야.\n첫 장의 주인공은 너와 우리 모두야.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4351,7 +4351,7 @@
     },
     {
       "id": "voice-ep12-together",
-      "text": "떠나기 전에 책을 책끼리 정리해요.\n다음 친구도 쉽게 찾을 수 있게요.",
+      "text": "책은 책끼리 정리해 다음 친구의 자리를 만들어 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4376,7 +4376,7 @@
     },
     {
       "id": "voice-ep12-together-success",
-      "text": "책 정리까지 함께했어요! 휙휙도 소중한 도서관 친구예요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4398,7 +4398,7 @@
     },
     {
       "id": "voice-ep12-trace",
-      "text": "마지막 모음 ㅜ를 그려 책을 마무리해요.\n가로길 아래로 짧은 빛줄기를 내려줘요.",
+      "text": "ㅜ 모양 책갈피를 그려 우리 책에 달아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4423,7 +4423,7 @@
     },
     {
       "id": "voice-ep12-trace-success",
-      "text": "ㅜ 빛줄기가 책에 새겨졌어요. 우리 이야기가 완성되어가요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4445,7 +4445,7 @@
     },
     {
       "id": "voice-ep2-choice",
-      "text": "누구와 함께 꽃문을 두드릴까요?",
+      "text": "꽃잎을 함께 잡아 줄 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4514,7 +4514,7 @@
     },
     {
       "id": "voice-ep2-clue",
-      "text": "아는 오른쪽, 어는 왼쪽!\n짧은 줄이 어디 있는지 살펴봐요.",
+      "text": "ㅏ의 짧은 가지는 오른쪽이야.\n비슷한 문을 헷갈리지 않게 살펴보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4539,7 +4539,7 @@
     },
     {
       "id": "voice-ep2-discover",
-      "text": "꽃문 앞에 모음 글자가 있어요.\n소리를 찾아 문을 열어볼까요?",
+      "text": "문에는 소리 모양 자물쇠가 있어.\n아 소리의 표지를 찾으면 열 수 있대.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4564,7 +4564,7 @@
     },
     {
       "id": "voice-ep2-end",
-      "text": "두 번째 별빛이 켜졌어요!\n꽃길 끝 자음 나무에서 루루가 손짓해요.",
+      "text": "꽃잎에서 나온 조각을 수집책에 담아 줘.\n다음 지도는 자음 나무를 가리켜.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4589,7 +4589,7 @@
     },
     {
       "id": "voice-ep2-quiz",
-      "text": "꽃문이 아 소리를 기다려요.\n아, 함께 불러볼까요?",
+      "text": "꽃문에 맞는 아 모양 표지를 찾아 줘.\n문이 열리면 조각까지 갈 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4614,7 +4614,7 @@
     },
     {
       "id": "voice-ep2-quiz-explore",
-      "text": "꽃과 잎이 반짝여요.\n마음에 드는 모양으로 꽃문을 열어봐요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -4638,7 +4638,7 @@
     },
     {
       "id": "voice-ep2-quiz-explore-success",
-      "text": "고른 모양이 반짝! 꽃문이 열렸어요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4660,7 +4660,7 @@
     },
     {
       "id": "voice-ep2-quiz-success",
-      "text": "아! 꽃문이 활짝 열렸어요. 안으로 들어가요!",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4682,7 +4682,7 @@
     },
     {
       "id": "voice-ep2-review",
-      "text": "꽃길에서 오 소리도 들려요.\n이번에는 어떤 모양일까요?",
+      "text": "돌아오는 길의 오 표지도 찾아 줘.\n꽃밭에서 길을 잃지 않게 하자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4707,7 +4707,7 @@
     },
     {
       "id": "voice-ep2-review-success",
-      "text": "오! 위로 올라간 짧은 줄을 찾았어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4729,7 +4729,7 @@
     },
     {
       "id": "voice-ep2-start",
-      "text": "지도 속 꽃밭에 도착했어요.\n어? 꽃문이 꼭 닫혀 있네요.",
+      "text": "첫 조각의 지도를 따라 꽃문에 왔어.\n두 번째 조각이 닫힌 꽃잎 안에 보여!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4754,7 +4754,7 @@
     },
     {
       "id": "voice-ep2-talk",
-      "text": "짧은 줄을 천천히 보니 알겠어!\n나무까지 소리를 가져가자.",
+      "text": "우리가 연 길로 친구들도 올 수 있겠어.\n아와 오 표지를 함께 챙기자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4779,7 +4779,7 @@
     },
     {
       "id": "voice-ep2-together",
-      "text": "아와 오의 꽃표를 챙겨요.\n두 글자가 모두 같은 짝을 찾아요.",
+      "text": "아와 오가 모두 있는 길 안내판을 찾아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4804,7 +4804,7 @@
     },
     {
       "id": "voice-ep2-together-success",
-      "text": "아와 오를 챙겼어요! 자음 나무로 출발해요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4826,7 +4826,7 @@
     },
     {
       "id": "voice-ep2-trace",
-      "text": "아 소리의 ㅏ를 그려\n꽃길에 빛을 이어 주세요.",
+      "text": "ㅏ 모양 길을 따라 꽃잎을 펴 줘.\n안쪽 조각이 눌리지 않게 천천히!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4851,7 +4851,7 @@
     },
     {
       "id": "voice-ep2-trace-success",
-      "text": "긴 줄과 오른쪽 짧은 줄! 아의 꽃길이 반짝여요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -4873,7 +4873,7 @@
     },
     {
       "id": "voice-ep3-choice",
-      "text": "누구와 함께 열매를 찾을까요?",
+      "text": "바구니를 잡을 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4942,7 +4942,7 @@
     },
     {
       "id": "voice-ep3-clue",
-      "text": "기역 ㄱ과 꽃밭의 아 ㅏ가 만나면\n가방의 첫 글자 가가 되어요.",
+      "text": "꽃밭에서 챙긴 ㅏ와 ㄱ이 만나면 가!\n기차역으로 보낼 씨앗의 이름이야.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4967,7 +4967,7 @@
     },
     {
       "id": "voice-ep3-discover",
-      "text": "열매마다 글자 이름표가 있대.\n기역 이름표를 함께 찾아줄래?",
+      "text": "가지마다 다른 글자 열매가 있어.\n가방 이름의 첫 자음부터 찾아보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -4992,7 +4992,7 @@
     },
     {
       "id": "voice-ep3-end",
-      "text": "세 번째 별빛이 켜졌어요!\n씨앗 꾸러미를 싣고 소리 기차로 가요.",
+      "text": "가지에서 내린 조각을 수집책에 담아 줘.\n씨앗 꾸러미와 함께 기차역으로 가자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5017,7 +5017,7 @@
     },
     {
       "id": "voice-ep3-quiz",
-      "text": "기역의 모양은 ㄱ이에요.\n이름표에서 같은 글자를 찾아요.",
+      "text": "가방의 첫 자음 ㄱ 열매를 찾아 줘.\n이 가지의 열매부터 바구니에 넣자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5042,7 +5042,7 @@
     },
     {
       "id": "voice-ep3-quiz-explore",
-      "text": "나무 아래 씨앗과 잎이 있어요.\n함께 만져볼까요?",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -5066,7 +5066,7 @@
     },
     {
       "id": "voice-ep3-quiz-explore-success",
-      "text": "마음에 드는 모양을 찾았어요! 씨앗 바구니를 챙겨요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5088,7 +5088,7 @@
     },
     {
       "id": "voice-ep3-quiz-success",
-      "text": "기역 열매를 찾았어요! 열매가 씨앗 꾸러미로 변했어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5110,7 +5110,7 @@
     },
     {
       "id": "voice-ep3-review",
-      "text": "작은 판에 꺼낸 씨앗을 세어봐요.\n하나씩 누르면 함께 셀 수 있어요.",
+      "text": "바구니의 씨앗을 세어 빠진 것이 없는지 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5135,7 +5135,7 @@
     },
     {
       "id": "voice-ep3-review-success",
-      "text": "하나, 둘, 셋! 씨앗 세 개를 챙겼어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5157,7 +5157,7 @@
     },
     {
       "id": "voice-ep3-start",
-      "text": "자음 나무에 도착했어!\n열매를 담을 빈 바구니도 있네.",
+      "text": "세 번째 조각이 나뭇가지에 걸렸어.\n루루의 바구니에 열매를 모으면 가지가 내려온대.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5182,7 +5182,7 @@
     },
     {
       "id": "voice-ep3-talk",
-      "text": "꽃밭에서 가져온 아를 기억해?\n기역과 만나면 새 글자가 될 거야.",
+      "text": "무거워진 바구니가 가지를 살짝 내렸어.\n조각이 손에 닿을 만큼 가까워졌네!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5207,7 +5207,7 @@
     },
     {
       "id": "voice-ep3-together",
-      "text": "기역 ㄱ과 아 ㅏ를 나란히 놓아요.\n두 글자가 만나면 무엇이 될까요?",
+      "text": "ㄱ과 ㅏ가 만난 가 표지를 찾아 줘.\n씨앗 꾸러미를 기차역에 보내자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5232,7 +5232,7 @@
     },
     {
       "id": "voice-ep3-together-success",
-      "text": "기역과 아가 만나 가! 가방의 가가 되었어요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5254,7 +5254,7 @@
     },
     {
       "id": "voice-ep3-trace",
-      "text": "기역 ㄱ 이름표를 그려\n씨앗 꾸러미에 달아 주세요.",
+      "text": "ㄱ 이름표를 그려 바구니에 달아 줘.\n친구들이 같은 열매를 모을 수 있게.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5279,7 +5279,7 @@
     },
     {
       "id": "voice-ep3-trace-success",
-      "text": "오른쪽으로, 아래로! 기역 이름표를 달았어요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5301,7 +5301,7 @@
     },
     {
       "id": "voice-ep4-choice",
-      "text": "누구와 씨앗 꾸러미를 실을까요?",
+      "text": "기차표를 같이 살필 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5370,7 +5370,7 @@
     },
     {
       "id": "voice-ep4-clue",
-      "text": "다음 칸에는 니은 ㄴ이 있어요.\n아 ㅏ와 만나면 나가 된대요.",
+      "text": "가와 나는 첫 모양이 달라.\n꾸러미의 이름과 칸 이름을 맞춰 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5395,7 +5395,7 @@
     },
     {
       "id": "voice-ep4-discover",
-      "text": "왼쪽 표지는 가 소리를 기다려요.\n나무에서 만든 가를 기억하나요?",
+      "text": "휙휙의 바람에 기차 표지가 섞였네.\n씨앗 꾸러미를 맞는 칸에 싣자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5420,7 +5420,7 @@
     },
     {
       "id": "voice-ep4-end",
-      "text": "네 번째 별빛과 함께 별빛 역 도착!\n저기 꺼진 등대가 도움을 기다려요.",
+      "text": "사다리로 내린 조각을 수집책에 담아 줘.\n기차는 불이 꺼진 바닷가 등대로 향해.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5445,7 +5445,7 @@
     },
     {
       "id": "voice-ep4-quiz",
-      "text": "기역과 아가 만난 가!\n가 표지가 있는 칸을 찾아요.",
+      "text": "가방 그림이 붙은 칸의 가 표지를 찾아 줘.\n표지가 맞아야 문이 열려.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5470,7 +5470,7 @@
     },
     {
       "id": "voice-ep4-quiz-explore",
-      "text": "씨앗과 꽃을 구경해요.\n함께 싣고 싶은 짐을 골라봐요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -5494,7 +5494,7 @@
     },
     {
       "id": "voice-ep4-quiz-explore-success",
-      "text": "고른 짐을 실었어요! 기차가 출발할 준비를 해요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5516,7 +5516,7 @@
     },
     {
       "id": "voice-ep4-quiz-success",
-      "text": "가 칸을 찾았어요! 씨앗 꾸러미를 안전하게 실었어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5538,7 +5538,7 @@
     },
     {
       "id": "voice-ep4-review",
-      "text": "니은과 아의 표지를 나란히 놓아요.\n이번에는 어떤 글자가 될까요?",
+      "text": "가와 나의 소리를 듣고 맞는 칸을 찾아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5563,7 +5563,7 @@
     },
     {
       "id": "voice-ep4-review-success",
-      "text": "니은과 아가 만나 나! 다음 칸의 이름도 찾았어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5585,7 +5585,7 @@
     },
     {
       "id": "voice-ep4-start",
-      "text": "씨앗 꾸러미를 들고 역에 왔어요.\n어? 기차의 글자 표지가 섞였네요.",
+      "text": "네 번째 조각이 역 지붕 위에 보여.\n기차가 승강장에 와야 사다리를 놓을 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5610,7 +5610,7 @@
     },
     {
       "id": "voice-ep4-talk",
-      "text": "가, 나! 소리를 천천히 들어보니\n섞인 표지를 찾을 수 있었어.",
+      "text": "칸마다 꾸러미가 들어갔어.\n토토가 사다리를 승강장으로 가져왔네!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5635,7 +5635,7 @@
     },
     {
       "id": "voice-ep4-together",
-      "text": "왼쪽은 가, 오른쪽은 나예요.\n왼쪽부터 차례로 표지를 놓아봐요.",
+      "text": "기차가 떠날 순서를 함께 정해 줘.\n사다리를 놓을 자리를 비워 주자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5660,7 +5660,7 @@
     },
     {
       "id": "voice-ep4-together-success",
-      "text": "가 다음 나! 표지가 제자리를 찾았어요. 출발!",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5682,7 +5682,7 @@
     },
     {
       "id": "voice-ep4-trace",
-      "text": "니은 ㄴ 표지를 그려\n다음 칸에도 이름표를 달아줘요.",
+      "text": "ㄴ 표지를 그려 다음 칸에 달아 줘.\n기차가 길을 확인할 수 있게.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5707,7 +5707,7 @@
     },
     {
       "id": "voice-ep4-trace-success",
-      "text": "아래로, 오른쪽으로! 니은 이름표를 달았어요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5729,7 +5729,7 @@
     },
     {
       "id": "voice-ep5-choice",
-      "text": "누구와 등대 불을 켤까요?",
+      "text": "등불을 함께 들 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5798,7 +5798,7 @@
     },
     {
       "id": "voice-ep5-clue",
-      "text": "A라는 글자 이름과 Apple의 첫소리는 달라요.\n두 버튼으로 각각 들어봐요.",
+      "text": "A는 글자 이름, Apple은 사과라는 말이야.\n등불의 글자와 그림을 따로 들어보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5823,7 +5823,7 @@
     },
     {
       "id": "voice-ep5-discover",
-      "text": "이 글자의 이름은 에이, A예요.\nApple은 사과를 부르는 영어 단어예요.",
+      "text": "등대의 스위치에는 영어 글자가 있어.\nA 표지가 있는 불부터 켜 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5848,7 +5848,7 @@
     },
     {
       "id": "voice-ep5-end",
-      "text": "다섯 번째 별빛이 켜졌어요!\n등대 빛이 숫자 다리를 비춰요.",
+      "text": "바위틈에서 꺼낸 조각을 수집책에 담아 줘.\n돌아오는 길에 돌이 빠진 다리가 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5873,7 +5873,7 @@
     },
     {
       "id": "voice-ep5-quiz",
-      "text": "글자 이름 듣기 버튼을 눌러봐요.\n에이라는 이름의 글자를 찾아요.",
+      "text": "Apple의 A 등불을 찾아 줘.\n바위틈까지 빛을 보내야 해.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5898,7 +5898,7 @@
     },
     {
       "id": "voice-ep5-quiz-explore",
-      "text": "사과와 별이 반짝여요.\n마음에 드는 빛을 골라줘요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -5922,7 +5922,7 @@
     },
     {
       "id": "voice-ep5-quiz-explore-success",
-      "text": "고른 그림이 반짝! 등대에 불이 켜졌어요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5944,7 +5944,7 @@
     },
     {
       "id": "voice-ep5-quiz-success",
-      "text": "A를 찾았어요! 등대에 따뜻한 빛이 켜졌어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -5966,7 +5966,7 @@
     },
     {
       "id": "voice-ep5-review",
-      "text": "큰 A에게 작은 글자 친구가 있어요.\n같은 이름의 작은 a를 찾아요.",
+      "text": "대문자 A와 같은 이름의 소문자 짝을 찾아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -5991,7 +5991,7 @@
     },
     {
       "id": "voice-ep5-review-success",
-      "text": "A와 a! 모양은 달라도 같은 이름의 짝이에요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6013,7 +6013,7 @@
     },
     {
       "id": "voice-ep5-start",
-      "text": "등대의 큰 불이 꺼졌어요.\n글자 빛을 찾아 함께 켜볼까요?",
+      "text": "다섯 번째 조각이 바위틈에 떨어졌어.\n어두워서 안 보여. 등대를 먼저 켜자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6038,7 +6038,7 @@
     },
     {
       "id": "voice-ep5-talk",
-      "text": "A는 글자 이름, Apple은 사과!\n천천히 따로 들어보니 다르네.",
+      "text": "등대 빛이 물 위를 지나 바위에 닿았어.\n반짝이는 조각의 위치가 보이네!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6063,7 +6063,7 @@
     },
     {
       "id": "voice-ep5-together",
-      "text": "등대 옆 과일 바구니를 챙겨요.\nApple 단어를 듣고 그림을 찾아요.",
+      "text": "Apple 그림 표지를 찾아 바위 길에 세워 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6088,7 +6088,7 @@
     },
     {
       "id": "voice-ep5-together-success",
-      "text": "Apple은 사과! 사과를 챙겨 다음 길로 가요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6110,7 +6110,7 @@
     },
     {
       "id": "voice-ep5-trace",
-      "text": "대문자 A의 빛줄기를 그려\n등대 불을 멀리 보내줘요.",
+      "text": "A 모양으로 끊긴 등불 길을 이어 줘.\n빛이 바닷가까지 닿도록!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6135,7 +6135,7 @@
     },
     {
       "id": "voice-ep5-trace-success",
-      "text": "A의 빛줄기를 그렸어요! 바다 건너 길도 보여요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6157,7 +6157,7 @@
     },
     {
       "id": "voice-ep6-choice",
-      "text": "누구와 함께 살펴볼까요?",
+      "text": "돌을 함께 옮길 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6226,7 +6226,7 @@
     },
     {
       "id": "voice-ep6-clue",
-      "text": "돌 두 개 옆에 하나가 더 오면 셋!\n토토가 손가락으로 천천히 짚어줘요.",
+      "text": "두 개의 돌에 하나를 더 놓으니 셋이야.\n빈자리가 모두 채워졌는지 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6251,7 +6251,7 @@
     },
     {
       "id": "voice-ep6-discover",
-      "text": "돌을 한 개씩 옮겨볼까?\n하나, 둘, 셋! 같은 돌을 두 번 세지 않아요.",
+      "text": "같은 돌을 두 번 세지 않도록\n한 개씩 빈자리에 옮겨 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6276,7 +6276,7 @@
     },
     {
       "id": "voice-ep6-end",
-      "text": "여섯 번째 별빛이 다리 위에서 반짝!\n건너편 꽃들이 하얗게 변했어요. 정원으로 가봐요.",
+      "text": "건너편 조각을 수집책에 담아 줘.\n그런데 앞 정원의 꽃이 하얗게 변했네?",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6301,7 +6301,7 @@
     },
     {
       "id": "voice-ep6-quiz",
-      "text": "한 개씩 옮기면 빈자리가 채워질 거야.\n나랑 돌길을 이어 볼까?",
+      "text": "돌 세 개를 빈자리에 차례대로 놓아 줘.\n다리가 이어지면 조각을 가지러 가자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6326,7 +6326,7 @@
     },
     {
       "id": "voice-ep6-quiz-explore",
-      "text": "동글동글 돌과 꽃을 만났어요.\n마음에 드는 그림을 골라요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -6350,7 +6350,7 @@
     },
     {
       "id": "voice-ep6-quiz-explore-success",
-      "text": "반짝! 친구들이 돌을 놓아주었어요. 손잡고 건너요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6372,7 +6372,7 @@
     },
     {
       "id": "voice-ep6-quiz-success",
-      "text": "하나, 둘, 셋! 돌 세 개가 빈자리를 채웠어요. 이제 함께 건너요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6394,7 +6394,7 @@
     },
     {
       "id": "voice-ep6-quiz-world",
-      "text": "한 개씩 옮기면 빈자리가 채워질 거야.\n나랑 돌길을 이어 볼까? 돌을 끌거나 톡 눌러, 빛나는 자리로 보내 줘.",
+      "text": "돌 세 개를 빈자리에 차례대로 놓아 줘.\n다리가 이어지면 조각을 가지러 가자. 돌을 끌거나 톡 눌러, 빛나는 자리로 보내 줘.",
       "language": "ko-KR",
       "category": "world-mission",
       "contexts": [
@@ -6416,7 +6416,7 @@
     },
     {
       "id": "voice-ep6-review",
-      "text": "친구에게 돌 두 개가 있어요.\n하나 더 주면 몇 개가 될까요?",
+      "text": "돌 두 개에 하나를 더하면 몇 개일까?\n다리 옆의 연습 돌로 해 보자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6441,7 +6441,7 @@
     },
     {
       "id": "voice-ep6-review-success",
-      "text": "둘에 하나를 더하면 셋! 돌을 나누어 보았어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6463,7 +6463,7 @@
     },
     {
       "id": "voice-ep6-start",
-      "text": "졸졸, 물소리 너머 정원이 보여요.\n앗, 돌다리에 동그란 빈자리가 세 개 있어요!",
+      "text": "여섯 번째 조각이 다리 건너편에 보여.\n빈자리 세 곳을 돌로 채워야 갈 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6488,7 +6488,7 @@
     },
     {
       "id": "voice-ep6-talk",
-      "text": "내가 빨리 건너도 괜찮아.\n친구가 올 때까지 여기서 기다릴게!",
+      "text": "다리 위에서는 친구를 기다려 줘.\n건너편 조각은 도망가지 않아.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6513,7 +6513,7 @@
     },
     {
       "id": "voice-ep6-together",
-      "text": "돌 셋 중 하나를 친구에게 주었어요.\n남은 돌을 세어볼까요?",
+      "text": "연습 돌 셋에서 하나를 나누면 몇 개가 남을까?",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6538,7 +6538,7 @@
     },
     {
       "id": "voice-ep6-together-success",
-      "text": "셋에서 하나를 주면 둘! 친구와 나누어도 길은 이어져요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6560,7 +6560,7 @@
     },
     {
       "id": "voice-ep6-trace",
-      "text": "숫자 3의 굽은 길을 그려요.\n다리에서 만난 돌 세 개의 숫자예요.",
+      "text": "숫자 3을 그려 다리 표지에 써 줘.\n다음 친구도 돌 세 개를 확인할 수 있게.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6585,7 +6585,7 @@
     },
     {
       "id": "voice-ep6-trace-success",
-      "text": "숫자 3이 반짝! 세 개의 돌과 짝이 되었어요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6607,7 +6607,7 @@
     },
     {
       "id": "voice-ep7-choice",
-      "text": "누구와 함께 살펴볼까요?",
+      "text": "정원을 같이 돌볼 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6676,7 +6676,7 @@
     },
     {
       "id": "voice-ep7-clue",
-      "text": "길에는 동그라미, 세모, 동그라미가 있어요.\n모양이 번갈아 나오는 약속을 찾아봐요.",
+      "text": "길의 모양이 차례대로 이어지면\n조각이 숨은 화단까지 갈 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6701,7 +6701,7 @@
     },
     {
       "id": "voice-ep7-discover",
-      "text": "빨간 꽃은 빨간 꽃끼리, 파란 꽃은 파란 꽃끼리!\n같은 색 친구들을 만나게 해줄까?",
+      "text": "꽃끼리, 잎끼리 표지를 나누면\n정원사가 길을 다시 알려 줄 수 있대.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6726,7 +6726,7 @@
     },
     {
       "id": "voice-ep7-end",
-      "text": "일곱 번째 별빛과 그림 지도를 챙겼어요.\n그때, 언덕 너머에서 휘이잉! 작은 목소리가 들려요.",
+      "text": "화단에서 찾은 조각을 수집책에 담아 줘.\n휙휙이 있는 바람 언덕으로 가자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6751,7 +6751,7 @@
     },
     {
       "id": "voice-ep7-quiz",
-      "text": "빨간 꽃을 모아 정원에 색을 돌려줘요.\n같은 빨간 꽃끼리 있는 바구니를 골라요.",
+      "text": "색과 모양이 같은 꽃을 모아 줘.\n정원 길에 표지를 다시 세우자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6776,7 +6776,7 @@
     },
     {
       "id": "voice-ep7-quiz-explore",
-      "text": "빨간 꽃, 파란 꽃!\n좋아하는 꽃을 눌러 색을 돌려줘요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -6800,7 +6800,7 @@
     },
     {
       "id": "voice-ep7-quiz-explore-success",
-      "text": "꽃이 활짝! 정원이 알록달록해졌어요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6822,7 +6822,7 @@
     },
     {
       "id": "voice-ep7-quiz-success",
-      "text": "빨간 꽃들이 만났어요! 파란 꽃과 노란 꽃도 색을 되찾았어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6844,7 +6844,7 @@
     },
     {
       "id": "voice-ep7-review",
-      "text": "동그라미, 세모, 동그라미…\n다음 길 표지는 어떤 모양일까요?",
+      "text": "꽃길의 다음 모양을 찾아 빈자리를 채워 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6869,7 +6869,7 @@
     },
     {
       "id": "voice-ep7-review-success",
-      "text": "다음은 세모! 동그라미와 세모가 번갈아 길을 만들어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6891,7 +6891,7 @@
     },
     {
       "id": "voice-ep7-start",
-      "text": "어제는 알록달록했다는데…\n꽃들의 색이 옅어져 정원 길을 찾기 어려워요.",
+      "text": "일곱 번째 조각이 정원 어딘가에 있어.\n바람에 물감과 꽃 표지가 뒤섞여 길을 못 찾겠어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6916,7 +6916,7 @@
     },
     {
       "id": "voice-ep7-talk",
-      "text": "네가 그린 지도를 작품 모음에 넣었어.\n우리가 만든 길이라 더 멋지다!",
+      "text": "색이 돌아오니 화단 뒤쪽도 보이네.\n휙휙이 언덕에서 우리를 부르고 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6941,7 +6941,7 @@
     },
     {
       "id": "voice-ep7-together",
-      "text": "길을 떠나기 전에 잎도 정리해요.\n잎끼리 모인 바구니를 찾아요.",
+      "text": "정원에 어울리는 색과 모양을 한 번 더 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -6966,7 +6966,7 @@
     },
     {
       "id": "voice-ep7-together-success",
-      "text": "잎은 잎끼리! 색과 모양을 살펴 정리했어요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -6988,7 +6988,7 @@
     },
     {
       "id": "voice-ep7-trace",
-      "text": "꽃이나 나비를 그려 나만의 지도를 만들어요.\n좋아하는 색을 골라 마음껏 그려요.",
+      "text": "우리 정원의 길을 그림으로 그려 줘.\n이 그림은 다음에도 펼쳐 볼 지도가 돼.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7013,7 +7013,7 @@
     },
     {
       "id": "voice-ep8-choice",
-      "text": "누구와 함께 살펴볼까요?",
+      "text": "휙휙과 바구니를 정리할 친구를 골라 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7082,7 +7082,7 @@
     },
     {
       "id": "voice-ep8-clue",
-      "text": "글자는 글자끼리, 숫자는 숫자끼리!\n서로 달라도 모두 이야기에 필요한 친구예요.",
+      "text": "같은 모양이 함께 있으면\n필요한 표지를 쉽게 찾을 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7107,7 +7107,7 @@
     },
     {
       "id": "voice-ep8-discover",
-      "text": "“미안해. 나도 이야기 속에 들어가고 싶었어.”\n괜찮아, 휙휙! 우리 같이 정리하자.",
+      "text": "휙휙: 창문을 세게 열어서 미안해.\n이번에는 바람을 약하게 불어 함께 정리할게.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7132,7 +7132,7 @@
     },
     {
       "id": "voice-ep8-end",
-      "text": "여덟 번째 별빛을 휙휙과 함께 챙겼어요.\n바람이 살랑, 세 갈래 길로 우리를 안내해요.",
+      "text": "바구니 밑 조각을 수집책에 담아 줘.\n남은 지도는 세 갈래 숲길을 가리켜.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7157,7 +7157,7 @@
     },
     {
       "id": "voice-ep8-quiz",
-      "text": "A와 C는 영어 글자예요.\n숫자와 섞이지 않은 영어 글자 바구니를 찾아요.",
+      "text": "흩어진 글자와 숫자를 알맞은 바구니로 모아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7182,7 +7182,7 @@
     },
     {
       "id": "voice-ep8-quiz-explore",
-      "text": "바람이 책과 동그라미를 살짝 흔들어요.\n마음에 드는 그림을 눌러 함께 정리해요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -7206,7 +7206,7 @@
     },
     {
       "id": "voice-ep8-quiz-explore-success",
-      "text": "톡! 친구들과 페이지를 정리했어요. 휙휙도 환하게 웃어요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7228,7 +7228,7 @@
     },
     {
       "id": "voice-ep8-quiz-success",
-      "text": "A와 C를 찾았어요! 흩어진 페이지도 바구니에 가지런히 모였어요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7250,7 +7250,7 @@
     },
     {
       "id": "voice-ep8-review",
-      "text": "이번에는 1과 3을 모아요.\n숫자만 있는 바구니를 찾아요.",
+      "text": "바구니에 넣을 같은 종류의 표지를 찾아 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7275,7 +7275,7 @@
     },
     {
       "id": "voice-ep8-review-success",
-      "text": "1과 3은 숫자! 다른 바구니와 구별했어요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7297,7 +7297,7 @@
     },
     {
       "id": "voice-ep8-start",
-      "text": "휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…”",
+      "text": "여덟 번째 조각이 언덕 바구니 밑에 보여.\n흩어진 표지를 치워야 바구니를 옮길 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7322,7 +7322,7 @@
     },
     {
       "id": "voice-ep8-talk",
-      "text": "혼자 숨기지 않고 말하니 마음이 가벼워졌어.\n다음에는 먼저 물어보고 살살 불게!",
+      "text": "휙휙이 바람을 살살 불어 바구니를 옮겼어.\n아래의 조각을 이제 꺼낼 수 있겠다!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7347,7 +7347,7 @@
     },
     {
       "id": "voice-ep8-together",
-      "text": "별, 책, 별… 책갈피가 번갈아 놓였어요.\n다음에는 무엇을 놓을까요?",
+      "text": "남은 표지까지 같은 종류끼리 정리해 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7372,7 +7372,7 @@
     },
     {
       "id": "voice-ep8-together-success",
-      "text": "다음은 책! 함께 정리하니 약속도 찾을 수 있어요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7394,7 +7394,7 @@
     },
     {
       "id": "voice-ep8-trace",
-      "text": "영어 글자 C를 그려 바구니에 표시해요.\n둥글게 돌다가 입구를 열어두어요.",
+      "text": "C 손잡이를 그려 바구니에 달아 줘.\n휙휙이 조심히 옮길 수 있게.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7419,7 +7419,7 @@
     },
     {
       "id": "voice-ep8-trace-success",
-      "text": "C 바구니가 완성됐어요! 휙휙이 조심조심 옮겨줘요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7441,7 +7441,7 @@
     },
     {
       "id": "voice-ep9-choice",
-      "text": "어느 이야기 길로 먼저 가볼까요?",
+      "text": "어느 표지 길을 따라가고 싶어?",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7532,7 +7532,7 @@
     },
     {
       "id": "voice-ep9-clue",
-      "text": "다른 길을 골라도 나중에 다시 만날 수 있어요.\n지금은 내 길의 작은 약속을 하나 더 살펴봐요.",
+      "text": "길을 바꾸며 헤매지 않아도 돼.\n우리가 고른 표지를 따라 천천히 가자.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7557,7 +7557,7 @@
     },
     {
       "id": "voice-ep9-discover",
-      "text": "꽃길엔 한글, 등대길엔 영어, 돌길엔 숫자!\n내가 기억하는 이야기는 어느 길에 있을까?",
+      "text": "한글 길, 영어 길, 숫자 길이 있네.\n어느 길도 같은 쉼터로 이어져.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7582,7 +7582,7 @@
     },
     {
       "id": "voice-ep9-end",
-      "text": "아홉 번째 별빛을 찾았어요!\n세 길이 만나는 종이숲에서 빗방울 소리가 들려요.",
+      "text": "나뭇잎 아래 조각을 수집책에 담아 줘.\n쉼터 너머에는 젖은 종이 나무숲이 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7607,7 +7607,7 @@
     },
     {
       "id": "voice-ep9-quiz",
-      "text": "우리가 고른 길의 이야기를 떠올려요.\n그림과 소리를 천천히 살펴봐요.",
+      "text": "내가 고른 길의 첫 표지를 찾아 줘.\n표지가 켜지면 다음 나무가 보여.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7632,7 +7632,7 @@
     },
     {
       "id": "voice-ep9-quiz-explore",
-      "text": "꽃도 별도 우리를 반겨요.\n좋아하는 그림을 골라 길을 밝혀요.",
+      "text": "친구가 이 길을 고치려 해요.\n마음에 드는 그림을 누르면 함께 도와줄 거예요.",
       "language": "ko-KR",
       "category": "story-explore",
       "contexts": [
@@ -7656,7 +7656,7 @@
     },
     {
       "id": "voice-ep9-quiz-explore-success",
-      "text": "좋아하는 빛을 찾았어요! 친구들이 함께 길을 밝혀줘요.",
+      "text": "예쁜 빛을 골랐어요! 친구가 길을 고쳐 주었어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7678,7 +7678,7 @@
     },
     {
       "id": "voice-ep9-quiz-success",
-      "text": "기억 속의 조각을 찾았어요! 세 길이 반짝이며 종이숲 쪽으로 이어져요.",
+      "text": "맞는 표지를 찾았어요. 조각을 꺼낼 준비가 한 걸음 진행됐어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7700,7 +7700,7 @@
     },
     {
       "id": "voice-ep9-review",
-      "text": "고른 길의 두 번째 조각이에요.\n앞에서 만난 글자나 수를 다시 살펴요.",
+      "text": "고른 길의 다음 표지를 찾아 이어 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7725,7 +7725,7 @@
     },
     {
       "id": "voice-ep9-review-success",
-      "text": "두 번째 기억도 찾았어요! 작은 조각들이 이야기가 되어가요.",
+      "text": "길의 표지를 확인했어요. 빠뜨린 곳을 하나 더 고쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7747,7 +7747,7 @@
     },
     {
       "id": "voice-ep9-start",
-      "text": "꽃길, 등대길, 돌길이 나란히 보여요.\n어느 길로 가도 친구와 함께라면 좋아요!",
+      "text": "아홉 번째 조각은 숲 안쪽에 있어.\n세 길 중 하나를 고르면 그 길의 표지를 고쳐 갈 수 있어.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7772,7 +7772,7 @@
     },
     {
       "id": "voice-ep9-talk",
-      "text": "네가 고른 길 이야기를 들려줘.\n다음에는 내가 고른 길도 함께 가보자!",
+      "text": "길이 쉼터까지 이어졌어.\n나뭇잎 아래의 조각이 보이네!",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7797,7 +7797,7 @@
     },
     {
       "id": "voice-ep9-together",
-      "text": "마지막 조각은 친구와 함께 찾아요.\n순서나 짝의 약속을 떠올려봐요.",
+      "text": "쉼터 앞 마지막 표지를 맞춰 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7822,7 +7822,7 @@
     },
     {
       "id": "voice-ep9-together-success",
-      "text": "세 번째 조각까지 찾았어요! 선택한 길의 이야기를 완성했어요.",
+      "text": "마지막 준비를 함께 마쳤어요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -7844,7 +7844,7 @@
     },
     {
       "id": "voice-ep9-trace",
-      "text": "세 길이 만나는 곳에 ㅏ 빛줄기를 그려요.\n꽃밭에서 만났던 모음 길을 함께 밝혀요.",
+      "text": "ㅏ 모양 길을 그려 끊긴 두 표지를 이어 줘.",
       "language": "ko-KR",
       "category": "story-dialogue",
       "contexts": [
@@ -7869,7 +7869,7 @@
     },
     {
       "id": "voice-ep9-trace-success",
-      "text": "ㅏ 빛줄기가 세 갈래 길을 하나로 이어주었어요.",
+      "text": "모양을 끝까지 이었어요. 조각으로 가는 길이 이어져요.",
       "language": "ko-KR",
       "category": "story-success",
       "contexts": [
@@ -14432,7 +14432,7 @@
     },
     {
       "id": "voice-scene-play-1-level-2",
-      "text": "어? 이야기책의 별빛이 꺼졌어요.\n나와 함께 찾아볼래요? 책장에 숨은 별빛을 톡, 깨워 볼까?",
+      "text": "바람에 책등의 별조각 12개가 흩어졌어!\n위의 빈칸을 다시 채우면 도서관 책이 열려. 책장에 숨은 별빛을 톡, 깨워 볼까?",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14454,7 +14454,7 @@
     },
     {
       "id": "voice-scene-play-1-level-2-restored",
-      "text": "별빛이 돌아왔어! 이제 친구들을 만나러 가자.",
+      "text": "책 밑에 큰 별조각이 보여! 어떤 모양인지 친구와 살펴보자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14476,7 +14476,7 @@
     },
     {
       "id": "voice-scene-play-1-level-5",
-      "text": "어? 이야기책의 별빛이 꺼졌어요.\n나와 함께 찾아볼래요? 책장에 숨은 별빛을 톡, 깨워 볼까?",
+      "text": "바람에 책등의 별조각 12개가 흩어졌어!\n위의 빈칸을 다시 채우면 도서관 책이 열려. 책장에 숨은 별빛을 톡, 깨워 볼까?",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14498,7 +14498,7 @@
     },
     {
       "id": "voice-scene-play-1-level-5-restored",
-      "text": "별빛이 돌아왔어! 이제 친구들을 만나러 가자.",
+      "text": "책 밑에 큰 별조각이 보여! 어떤 모양인지 친구와 살펴보자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14520,7 +14520,7 @@
     },
     {
       "id": "voice-scene-play-1-response",
-      "text": "별빛이 돌아왔어! 이제 친구들을 만나러 가자.",
+      "text": "책 밑에 큰 별조각이 보여! 어떤 모양인지 친구와 살펴보자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14542,7 +14542,7 @@
     },
     {
       "id": "voice-scene-play-10-level-2",
-      "text": "토독토독, 비가 내려 책장이 서로 붙었어요.\n나뭇잎 지붕 아래에서 천천히 펼쳐볼까요? 나무가 들려주는 이야기를 톡, 깨워 줘.",
+      "text": "열 번째 조각이 젖은 책장 사이에 붙었어.\n찢지 않게 책을 펴고 말려 주자. 나무가 들려주는 이야기를 톡, 깨워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14564,7 +14564,7 @@
     },
     {
       "id": "voice-scene-play-10-level-2-restored",
-      "text": "나뭇잎이 반짝여! 우리가 만난 모양을 기억해 볼까?",
+      "text": "잎사귀가 젖은 책을 가리켜! 책장 사이 별조각이 보여. 책을 함께 말리자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14586,7 +14586,7 @@
     },
     {
       "id": "voice-scene-play-10-level-5",
-      "text": "토독토독, 비가 내려 책장이 서로 붙었어요.\n나뭇잎 지붕 아래에서 천천히 펼쳐볼까요? 나무가 들려주는 이야기를 톡, 깨워 줘.",
+      "text": "열 번째 조각이 젖은 책장 사이에 붙었어.\n찢지 않게 책을 펴고 말려 주자. 나무가 들려주는 이야기를 톡, 깨워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14608,7 +14608,7 @@
     },
     {
       "id": "voice-scene-play-10-level-5-restored",
-      "text": "나뭇잎이 반짝여! 우리가 만난 모양을 기억해 볼까?",
+      "text": "잎사귀가 젖은 책을 가리켜! 책장 사이 별조각이 보여. 책을 함께 말리자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14630,7 +14630,7 @@
     },
     {
       "id": "voice-scene-play-10-response",
-      "text": "나뭇잎이 반짝여! 우리가 만난 모양을 기억해 볼까?",
+      "text": "잎사귀가 젖은 책을 가리켜! 책장 사이 별조각이 보여. 책을 함께 말리자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14652,7 +14652,7 @@
     },
     {
       "id": "voice-scene-play-11-level-2",
-      "text": "도서관이 보이는 하늘 정거장에 왔어요.\n별자리 판의 빈자리가 우리를 기다려요. 친구들과 마지막 별빛을 모아 줘.",
+      "text": "열한 번째 조각이 하늘 계단 끝에 있어.\n흩어진 별 다섯을 이어야 건너갈 수 있어. 친구들과 하늘 계단의 길잡이 빛을 깨워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14674,7 +14674,7 @@
     },
     {
       "id": "voice-scene-play-11-level-2-restored",
-      "text": "친구들의 빛이 모였어. 이제 도서관으로 돌아가자.",
+      "text": "길잡이 빛이 켜졌어! 계단 끝 별조각까지 가도록 별자리를 이어 보자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14696,7 +14696,7 @@
     },
     {
       "id": "voice-scene-play-11-level-5",
-      "text": "도서관이 보이는 하늘 정거장에 왔어요.\n별자리 판의 빈자리가 우리를 기다려요. 친구들과 마지막 별빛을 모아 줘.",
+      "text": "열한 번째 조각이 하늘 계단 끝에 있어.\n흩어진 별 다섯을 이어야 건너갈 수 있어. 친구들과 하늘 계단의 길잡이 빛을 깨워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14718,7 +14718,7 @@
     },
     {
       "id": "voice-scene-play-11-level-5-restored",
-      "text": "친구들의 빛이 모였어. 이제 도서관으로 돌아가자.",
+      "text": "길잡이 빛이 켜졌어! 계단 끝 별조각까지 가도록 별자리를 이어 보자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14740,7 +14740,7 @@
     },
     {
       "id": "voice-scene-play-11-response",
-      "text": "친구들의 빛이 모였어. 이제 도서관으로 돌아가자.",
+      "text": "길잡이 빛이 켜졌어! 계단 끝 별조각까지 가도록 별자리를 이어 보자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14762,7 +14762,7 @@
     },
     {
       "id": "voice-scene-play-12-level-2",
-      "text": "별빛 도서관에 돌아왔어요!\n모은 이야기를 책에 담아 마지막 불을 켜볼까요? 별빛 책을 톡, 책장에 돌려놓아 줘.",
+      "text": "도서관으로 돌아왔어! 마지막 조각은 책상 서랍에 있어.\n정리한 뒤12칸을 모두 채워 책을 열자. 떨어진 책을 톡, 책장에 돌려놓아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14784,7 +14784,7 @@
     },
     {
       "id": "voice-scene-play-12-level-2-restored",
-      "text": "이야기가 집으로 돌아왔어! 우리 도서관을 함께 꾸미자.",
+      "text": "떨어진 책을 올려놓았어! 마지막 별조각은 아직 서랍 안이야. 앞을 함께 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14806,7 +14806,7 @@
     },
     {
       "id": "voice-scene-play-12-level-5",
-      "text": "별빛 도서관에 돌아왔어요!\n모은 이야기를 책에 담아 마지막 불을 켜볼까요? 별빛 책을 톡, 책장에 돌려놓아 줘.",
+      "text": "도서관으로 돌아왔어! 마지막 조각은 책상 서랍에 있어.\n정리한 뒤12칸을 모두 채워 책을 열자. 떨어진 책을 톡, 책장에 돌려놓아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14828,7 +14828,7 @@
     },
     {
       "id": "voice-scene-play-12-level-5-restored",
-      "text": "이야기가 집으로 돌아왔어! 우리 도서관을 함께 꾸미자.",
+      "text": "떨어진 책을 올려놓았어! 마지막 별조각은 아직 서랍 안이야. 앞을 함께 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14850,7 +14850,7 @@
     },
     {
       "id": "voice-scene-play-12-response",
-      "text": "이야기가 집으로 돌아왔어! 우리 도서관을 함께 꾸미자.",
+      "text": "떨어진 책을 올려놓았어! 마지막 별조각은 아직 서랍 안이야. 앞을 함께 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14872,7 +14872,7 @@
     },
     {
       "id": "voice-scene-play-2-level-2",
-      "text": "지도 속 꽃밭에 도착했어요.\n어? 꽃문이 꼭 닫혀 있네요. 잠든 꽃봉오리를 톡톡 피워 줘.",
+      "text": "첫 조각의 지도를 따라 꽃문에 왔어.\n두 번째 조각이 닫힌 꽃잎 안에 보여! 잠든 꽃봉오리를 톡톡 피워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14894,7 +14894,7 @@
     },
     {
       "id": "voice-scene-play-2-level-2-restored",
-      "text": "꽃길이 깨어났어. 모음 문 너머에는 무엇이 있을까?",
+      "text": "작은 꽃들이 깨어났네! 큰 꽃문은 아직 닫혀 있어. 안쪽 별조각을 꺼내러 가자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14916,7 +14916,7 @@
     },
     {
       "id": "voice-scene-play-2-level-5",
-      "text": "지도 속 꽃밭에 도착했어요.\n어? 꽃문이 꼭 닫혀 있네요. 잠든 꽃봉오리를 톡톡 피워 줘.",
+      "text": "첫 조각의 지도를 따라 꽃문에 왔어.\n두 번째 조각이 닫힌 꽃잎 안에 보여! 잠든 꽃봉오리를 톡톡 피워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14938,7 +14938,7 @@
     },
     {
       "id": "voice-scene-play-2-level-5-restored",
-      "text": "꽃길이 깨어났어. 모음 문 너머에는 무엇이 있을까?",
+      "text": "작은 꽃들이 깨어났네! 큰 꽃문은 아직 닫혀 있어. 안쪽 별조각을 꺼내러 가자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14960,7 +14960,7 @@
     },
     {
       "id": "voice-scene-play-2-response",
-      "text": "꽃길이 깨어났어. 모음 문 너머에는 무엇이 있을까?",
+      "text": "작은 꽃들이 깨어났네! 큰 꽃문은 아직 닫혀 있어. 안쪽 별조각을 꺼내러 가자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -14982,7 +14982,7 @@
     },
     {
       "id": "voice-scene-play-3-level-2",
-      "text": "자음 나무에 도착했어!\n열매를 담을 빈 바구니도 있네. 반짝이는 열매를 바구니에 모아 줘.",
+      "text": "세 번째 조각이 나뭇가지에 걸렸어.\n루루의 바구니에 열매를 모으면 가지가 내려온대. 반짝이는 열매를 바구니에 모아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15004,7 +15004,7 @@
     },
     {
       "id": "voice-scene-play-3-level-2-restored",
-      "text": "열매가 모였어! 루루와 글자 씨앗을 찾아보자.",
+      "text": "떨어진 열매를 모았네! 별조각은 아직 가지에 걸려 있어. 바구니를 함께 채우자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15026,7 +15026,7 @@
     },
     {
       "id": "voice-scene-play-3-level-5",
-      "text": "자음 나무에 도착했어!\n열매를 담을 빈 바구니도 있네. 반짝이는 열매를 바구니에 모아 줘.",
+      "text": "세 번째 조각이 나뭇가지에 걸렸어.\n루루의 바구니에 열매를 모으면 가지가 내려온대. 반짝이는 열매를 바구니에 모아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15048,7 +15048,7 @@
     },
     {
       "id": "voice-scene-play-3-level-5-restored",
-      "text": "열매가 모였어! 루루와 글자 씨앗을 찾아보자.",
+      "text": "떨어진 열매를 모았네! 별조각은 아직 가지에 걸려 있어. 바구니를 함께 채우자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15070,7 +15070,7 @@
     },
     {
       "id": "voice-scene-play-3-response",
-      "text": "열매가 모였어! 루루와 글자 씨앗을 찾아보자.",
+      "text": "떨어진 열매를 모았네! 별조각은 아직 가지에 걸려 있어. 바구니를 함께 채우자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15092,7 +15092,7 @@
     },
     {
       "id": "voice-scene-play-4-level-2",
-      "text": "씨앗 꾸러미를 들고 역에 왔어요.\n어? 기차의 글자 표지가 섞였네요. 바람에 날린 기차표를 잡아 줘!",
+      "text": "네 번째 조각이 역 지붕 위에 보여.\n기차가 승강장에 와야 사다리를 놓을 수 있어. 바람에 날린 기차표를 잡아 줘!",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15114,7 +15114,7 @@
     },
     {
       "id": "voice-scene-play-4-level-2-restored",
-      "text": "표를 찾았어! 기차의 소리도 함께 되찾아 볼까?",
+      "text": "기차표를 찾았어! 별조각이 있는 지붕에 닿으려면 기차 표지부터 고치자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15136,7 +15136,7 @@
     },
     {
       "id": "voice-scene-play-4-level-5",
-      "text": "씨앗 꾸러미를 들고 역에 왔어요.\n어? 기차의 글자 표지가 섞였네요. 바람에 날린 기차표를 잡아 줘!",
+      "text": "네 번째 조각이 역 지붕 위에 보여.\n기차가 승강장에 와야 사다리를 놓을 수 있어. 바람에 날린 기차표를 잡아 줘!",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15158,7 +15158,7 @@
     },
     {
       "id": "voice-scene-play-4-level-5-restored",
-      "text": "표를 찾았어! 기차의 소리도 함께 되찾아 볼까?",
+      "text": "기차표를 찾았어! 별조각이 있는 지붕에 닿으려면 기차 표지부터 고치자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15180,7 +15180,7 @@
     },
     {
       "id": "voice-scene-play-4-response",
-      "text": "표를 찾았어! 기차의 소리도 함께 되찾아 볼까?",
+      "text": "기차표를 찾았어! 별조각이 있는 지붕에 닿으려면 기차 표지부터 고치자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15202,7 +15202,7 @@
     },
     {
       "id": "voice-scene-play-5-level-2",
-      "text": "등대의 큰 불이 꺼졌어요.\n글자 빛을 찾아 함께 켜볼까요? 작은 불빛을 모아 등대를 깨워 줘.",
+      "text": "다섯 번째 조각이 바위틈에 떨어졌어.\n어두워서 안 보여. 등대를 먼저 켜자. 작은 불빛을 모아 등대를 깨워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15224,7 +15224,7 @@
     },
     {
       "id": "voice-scene-play-5-level-2-restored",
-      "text": "등대에 빛이 모였어. 알파벳으로 더 환하게 밝혀 보자.",
+      "text": "작은 불빛이 켜졌어. 아직 바위틈의 별조각은 안 보여. A 등불로 비춰 주자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15246,7 +15246,7 @@
     },
     {
       "id": "voice-scene-play-5-level-5",
-      "text": "등대의 큰 불이 꺼졌어요.\n글자 빛을 찾아 함께 켜볼까요? 작은 불빛을 모아 등대를 깨워 줘.",
+      "text": "다섯 번째 조각이 바위틈에 떨어졌어.\n어두워서 안 보여. 등대를 먼저 켜자. 작은 불빛을 모아 등대를 깨워 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15268,7 +15268,7 @@
     },
     {
       "id": "voice-scene-play-5-level-5-restored",
-      "text": "등대에 빛이 모였어. 알파벳으로 더 환하게 밝혀 보자.",
+      "text": "작은 불빛이 켜졌어. 아직 바위틈의 별조각은 안 보여. A 등불로 비춰 주자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15290,7 +15290,7 @@
     },
     {
       "id": "voice-scene-play-5-response",
-      "text": "등대에 빛이 모였어. 알파벳으로 더 환하게 밝혀 보자.",
+      "text": "작은 불빛이 켜졌어. 아직 바위틈의 별조각은 안 보여. A 등불로 비춰 주자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15312,7 +15312,7 @@
     },
     {
       "id": "voice-scene-play-6-level-2",
-      "text": "졸졸, 물소리 너머 정원이 보여요.\n앗, 돌다리에 동그란 빈자리가 세 개 있어요! 빛나는 돌을 톡, 다리로 보내 줘.",
+      "text": "여섯 번째 조각이 다리 건너편에 보여.\n빈자리 세 곳을 돌로 채워야 갈 수 있어. 빛나는 돌을 톡, 다리로 보내 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15334,7 +15334,7 @@
     },
     {
       "id": "voice-scene-play-6-level-2-restored",
-      "text": "돌들이 모였어. 토토와 차례대로 놓아 볼까?",
+      "text": "돌들을 준비했어! 다리 건너 별조각에 닿도록 빈자리에 놓아 주자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15356,7 +15356,7 @@
     },
     {
       "id": "voice-scene-play-6-level-5",
-      "text": "졸졸, 물소리 너머 정원이 보여요.\n앗, 돌다리에 동그란 빈자리가 세 개 있어요! 빛나는 돌을 톡, 다리로 보내 줘.",
+      "text": "여섯 번째 조각이 다리 건너편에 보여.\n빈자리 세 곳을 돌로 채워야 갈 수 있어. 빛나는 돌을 톡, 다리로 보내 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15378,7 +15378,7 @@
     },
     {
       "id": "voice-scene-play-6-level-5-restored",
-      "text": "돌들이 모였어. 토토와 차례대로 놓아 볼까?",
+      "text": "돌들을 준비했어! 다리 건너 별조각에 닿도록 빈자리에 놓아 주자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15400,7 +15400,7 @@
     },
     {
       "id": "voice-scene-play-6-response",
-      "text": "돌들이 모였어. 토토와 차례대로 놓아 볼까?",
+      "text": "돌들을 준비했어! 다리 건너 별조각에 닿도록 빈자리에 놓아 주자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15422,7 +15422,7 @@
     },
     {
       "id": "voice-scene-play-7-level-2",
-      "text": "어제는 알록달록했다는데…\n꽃들의 색이 옅어져 정원 길을 찾기 어려워요. 물감 방울을 톡, 정원에 색을 돌려줘.",
+      "text": "일곱 번째 조각이 정원 어딘가에 있어.\n바람에 물감과 꽃 표지가 뒤섞여 길을 못 찾겠어. 흩어진 물감 방울을 톡, 모아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15444,7 +15444,7 @@
     },
     {
       "id": "voice-scene-play-7-level-2-restored",
-      "text": "색이 돌아왔어! 우리만의 정원도 그려 보자.",
+      "text": "물감을 모았어! 별조각이 있는 화단은 아직 뒤섞였네. 색과 모양을 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15466,7 +15466,7 @@
     },
     {
       "id": "voice-scene-play-7-level-5",
-      "text": "어제는 알록달록했다는데…\n꽃들의 색이 옅어져 정원 길을 찾기 어려워요. 물감 방울을 톡, 정원에 색을 돌려줘.",
+      "text": "일곱 번째 조각이 정원 어딘가에 있어.\n바람에 물감과 꽃 표지가 뒤섞여 길을 못 찾겠어. 흩어진 물감 방울을 톡, 모아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15488,7 +15488,7 @@
     },
     {
       "id": "voice-scene-play-7-level-5-restored",
-      "text": "색이 돌아왔어! 우리만의 정원도 그려 보자.",
+      "text": "물감을 모았어! 별조각이 있는 화단은 아직 뒤섞였네. 색과 모양을 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15510,7 +15510,7 @@
     },
     {
       "id": "voice-scene-play-7-response",
-      "text": "색이 돌아왔어! 우리만의 정원도 그려 보자.",
+      "text": "물감을 모았어! 별조각이 있는 화단은 아직 뒤섞였네. 색과 모양을 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15532,7 +15532,7 @@
     },
     {
       "id": "voice-scene-play-8-level-2",
-      "text": "휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…” 휙휙과 날아간 이야기 조각을 잡아 줘.",
+      "text": "여덟 번째 조각이 언덕 바구니 밑에 보여.\n흩어진 표지를 치워야 바구니를 옮길 수 있어. 휙휙과 날아간 종이 표지를 잡아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15554,7 +15554,7 @@
     },
     {
       "id": "voice-scene-play-8-level-2-restored",
-      "text": "조각을 찾았어. 실수해도 함께 고치면 돼!",
+      "text": "종이 표지를 잡았네! 바구니 밑 별조각을 꺼내도록 휙휙과 함께 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15576,7 +15576,7 @@
     },
     {
       "id": "voice-scene-play-8-level-5",
-      "text": "휘이잉! 종이들이 바람 언덕에 흩어져 있어요.\n휙휙이 작은 목소리로 말해요. “내가 날려버렸어…” 휙휙과 날아간 이야기 조각을 잡아 줘.",
+      "text": "여덟 번째 조각이 언덕 바구니 밑에 보여.\n흩어진 표지를 치워야 바구니를 옮길 수 있어. 휙휙과 날아간 종이 표지를 잡아 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15598,7 +15598,7 @@
     },
     {
       "id": "voice-scene-play-8-level-5-restored",
-      "text": "조각을 찾았어. 실수해도 함께 고치면 돼!",
+      "text": "종이 표지를 잡았네! 바구니 밑 별조각을 꺼내도록 휙휙과 함께 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15620,7 +15620,7 @@
     },
     {
       "id": "voice-scene-play-8-response",
-      "text": "조각을 찾았어. 실수해도 함께 고치면 돼!",
+      "text": "종이 표지를 잡았네! 바구니 밑 별조각을 꺼내도록 휙휙과 함께 정리하자.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15642,7 +15642,7 @@
     },
     {
       "id": "voice-scene-play-9-level-2",
-      "text": "꽃길, 등대길, 돌길이 나란히 보여요.\n어느 길로 가도 친구와 함께라면 좋아요! 등불을 켜서 숲속 길을 밝혀 줘.",
+      "text": "아홉 번째 조각은 숲 안쪽에 있어.\n세 길 중 하나를 고르면 그 길의 표지를 고쳐 갈 수 있어. 등불을 켜서 숲속 길을 밝혀 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15664,7 +15664,7 @@
     },
     {
       "id": "voice-scene-play-9-level-2-restored",
-      "text": "길이 보인다! 어느 길로 가고 싶어?",
+      "text": "숲길 입구가 보여! 안쪽 별조각을 찾으러 어느 길로 가고 싶어?",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15686,7 +15686,7 @@
     },
     {
       "id": "voice-scene-play-9-level-5",
-      "text": "꽃길, 등대길, 돌길이 나란히 보여요.\n어느 길로 가도 친구와 함께라면 좋아요! 등불을 켜서 숲속 길을 밝혀 줘.",
+      "text": "아홉 번째 조각은 숲 안쪽에 있어.\n세 길 중 하나를 고르면 그 길의 표지를 고쳐 갈 수 있어. 등불을 켜서 숲속 길을 밝혀 줘.",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15708,7 +15708,7 @@
     },
     {
       "id": "voice-scene-play-9-level-5-restored",
-      "text": "길이 보인다! 어느 길로 가고 싶어?",
+      "text": "숲길 입구가 보여! 안쪽 별조각을 찾으러 어느 길로 가고 싶어?",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [
@@ -15730,7 +15730,7 @@
     },
     {
       "id": "voice-scene-play-9-response",
-      "text": "길이 보인다! 어느 길로 가고 싶어?",
+      "text": "숲길 입구가 보여! 안쪽 별조각을 찾으러 어느 길로 가고 싶어?",
       "language": "ko-KR",
       "category": "scene-play",
       "contexts": [

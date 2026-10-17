@@ -12,11 +12,12 @@ import 'episode_nine.dart';
 import 'episode_ten.dart';
 import 'episode_eleven.dart';
 import 'episode_twelve.dart';
+import 'chapter_direction.dart';
 
 QuizDefinition quizById(String id) =>
     learningQuizzes.firstWhere((q) => q.id == id);
 
-const storyEpisodes = [
+final storyEpisodes = [
   episodeOne,
   episodeTwo,
   episodeThree,
@@ -29,4 +30,4 @@ const storyEpisodes = [
   episodeTen,
   episodeEleven,
   episodeTwelve,
-];
+].map(retellChapter).toList(growable: false);

@@ -167,7 +167,7 @@ void main() {
     expect((toddler['primary'] as Map)['acceptedIndices'], [0, 1]);
     expect((older['primary'] as Map)['quizId'], 'ep1-star-shape');
     expect((older['primary'] as Map)['acceptedIndices'], [0]);
-    expect(sceneFor(report, 2, 9, 'ep9-quiz')['text'], contains('좋아하는 그림'));
+    expect(sceneFor(report, 2, 9, 'ep9-quiz')['text'], contains('마음에 드는 그림'));
     expect(report['storyPaths'], hasLength(4));
   });
 

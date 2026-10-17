@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,6 +24,7 @@ class SoundEffects {
   StorySound? _lastSound;
   DateTime? _lastStarted;
   String? lastError;
+  final _loads = <Completer<bool?>, Timer>{};
   SoundEffects({DateTime Function()? now}) : now = now ?? DateTime.now;
 
   Future<EffectPlayback> play(StorySound sound, double volume) async {
@@ -40,12 +43,31 @@ class SoundEffects {
     _lastStarted = instant;
     final generation = ++_generation;
     try {
-      final started = await channel
+      final result = Completer<bool?>();
+      _loads[result] = Timer(const Duration(seconds: 3), () {
+        if (!result.isCompleted) {
+          result.completeError(TimeoutException('Effect load'));
+        }
+      });
+      channel
           .invokeMethod<bool>('play', {
             'sound': sound.name,
             'volume': volume.clamp(0.0, 1.0),
           })
-          .timeout(const Duration(seconds: 3));
+          .then(
+            (value) {
+              if (!result.isCompleted) result.complete(value);
+            },
+            onError: (Object error, StackTrace stack) {
+              if (!result.isCompleted) result.completeError(error, stack);
+            },
+          );
+      final bool? started;
+      try {
+        started = await result.future;
+      } finally {
+        _loads.remove(result)?.cancel();
+      }
       if (_disposed || generation != _generation) {
         return EffectPlayback.cancelled;
       }
@@ -65,6 +87,11 @@ class SoundEffects {
 
   Future<void> stop() async {
     _generation++;
+    for (final entry in _loads.entries.toList()) {
+      entry.value.cancel();
+      if (!entry.key.isCompleted) entry.key.complete(false);
+    }
+    _loads.clear();
     _lastSound = null;
     _lastStarted = null;
     // Route changes/disposal only send cancellation; never wait on native audio.

@@ -22,6 +22,62 @@ import 'package:flutter_application_1/features/learning/presentation/learning_vm
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   testWidgets(
+    'Android physical story fragment fills saved book and restores without duplicate collection',
+    (tester) async {
+      final fileName =
+          'kkoma-fragment-${DateTime.now().microsecondsSinceEpoch}.db';
+      final store = await SqliteStore.open(fileName: fileName);
+      await ProfileRepository(store).save(
+        const ParentSettings(
+          level: 2,
+          age: 2,
+          autoRead: false,
+          animations: false,
+          voiceVolume: 0,
+          effectsVolume: 0,
+        ),
+      );
+      final pages = storyEpisodes.first.forLevel(2);
+      await StoryRepository(store)
+          .save(StorySnapshot(level: 2, scene: pages.length - 1));
+      final c = ProviderContainer(
+        overrides: [storeProvider.overrideWithValue(store)],
+      );
+      await tester.pumpWidget(
+        UncontrolledProviderScope(container: c, child: const KkomaApp()),
+      );
+      await tester.pumpAndSettle();
+      c.read(routerProvider).go('/story');
+      await tester.pumpAndSettle();
+      final fragment = find.byKey(const ValueKey('collect-story-fragment'));
+      await tester.ensureVisible(fragment);
+      await tester.pumpAndSettle();
+      await tester.tap(fragment);
+      await tester.pumpAndSettle();
+      expect(
+        c.read(storyProvider).requireValue.flags['book-fragment-1'],
+        'collected',
+      );
+      expect(find.text('별조각 1 / 12'), findsOneWidget);
+      await c.read(storyProvider.notifier).collectFragment();
+      final saved = (await StoryRepository(store).load())!;
+      c.read(routerProvider).go('/gallery');
+      await tester.pumpAndSettle();
+      expect(find.text('별조각 1 / 12'), findsOneWidget);
+      expect(find.byKey(const ValueKey('fragment-slot-1')), findsOneWidget);
+      expect((await StoryRepository(store).load())!.toJson(), saved.toJson());
+      await tester.pumpWidget(const SizedBox());
+      c.dispose();
+      await store.db.close();
+      final reopened = await SqliteStore.open(fileName: fileName);
+      expect(
+        (await StoryRepository(reopened).load())!.toJson(),
+        saved.toJson(),
+      );
+      await reopened.db.close();
+    },
+  );
+  testWidgets(
     'Android story IDs override stale positions and survive DB reopen',
     (tester) async {
       final fileName =

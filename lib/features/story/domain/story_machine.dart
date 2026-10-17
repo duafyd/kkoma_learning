@@ -4,12 +4,14 @@ import '../../profile/domain/settings.dart';
 import '../../tracing/domain/trace_engine.dart';
 import '../../tracing/domain/trace_state.dart';
 import '../data/story_content.dart';
+import '../data/chapter_direction.dart';
 import '../data/support_quizzes.dart';
 import 'story_models.dart';
 import 'scene_play.dart';
 import 'world_mission.dart';
 import 'letter_mission.dart';
 import 'book_mission.dart';
+import 'story_quest.dart';
 
 class StoryMachine {
   final List<StoryEpisode> episodes;
@@ -17,6 +19,17 @@ class StoryMachine {
     : episodes = episodes ?? storyEpisodes;
   StoryScene scene(StorySnapshot s) =>
       episodes[s.episode].forLevel(s.level)[s.scene];
+  StoryQuest quest(StorySnapshot s) => StoryQuest.from(s, episodes[s.episode]);
+  StorySnapshot collectFragment(StorySnapshot s) {
+    final progress = quest(s);
+    if (!progress.ready || progress.hasFragment) return s;
+    return s.change({
+      'flags': {...s.flags, StoryQuest.flag(progress.chapter): 'collected'},
+      'message':
+          '${progress.chapter}번째 별조각을 책의 빈칸에 담았어요! ${progress.collected.length + 1}/12칸이 채워졌어요.',
+    });
+  }
+
   LetterMission? letterMission(StorySnapshot s) =>
       LetterMission.forScene(s, scene(s));
   BookMission? bookMission(StorySnapshot s) {
@@ -52,7 +65,22 @@ class StoryMachine {
       ? WorldMission.forQuiz(quiz(s))
       : null;
   String text(StorySnapshot s) {
-    if (s.phase == StoryPhase.success && s.message.isNotEmpty) return s.message;
+    if (s.phase == StoryPhase.finished) {
+      return '열두 조각이 책등의 빈칸에 꼭 맞았어!\n도서관 책이 열렸어. 이제 우리 이야기를 함께 읽자.';
+    }
+    if (s.phase == StoryPhase.success && s.message.isNotEmpty) {
+      if (quest(s).ready &&
+          !quest(s).hasFragment &&
+          episodes[s.episode].id <= chapterDirections.length) {
+        return '${chapterDirections[episodes[s.episode].id - 1].result}\n오른쪽 별조각을 눌러 수집책에 담아 줘.';
+      }
+      return s.message;
+    }
+    if (scene(s).id.endsWith('-end') && quest(s).hasFragment) {
+      if (s.message.isNotEmpty) return s.message;
+      final id = episodes[s.episode].id;
+      return '$id번째 조각이 책에 담겼어요.\n${id >= 1 && id <= chapterDirections.length ? chapterDirections[id - 1].next : '다음 장소'}에서 다음 이야기를 만나자.';
+    }
     final play = ScenePlay.forSnapshot(s);
     if (play != null && s.sceneFinds.length == play.count(s.level)) {
       return play.response;
@@ -63,7 +91,7 @@ class StoryMachine {
   }
 
   String narration(StorySnapshot s) {
-    if (s.phase == StoryPhase.success) return s.message;
+    if (s.phase == StoryPhase.success) return text(s);
     if (s.phase == StoryPhase.quiz) {
       final mission = worldMission(s);
       return mission != null && !canAnswer(s)
@@ -81,7 +109,13 @@ class StoryMachine {
   /// from borrowing another actor's recording. Dynamic assistance stays TTS.
   String? narrationId(StorySnapshot s) {
     final current = scene(s);
+    if (s.phase == StoryPhase.finished ||
+        s.phase == StoryPhase.episodeComplete ||
+        (current.id.endsWith('-end') && quest(s).hasFragment)) {
+      return null;
+    }
     if (s.phase == StoryPhase.success) {
+      if (text(s) != s.message) return null;
       if (s.level == 2 && s.message == current.exploreSuccessText) {
         return 'voice-${current.id}-explore-success';
       }
@@ -325,9 +359,14 @@ class StoryMachine {
 
   StorySnapshot advance(StorySnapshot s) {
     if (s.phase == StoryPhase.finished) return s;
+    // The next-page button is an explicit alternative to tapping the fragment.
+    s = collectFragment(s);
     if (s.phase == StoryPhase.episodeComplete) {
       if (s.episode == episodes.length - 1) {
-        return s.change({'phase': 'finished', 'message': '모든 별빛을 모았어요!'});
+        return s.change({
+          'phase': 'finished',
+          'message': '별조각 12개로 책등의 빈칸을 모두 채웠어요!',
+        });
       }
       final next = s.episode + 1;
       return _enter(s, next, 0);
@@ -340,7 +379,7 @@ class StoryMachine {
       return s.change({
         'phase': 'episodeComplete',
         'completed': {...s.completed, episodes[s.episode].id}.toList(),
-        'message': '별빛 ${episodes[s.episode].id}을 모았어요!',
+        'message': '${episodes[s.episode].id}번째 별조각을 책에 담았어요. 빈칸이 하나 채워졌어요!',
       });
     }
     return _enter(s, s.episode, s.scene + 1);

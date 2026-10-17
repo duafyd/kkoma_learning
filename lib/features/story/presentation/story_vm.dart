@@ -64,6 +64,7 @@ class StoryVM extends AsyncNotifier<StorySnapshot> {
   }
 
   Future<void> advance() => _transition(machine.advance);
+  Future<void> collectFragment() => _transition(machine.collectFragment);
   Future<void> discoverSceneProp(int i) =>
       _transition((s) => machine.discoverSceneProp(s, i));
   Future<void> choose(int i) => _transition((s) => machine.choose(s, i));

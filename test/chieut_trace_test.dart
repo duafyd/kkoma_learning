@@ -31,11 +31,14 @@ void main() {
   test('short mark allowance stays bounded and does not widen long or curved guides', () {
     for (final age in [2, 3, 4, 5]) {
       final strategy = TraceStrategy(AgeStrategy(age));
-      expect(strategy.toleranceFor(first), closeTo(.035, .000001));
-      expect(strategy.toleranceFor(first), lessThan(first.length * .3));
+      expect(strategy.toleranceFor(first), closeTo(.05, .000001));
+      expect(
+        strategy.toleranceFor(first),
+        lessThanOrEqualTo(first.length * .4),
+      );
       expect(
         strategy.toleranceFor(tracePaths['ㅊ']![1]),
-        closeTo([.132, .132, .096, .075][age - 2], .000001),
+        closeTo([.192, .16, .10, .075][age - 2], .000001),
       );
       expect(
         strategy.toleranceFor(tracePaths['C']!.single),

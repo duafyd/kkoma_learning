@@ -23,6 +23,7 @@ import '../domain/story_models.dart';
 import '../domain/story_cues.dart';
 import '../domain/scene_play.dart';
 import 'story_illustration.dart';
+import '../../../core/widgets/success_feedback.dart';
 import 'story_page_turn.dart';
 import 'story_picture_quiz.dart';
 import 'story_vm.dart';
@@ -144,7 +145,8 @@ class _StoryPageState extends ConsumerState<StoryPage>
       data: (s) {
         final episode = vm.machine.episodes[s.episode],
             scene = vm.machine.scene(s);
-        final readKey = '${scene.id}-${s.phase.name}-${s.supportSceneId}';
+        final readKey =
+            '${scene.id}-${s.phase.name}-${s.supportSceneId}-${vm.machine.quest(s).hasFragment}';
         if (lastRead != readKey && settings.autoRead) {
           lastRead = readKey;
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -164,6 +166,11 @@ class _StoryPageState extends ConsumerState<StoryPage>
         return ActivityScaffold(
           title: '${episode.id}화: ${episode.title}',
           actions: [
+            Chip(
+              key: const ValueKey('story-fragment-total'),
+              avatar: const Icon(Icons.star_rounded, color: Color(0xffb58421)),
+              label: Text('별조각 ${vm.machine.quest(s).collected.length} / 12'),
+            ),
             IconButton(
               tooltip: '대사 다시 듣기',
               onPressed: () => ref
@@ -265,7 +272,7 @@ class _StoryPageState extends ConsumerState<StoryPage>
                                 label: const Text('다음 이야기'),
                               ),
                             ),
-                          if (letter != null || book != null) ...[
+                          ...[
                             const SizedBox(height: 12),
                             AspectRatio(
                               aspectRatio: 1.65,
@@ -280,6 +287,8 @@ class _StoryPageState extends ConsumerState<StoryPage>
                                 celebrate: s.phase == StoryPhase.success,
                                 letterMission: letter,
                                 bookMission: book,
+                                quest: vm.machine.quest(s),
+                                onCollect: () => safe(vm.collectFragment),
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -317,6 +326,8 @@ class _StoryPageState extends ConsumerState<StoryPage>
                     return _drawing(vm, scene.text);
                   }
                   final picture = StoryIllustration(
+                    quest: vm.machine.quest(s),
+                    onCollect: () => safe(vm.collectFragment),
                     background: vm.machine.background(s),
                     character: scene.character,
                     animate: settings.animations,
@@ -432,6 +443,13 @@ class _StoryPageState extends ConsumerState<StoryPage>
         ),
       ),
       const SizedBox(height: 18),
+      if (s.phase == StoryPhase.success)
+        SuccessFeedback(
+          title: s.assisted ? '함께 해냈어요!' : '해냈어요!',
+          message: vm.machine.quest(s).ready && !vm.machine.quest(s).hasFragment
+              ? '오른쪽에 나타난 별조각을 눌러 책에 담아 줘요.'
+              : '그림 속에서 우리가 바꾼 모습을 찾아봐요.',
+        ),
       if (ScenePlay.forSnapshot(s) case final play?) ...[
         Container(
           width: double.infinity,
@@ -540,7 +558,9 @@ class _StoryPageState extends ConsumerState<StoryPage>
         ],
         Wrap(spacing: 12, runSpacing: 12, children: _support(vm, s, settings)),
       ],
-      if (s.message.isNotEmpty && s.phase != StoryPhase.success)
+      if (s.message.isNotEmpty &&
+          s.phase != StoryPhase.success &&
+          vm.machine.text(s) != s.message)
         Semantics(
           liveRegion: true,
           child: Container(
@@ -572,6 +592,17 @@ class _StoryPageState extends ConsumerState<StoryPage>
         StoryPhase.success,
         StoryPhase.episodeComplete,
       ].contains(s.phase))
+        if (vm.machine.quest(s).ready && !vm.machine.quest(s).hasFragment)
+          FilledButton.icon(
+            onPressed: () => safe(vm.collectFragment),
+            icon: const Icon(Icons.auto_awesome),
+            label: const Text('별조각 담기'),
+          ),
+      if ([
+        StoryPhase.dialogue,
+        StoryPhase.success,
+        StoryPhase.episodeComplete,
+      ].contains(s.phase))
         FilledButton(
           onPressed: nextScene,
           child: Text(
@@ -580,7 +611,7 @@ class _StoryPageState extends ConsumerState<StoryPage>
         ),
       if (s.phase == StoryPhase.finished)
         const Text(
-          '⭐ 12개의 별빛을 모두 모았어요!\n내 작품 · 모험 지도에서 다시 볼 수 있어요.',
+          '12칸이 모두 채워졌어요.\n내 작품 · 모험 지도에서 우리가 만든 길을 다시 볼 수 있어요.',
           style: TextStyle(fontSize: 26),
         ),
     ];

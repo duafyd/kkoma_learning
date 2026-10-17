@@ -9,6 +9,14 @@ class StoryCues {
     if (before == null) {
       return null; // Restore is silent; rewards are not replayed.
     }
+    if (after.flags.entries.any(
+      (e) =>
+          e.key.startsWith('book-fragment-') &&
+          e.value == 'collected' &&
+          before.flags[e.key] != e.value,
+    )) {
+      return StorySound.sparkle;
+    }
     if (pageId(before) != pageId(after)) return StorySound.pageTurn;
     if (before.sceneFinds.length < after.sceneFinds.length) {
       return StorySound.sparkle;

@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/audio/audio_service.dart';
 import '../../../core/widgets/activity_scaffold.dart';
+import '../../../core/widgets/success_feedback.dart';
+import '../../../core/audio/sound_effects.dart';
 import '../../profile/domain/settings.dart';
 import '../../profile/presentation/profile_vm.dart';
 import '../../parent/presentation/usage_vm.dart';
@@ -26,6 +28,7 @@ class LearningPage extends ConsumerStatefulWidget {
 class _LearningPageState extends ConsumerState<LearningPage> {
   late bool quizMode = widget.initialQuizMode;
   String? autoReadKey;
+  bool freshSuccess = false;
   @override
   void didUpdateWidget(covariant LearningPage oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -54,6 +57,19 @@ class _LearningPageState extends ConsumerState<LearningPage> {
       return const ActivityScaffold(title: '학습', child: Text('과목을 찾을 수 없어요.'));
     }
     final asyncState = ref.watch(learningProvider(widget.subject));
+    ref.listen(learningProvider(widget.subject), (before, after) {
+      final old = before?.asData?.value, next = after.asData?.value;
+      freshSuccess =
+          old != null && next != null && !old.answered && next.answered;
+      if (freshSuccess) {
+        ref
+            .read(effectsProvider)
+            .play(
+              StorySound.sparkle,
+              ref.read(settingsProvider).asData?.value.effectsVolume ?? 0,
+            );
+      }
+    });
     if (!asyncState.hasValue) {
       return ActivityScaffold(
         title: '학습',
@@ -142,82 +158,105 @@ class _LearningPageState extends ConsumerState<LearningPage> {
         if (mounted) ref.read(audioProvider).speak(q.prompt, settings);
       });
     }
-    return ListView(
+    return Column(
       children: [
-        Text(q.prompt, style: Theme.of(context).textTheme.headlineMedium),
-        IconButton(
-          tooltip: '문제 읽기',
-          onPressed: () => ref.read(audioProvider).speak(q.prompt, settings),
-          icon: const Icon(Icons.volume_up),
-        ),
-        AnimatedSwitcher(
-          duration: Duration(milliseconds: settings.animations ? 300 : 0),
-          child: Text(
-            state.answered && q.resultVisual != null
-                ? q.resultVisual!
-                : q.visual,
-            key: ValueKey('${q.id}-${state.answered}'),
-            style: const TextStyle(fontSize: 60),
-            textAlign: TextAlign.center,
+        if (state.answered)
+          SuccessFeedback(
+            key: ValueKey('quiz-success-${q.id}'),
+            title: state.assisted
+                ? '함께 해냈어요!'
+                : q.isExploration || state.level == 2
+                ? '좋은 발견이에요!'
+                : '맞았어요!',
+            message: '찾은 그림이 반짝! 다음 놀이도 만나 볼까요?',
+            animate: freshSuccess && settings.animations,
           ),
-        ),
-        const SizedBox(height: 24),
-        Wrap(
-          alignment: WrapAlignment.center,
-          spacing: 16,
-          runSpacing: 16,
-          children: List.generate(
-            q.options.length,
-            (i) => FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: state.hint >= 2 && q.accepts(i)
-                    ? const Color(0xffc69424)
-                    : null,
+        Expanded(
+          child: ListView(
+            children: [
+              Text(q.prompt, style: Theme.of(context).textTheme.headlineMedium),
+              IconButton(
+                tooltip: '문제 읽기',
+                onPressed: () =>
+                    ref.read(audioProvider).speak(q.prompt, settings),
+                icon: const Icon(Icons.volume_up),
               ),
-              onPressed: state.answered ? null : () => safe(() => vm.answer(i)),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Text(q.options[i], style: const TextStyle(fontSize: 32)),
+              AnimatedSwitcher(
+                duration: Duration(milliseconds: settings.animations ? 300 : 0),
+                child: Text(
+                  state.answered && q.resultVisual != null
+                      ? q.resultVisual!
+                      : q.visual,
+                  key: ValueKey('${q.id}-${state.answered}'),
+                  style: const TextStyle(fontSize: 60),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
+              const SizedBox(height: 24),
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 16,
+                runSpacing: 16,
+                children: List.generate(
+                  q.options.length,
+                  (i) => FilledButton(
+                    style: FilledButton.styleFrom(
+                      backgroundColor: state.hint >= 2 && q.accepts(i)
+                          ? const Color(0xffc69424)
+                          : null,
+                    ),
+                    onPressed: state.answered
+                        ? null
+                        : () => safe(() => vm.answer(i)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text(
+                        q.options[i],
+                        style: const TextStyle(fontSize: 32),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(state.message, textAlign: TextAlign.center),
+              if (state.hint > 0) Text(q.hint, textAlign: TextAlign.center),
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 12,
+                runSpacing: 12,
+                children: [
+                  OutlinedButton(
+                    onPressed: () => safe(vm.showHint),
+                    child: const Text('힌트'),
+                  ),
+                  if (state.failures >= 2 && !state.answered)
+                    OutlinedButton(
+                      onPressed: () => safe(vm.easier),
+                      child: const Text('다른 길로 가기'),
+                    ),
+                  if (settings.help &&
+                      state.failures >= settings.helpAfter &&
+                      !state.answered)
+                    FilledButton(
+                      onPressed: () => safe(vm.assist),
+                      child: const Text('친구와 함께 통과'),
+                    ),
+                  if (state.answered)
+                    FilledButton(
+                      onPressed: () => safe(() async {
+                        await vm.next();
+                        final expired = await ref
+                            .read(usageProvider.notifier)
+                            .boundary();
+                        if (mounted && expired) context.go('/rest');
+                      }),
+                      child: const Text('다음 놀이'),
+                    ),
+                ],
+              ),
+            ],
           ),
-        ),
-        const SizedBox(height: 24),
-        Text(state.message, textAlign: TextAlign.center),
-        if (state.hint > 0) Text(q.hint, textAlign: TextAlign.center),
-        Wrap(
-          alignment: WrapAlignment.center,
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            OutlinedButton(
-              onPressed: () => safe(vm.showHint),
-              child: const Text('힌트'),
-            ),
-            if (state.failures >= 2 && !state.answered)
-              OutlinedButton(
-                onPressed: () => safe(vm.easier),
-                child: const Text('다른 길로 가기'),
-              ),
-            if (settings.help &&
-                state.failures >= settings.helpAfter &&
-                !state.answered)
-              FilledButton(
-                onPressed: () => safe(vm.assist),
-                child: const Text('친구와 함께 통과'),
-              ),
-            if (state.answered)
-              FilledButton(
-                onPressed: () => safe(() async {
-                  await vm.next();
-                  final expired = await ref
-                      .read(usageProvider.notifier)
-                      .boundary();
-                  if (mounted && expired) context.go('/rest');
-                }),
-                child: const Text('다음 놀이'),
-              ),
-          ],
         ),
       ],
     );

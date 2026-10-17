@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/audio/audio_service.dart';
 import '../../../core/widgets/activity_scaffold.dart';
+import '../../../core/widgets/success_feedback.dart';
+import '../../../core/audio/sound_effects.dart';
 import '../../../core/widgets/canvas_workspace.dart';
 import '../data/trace_catalog.dart';
 import '../data/prewriting_content.dart';
@@ -34,6 +36,7 @@ class _TracePageState extends ConsumerState<TracePage> {
   }
 
   bool announced = false;
+  bool freshSuccess = false;
   @override
   void didUpdateWidget(covariant TracePage oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -69,6 +72,18 @@ class _TracePageState extends ConsumerState<TracePage> {
     final listRoute = prewriting ? '/prewriting' : '/learn/${item.subject}';
     final settings =
         ref.watch(settingsProvider).value ?? const ParentSettings();
+    ref.listen(traceProvider(widget.itemId), (before, after) {
+      final old = before?.asData?.value, next = after.asData?.value;
+      freshSuccess = old != null && next != null && !old.done && next.done;
+      if (old != null && next != null && next.strokeIndex > old.strokeIndex) {
+        ref
+            .read(effectsProvider)
+            .play(
+              next.done ? StorySound.sparkle : StorySound.friend,
+              settings.effectsVolume,
+            );
+      }
+    });
     if (!announced && settings.autoRead) {
       announced = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -108,6 +123,12 @@ class _TracePageState extends ConsumerState<TracePage> {
           ),
           controls: Column(
             children: [
+              if (state.done)
+                SuccessFeedback(
+                  title: '끝까지 그렸어요!',
+                  message: '손가락으로 ${item.symbol} 모양을 완성했어요.',
+                  animate: freshSuccess && settings.animations,
+                ),
               if (prewriting)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),

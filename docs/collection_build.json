@@ -1,0 +1,21 @@
+{
+    "date":  "2026-10-17",
+    "version":  "1.0.0",
+    "buildNumber":  214363192,
+    "bytes":  150392013,
+    "MiB":  143.4,
+    "sha256":  "32495ff799278febcf47f23904314aea8354c3f631736e24e69e929868601642",
+    "signature":  "verified v2, one signer, existing sharing key",
+    "analyze":  "no issues",
+    "tests":  567,
+    "androidIntegration":  "not rerun: isolated emulator failed ADB connection",
+    "previousAndroidIntegrationTests":  5,
+    "previousAndroidResult":  "Prior rework only; does not validate latest changes",
+    "captures":  3,
+    "path":  "build/app/outputs/flutter-apk/app-release.apk",
+    "uploaded":  false,
+    "sourceBase":  "6dcaad7",
+    "sourceState":  "Current local rework and collection follow-up; Dart unchanged after full source verification",
+    "physicalDeviceValidation":  "held",
+    "audio":  "0 recordings; offline TTS fallback; paid production and physical listening held"
+}

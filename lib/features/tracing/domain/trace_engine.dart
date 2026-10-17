@@ -116,12 +116,15 @@ class TraceStrategy {
     final length = stroke.length;
     var tolerance = math.min(
       age.traceTolerance,
-      math.max(.018, length * (age.requireDirection ? .16 : .22)),
+      math.max(
+        math.min(age.requireDirection ? .035 : .045, length * .38),
+        length * (age.requireDirection ? .22 : .32),
+      ),
     );
     if (stroke.points.length == 2 && length <= .18) {
       tolerance = math.max(
         tolerance,
-        math.min(age.traceTolerance, math.min(.035, length * .28)),
+        math.min(age.traceTolerance, math.min(.05, length * .4)),
       );
     }
     return tolerance;
@@ -147,10 +150,10 @@ class TraceStrategy {
             .length /
         samples.length;
     final inputLength = drawn.length;
-    if (inputLength < stroke.length * (age.requireDirection ? .78 : .68)) {
+    if (inputLength < stroke.length * (age.requireDirection ? .60 : .50)) {
       return TraceResult(false, TraceFeedback.keepGoing, coverage);
     }
-    if (inputLength > stroke.length * (age.requireDirection ? 1.65 : 1.9)) {
+    if (inputLength > stroke.length * (age.requireDirection ? 2.0 : 2.4)) {
       return TraceResult(false, TraceFeedback.tryPath, coverage);
     }
     if (age.requireDirection &&
@@ -160,23 +163,37 @@ class TraceStrategy {
     // Both paths are sampled by travelled distance, so drawing speed does not
     // affect matching. Corresponding positions must follow the whole guide;
     // passing near the same points in a different order is insufficient.
-    double orderedDistance(List<TracePoint> guide) {
-      var distance = 0.0;
-      for (var i = 0; i < tracedSamples.length; i++) {
-        distance = math.max(distance, tracedSamples[i].distance(guide[i]));
+    bool follows(List<TracePoint> guide) {
+      var frontier = 0, onPath = 0;
+      for (final point in tracedSamples) {
+        var nearest = 0, distance = double.infinity;
+        for (
+          var i = math.max(0, frontier - 13);
+          i <= math.min(guide.length - 1, frontier + 24);
+          i++
+        ) {
+          final d = point.distance(guide[i]);
+          if (d < distance) {
+            distance = d;
+            nearest = i;
+          }
+        }
+        // Brief wobble is fine; sustained reversal is a different gesture.
+        if (nearest < frontier - (age.requireDirection ? 8 : 12)) return false;
+        frontier = math.max(frontier, nearest);
+        if (distance <= tolerance) onPath++;
       }
-      return distance;
+      final endNear =
+          tracedSamples.last.distance(guide.last) <= tolerance * 1.8;
+      return onPath / tracedSamples.length >= .88 &&
+          frontier >= (age.requireDirection ? 59 : 51) &&
+          endNear;
     }
 
-    var distance = orderedDistance(samples);
-    if (!age.requireDirection) {
-      final reverse = samples.reversed.toList();
-      final reverseDistance = orderedDistance(reverse);
-      if (reverseDistance < distance) {
-        distance = reverseDistance;
-      }
-    }
-    if (distance > tolerance) {
+    final followed =
+        follows(samples) ||
+        (!age.requireDirection && follows(samples.reversed.toList()));
+    if (!followed || coverage < (age.requireDirection ? .68 : .58)) {
       return TraceResult(false, TraceFeedback.tryPath, coverage);
     }
     return TraceResult(true, TraceFeedback.complete, coverage);

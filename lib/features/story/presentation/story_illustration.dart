@@ -15,6 +15,8 @@ import '../domain/letter_mission.dart';
 import 'letter_mission_stage.dart';
 import '../domain/book_mission.dart';
 import 'book_mission_stage.dart';
+import '../domain/story_quest.dart';
+import 'story_quest_stage.dart';
 import '../../drawing/domain/drawing.dart';
 import '../../drawing/domain/drawing_renderer.dart';
 
@@ -40,6 +42,8 @@ class StoryIllustration extends StatefulWidget {
   final BookMission? bookMission;
   final Future<void> Function(int)? onObserve;
   final DrawingDocument? gardenMap;
+  final StoryQuest? quest;
+  final VoidCallback? onCollect;
   const StoryIllustration({
     super.key,
     required this.background,
@@ -64,6 +68,8 @@ class StoryIllustration extends StatefulWidget {
     this.bookMission,
     this.onObserve,
     this.gardenMap,
+    this.quest,
+    this.onCollect,
   });
 
   static String assetFor(String background) =>
@@ -132,7 +138,9 @@ class _StoryIllustrationState extends State<StoryIllustration> {
                     .clamp(
                       0.0,
                       c.maxHeight *
-                          (worldMission != null
+                          (widget.quest != null && scenePlay != null
+                              ? .36
+                              : worldMission != null
                               ? .25
                               : letterMission != null || bookMission != null
                               ? .5
@@ -202,7 +210,11 @@ class _StoryIllustrationState extends State<StoryIllustration> {
                         !letterMission.solved))
                   StoryLetterSigns(background: background),
                 if (scenePlay != null && onDiscover != null)
-                  Positioned.fill(
+                  Positioned(
+                    left: 0,
+                    right: widget.quest != null ? c.maxWidth * .24 : 0,
+                    bottom: 0,
+                    top: widget.quest != null ? 55 : 0,
                     child: ScenePlayStage(
                       key: ValueKey(
                         'scene-play-${scenePlay.kind.name}-$playCount',
@@ -331,6 +343,15 @@ class _StoryIllustrationState extends State<StoryIllustration> {
                           ),
                         ),
                       ),
+                    ),
+                  ),
+                if (widget.quest != null)
+                  Positioned.fill(
+                    child: StoryQuestStage(
+                      quest: widget.quest!,
+                      animate: animate,
+                      active: active,
+                      onCollect: widget.onCollect ?? () {},
                     ),
                   ),
               ],
