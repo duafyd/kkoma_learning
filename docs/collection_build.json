@@ -17,5 +17,7 @@
     "sourceBase":  "6dcaad7",
     "sourceState":  "Current local rework and collection follow-up; Dart unchanged after full source verification",
     "physicalDeviceValidation":  "held",
-    "audio":  "0 recordings; offline TTS fallback; paid production and physical listening held"
+    "audio":  "0 recordings; offline TTS fallback; paid production and physical listening held",
+    "sourceCommit":  "3efcb827924b737185df3f7ce9247143840bdcaf",
+    "sourcePushed":  true
 }

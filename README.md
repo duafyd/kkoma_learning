@@ -4,6 +4,8 @@
 
 **최신 소스 변경 (2026-10-17):** 정답/필기 완료의 성공 소리와 안내, 유아 필기 허용 범위, 12화·120장면의 사건 연결과 Flame 별조각 수집을 개편했습니다. 모험 지도도 같은 저장 기록의 12칸을 표시하며, 도입 놀이와 본 미션의 결과를 구분합니다. [스토리 구성·범위](docs/STORY_REWORK.md) · [수집 지도](docs/screenshots/collection-1280x800.png) · [완성 책](docs/screenshots/rework-finale-tablet.png).
 
+누적 구현과 후속을 [3efcb82](https://github.com/duafyd/kkoma_learning/commit/3efcb827924b737185df3f7ce9247143840bdcaf)로 main에 푸시하고 원격 일치를 확인했습니다. 다른 PC에서는 main을 pull해 이어서 개발할 수 있습니다.
+
 현재 소스와 공개 APK는 다릅니다. **공개 APK는 [1.0.0 (214325690)](https://github.com/duafyd/kkoma_learning/releases/download/apk-1.0.0-214325690/kkoma-1.0.0-214325690.apk)**이며 이번 경험 재개편은 포함하지 않습니다. [공개 파일 검증](docs/published_build.json) · [배포 내역](docs/RELEASE_NOTES.md). 일반 Git push는 소스만 올립니다. APK 업로드는 별도 요청 때만 실행합니다.
 
 최신 실제 테스트·로컬 APK·Git 반영 결과는 [PROGRESS](docs/PROGRESS.md) 상단, 다른 PC에서 재개하는 절차는 [SOURCE_HANDOFF](docs/SOURCE_HANDOFF.md)를 확인하세요. 과거 단계별 빌드와 검사 이력도 PROGRESS에 보존합니다.
