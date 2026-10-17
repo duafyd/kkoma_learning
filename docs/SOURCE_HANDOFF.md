@@ -1,10 +1,10 @@
 # 소스 전달과 다음 작업
 
-최신 구현 공개 커밋은 **3efcb827924b737185df3f7ce9247143840bdcaf**이며 origin/main 푸시·원격 일치를 확인했다. 이 뒤의 커밋은 공개 결과를 적은 문서/검증 메타데이터다. APK214363192는 로컬 빌드이며 Release 업로드는 하지 않았다. 공개 APK는214325690이다.
+최신 경험 구현은 **3efcb827924b737185df3f7ce9247143840bdcaf**이며 origin/main 푸시·원격 일치를 확인했다. 이후 배포 문서 커밋 **f63877dbb5f5b8583d4a931fa95c1ab684635fc5**를 대상으로 APK **1.0.0(214363529)**를 GitHub Releases에 공개했다. 서버 크기/SHA256·다운로드 HEAD200 확인 결과와 링크는 `docs/published_build.json`에 있다. 그 뒤의 커밋은 마감 문서/검증 메타데이터다.
 
-2026-10-17 소스 공개 묶음은 성공 피드백/필기 판정/12화 스토리 수집 재개편과 수집 지도 일관성 보완을 포함한다. canonical 본문은 chapter_direction.dart이며 storyEpisodes를 통해 실행·대본·검토 자료에 적용한다. StoryQuest.collectedFrom이 새 book-fragment-<화> flags와 과거 completed를 중복 없이 합쳐 이야기와 모험 지도에 같은 조각을 표시한다. 읽기만으로 보상을 지급하지 않는다. 실제 저장 뒤 Flame 이동과 효과음을 요청하고 복원에는 재연하지 않는다. 도입 소품 찾기는 조각 회수/본 미션 완료와 구분한다. docs/STORY_REWORK.md와 PROGRESS 상단을 먼저 읽는다. 최종 Git 커밋/원격 일치는 PROGRESS에 기록하며 APK Release 업로드는 이번 범위가 아니다.
+2026-10-17 소스와 이번 APK는 성공 피드백/필기 판정/12화 스토리 수집 재개편과 수집 지도 일관성 보완을 포함한다. canonical 본문은 chapter_direction.dart이며 storyEpisodes를 통해 실행·대본·검토 자료에 적용한다. StoryQuest.collectedFrom이 새 book-fragment-<화> flags와 과거 completed를 중복 없이 합쳐 이야기와 모험 지도에 같은 조각을 표시한다. 읽기만으로 보상을 지급하지 않는다. 실제 저장 뒤 Flame 이동과 효과음을 요청하고 복원에는 재연하지 않는다. 도입 소품 찾기는 조각 회수/본 미션 완료와 구분한다. docs/STORY_REWORK.md와 PROGRESS 상단을 먼저 읽는다. 다음 변경의 Git/APK 공개는 새 명시 요청 기준이다.
 
-빌드 결과 JSON은 생성 당시의 소스를 설명한다. 최신 소스 검사는 docs/source_validation.json(analyze0/전체567), 로컬 APK는 docs/collection_build.json(214363192)이다. docs/story_rework_build.json(214329986)은 직전 재개편의 결과이며 공개 결과 docs/published_build.json(214325690)과 다르다. 이번 Android 재실행은 에뮬레이터 ADB 연결 실패로 미실행이며 직전5개 통과와 구분한다. 소스 push만으로 공개 APK가 갱신되지는 않는다.
+빌드 결과 JSON은 생성 당시의 소스를 설명한다. 이번 배포 명령에서도 analyze0/전체567을 다시 확인했다. docs/source_validation.json은 소스 단계, docs/collection_build.json(214363192)과 docs/story_rework_build.json(214329986)은 과거 로컬 빌드다. 최신 공개 결과는 docs/published_build.json(214363529)이다. 이번 Android 재실행은 에뮬레이터 ADB 연결 실패로 미실행이며 직전5개 통과와 구분한다. 소스 push만으로 APK가 갱신되지는 않는다.
 
 2026-10-17 누적 구현 소스40bd63f를 main에 공개했고, APK1.0.0(214325690)도 GitHub Releases에 공개했다. 최신 결과는 docs/published_build.json과 PROGRESS 상단을 따른다. 이전 단계의 로컬/미업로드는 당시 기록이며 이번 공개에 포함됐다. 다음 변경의 공개는 다시 별도 사용자 요청 기준을 유지한다.
 

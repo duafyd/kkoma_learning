@@ -6,11 +6,11 @@
 
 누적 구현과 후속을 [3efcb82](https://github.com/duafyd/kkoma_learning/commit/3efcb827924b737185df3f7ce9247143840bdcaf)로 main에 푸시하고 원격 일치를 확인했습니다. 다른 PC에서는 main을 pull해 이어서 개발할 수 있습니다.
 
-현재 소스와 공개 APK는 다릅니다. **공개 APK는 [1.0.0 (214325690)](https://github.com/duafyd/kkoma_learning/releases/download/apk-1.0.0-214325690/kkoma-1.0.0-214325690.apk)**이며 이번 경험 재개편은 포함하지 않습니다. [공개 파일 검증](docs/published_build.json) · [배포 내역](docs/RELEASE_NOTES.md). 일반 Git push는 소스만 올립니다. APK 업로드는 별도 요청 때만 실행합니다.
+**최신 공개 APK: [1.0.0 (214363529) 다운로드](https://github.com/duafyd/kkoma_learning/releases/download/apk-1.0.0-214363529/kkoma-1.0.0-214363529.apk)** · [Release](https://github.com/duafyd/kkoma_learning/releases/tag/apk-1.0.0-214363529). 143.4MiB, 기존 공유 키 서명이며 위 경험 재개편을 모두 포함합니다. 공개 서버 크기/SHA256·다운로드 HEAD200을 확인했습니다([공개 파일 검증](docs/published_build.json) · [배포 내역](docs/RELEASE_NOTES.md)). 일반 Git push는 소스만 올리며 APK는 사용자의 이번 추가 요청으로 공개했습니다. 이후 업로드도 별도 요청 때만 실행합니다.
 
 최신 실제 테스트·로컬 APK·Git 반영 결과는 [PROGRESS](docs/PROGRESS.md) 상단, 다른 PC에서 재개하는 절차는 [SOURCE_HANDOFF](docs/SOURCE_HANDOFF.md)를 확인하세요. 과거 단계별 빌드와 검사 이력도 PROGRESS에 보존합니다.
 
-이번 소스 검증은 **analyze 문제0 / 전체567개 통과**입니다([검증 요약](docs/source_validation.json)). 새78개에는 전체 시즌72개 매개변수 조합의 저장·복원이 포함됩니다. 로컬 APK **1.0.0 (214363192)** 빌드·기존 키 v2 서명을 확인했습니다([빌드 결과](docs/collection_build.json)). 이번 Android 재실행은 에뮬레이터 ADB 연결 실패로 미실행이며, 직전 통합5개 통과와 구분합니다. 음원 제작·실기기·교육자 승인·아동 검수는 대기입니다.
+배포 명령에서도 **analyze 문제0 / 전체567개 통과**, 릴리스 빌드·기존 키 v2 서명을 재확인했습니다. 새78개에는 전체 시즌72개 매개변수 조합의 저장·복원이 포함됩니다([소스 검사 요약](docs/source_validation.json)). [직전 로컬 빌드214363192](docs/collection_build.json)는 당시 기록이며 최신 공유 APK는214363529입니다. 이번 Android 재실행은 에뮬레이터 ADB 연결 실패로 미실행이며, 직전 통합5개 통과와 구분합니다. 음원 제작·실기기·교육자 승인·아동 검수는 대기입니다.
 
 ## 구현된 기능
 
@@ -50,7 +50,7 @@ powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
 
 최신 테스트·로컬 APK·기존 배포 APK는 PROGRESS의 해당 기록을 확인하세요. **Git 푸시와 APK 업로드는 사용자가 명시적으로 요청했을 때만 수행합니다.** 로컬 빌드와 GitHub 배포를 구분합니다. 서명 설정은 [Flutter 공식 서명 안내](https://docs.flutter.dev/deployment/android#sign-the-app)를 따릅니다. Flutter test와 APK build는 생성 파일 충돌을 피하도록 순차 실행하세요.
 
-1~12화 사건 연출·그림 저장 복구·녹음 우선 재생 연결 반영 후 analyze 문제 0 / 전체 **297개 테스트 통과**. 서명 APK `1.0.0 (214232596)`(139.6MiB) 빌드·v2 서명 검증 통과. 테스트/빌드 로컬 로그는 `docs/recorded-test.log`, `docs/recorded-build.log`, Git에 포함한 결과 요약은 `docs/recorded_build.json`과 PROGRESS에 있습니다. 후속 사용자 요청으로 **[APK 다운로드](https://github.com/duafyd/kkoma_learning/releases/download/apk-1.0.0-214232596/kkoma-1.0.0-214232596.apk)** / [Release](https://github.com/duafyd/kkoma_learning/releases/tag/apk-1.0.0-214232596)에 공개했으며 서버 크기·SHA256 일치를 확인했습니다. 실제 Android 설치·소리·프레임·저사양 메모리 검증은 남아 있습니다. 녹음 재생 구조는 구현했지만 고정 대본 기준 녹음 609개와 배경음악은 미제작이며 현재 음성은 오프라인 TTS를 사용합니다.
+최신 APK와 검증 결과는 이 문서 상단 및 `docs/published_build.json`을 따릅니다. 예전 빌드·테스트 결과는 PROGRESS에 보존합니다. 기존 앱을 먼저 삭제하지 말고 같은 공유 서명의 APK를 업데이트 설치합니다. 실제 기기 업데이트·소리·프레임·메모리 검증은 대기입니다. 현재671개 고정 대본의 등록 녹음은0개이며 오프라인 기기 TTS를 사용합니다. 배경음악도 미제작입니다.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tool/android.ps1 build apk --release
