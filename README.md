@@ -14,3 +14,7 @@
 ## 이어서 작업하기
 
 작업 브랜치는 `prototype/worksheet`입니다. 새 채팅에서는 **“duafyd/kkoma_learning의 prototype/worksheet 브랜치에서 docs/HANDOFF.md를 읽고 이어서 작업해”**라고 하면 됩니다. [현재 상태와 검토 항목](docs/HANDOFF.md) · [기존 앱 보관 브랜치](https://github.com/duafyd/kkoma_learning/tree/archive/original-app)
+
+## 갤럭시탭 에셋 시안
+
+[모모와 가게 · 에셋 한눈에 보기](docs/preview/momo.jpg) · [움직임과 효과음 · 8초 MP4](docs/preview/momo.mp4). 캐릭터와 색감을 먼저 검토하기 위한 시안입니다.
