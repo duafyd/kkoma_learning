@@ -24,11 +24,23 @@ var landed: Array[TextureRect] = []
 var delivering := false
 var sound_on := true
 var finished := false
+var held := -1
+var dragging := false
+var press_point: Vector2
+var home_point: Vector2
+var shelf_positions: Array[Vector2] = []
+var demo: Tween
+var settings := ConfigFile.new()
+const SETTINGS_PATH := "user://preferences.cfg"
 var reaction: Tween
 var idle: Tween
 
 func _ready() -> void:
+	if settings.load(SETTINGS_PATH) == OK:
+		sound_on = settings.get_value("audio", "enabled", true)
+	display_sound_setting()
 	for i in apples.size():
+		shelf_positions.append(apples[i].position)
 		apples[i].pressed.connect(choose.bind(i))
 	$Listen.pressed.connect(repeat_line)
 	$Sound.pressed.connect(toggle_sound)
@@ -47,15 +59,18 @@ func begin() -> void:
 		fruit.queue_free()
 	landed.clear()
 	finished = false
-	for button in apples:
-		button.disabled = false
-		button.show()
+	cancel_hold()
+	stop_demo()
+	for i in apples.size():
+		apples[i].position = shelf_positions[i]
+		apples[i].disabled = false
+		apples[i].show()
 	$Replay.hide()
 	$PromptCard.show()
 	$Prompt.show()
 	$Order.text = ORDER
 	$Count.text = "바구니  0 / 2"
-	$Prompt.text = "사과를 톡 눌러 봐!"
+	$Prompt.text = "톡 누르거나 바구니에 놓아 봐!"
 	play_cue($Chime, DOORBELL)
 	repeat_line()
 
@@ -68,6 +83,7 @@ func choose_next() -> void:
 func choose(which: int) -> void:
 	if finished or selected.has(which):
 		return
+	stop_demo()
 	selected.append(which)
 	apples[which].disabled = true
 	if not delivering:
@@ -129,6 +145,7 @@ func play_cue(player: AudioStreamPlayer, cue: AudioStream) -> void:
 		player.play()
 
 func repeat_line() -> void:
+	show_demo()
 	var line := ORDER
 	if finished:
 		line = "사과 두 개, 고마워!"
@@ -154,16 +171,96 @@ func stop_voice() -> void:
 	voice_queue.clear()
 	$Voice.stop()
 
+# Godot maps the primary touch to these mouse events on Android, so the same
+# movement threshold and forgiving drop zone apply on tablet and desktop.
+func _input(event: InputEvent) -> void:
+	if not is_node_ready() or not event is InputEventMouse:
+		return
+	var point: Vector2 = make_input_local(event).position
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			if held != -1:
+				cancel_hold()
+			if finished:
+				return
+			for i in apples.size():
+				if not selected.has(i) and (apples[i].get_rect().has_point(point) or $Crate.get_rect().has_point(point)):
+					held = i
+					press_point = point
+					home_point = apples[i].position
+					stop_demo()
+					break
+			if held == -1:
+				return
+		elif held != -1:
+			var index := held
+			var tap_in_place := not dragging and point.distance_to(press_point) < 18
+			var accepted: bool = not event.canceled and (tap_in_place or $Basket.get_rect().grow(36).has_point(point))
+			var drop_position := apples[index].position
+			cancel_hold()
+			if accepted:
+				apples[index].position = drop_position
+				choose(index)
+		else:
+			return
+	elif event is InputEventMouseMotion and held != -1:
+		if point.distance_to(press_point) >= 18:
+			dragging = true
+		if dragging:
+			apples[held].position = home_point + point - press_point
+			apples[held].z_index = 2
+			$Basket.modulate = Color(1.12, 1.12, 0.95) if $Basket.get_rect().grow(36).has_point(point) else Color.WHITE
+	else:
+		return
+	get_viewport().set_input_as_handled()
+
+func cancel_hold() -> void:
+	if held != -1:
+		apples[held].position = home_point
+		apples[held].z_index = 0
+	held = -1
+	dragging = false
+	$Basket.modulate = Color.WHITE
+
+func stop_demo() -> void:
+	if demo:
+		demo.kill()
+	$Demo.hide()
+
+func show_demo() -> void:
+	stop_demo()
+	if finished or held != -1 or delivering:
+		return
+	for i in apples.size():
+		if selected.has(i):
+			continue
+		var ghost: TextureRect = $Demo
+		ghost.position = apples[i].get_rect().get_center() - ghost.size / 2
+		ghost.show()
+		demo = create_tween()
+		demo.tween_property(ghost, "position", TARGETS[landed.size()], 1.05).set_trans(Tween.TRANS_SINE)
+		demo.tween_callback(ghost.hide)
+		return
+
+func display_sound_setting() -> void:
+	$Sound.text = "소리 켜짐" if sound_on else "소리 꺼짐"
+	$Listen.text = "다시 듣기" if sound_on else "다시 보기"
+
 func toggle_sound() -> void:
 	sound_on = not sound_on
-	$Sound.text = "소리 켜짐" if sound_on else "소리 꺼짐"
+	display_sound_setting()
+	settings.set_value("audio", "enabled", sound_on)
+	settings.save(SETTINGS_PATH)
 	if sound_on:
 		repeat_line()
 	else:
 		stop_voice()
 		$Chime.stop()
 		$Done.stop()
+		show_demo()
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_PAUSED and is_node_ready():
+	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_WINDOW_FOCUS_OUT] and is_node_ready():
+		cancel_hold()
+		stop_demo()
 		stop_voice()

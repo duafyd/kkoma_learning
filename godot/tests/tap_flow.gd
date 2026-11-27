@@ -20,6 +20,23 @@ func tap(node: Control) -> void:
 		event.pressed = pressed
 		root.push_input(event, true)
 
+func drag(from: Vector2, to: Vector2, cancel: bool = false) -> void:
+	var down := InputEventMouseButton.new()
+	down.position = from
+	down.button_index = MOUSE_BUTTON_LEFT
+	down.pressed = true
+	root.push_input(down, true)
+	var move := InputEventMouseMotion.new()
+	move.position = to
+	move.relative = to - from
+	move.button_mask = MOUSE_BUTTON_MASK_LEFT
+	root.push_input(move, true)
+	var up := InputEventMouseButton.new()
+	up.position = to
+	up.button_index = MOUSE_BUTTON_LEFT
+	up.canceled = cancel
+	root.push_input(up, true)
+
 func run() -> void:
 	scene = load("res://market.tscn").instantiate()
 	root.add_child(scene)
@@ -55,7 +72,32 @@ func run() -> void:
 	if scene.get_node("Voice").playing:
 		await scene.get_node("Voice").finished
 	await process_frame
-	print("Apple market tap flow: %d failures" % failures)
+	tap(scene.get_node("Sound"))
+	var restarted: Control = load("res://market.tscn").instantiate()
+	scene.queue_free()
+	await process_frame
+	root.add_child(restarted)
+	scene = restarted
+	check(not scene.sound_on and not scene.get_node("Chime").playing and not scene.get_node("Voice").playing, "Muted launch made sound")
+	check(scene.get_node("Demo").visible and scene.get_node("OrderApple2").visible, "Missing visual order")
+	var start := scene.get_node("Apple1").get_global_rect().get_center() as Vector2
+	var basket := scene.get_node("Basket").get_global_rect().get_center() as Vector2
+	drag(start, Vector2(320,320))
+	check(scene.selected.is_empty() and scene.get_node("Apple1").get_global_rect().has_point(start), "Missed drop did not return")
+	drag(start, basket, true)
+	check(scene.selected.is_empty(), "Canceled drop counted")
+	drag(start, basket)
+	await create_timer(0.6).timeout
+	check(scene.landed.size() == 1, "Basket drop failed")
+	tap(scene.get_node("Listen"))
+	check(scene.get_node("Demo").visible and not scene.get_node("Voice").playing, "Silent help failed")
+	tap(scene.get_node("Apple2"))
+	await create_timer(1.5).timeout
+	check(scene.finished and scene.get_node("Replay").visible and not scene.get_node("Done").playing, "Silent mixed-input round failed")
+	tap(scene.get_node("Replay"))
+	tap(scene.get_node("Sound"))
+	scene.stop_voice()
+	print("Apple market tap and drop flow: %d failures" % failures)
 	scene.queue_free()
 	await process_frame
 	quit(1 if failures else 0)

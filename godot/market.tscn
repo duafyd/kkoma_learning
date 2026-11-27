@@ -282,3 +282,35 @@ volume_db = -5.0
 volume_db = -6.0
 
 [node name="Voice" type="AudioStreamPlayer" parent="."]
+
+[node name="OrderApple1" type="TextureRect" parent="."]
+offset_left = 483.0
+offset_top = 120.0
+offset_right = 522.0
+offset_bottom = 159.0
+texture = ExtResource("apple")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="OrderApple2" type="TextureRect" parent="."]
+offset_left = 528.0
+offset_top = 120.0
+offset_right = 567.0
+offset_bottom = 159.0
+texture = ExtResource("apple")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Demo" type="TextureRect" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 86.0
+offset_bottom = 86.0
+texture = ExtResource("apple")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+visible = false
+modulate = Color(1,1,1,0.55)
