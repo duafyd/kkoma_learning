@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>꼬마런닝 · 오늘의 가게</title>
+    <style>
+      #kk-market {
+        --ink: light-dark(#203e36, #eff9f1);
+        --paper: light-dark(#fffcf3, #20352f);
+        --panel: light-dark(#ffffff, #31463f);
+        --soft: light-dark(#deecd8, #3c5547);
+        --line: light-dark(#d9decd, #53675c);
+        --green: light-dark(#275c47, #bae1b9);
+        --on: light-dark(#fff, #193c2e);
+        color-scheme: light dark;
+        background: var(--paper);
+        color: var(--ink);
+        font:
+          500 16px/1.5 "Nunito",
+          "Malgun Gothic",
+          sans-serif;
+        border-radius: 25px;
+        overflow: hidden;
+        isolation: isolate;
+        word-break: keep-all;
+      }
+      #kk-market * {
+        box-sizing: border-box;
+      }
+      #kk-market button,
+      #kk-market select {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+      #kk-market button {
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: var(--panel);
+        min-height: 48px;
+        padding: 10px 16px;
+        font-weight: 700;
+      }
+      #kk-market button:focus-visible,
+      #kk-market select:focus-visible {
+        outline: 3px solid #da752d;
+        outline-offset: 2px;
+      }
+      #kk-market header,
+      #kk-market .foot,
+      #kk-market .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      #kk-market header {
+        padding: 14px clamp(15px, 4%, 36px);
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+      }
+      #kk-market .brand {
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: -1px;
+      }
+      #kk-market .brand i {
+        font-style: normal;
+        color: #db674b;
+      }
+      #kk-market select {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 9px;
+      }
+      #kk-market main {
+        padding: clamp(14px, 3.5%, 32px);
+      }
+      #kk-market h2,
+      #kk-market h3,
+      #kk-market p {
+        margin: 0;
+      }
+      #kk-market h2 {
+        font-size: clamp(27px, 5vw, 44px);
+        letter-spacing: -0.06em;
+        line-height: 1.2;
+      }
+      #kk-market h3 {
+        font-size: 18px;
+        margin: 22px 0 10px;
+      }
+      #kk-market .primary {
+        background: var(--green);
+        color: var(--on);
+        border-color: transparent;
+      }
+      #kk-market .stall {
+        position: relative;
+        background: var(--soft);
+        border-radius: 22px;
+        overflow: hidden;
+        padding: 58px clamp(18px, 4%, 40px) 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      #kk-market .awning {
+        position: absolute;
+        inset: 0 0 auto;
+        height: 25px;
+        display: flex;
+      }
+      #kk-market .awning i {
+        background: #ee9b79;
+        flex: 1;
+        border-radius: 0 0 50% 50%;
+      }
+      #kk-market .awning i:nth-child(even) {
+        background: #fff0cc;
+      }
+      #kk-market .intro {
+        margin: 8px 0 14px;
+      }
+      #kk-market .crate {
+        border-bottom: 15px solid #bd8555;
+        border-radius: 12px;
+        box-shadow: 0 6px #865f42;
+        padding: 0 5px;
+        display: flex;
+        align-items: end;
+        gap: 2px;
+        max-width: 100%;
+      }
+      #kk-market .fruit {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        width: 1em;
+        height: 1em;
+        font-size: clamp(32px, 7vw, 62px);
+        margin: 0.15em 0.04em 0.02em;
+        flex: none;
+      }
+      #kk-market .fruit:before,
+      #kk-market .fruit:after {
+        position: absolute;
+        content: "";
+      }
+      #kk-market .fruit:before {
+        inset: 12% 5% 3%;
+        border-radius: 48% 48% 42% 42%;
+        background: #e65f48;
+        box-shadow: inset -0.08em -0.07em #0001;
+      }
+      #kk-market .fruit:after {
+        width: 31%;
+        height: 18%;
+        border-radius: 100% 0 100% 0;
+        background: #428357;
+        top: 0;
+        left: 46%;
+        transform: rotate(-12deg);
+      }
+      #kk-market .orange:before {
+        background:
+          radial-gradient(circle at 30% 35%, #ffc784 2%, transparent 4%),
+          #f29c37;
+        border-radius: 50%;
+      }
+      #kk-market .pear:before {
+        inset: 10% 10% 2%;
+        background: #b4cb54;
+        border-radius: 52% 50% 48% 48% / 73% 73% 32% 32%;
+      }
+      #kk-market .berry:before {
+        background:
+          radial-gradient(ellipse at center, #ffe6aa 16%, transparent 22%) 0
+            0/0.25em 0.27em,
+          #e45f78;
+        border-radius: 45% 45% 55% 55% / 30% 30% 75% 75%;
+      }
+      #kk-market .berry:after {
+        left: 30%;
+        width: 42%;
+        transform: rotate(10deg);
+      }
+      #kk-market .subjects,
+      #kk-market .answers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+        gap: 10px;
+      }
+      #kk-market .subjects button {
+        display: grid;
+        justify-items: start;
+        padding: 15px;
+        text-align: left;
+      }
+      #kk-market .sig {
+        font-size: 24px;
+        color: var(--green);
+        margin-bottom: 6px;
+      }
+      #kk-market .meta {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--green);
+      }
+      #kk-market .sheet {
+        text-align: center;
+        margin-top: 12px;
+        padding: 24px 12px;
+        background: var(--panel);
+        border-radius: 22px;
+        border: 1px solid var(--line);
+      }
+      #kk-market .sheet h2 {
+        font-size: clamp(23px, 4vw, 34px);
+      }
+      #kk-market .sample,
+      #kk-market .group {
+        display: flex;
+        gap: 2px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+      #kk-market .sample {
+        margin: 14px auto;
+        min-height: 32px;
+      }
+      #kk-market .sample b {
+        font-size: 26px;
+      }
+      #kk-market .answers {
+        margin: 16px auto 0;
+        max-width: 680px;
+      }
+      #kk-market .answers button {
+        min-height: 76px;
+        background: var(--paper);
+        font-size: 21px;
+      }
+      #kk-market .answers .fruit {
+        font-size: clamp(26px, 4vw, 40px);
+      }
+      #kk-market .answers .yes {
+        background: var(--soft);
+        border-color: var(--green);
+      }
+      #kk-market .foot {
+        margin-top: 14px;
+      }
+      #kk-market .msg {
+        flex: 1;
+      }
+      #kk-market .again {
+        margin-top: 10px;
+      }
+      #kk-market .win {
+        text-align: center;
+        padding: 24px 8px;
+      }
+      #kk-market .win .crate {
+        width: fit-content;
+        margin: 18px auto 27px;
+      }
+      #kk-market [hidden] {
+        display: none;
+      }
+
+      body {
+        margin: 0;
+        background: #edf0e8;
+        padding: clamp(8px, 3vw, 36px);
+      }
+      #kk-market {
+        max-width: 980px;
+        margin: auto;
+        box-shadow: 0 12px 60px #26473518;
+      }
+      #kk-market .shops {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      #kk-market .shops [aria-pressed="true"] {
+        color: var(--on);
+        background: var(--green);
+      }
+      #kk-market .bakery-art {
+        display: inline-grid;
+        place-items: center;
+        line-height: 1;
+      }
+      #kk-market .bakery-art:before,
+      #kk-market .bakery-art:after {
+        display: none;
+      }
+      #kk-market button:disabled {
+        opacity: 1;
+        cursor: default;
+      }
+      #kk-market .answers button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      #kk-market:has([data-shop="bakery"][aria-pressed="true"])
+        .awning
+        i:nth-child(odd) {
+        background: #d7a263;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="kk-market" lang="ko">
+      <header>
+        <span class="brand"><i>●</i> 꼬마런닝</span
+        ><label
+          >연령
+          <select aria-label="놀이 연령">
+            <option value="2">만 2세</option>
+            <option value="3" selected>만 3세</option>
+            <option value="4">만 4세</option>
+            <option value="5">만 5세</option>
+          </select></label
+        >
+      </header>
+      <main></main>
+    </div>
+    <script>
+      (() => {
+        const root = document.getElementById("kk-market"),
+          main = root.querySelector("main"),
+          ages = root.querySelector("select");
+        const fruitItems = [
+          ["apple", "사과", "apple", "사"],
+          ["orange", "귤", "tangerine", "귤"],
+          ["pear", "배", "pear", "배"],
+          ["berry", "딸기", "strawberry", "딸"],
+        ];
+        const bakeryItems = [
+          ["🍪", "쿠키", "cookie", "쿠"],
+          ["🍩", "도넛", "donut", "도"],
+          ["🥐", "크루아상", "croissant", "크"],
+          ["🥨", "프레첼", "pretzel", "프"],
+        ];
+        const shops = {
+          fruit: { name: "과일 가게", items: fruitItems },
+          bakery: { name: "빵집", items: bakeryItems },
+        };
+        let shop = "fruit";
+        const item = (id) => shops[shop].items[id];
+        const subjects = ["한글", "영어", "수학", "관찰", "규칙"],
+          marks = ["가", "Aa", "123", "◉", "◆●"];
+        const shuffle = (items) => {
+          const a = [...items];
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        };
+        const picture = (id, n = 1) =>
+          '<span class="group" role="img" aria-label="' +
+          item(id)[1] +
+          " " +
+          n +
+          '개">' +
+          (shop === "bakery"
+            ? '<i aria-hidden="true" class="fruit bakery-art">' +
+              item(id)[0] +
+              "</i>"
+            : '<i aria-hidden="true" class="fruit ' + item(id)[0] + '"></i>'
+          ).repeat(n) +
+          "</span>";
+        const seq = (ids) => ids.map((id) => picture(id)).join("");
+        let history = {},
+          order = [],
+          index = 0,
+          q,
+          solved = false,
+          lastFirst = -1,
+          lesson = -1;
+        const age = () => Number(ages.value);
+        const storageKey = "kkoma.worksheet.v1";
+        function remember() {
+          try {
+            localStorage.setItem(
+              storageKey,
+              JSON.stringify({ age: age(), history, lastFirst, shop }),
+            );
+          } catch {}
+        }
+        function restore() {
+          try {
+            const saved = JSON.parse(localStorage.getItem(storageKey));
+            if (!saved || ![2, 3, 4, 5].includes(saved.age)) return;
+            ages.value = saved.age;
+            shop = Object.hasOwn(shops, saved.shop) ? saved.shop : "fruit";
+            lastFirst = Number.isInteger(saved.lastFirst)
+              ? saved.lastFirst
+              : -1;
+            for (const [key, values] of Object.entries(saved.history || {})) {
+              if (
+                /^(fruit|bakery)-[2-5]-[0-4]$/.test(key) &&
+                Array.isArray(values) &&
+                values.length <= 8 &&
+                values.every((n) => Number.isInteger(n) && n >= 0 && n < 8)
+              )
+                history[key] = values;
+            }
+          } catch {}
+        }
+        restore();
+        function silence() {
+          window.speechSynthesis?.cancel();
+        }
+        function speak(parts) {
+          silence();
+          if (!window.speechSynthesis || !window.SpeechSynthesisUtterance)
+            return;
+          for (const [s, lang] of parts) {
+            const u = new SpeechSynthesisUtterance(s);
+            u.lang = lang;
+            u.rate = 0.84;
+            window.speechSynthesis.speak(u);
+          }
+        }
+        function home() {
+          silence();
+          order = [];
+          main.innerHTML =
+            '<nav class="shops" aria-label="가게 선택">' +
+            Object.entries(shops)
+              .map(
+                ([key, place]) =>
+                  '<button data-shop="' +
+                  key +
+                  '" aria-pressed="' +
+                  (key === shop) +
+                  '">' +
+                  place.name +
+                  "</button>",
+              )
+              .join("") +
+            '</nav><div class="stall"><div class="awning" aria-hidden="true">' +
+            "<i></i>".repeat(14) +
+            "</div><div><h2>꼬마 " +
+            shops[shop].name +
+            '</h2><p class="intro">가게 문을 열고 오늘의 주문을 만나 봐!</p><button class="primary" data-mode="-1">골고루 놀기　→</button></div><div class="crate">' +
+            seq([0, 2, 1, 3]) +
+            '</div></div><h3>과목 골라 놀기</h3><div class="subjects">' +
+            subjects
+              .map(
+                (s, i) =>
+                  '<button data-mode="' +
+                  i +
+                  '"><span class="sig" aria-hidden="true">' +
+                  marks[i] +
+                  "</span>" +
+                  s +
+                  "</button>",
+              )
+              .join("") +
+            "</div>";
+        }
+        function start(mode) {
+          lesson = mode;
+          order = mode < 0 ? shuffle([0, 1, 2, 3, 4]) : [mode, mode, mode];
+          if (mode < 0 && lastFirst === order[0])
+            [order[0], order[1]] = [order[1], order[0]];
+          if (mode < 0) lastFirst = order[0];
+          index = 0;
+          next();
+        }
+        function next() {
+          const s = order[index],
+            a = age(),
+            key = shop + "-" + a + "-" + s,
+            seen = history[key] || [];
+          // Draw each fruit and task variation once before cycling the set.
+          const keys = shuffle(Array.from({ length: 8 }, (_, i) => i));
+          const pool = keys.filter((k) => !seen.includes(k));
+          const prev = seen.at(-1);
+          const options = pool.length ? pool : keys.filter((k) => k !== prev);
+          const k =
+            options.find(
+              (v) =>
+                v % 4 !== prev % 4 &&
+                Math.floor(v / 4) !== Math.floor(prev / 4),
+            ) ??
+            options.find((v) => v % 4 !== prev % 4) ??
+            options[0];
+          history[key] = [...(pool.length ? seen : []), k];
+          remember();
+          const f = k % 4,
+            v = Math.floor(k / 4),
+            other = shuffle([0, 1, 2, 3].filter((i) => i !== f)),
+            b = other[0],
+            c = other[1],
+            size = a <= 3 ? 2 : 3;
+          let basket;
+          let title = "",
+            sample = "",
+            choices = [],
+            hint = "",
+            english = "";
+          const row = (label, good = false) => ({ label, good });
+          const pick = (fn) => [
+            row(fn(f), true),
+            ...other.slice(0, size - 1).map((i) => row(fn(i))),
+          ];
+          const names = item(f);
+          if (s === 0) {
+            if (a === 5 && !v) {
+              title = "주문표를 읽고 과일을 골라 줘.";
+              sample = "<b>" + names[1] + " 두 개 주세요.</b>";
+              choices = [
+                row(picture(f, 2), true),
+                row(picture(b, 2)),
+                row(picture(f, 1)),
+              ];
+              hint = names[1] + "인지, 두 개인지 차례로 살펴봐.";
+            } else if (a < 4) {
+              title = v ? "이 과일의 이름은 뭘까?" : names[1] + " 어디 있지?";
+              sample = v ? picture(f) : "";
+              choices = v
+                ? pick((i) => item(i)[1] + " " + picture(i))
+                : pick((i) => picture(i));
+              hint = "이름은 " + names[1] + ". 그림을 다시 보자.";
+            } else if (v) {
+              title = "빠진 글자를 찾아 줘.";
+              sample =
+                "<b>" +
+                (names[1].length > 1 ? "□" + names[1].slice(1) : "□") +
+                "</b>" +
+                picture(f);
+              choices = pick((i) => item(i)[3]);
+              hint = names[1] + ". 처음 들리는 글자를 찾아봐.";
+            } else {
+              title = "그림에 맞는 이름표를 붙여 줘.";
+              sample = picture(f);
+              choices = pick((i) => item(i)[1]);
+              hint = "소리 내어 말해 볼까? " + names[1] + ".";
+            }
+          } else if (s === 1) {
+            english = names[2];
+            if (a >= 4 && v) {
+              title = "이 과일의 영어 이름은?";
+              sample = picture(f);
+              choices = pick((i) => item(i)[2]);
+              english = "";
+              hint = "이름은 " + names[2] + ". 같은 단어를 찾아봐.";
+            } else if (a === 5 && !v) {
+              title = "영어 주문을 듣고 상자를 골라 줘.";
+              english = "Two " + names[2] + "s" + ", please.";
+              if (shop === "fruit" && f === 3)
+                english = "Two strawberries, please.";
+              sample = '<b lang="en">' + english + "</b>";
+              choices = [
+                row(picture(f, 2), true),
+                row(picture(b, 2)),
+                row(picture(f, 1)),
+              ];
+              hint = names[1] + " 두 개를 찾아봐.";
+            } else {
+              title = v
+                ? "주문한 과일을 찾아 줘."
+                : "영어를 듣고 과일을 골라 줘.";
+              english =
+                a >= 4
+                  ? "One " + names[2] + ", please."
+                  : a === 3 && v
+                    ? names[2] + ", please."
+                    : names[2];
+              sample = '<b lang="en">' + english + "</b>";
+              choices = pick((i) => picture(i));
+              hint = names[1] + " 그림을 찾아봐.";
+            }
+          } else if (s === 2) {
+            if (a === 2) {
+              const n = v ? 2 : 1;
+              title = (v ? "두 개" : "한 개") + " 담긴 쪽을 골라 줘.";
+              sample = picture(f, n);
+              choices = [row(picture(f, n), true), row(picture(f, 3 - n))];
+              hint = "위에 있는 과일과 하나씩 짝을 지어 봐.";
+            } else if (a === 3 || (a === 4 && !v)) {
+              const n = (a === 3 ? 1 : 2) + (f % 3);
+              title = v
+                ? "어느 쪽에 과일이 더 많을까?"
+                : "과일이 몇 개 있을까?";
+              sample = v ? "" : picture(f, n);
+              choices = v
+                ? [row(picture(f, n + 1), true), row(picture(f, n))]
+                : [
+                    row("" + n, true),
+                    row("" + (n + 1)),
+                    ...(a >= 4 ? [row("" + (n - 1))] : []),
+                  ];
+              hint = "손가락으로 하나씩 짚어 세어 봐.";
+            } else {
+              const n = 2 + (f % 3),
+                add = v ? 2 : 1;
+              basket = { product: f, count: n, target: n + add };
+              title = names[1] + " " + basket.target + "개를 담아 보내 줘.";
+              sample = picture(f, n);
+            }
+          } else if (s === 3) {
+            const group = a >= 4 ? [f, b] : [f];
+            title = v
+              ? "견본과 다른 상자를 찾아 줘."
+              : "견본과 같은 상자를 찾아 줘.";
+            sample = seq(group);
+            let alt = a >= 4 ? [b, f] : [b];
+            choices = v
+              ? [row(seq(alt), true), row(seq(group))]
+              : [
+                  row(seq(group), true),
+                  row(seq(alt)),
+                  ...(size === 3 ? [row(seq([f, c]))] : []),
+                ];
+            hint =
+              a >= 4
+                ? "왼쪽부터 과일의 자리를 살펴봐."
+                : "과일의 모양을 살펴봐.";
+          } else {
+            const pattern =
+              a === 2
+                ? [f, f]
+                : a === 3
+                  ? [f, b, f, b]
+                  : a === 4
+                    ? v
+                      ? [f, b, b, f, b]
+                      : [f, f, b, f, f]
+                    : v
+                      ? [f, b, c, f, b]
+                      : [f, b, b, f, b];
+            const answer = a === 2 || a === 3 ? f : a === 5 && v ? c : b;
+            title = "빈자리에 어떤 과일이 올까?";
+            sample = seq(pattern) + "<b>□</b>";
+            choices = [
+              row(picture(answer), true),
+              ...shuffle([0, 1, 2, 3].filter((i) => i !== answer))
+                .slice(0, size - 1)
+                .map((i) => row(picture(i))),
+            ];
+            hint =
+              "왼쪽부터 과일 이름을 불러 봐. " +
+              pattern.map((i) => item(i)[1]).join(", ") +
+              ".";
+          }
+          if (shop === "bakery") {
+            const adapt = (text) =>
+              text
+                .replaceAll("과일의", "빵의")
+                .replaceAll("과일을", "빵을")
+                .replaceAll("과일이", "빵이")
+                .replaceAll("과일과", "빵과")
+                .replaceAll("과일", "빵");
+            title = adapt(title);
+            hint = adapt(hint);
+          }
+          q = {
+            basket,
+            title,
+            sample,
+            choices: shuffle(choices),
+            hint,
+            english,
+          };
+          solved = false;
+          main.innerHTML =
+            '<div class="row"><span class="meta">' +
+            subjects[s] +
+            " 놀이　·　" +
+            (index + 1) +
+            " / " +
+            order.length +
+            '장</span><button data-action="home">놀이방</button></div><div class="sheet"><h2>' +
+            title +
+            '</h2><div class="sample">' +
+            sample +
+            '</div><button data-action="listen">♪　다시 듣기</button><div class="answers">' +
+            (basket
+              ? '<button data-action="take">− 하나 빼기</button><button data-action="put">＋ 하나 담기</button><button data-action="send">상자 보내기</button>'
+              : q.choices
+                  .map(
+                    (o, i) =>
+                      '<button data-answer="' +
+                      i +
+                      '">' +
+                      o.label +
+                      "</button>",
+                  )
+                  .join("")) +
+            '</div></div><div class="foot"><p class="msg" aria-live="polite"></p><button class="primary" data-action="next" hidden>' +
+            (index === order.length - 1 ? "주문 마치기" : "다음 장　→") +
+            "</button></div>";
+          narrate();
+        }
+        function narrate() {
+          speak([
+            [q.title, "ko-KR"],
+            ...(q.english ? [[q.english, "en-US"]] : []),
+          ]);
+        }
+        function finish() {
+          const msg = "오늘의 주문을 완성했어!";
+          main.innerHTML =
+            '<div class="win"><div class="crate">' +
+            seq([1, 0, 2]) +
+            "</div><h2>" +
+            msg +
+            '</h2><p class="intro">' +
+            order.length +
+            '장의 학습지를 마쳤어.</p><button class="primary" data-action="again">새 주문으로 또 놀기</button> <button data-action="home">놀이방</button></div>';
+          speak([[msg, "ko-KR"]]);
+        }
+        main.addEventListener("click", (e) => {
+          const el = e.target.closest("button");
+          if (!el) return;
+          const d = el.dataset;
+          if (d.shop) {
+            shop = d.shop;
+            remember();
+            home();
+            return;
+          }
+          if (d.mode !== undefined) return start(+d.mode);
+          if ((d.action === "put" || d.action === "take") && !solved) {
+            const basket = q.basket;
+            basket.count += d.action === "put" ? 1 : -1;
+            main.querySelector(".sample").innerHTML = basket.count
+              ? picture(basket.product, basket.count)
+              : "빈 상자";
+            main.querySelector("[data-action=take]").disabled =
+              basket.count === 0;
+            main.querySelector("[data-action=put]").disabled =
+              basket.count >= basket.target + 2;
+            main.querySelector(".msg").textContent =
+              "상자에 " + basket.count + "개";
+            return;
+          }
+          if ((d.answer !== undefined || d.action === "send") && !solved) {
+            const good = q.basket
+              ? q.basket.count === q.basket.target
+              : q.choices[+d.answer].good;
+            if (q.basket && !good)
+              q.hint =
+                q.basket.count < q.basket.target
+                  ? "조금 더 담아 볼까?"
+                  : "조금 덜어 볼까?";
+            solved = good;
+            const msg = good ? "맞았어! 주문표에 담았어." : q.hint;
+            main.querySelector(".msg").textContent = msg;
+            speak([[msg, "ko-KR"]]);
+            if (good) {
+              el.classList.add("yes");
+              main
+                .querySelectorAll(".answers button")
+                .forEach((b) => (b.disabled = true));
+              main.querySelector("[data-action=next]").hidden = false;
+            }
+            return;
+          }
+          if (d.action === "home") home();
+          if (d.action === "listen") narrate();
+          if (d.action === "again") start(lesson);
+          if (d.action === "next") {
+            index++;
+            if (index === order.length) finish();
+            else next();
+          }
+        });
+        ages.addEventListener("change", () => {
+          home();
+          remember();
+        });
+        home();
+      })();
+    </script>
+  </body>
+</html>
