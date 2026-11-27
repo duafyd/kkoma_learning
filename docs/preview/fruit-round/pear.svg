@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <title>둥근 황금빛 한국 배</title>
+  <defs>
+    <radialGradient id="skin" cx="35%" cy="29%" r="77%">
+      <stop stop-color="#efd080"/>
+      <stop offset=".66" stop-color="#ddae59"/>
+      <stop offset="1" stop-color="#cb944c"/>
+    </radialGradient>
+  </defs>
+  <path d="M79 40 C90 40 94 33 107 35 C133 38 148 58 149 85
+           C151 116 130 138 101 143 C86 146 67 146 53 142
+           C25 136 11 116 11 91 C10 63 26 42 49 36 C64 32 70 40 79 40Z"
+        fill="url(#skin)" stroke="#926738" stroke-width="4.5"/>
+  <path d="M61 43 C69 42 73 49 81 49 C88 49 94 43 98 42"
+        fill="none" stroke="#c49046" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M78 46 C79 37 76 27 71 17 Q73 13 78 13 C86 23 87 36 83 46Z"
+        fill="#835936" stroke="#68472f" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M79 25 L76 18" fill="none" stroke="#bb9561" stroke-linecap="round" stroke-width="2"/>
+  <path d="M28 76 Q32 60 48 53" fill="none" stroke="#f6de9e" stroke-width="6" stroke-linecap="round"/>
+  <g fill="#ae8248">
+    <circle cx="33" cy="91" r="1.8"/><circle cx="48" cy="77" r="1.6"/>
+    <circle cx="42" cy="108" r="1.8"/><circle cx="59" cy="119" r="1.7"/>
+    <circle cx="74" cy="97" r="1.5"/><circle cx="91" cy="118" r="1.8"/>
+    <circle cx="106" cy="61" r="1.6"/><circle cx="117" cy="88" r="1.9"/>
+    <circle cx="127" cy="100" r="1.7"/><circle cx="111" cy="124" r="1.6"/>
+  </g>
+</svg>
