@@ -52,7 +52,9 @@ func run() -> void:
 	check(not scene.get_node("Voice").playing, "Muted replay spoke")
 	tap(scene.get_node("Sound"))
 	check(scene.get_node("Voice").playing, "Unmuting did not give the hint")
-	await create_timer(1.5).timeout
+	if scene.get_node("Voice").playing:
+		await scene.get_node("Voice").finished
+	await process_frame
 	print("Apple market tap flow: %d failures" % failures)
 	scene.queue_free()
 	await process_frame
