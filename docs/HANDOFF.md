@@ -18,7 +18,7 @@
 
 - 실행 진입점은 `godot/project.godot`과 `godot/market.tscn`입니다. 1280×800 기준의 가로 2D 장면에 모모, 과일 가게, 큰 사과 두 개, 바구니를 배치했습니다. 화면 비율이 다르면 비율을 보존해 표시합니다.
 - 아이의 입력은 **탭 한 번**입니다. 진열대의 큰 사과를 누르면 자동으로 날아가며, 배경 속 사과 상자를 누르는 경우에도 남은 사과 하나를 보냅니다. 같은 사과의 중복 입력은 한 번만 세고 서로 다른 사과를 빠르게 누르면 순서대로 담습니다. 사과가 도착할 때 수량과 음성을 갱신합니다. 끌어 놓기나 별도의 제출 단계는 추가하지 않습니다.
-- `godot/sound`에 한국어 합성 음성 다섯 개와 효과음이 있습니다. 0.2 APK에는 Supertonic 3의 F1(A안)으로 합성한 파일을 넣어 오프라인 재생합니다. 주문은 기존 F2의 1.16초에서 1.54초로 늘렸고, 칭찬은 “사과 두 개”와 “고마워” 사이에 0.22초를 둡니다. 같은 대사의 F4(B안)는 비교 청음용입니다. 최종 모모 음색은 사용자 청음 후 정합니다. [모델과 버전](https://huggingface.co/supertone-oss-archive/supertonic-3/tree/aafc6e32416a594460b32413efc49d7fe4ce6d46)
+- `godot/sound`에 한국어 합성 음성 다섯 개와 효과음이 있습니다. 사용자가 선택한 A 목소리(Supertonic 3 F1)를 기준으로 합니다. 0.3은 같은 A 녹음 다섯 개의 길이를 대사별로 0.1과 0.2의 중간에 맞췄습니다. 주문은 1.35초, 칭찬은 1.58초입니다. 유성음의 음높이를 구간별로 조정해 부탁할 때 말끝을 살짝 들고 칭찬은 부드럽게 내려 마칩니다. 중저역을 약간 보강하고 날카로운 고역을 줄였습니다. APK에서 오프라인으로 재생합니다. [0.3 청음](preview/voices/momo-a-warm.mp3) · [모델과 버전](https://huggingface.co/supertone-oss-archive/supertonic-3/tree/aafc6e32416a594460b32413efc49d7fe4ce6d46)
 - 코드 검증은 Godot 에디터 임포트 후 `godot --headless --path godot --script res://tests/tap_flow.gd`로 재현합니다. 반복 탭, 연속 탭, 상자 터치, 한 번 더 놀기, 음성 재생과 음소거를 검사합니다. 실행 화면은 docs/preview/apple-order.jpg 및 apple-done.jpg에 보관합니다.
 - Android SDK와 디버그 키를 설정하고 godot/build 디렉터리를 만든 뒤 `godot --headless --path godot --export-debug "Galaxy Tab"`으로 빌드합니다. 브랜치의 trial/momo-apple-arm64.apk는 테스트 설치용입니다. 서명 검증을 통과했으며 갤럭시탭에서의 설치·프레임·스피커 음량과 아동 사용성은 실기기 확인 대상입니다.
 

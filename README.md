@@ -8,7 +8,7 @@
 
 가로 화면에서 모모의 주문을 듣고 큰 사과를 하나씩 톡 누릅니다. 사과가 스스로 바구니로 날아가고 두 개를 모으면 모모가 두 손을 들고 인사합니다. 한국어 주문·수 세기·칭찬 음성은 APK에 들어 있습니다. `다시 듣기`, `소리 켜짐/꺼짐`, 완료 후 `한 번 더 놀기`를 사용할 수 있습니다.
 
-모모 음성 0.2는 주문을 약 1.5초로 읽습니다. [A안 · APK 적용 음성](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/docs/preview/voices/momo-a.mp3) · [B안 · 다른 음색](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/docs/preview/voices/momo-b.mp3)
+모모 음성 0.3은 선택된 A 목소리로 주문을 1.35초에 읽습니다. [현재 APK 음성 듣기](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/docs/preview/voices/momo-a-warm.mp3) · [직전 A 음성 듣기](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/docs/preview/voices/momo-a.mp3)
 
 Godot 4.7.2에서 [godot/project.godot](godot/project.godot)을 가져와 **F5(프로젝트 실행)** 로 시작합니다. Android 시험판은 arm64 디버그 빌드이며 앱 ID는 `org.kkoma.prototype.applemarket`입니다.
 
