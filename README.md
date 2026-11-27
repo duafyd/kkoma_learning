@@ -2,7 +2,15 @@
 
 만 2~5세가 가게 주인이 되어 과일이나 빵 주문을 처리하는 태블릿 학습지 프로토타입입니다. 이번 버전에서 확인할 점은 아이가 안내를 듣고 스스로 첫 행동을 할 수 있는지, 새 주문을 시작했을 때 활동이 충분히 달라지는지입니다.
 
-## 실행
+## 갤럭시탭에서 모모의 사과 주문 체험
+
+[Godot 시제품 APK 받기](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/trial/momo-apple-arm64.apk) · [첫 화면](docs/preview/apple-order.jpg) · [완료 화면](docs/preview/apple-done.jpg)
+
+가로 화면에서 모모의 주문을 듣고 큰 사과를 하나씩 톡 누릅니다. 사과가 스스로 바구니로 날아가고 두 개를 모으면 모모가 두 손을 들고 인사합니다. 한국어 주문·수 세기·칭찬 음성은 APK에 들어 있습니다. `다시 듣기`, `소리 켜짐/꺼짐`, 완료 후 `한 번 더 놀기`를 사용할 수 있습니다.
+
+Godot 4.7.2에서 [godot/project.godot](godot/project.godot)을 가져와 **F5(프로젝트 실행)** 로 시작합니다. Android 시험판은 arm64 디버그 빌드이며 앱 ID는 `org.kkoma.prototype.applemarket`입니다.
+
+## 브라우저 학습지 실행
 
 [프로토타입 ZIP 받기](https://github.com/duafyd/kkoma_learning/archive/refs/heads/prototype/worksheet.zip). 압축을 풀고 브라우저로 `index.html`을 엽니다. 별도 패키지 설치나 빌드 과정 없이 동작합니다. 로컬 서버에서 확인할 때는 이 디렉터리에서 `python -m http.server 8000`을 실행한 뒤 `http://localhost:8000`을 엽니다.
 

@@ -1,0 +1,29 @@
+config_version=5
+
+[application]
+config/name="꼬마런닝 · 모모의 사과 주문"
+run/main_scene="res://market.tscn"
+config/features=PackedStringArray("4.7","GL Compatibility")
+config/icon="res://art/apple.svg"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/size/window_width_override=960
+window/size/window_height_override=600
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/handheld/orientation=0
+window/energy_saving/keep_screen_on=true
+
+
+[rendering]
+textures/vram_compression/import_etc2_astc=true
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.13,0.24,0.23,1)
+
+
+
+[input_devices]
+pointing/emulate_mouse_from_touch=true
