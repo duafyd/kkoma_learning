@@ -4,13 +4,13 @@
 
 [첫 버전 기획안 · 모모의 동네](docs/PRODUCT_PLAN.md) · [과일 가게 첫 한 판 · 여섯 장면 보기](docs/FRUIT_ROUND.md)
 
-## 갤럭시탭에서 모모의 사과 주문 체험
+## 갤럭시탭에서 과일 가게 한 판 놀기
 
-[Godot 시제품 APK 받기](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/trial/momo-apple-arm64.apk) · [첫 화면](docs/preview/apple-order.jpg) · [완료 화면](docs/preview/apple-done.jpg)
+[0.5 APK 받기 · 갤럭시탭 arm64](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/trial/momo-apple-arm64.apk) · [실행 화면 · 배 이름표](docs/preview/round-word.jpg) · [숫자 2 쓰기](docs/preview/round-trace.jpg)
 
-그림 주문표를 보고 사과를 톡 누르거나 바구니로 끌어 놓습니다. 바구니를 빗나가면 다시 시도할 수 있습니다. 소리를 꺼도 이동 시범과 수량, 모모의 표정으로 끝까지 놀 수 있습니다. 무음 상태의 ‘다시 보기’는 시범을 다시 보여 주며 소리 선택은 다음 실행에도 적용됩니다. 한국어 주문·수 세기·칭찬 음성은 APK에 들어 있습니다. `다시 듣기`, `소리 켜짐/꺼짐`, 완료 후 `한 번 더 놀기`를 사용할 수 있습니다.
+가게 입구에서 **골고루 놀기**를 누릅니다. 처음에는 배 이름표 달기, 사과 두 개 담기, 영어 바나나 주문, 오렌지 단면 찾기, 사과와 배 진열하기가 이어집니다. 마지막 진열대에서 **또 놀기**를 누르면 순서를 섞고 수학 자리에 숫자 2 쓰기가 나옵니다. 손가락을 떼었다가 이어 그리거나 ‘함께 그리기’로 완성할 수 있습니다.
 
-모모 음성 0.3은 선택된 A 목소리로 주문을 1.35초에 읽습니다. [현재 APK 음성 듣기](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/docs/preview/voices/momo-a-warm.mp3) · [직전 A 음성 듣기](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/docs/preview/voices/momo-a.mp3)
+첫 실행에는 A 목소리와 효과음이 켜져 있습니다. 영어 주문을 듣고 고르거나, 소리를 끄고 그림으로 고를 수 있습니다. ‘잠깐 쉬기’에서 계속·다음 주문·입구로 가기를 고릅니다. 다음 실행에서는 완료한 주문 다음부터 이어갑니다. 이번 검토판은 만 4세 콘티를 기준으로 합니다.
 
 Godot 4.7.2에서 [godot/project.godot](godot/project.godot)을 가져와 **F5(프로젝트 실행)** 로 시작합니다. Android 시험판은 arm64 디버그 빌드이며 앱 ID는 `org.kkoma.prototype.applemarket`입니다.
 

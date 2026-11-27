@@ -1,5 +1,9 @@
 extends Control
 
+signal advance_requested
+
+var in_round := false
+
 const APPLE := preload("res://art/apple.svg")
 const POP := preload("res://sound/place.wav")
 const JINGLE := preload("res://sound/finish.wav")
@@ -32,11 +36,12 @@ var shelf_positions: Array[Vector2] = []
 var demo: Tween
 var settings := ConfigFile.new()
 const SETTINGS_PATH := "user://preferences.cfg"
+var preferences_path := SETTINGS_PATH
 var reaction: Tween
 var idle: Tween
 
 func _ready() -> void:
-	if settings.load(SETTINGS_PATH) == OK:
+	if settings.load(preferences_path) == OK:
 		sound_on = settings.get_value("audio", "enabled", true)
 	display_sound_setting()
 	for i in apples.size():
@@ -44,13 +49,24 @@ func _ready() -> void:
 		apples[i].pressed.connect(choose.bind(i))
 	$Listen.pressed.connect(repeat_line)
 	$Sound.pressed.connect(toggle_sound)
-	$Replay.pressed.connect(begin)
+	$Replay.pressed.connect(on_replay)
 	$Voice.finished.connect(play_next_voice)
 	$Crate.pressed.connect(choose_next)
 	idle = create_tween().set_loops()
 	idle.tween_property($Momo, "rotation", 0.016, 1.3).set_trans(Tween.TRANS_SINE)
 	idle.tween_property($Momo, "rotation", -0.012, 1.3).set_trans(Tween.TRANS_SINE)
+	start_activity()
+
+func start_activity() -> void:
 	begin()
+	if in_round:
+		$Replay.text = "다음 주문  →"
+
+func on_replay() -> void:
+	if in_round:
+		advance_requested.emit()
+	else:
+		begin()
 
 func begin() -> void:
 	$Momo.texture = WAVE
@@ -122,7 +138,7 @@ func deliver() -> void:
 	delivering = false
 	if landed.size() == TARGETS.size():
 		finished = true
-		await get_tree().create_timer(0.65).timeout
+		await get_tree().create_timer(0.65, false).timeout
 		$Momo.texture = CHEER
 		$Order.text = "사과 두 개, 고마워!"
 		play_cue($Done, JINGLE)
@@ -250,7 +266,7 @@ func toggle_sound() -> void:
 	sound_on = not sound_on
 	display_sound_setting()
 	settings.set_value("audio", "enabled", sound_on)
-	settings.save(SETTINGS_PATH)
+	settings.save(preferences_path)
 	if sound_on:
 		repeat_line()
 	else:

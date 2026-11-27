@@ -2,6 +2,8 @@ extends SceneTree
 
 var scene: Control
 var failures := 0
+var spoken: Array[String] = []
+var audio_path := "user://test_market_audio_" + str(OS.get_process_id()) + ".cfg"
 
 func _initialize() -> void:
 	run.call_deferred()
@@ -37,14 +39,18 @@ func drag(from: Vector2, to: Vector2, cancel: bool = false) -> void:
 	up.canceled = cancel
 	root.push_input(up, true)
 
+func note_playing_voice() -> void:
+	if is_instance_valid(scene):
+		var voice: AudioStreamPlayer = scene.get_node("Voice")
+		if voice.playing and not spoken.has(voice.stream.resource_path):
+			spoken.append(voice.stream.resource_path)
+
 func run() -> void:
 	scene = load("res://market.tscn").instantiate()
+	scene.preferences_path = audio_path
 	root.add_child(scene)
 	await process_frame
-	var spoken: Array[String] = []
-	scene.get_node("Voice").finished.connect(func() -> void:
-		spoken.append(scene.get_node("Voice").stream.resource_path)
-	)
+	process_frame.connect(note_playing_voice)
 	tap(scene.get_node("Apple1"))
 	tap(scene.get_node("Apple1"))
 	await create_timer(0.6).timeout
@@ -76,6 +82,7 @@ func run() -> void:
 	var restarted: Control = load("res://market.tscn").instantiate()
 	scene.queue_free()
 	await process_frame
+	restarted.preferences_path = audio_path
 	root.add_child(restarted)
 	scene = restarted
 	check(not scene.sound_on and not scene.get_node("Chime").playing and not scene.get_node("Voice").playing, "Muted launch made sound")
@@ -100,4 +107,7 @@ func run() -> void:
 	print("Apple market tap and drop flow: %d failures" % failures)
 	scene.queue_free()
 	await process_frame
+	process_frame.disconnect(note_playing_voice)
+	await create_timer(0.7).timeout
+	DirAccess.remove_absolute(audio_path)
 	quit(1 if failures else 0)

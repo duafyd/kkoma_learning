@@ -2,7 +2,7 @@ config_version=5
 
 [application]
 config/name="꼬마런닝 · 모모의 사과 주문"
-run/main_scene="res://market.tscn"
+run/main_scene="res://round.tscn"
 config/features=PackedStringArray("4.7","GL Compatibility")
 config/icon="res://art/apple.svg"
 
