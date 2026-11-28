@@ -17,7 +17,7 @@ godot --headless --path godot --script res://tests/round_flow.gd
 godot --headless --path godot --script res://tests/tap_flow.gd
 ```
 
-0.7의 회귀 검사 네 종은 실패 0건입니다. 서명은 0.6 APK와 일치하며 패키지의 128개 카드와 주문 음성을 확인했습니다. APK SHA-256은 `a758963dd5ab800c8c601ecadff1ce57557fe6765c5dc2c7935ae857c15d9048`입니다.
+0.7의 회귀 검사 네 종은 실패 0건입니다. 서명은 0.6 APK와 일치합니다. 원격 APK를 다시 받아 SHA-256을 대조했고, APK의 `assets/` 아래를 별도 Godot ZIP 팩으로 열어 128개 카탈로그 검사도 실패 0건으로 완료했습니다. 이 검사는 패키지 리소스와 실행 코드를 확인하며 Android 실기기 설치 기록은 앞으로 추가합니다. APK SHA-256은 `a758963dd5ab800c8c601ecadff1ce57557fe6765c5dc2c7935ae857c15d9048`입니다.
 
 새 채팅에서는 **duafyd/kkoma_learning의 prototype/worksheet 최신 브랜치에서 docs/HANDOFF.md와 docs/PRODUCTION_PLAN.md를 읽고 1.0을 이어가**라고 요청하면 됩니다.
 
