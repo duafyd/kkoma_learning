@@ -28,7 +28,22 @@ godot --headless --path godot --export-release "Galaxy Tab" build/momo-1.0-rc1.a
 
 검토 항목은 첫 실행, 이전 테스트판 위로 업데이트, 비행기 모드 재실행·이어하기, 만 2세 조작, 만 5세 여러 획 쓰기, 음량입니다. 확인한 기기·Android 버전·문항 ID·관찰 내용을 [인수인계](HANDOFF.md)에 추가하고 개선 사항은 다음 빌드에 반영합니다.
 
-현재 인도 경로는 APK 직접 설치입니다. Google Play 공개 배포 시 앱 등록 주체와 서명을 정하고 AAB와 스토어 자료를 준비합니다. 공개 배포용 인증서가 기존 시험판과 다를 경우 설치 경로와 진도 이전을 따로 검증합니다.
+현재 인도 경로는 APK 직접 설치입니다. Google Play 공개 배포용 미서명 AAB와 스토어 자료는 아래에 있습니다. 제출 단계에서 앱 등록 주체와 업로드 서명을 확정합니다. 공개 배포용 인증서가 기존 시험판과 다를 경우 설치 경로와 진도 이전을 따로 검증합니다.
+
+### Google Play 번들 빌드
+
+[미서명 1.0-rc1 AAB 다운로드](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/trial/momo-1.0-rc1-unsigned.aab) · SHA-256 `f83dd2ffecd6ed08b5aa57685573bc699207ba544f0d1c7e55625d747d82b706`
+
+이 번들은 bundletool 형식 검증을 통과했습니다. 설치 시 내려받는 모듈에 128개 활동이 모두 들어 있으며, 그 모듈에서 추출한 Godot 리소스로 카탈로그 검사가 통과했습니다.
+
+JDK 17, Android SDK 36, Build Tools 36.1.0과 Godot Android Gradle 템플릿을 설치합니다. `Google Play bundle` 프리셋은 AAB를 미서명 상태로 내보냅니다. 업로드 인증서로 서명할 때는 등록 계정의 자격 증명과 배포 정책을 사용합니다.
+
+```sh
+mkdir -p godot/build
+godot --headless --editor --path godot --import
+godot --headless --path godot --install-android-build-template --export-release "Google Play bundle" build/momo-1.0-rc1-unsigned.aab
+java -jar bundletool.jar validate --bundle=godot/build/momo-1.0-rc1-unsigned.aab
+```
 
 ### 스토어 소개 초안
 
@@ -39,3 +54,7 @@ godot --headless --path godot --export-release "Galaxy Tab" build/momo-1.0-rc1.a
 **설명** · 만 2~5세를 위한 갤럭시탭 가로 놀이 앱입니다. 한글 이름표 고르기, 영어 주문 듣기, 숫자 세기와 따라 쓰기를 각각 즐길 수 있습니다. 과일 가게와 빵집에서는 모모의 주문에 맞춰 물건을 담고, 그림을 맞추고, 규칙을 완성합니다. 설치 후에는 인터넷 연결 없이 놀이를 시작하고, 중간에 멈춘 자리를 이어갈 수 있습니다.
 
 [놀이마당](preview/play-menu-07.jpg) · [빵집](preview/bakery-07.jpg) · [한글 따라 쓰기](preview/writing-07.jpg)
+
+**등록용 이미지** · [512×512 앱 아이콘](preview/store-icon.png) · [1024×500 홍보 이미지](preview/store-feature.jpg)
+
+**데이터 처리 메모** · 현재 코드에서 연령 선택, 소리 설정, 최근 활동, 진행 중인 판은 앱 전용 기기 저장소에 기록됩니다. APK는 네트워크 권한과 광고·분석 SDK 없이 실행되며 계정 가입을 요구하지 않습니다. Play Console의 연락처, 개인정보처리방침 공개 URL과 등록 응답은 스토어 운영 주체가 확인해 등록합니다.
