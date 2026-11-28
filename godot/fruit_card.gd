@@ -20,7 +20,6 @@ const OPTIONS := {"word": ["사과", "배"], "english": ["pear", "banana"], "obs
 var kind := "word"
 var swap_options := false
 var prizes: Array = []
-var home_action := "골고루 놀기  ▶"
 var layer: Control
 var focus_item: Control
 var choices: Array[Button] = []
@@ -33,7 +32,7 @@ var attempts := 0
 var helped := false
 var hint_timer: Timer
 
-func start_activity() -> void:
+func setup_board(order_text: String, title: String, prompt: String) -> void:
 	for item in [$Basket, $CounterPill, $Count, $Crate, $FruitStand, $Apple1, $Apple2, $OrderApple1, $OrderApple2, $Demo, $Replay]:
 		item.hide()
 	$Momo.position = Vector2(48, 265)
@@ -46,13 +45,13 @@ func start_activity() -> void:
 	$Note.size.x = 738
 	$Order.size.x = 688
 	$Order.add_theme_font_size_override("font_size", 35)
-	$Order.text = LINES[kind][1]
-	$Title.text = "과일 가게 · " + str(LINES[kind][0])
+	$Order.text = order_text
+	$Title.text = title
 	for node in [$PromptCard, $Prompt, $Replay]:
 		node.position = Vector2(422, 695)
 		node.size = Vector2(800, 72)
 	$Replay.text = "다음 주문  →"
-	$Prompt.text = LINES[kind][2]
+	$Prompt.text = prompt
 	layer = Control.new()
 	add_child(layer)
 	layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -60,6 +59,9 @@ func start_activity() -> void:
 	put(board, Rect2(411, 267, 819, 411))
 	board.add_theme_stylebox_override("panel", $FruitStand.get_theme_stylebox("panel"))
 	board.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func start_activity() -> void:
+	setup_board(LINES[kind][1], "과일 가게 · " + str(LINES[kind][0]), LINES[kind][2])
 	match kind:
 		"word": focus_item = picture("pear", Rect2(742, 280, 153, 153))
 		"english": focus_item = card("?", Rect2(735, 290, 168, 120), reveal_hint)
@@ -70,19 +72,6 @@ func start_activity() -> void:
 			focus_item = card("?", Rect2(1065, 315, 118, 113), demonstrate)
 		"trace": build_trace()
 		"end": build_shelf()
-		"home":
-			picture("pear", Rect2(534, 347, 150, 150))
-			picture("apple", Rect2(747, 311, 151, 151))
-			picture("banana", Rect2(954, 349, 152, 152))
-			$Title.text = "모모의 과일 가게"
-			$Speaker.text = "모모"
-			$Prompt.hide()
-			$PromptCard.hide()
-			$Replay.position = Vector2(604, 535)
-			$Replay.size = Vector2(430, 86)
-			$Replay.text = home_action
-			$Replay.show()
-			move_child($Replay, -1)
 	if OPTIONS.has(kind):
 		build_choices()
 	hint_timer = Timer.new()

@@ -4,6 +4,7 @@ signal completed(assisted: bool)
 signal stroke_paused
 signal stroke_started
 
+var glyph := "2"
 var paper: StyleBox
 
 var path: PackedVector2Array
@@ -16,10 +17,30 @@ var guide: Tween
 func _ready() -> void:
 	var curve := Curve2D.new()
 	curve.bake_interval = 7.0
-	curve.add_point(Vector2(135, 101), Vector2.ZERO, Vector2(4, -94))
-	curve.add_point(Vector2(373, 96), Vector2(14, -102), Vector2(-5, 60))
-	curve.add_point(Vector2(148, 270), Vector2(126, -83))
-	curve.add_point(Vector2(390, 270))
+	match glyph:
+		"2":
+			curve.add_point(Vector2(135, 101), Vector2.ZERO, Vector2(4, -94))
+			curve.add_point(Vector2(373, 96), Vector2(14, -102), Vector2(-5, 60))
+			curve.add_point(Vector2(148, 270), Vector2(126, -83))
+			curve.add_point(Vector2(390, 270))
+		"3":
+			curve.add_point(Vector2(166, 80), Vector2.ZERO, Vector2(113, -93))
+			curve.add_point(Vector2(241, 166), Vector2(137, -7), Vector2(160, -14))
+			curve.add_point(Vector2(157, 262), Vector2(100, 92))
+		"C":
+			curve.add_point(Vector2(367, 91), Vector2.ZERO, Vector2(-185, -150))
+			curve.add_point(Vector2(365, 252), Vector2(-180, 145))
+		_:
+			var vertices: Array = {
+				"ㄱ": [Vector2(151, 88), Vector2(374, 88), Vector2(374, 262)],
+				"ㄴ": [Vector2(152, 82), Vector2(152, 262), Vector2(377, 262)],
+				"L": [Vector2(196, 67), Vector2(196, 271), Vector2(361, 271)],
+				"ㅡ": [Vector2(134, 179), Vector2(394, 179)],
+				"I": [Vector2(263, 64), Vector2(263, 279)],
+				"1": [Vector2(263, 64), Vector2(263, 279)]
+			}[glyph]
+			for vertex in vertices:
+				curve.add_point(vertex)
 	path = curve.get_baked_points()
 	replay_guide()
 

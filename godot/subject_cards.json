@@ -1,0 +1,191 @@
+{
+  "ko_pear": {
+    "subject": "hangul",
+    "task": "label",
+    "order": "배에 어울리는 이름을 찾아봐.",
+    "target": "배",
+    "sample": "pear",
+    "other": "사과",
+    "done": "배! 이름을 찾았네."
+  },
+  "ko_apple": {
+    "subject": "hangul",
+    "task": "label",
+    "order": "사과에 어울리는 이름을 찾아봐.",
+    "target": "사과",
+    "sample": "apple",
+    "other": "바나나",
+    "done": "사과! 잘 찾았어."
+  },
+  "ko_banana": {
+    "subject": "hangul",
+    "task": "listen_picture",
+    "order": "바나나를 찾아볼까?",
+    "target": "banana",
+    "sample": "banana",
+    "other": "orange",
+    "done": "길쭉한 바나나야."
+  },
+  "ko_orange": {
+    "subject": "hangul",
+    "task": "listen_picture",
+    "order": "오렌지를 찾아볼까?",
+    "target": "orange",
+    "sample": "orange",
+    "other": "pear",
+    "done": "동그란 오렌지야."
+  },
+  "ko_giyeok": {
+    "subject": "hangul",
+    "task": "write",
+    "order": "기역을 손가락으로 써 볼까?",
+    "target": "ㄱ",
+    "sample": "ㄱ",
+    "other": "",
+    "done": "기역을 완성했네!"
+  },
+  "ko_nieun": {
+    "subject": "hangul",
+    "task": "write",
+    "order": "니은을 손가락으로 써 볼까?",
+    "target": "ㄴ",
+    "sample": "ㄴ",
+    "other": "",
+    "done": "니은을 완성했네!"
+  },
+  "ko_eu": {
+    "subject": "hangul",
+    "task": "write",
+    "order": "으의 모음, 가로선을 그려 봐.",
+    "target": "ㅡ",
+    "sample": "ㅡ",
+    "other": "",
+    "done": "가로로 쓱! 잘 썼어."
+  },
+  "en_apple": {
+    "subject": "english",
+    "task": "listen_picture",
+    "order": "Find the apple!",
+    "target": "apple",
+    "sample": "apple",
+    "other": "banana",
+    "done": "An apple!"
+  },
+  "en_banana": {
+    "subject": "english",
+    "task": "listen_picture",
+    "order": "Find the banana!",
+    "target": "banana",
+    "sample": "banana",
+    "other": "pear",
+    "done": "A banana!"
+  },
+  "en_orange": {
+    "subject": "english",
+    "task": "label",
+    "order": "Find the word orange.",
+    "target": "orange",
+    "sample": "orange",
+    "other": "pear",
+    "done": "Orange!"
+  },
+  "en_pear": {
+    "subject": "english",
+    "task": "label",
+    "order": "Find the word pear.",
+    "target": "pear",
+    "sample": "pear",
+    "other": "apple",
+    "done": "Pear!"
+  },
+  "en_l": {
+    "subject": "english",
+    "task": "write",
+    "order": "Trace the letter L.",
+    "target": "L",
+    "sample": "L",
+    "other": "",
+    "done": "You made an L!"
+  },
+  "en_c": {
+    "subject": "english",
+    "task": "write",
+    "order": "Trace the letter C.",
+    "target": "C",
+    "sample": "C",
+    "other": "",
+    "done": "You made a C!"
+  },
+  "en_i": {
+    "subject": "english",
+    "task": "write",
+    "order": "Trace the letter I.",
+    "target": "I",
+    "sample": "I",
+    "other": "",
+    "done": "You made an I!"
+  },
+  "num_two": {
+    "subject": "numbers",
+    "task": "quantity",
+    "order": "사과가 몇 개인지 골라 줘.",
+    "target": "2",
+    "sample": "2",
+    "other": "3",
+    "done": "사과 두 개!"
+  },
+  "num_three": {
+    "subject": "numbers",
+    "task": "quantity",
+    "order": "사과를 세어 볼까?",
+    "target": "3",
+    "sample": "3",
+    "other": "2",
+    "done": "사과 세 개!"
+  },
+  "num_one_set": {
+    "subject": "numbers",
+    "task": "set",
+    "order": "한 개가 있는 카드를 찾아봐.",
+    "target": "1",
+    "sample": "1",
+    "other": "2",
+    "done": "딱 한 개야!"
+  },
+  "num_three_set": {
+    "subject": "numbers",
+    "task": "set",
+    "order": "세 개가 있는 카드를 찾아봐.",
+    "target": "3",
+    "sample": "3",
+    "other": "1",
+    "done": "딱 세 개야!"
+  },
+  "num_one": {
+    "subject": "numbers",
+    "task": "write",
+    "order": "숫자 일을 따라 써 볼까?",
+    "target": "1",
+    "sample": "1",
+    "other": "",
+    "done": "숫자 일, 완성!"
+  },
+  "num_two_write": {
+    "subject": "numbers",
+    "task": "write",
+    "order": "숫자 이를 따라 써 볼까?",
+    "target": "2",
+    "sample": "2",
+    "other": "",
+    "done": "숫자 이, 완성!"
+  },
+  "num_three_write": {
+    "subject": "numbers",
+    "task": "write",
+    "order": "숫자 삼을 따라 써 볼까?",
+    "target": "3",
+    "sample": "3",
+    "other": "",
+    "done": "숫자 삼, 완성!"
+  }
+}

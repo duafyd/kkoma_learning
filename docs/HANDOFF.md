@@ -1,12 +1,16 @@
 # 꼬마런닝 · 완성본 개발 인수인계
 
-**2026-11-28 · 현재 단계는 1.0 기획·작업 장부 작성 완료, 본개발 1단계 착수 전입니다.** 저장소는 `duafyd/kkoma_learning`, 원격 작업 브랜치는 `prototype/worksheet`입니다. 마지막으로 검증한 실행 소스와 APK는 [0.5 커밋](https://github.com/duafyd/kkoma_learning/commit/69adbe67e6316f19e40893488b8aefaa961aba1b)입니다. 이번 갱신은 기획 문서입니다.
+**2026-11-28 · 현재 APK는 Godot 0.6입니다.** 저장소는 `duafyd/kkoma_learning`, 작업 브랜치는 `prototype/worksheet`입니다.
 
-1. [완성본 제작 계획](PRODUCTION_PLAN.md)의 작업 장부와 첫 개발 묶음을 읽습니다. **다음 작업은 연령 설정·동네·두 가게·주문 데이터·0.5 저장 변환을 한 흐름으로 구현하는 것**입니다.
-2. [80개 주문 원고](ORDER_CATALOG.md)에서 사용할 ID를 고르고, [출시 명세](RELEASE_SPEC.md)의 화면·편성 규칙과 [제품 기획](PRODUCT_PLAN.md)의 연령별 목표를 따릅니다.
-3. 아래 Godot 실행 경로와 검증 기록을 출발점으로 삼습니다. 현재 APK는 만 4세 과일 가게 한 판입니다. 빵집·네 연령·모드 전환은 본개발 범위입니다. 실기기 관찰은 아직 남아 있습니다.
+- 첫 화면의 **한글 놀이 / 영어 놀이 / 숫자 놀이 / 과일 가게**는 서로 독립된 진입점입니다. 가게를 거쳐 과목에 들어가는 옛 동선은 폐기했습니다. 과목별 세 장과 따라 쓰기 전용 세 장, 가게의 혼합 다섯 장을 유지합니다. [실행 화면](preview/play-menu.jpg)
+- `godot/round.gd`는 놀이 선택·편성·모드별 저장과 돌아가기를, `subject_card.gd`와 `subject_cards.json`은 독립 과목 UI와 21개 활동 정의를 담당합니다. 세 과목 각각 이름/수량 찾기 4개와 쓰기 3개입니다. 쓰기 경로는 `trace_two.gd`에 있습니다. 과일 가게는 기존 `market.gd`, `fruit_card.gd`를 사용합니다. 가게의 여섯 대표 장면과 독립 과목 문항을 출시 원고 80개 완성으로 집계하지 않습니다.
+- `user://fruit_round.cfg`에서 0.5의 `round` 구역은 과일 가게용입니다. 독립 과목은 과목 키와 일반/쓰기 구역에 각각 기록하고, 어떤 모드로 이어갈지 따로 저장합니다. 소리 설정은 `preferences.cfg`로 공통입니다.
+- 검증은 리소스를 가져온 뒤 `res://tests/subject_routes.gd`, `res://tests/round_flow.gd`, `res://tests/tap_flow.gd`를 각각 headless로 실행합니다. 새 테스트는 0.5 저장 복원, 독립 진도, 모드 전환, 세 과목의 일반·쓰기 완주와 재실행을 확인합니다. 수동 검토에서는 첫 화면에서 과목마다 바로 진입하고 갤럭시탭에서 손가락 크기·음량을 확인합니다.
+- 다음 개발은 [1.0 작업 장부](PRODUCTION_PLAN.md)의 연령 설정·콘텐츠 카탈로그·빵집 연결입니다. 현재 활동은 만 4세 대표 수준이고 연령별 분기와 빵집은 출시 제작 범위입니다. [80개 주문 원고](ORDER_CATALOG.md) · [출시 명세](RELEASE_SPEC.md)
 
-새 채팅에 붙여 넣을 문장 — **duafyd/kkoma_learning의 prototype/worksheet 최신 브랜치에서 docs/HANDOFF.md와 docs/PRODUCTION_PLAN.md를 읽고, 장부의 다음 작업부터 완성본 개발을 이어가.**
+0.6 검증 결과는 세 회귀 검사 각각 실패 0건, 모의 화면 터치로 영어 L 직접 쓰기 완료입니다. APK SHA-256은 `9ad44652cbd913d78ed097c1aedf7c4f48afba0c94691775a126e733741440d7`입니다.
+
+새 채팅에서는 **duafyd/kkoma_learning의 prototype/worksheet 최신 브랜치에서 docs/HANDOFF.md와 docs/PRODUCTION_PLAN.md를 읽고 장부의 다음 작업부터 이어가**라고 요청하면 됩니다.
 
 ## 0.5 재현
 
@@ -20,7 +24,7 @@ godot --headless --path godot --script res://tests/tap_flow.gd
 
 0.5에서 두 실행 검사는 각각 실패 0건이었습니다. 모의 화면 터치로 숫자 2를 직접 완성했고, 원격 APK를 다시 받아 로컬 산출물과 바이트 일치 및 서명을 확인했습니다. APK SHA-256은 `ea86d365ff36f33c9938faef7e3b5b0f319bd390ae19db2e66d1cfdca2040ccc`입니다. [검증된 APK](https://raw.githubusercontent.com/duafyd/kkoma_learning/69adbe67e6316f19e40893488b8aefaa961aba1b/trial/momo-apple-arm64.apk)
 
-## 이어서 작업할 때
+## 이전 버전 · 0.5 과일 가게 개발 기록
 
 - `godot/project.godot`의 시작 장면은 `round.tscn`입니다. `round.gd`가 입구·편성·저장·멈춤·진열대를 연결합니다. `market.tscn`은 기존 사과 담기, `fruit_card.gd`는 새 과목, `trace_two.gd`는 한 손가락 쓰기를 담당합니다.
 - [여섯 장면 콘티](FRUIT_ROUND.md)를 기준으로 만 4세 대표 활동을 제작했습니다. 첫 판에는 사과 담기가 나오고 다음 판에는 숫자 2 쓰기가 나옵니다. 이후 판도 두 수학 활동을 교대합니다. 현재 각 영역의 대표 문항은 고정이고 과목 순서와 보기 배치가 바뀝니다.

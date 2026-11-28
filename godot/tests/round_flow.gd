@@ -97,8 +97,8 @@ func run() -> void:
 	audio_path = "user://test_audio_" + suffix + ".cfg"
 	launch()
 	await process_frame
-	check(game.at_home, "Missing entrance")
-	tap(game.page.get_node("Replay"))
+	check(game.at_home and game.page.route_buttons.size() == 4, "Missing four choices")
+	tap(game.page.route_buttons.shop)
 	check(game.deck == game.FIRST and game.page.sound_on and game.page.get_node("Voice").playing, "First launch order or voice")
 	tap(game.pause_button)
 	check(paused and game.menu.visible, "Pause overlay")
@@ -113,7 +113,7 @@ func run() -> void:
 			await process_frame
 			launch()
 			await process_frame
-			tap(game.page.get_node("Replay"))
+			tap(game.page.route_buttons.shop)
 			check(game.index == 1 and game.deck == first, "Restart lost progress")
 		else:
 			tap(game.page.get_node("Replay"))
@@ -132,8 +132,8 @@ func run() -> void:
 	tap(game.menu.get_child(1))
 	check(game.index == 1 and game.results[0].outcome == "skipped", "Skip counted as direct")
 	game.enter_home()
-	check(game.at_home and game.page.get_node("Replay").text.contains("이어서"), "Entrance should offer resume")
-	tap(game.page.get_node("Replay"))
+	check(game.at_home and game.page.route_buttons.shop.text.contains("이어서"), "Entrance should offer resume")
+	tap(game.page.route_buttons.shop)
 	check(game.index == 1 and not game.at_home, "Entrance resume failed")
 	game.queue_free()
 	await process_frame
