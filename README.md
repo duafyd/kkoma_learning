@@ -1,12 +1,12 @@
 # 꼬마런닝 · 오늘의 가게
 
-만 2~5세 아이가 모모와 과일 가게·빵집을 운영하며 한글·영어·수학·관찰·규칙을 배우는 갤럭시탭용 오프라인 학습 앱입니다. Godot 0.7에서 네 연령과 두 가게의 전체 학습 콘텐츠를 플레이할 수 있습니다.
+만 2~5세 아이가 모모와 과일 가게·빵집을 운영하며 한글·영어·수학·관찰·규칙을 배우는 갤럭시탭용 오프라인 학습 앱입니다. 1.0 후보에서 네 연령과 두 가게의 128개 활동을 플레이할 수 있습니다.
 
 **새 채팅·다른 모델의 시작점**은 [현재 상태와 인수인계](docs/HANDOFF.md)입니다. [1.0 완성본 제작 계획](docs/PRODUCTION_PLAN.md) · [80개 기본 주문 원고](docs/ORDER_CATALOG.md) · [제품 기획](docs/PRODUCT_PLAN.md) · [과일 가게 콘티](docs/FRUIT_ROUND.md)
 
 ## 갤럭시탭에서 놀이 고르기
 
-[0.7 APK 받기 · 갤럭시탭 arm64](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/trial/momo-apple-arm64.apk) · [놀이마당](docs/preview/play-menu-07.jpg) · [빵집](docs/preview/bakery-07.jpg) · [한글 따라 쓰기](docs/preview/writing-07.jpg)
+[1.0-rc1 APK 받기 · 갤럭시탭 arm64](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/trial/momo-apple-arm64.apk) · [놀이마당](docs/preview/play-menu-07.jpg) · [빵집](docs/preview/bakery-07.jpg) · [한글 따라 쓰기](docs/preview/writing-07.jpg)
 
 처음에는 보호자가 만 2~5세 중 아이의 연령을 선택합니다. 놀이마당에서 그림 버튼 하나를 누르면 해당 놀이가 열립니다.
 
@@ -22,7 +22,7 @@
 
 처음에는 모모의 A 음성과 효과음이 켜져 있습니다. 소리를 끄면 듣고 고르는 장에서 그림 단서를 볼 수 있고, 다음 실행에도 선택을 기억합니다. 보호자 메뉴에서 나이와 최근 놀이 기록을 볼 수 있습니다. 나이를 바꾸면 시작하는 다음 판부터 적용합니다.
 
-Godot 4.7.2에서 [godot/project.godot](godot/project.godot)을 가져와 **F5(프로젝트 실행)** 로 시작합니다. Android 시험판은 arm64 디버그 빌드이며 앱 ID는 `org.kkoma.prototype.applemarket`입니다.
+Godot 4.7.2에서 [godot/project.godot](godot/project.godot)을 가져와 **F5(프로젝트 실행)** 로 시작합니다. 설치·업데이트와 재빌드 방법은 [Android 배포 안내](docs/ANDROID_RELEASE.md)에 있습니다.
 
 ## 이전 브라우저 실험판 실행
 

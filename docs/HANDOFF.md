@@ -1,13 +1,14 @@
 # 꼬마런닝 · 완성본 개발 인수인계
 
-**2026-11-28 · Godot 0.7 기기 검토용 APK** · 저장소 `duafyd/kkoma_learning` · 브랜치 `prototype/worksheet`
+**2026-11-28 · Godot 1.0-rc1 직접 설치용 APK** · 저장소 `duafyd/kkoma_learning` · 브랜치 `prototype/worksheet`
 
 - **실행 범위**는 연령 첫 설정·보호자 최근 활동, 독립 한글·영어·숫자와 쓰기 전용 모드, 과일 가게·빵집, 이어하기·마무리 진열대입니다. 첫 실행은 음성과 효과음 켜짐입니다. 갤럭시탭 가로에서 한 손가락으로 조작합니다. [놀이마당](preview/play-menu-07.jpg) · [빵집](preview/bakery-07.jpg) · [한글 쓰기](preview/writing-07.jpg)
 - **콘텐츠**는 `godot/activity_catalog.json`에 기본 가게 주문 80개, 연령별 따라 쓰기 36개, 독립 과목 추가 활동 12개가 있습니다. `catalog_card.gd`에서 보기, 담기, 배열, 시각 도움, 완료 피드백을 구현합니다. `trace_two.gd`의 경로는 여러 획을 순서대로 진행합니다. 대사는 `sound/catalog`의 오프라인 A 합성음이며 주문 정의의 `voice`로 연결합니다. 중복 대사는 클립을 공유합니다.
 - **진입·편성**은 `round.tscn`과 `round.gd`, `round_deck.gd`가 담당합니다. 연령을 바꾸면 진행 중인 판은 그 판의 연령으로 마치고 다음 판부터 새 설정이 적용됩니다. 가게는 다섯 영역을 한 번씩 제시하며 쓰기는 최대 한 장입니다. 최근 제시한 문항과 도움을 받은 문항의 유사 목표를 다음 편성에 사용합니다.
 - **호환**은 `user://fruit_round.cfg`의 기존 0.5/0.6 덱을 완료할 때까지 원래 장면으로 처리하고 새 판부터 카탈로그를 사용합니다. 놀이와 일반/쓰기 모드는 진도를 따로 저장합니다. `preferences.cfg`는 기존 음소거 설정을 읽습니다.
-- **검증**은 아래 명령으로 재현합니다. 카탈로그 검사는 128개 활동의 시작 음성·오답·힌트·완료와 두 가게 편성을 확인하고, 나머지는 기존 사과 조작·과목별 왕복·이전 저장을 검증합니다. 스토어 배포용 서명과 아동 대상 갤럭시탭 실기 관찰은 후속 검토입니다.
-- **다음 작업**은 [작업 장부](PRODUCTION_PLAN.md)의 실기기 검수입니다. 만 2~3세와 4~5세가 소리를 듣고 시작하는 곳, 손가락에 가려지는 획, 빵집 수량 조작, 오프라인 재실행을 관찰하고 막히는 장면을 수정합니다. 장면별 음성 톤과 문항 교육 검토도 이때 반영합니다.
+- **검증**은 아래 명령으로 재현합니다. 카탈로그 검사는 128개 활동의 시작 음성·오답·힌트·완료와 두 가게 편성을 확인합니다. 나머지는 사과 조작·과목별 왕복·이전 저장을 검사합니다.
+- **배포**는 [Android 배포 안내](ANDROID_RELEASE.md)에 정리했습니다. APK는 출시용 모드로 내보냈으며, 기존 테스트판과 같은 앱 ID와 테스트 인증서를 사용합니다. 검사용 스크립트를 제외했고 새 모모 런처 아이콘을 넣었습니다. Android 매니페스트에서 외부 네트워크 권한 요청과 디버그 플래그가 없는 것을 확인했습니다.
+- **이후 검수**는 실제 갤럭시탭 설치·업데이트, 두 연령대 사용성, 음성 볼륨입니다. 사용자 요청에 따라 기기에서 발견한 문제는 후보 인도 뒤 수정합니다. 스토어 공개 배포에는 등록 주체, 배포 인증서와 AAB가 필요합니다.
 
 ```sh
 godot --headless --editor --path godot --import
@@ -17,7 +18,7 @@ godot --headless --path godot --script res://tests/round_flow.gd
 godot --headless --path godot --script res://tests/tap_flow.gd
 ```
 
-0.7의 회귀 검사 네 종은 실패 0건입니다. 서명은 0.6 APK와 일치합니다. 원격 APK를 다시 받아 SHA-256을 대조했고, APK의 `assets/` 아래를 별도 Godot ZIP 팩으로 열어 128개 카탈로그 검사도 실패 0건으로 완료했습니다. 이 검사는 패키지 리소스와 실행 코드를 확인하며 Android 실기기 설치 기록은 앞으로 추가합니다. APK SHA-256은 `a758963dd5ab800c8c601ecadff1ce57557fe6765c5dc2c7935ae857c15d9048`입니다.
+1.0-rc1에서 회귀 검사 네 종은 실패 0건입니다. APK의 실제 리소스를 Godot에서 열어 실행한 128개 활동 검사도 실패 0건입니다. APK의 버전 코드는 8, 아키텍처는 arm64-v8a, Android 최소 SDK는 24, 대상 SDK는 36입니다. SHA-256은 `0cb9baa7180570e4032f8de13fb59cf874abf1bfa82c053663504d06fd58fba4`이고, 기존 설치본과 일치하는 인증서 SHA-256은 `f21b2a389e5f5ea5223bef6c4e3d80a88d0c74aa5445cdda64b4d394b946e256`입니다. [후보 APK](https://raw.githubusercontent.com/duafyd/kkoma_learning/prototype/worksheet/trial/momo-apple-arm64.apk)
 
 새 채팅에서는 **duafyd/kkoma_learning의 prototype/worksheet 최신 브랜치에서 docs/HANDOFF.md와 docs/PRODUCTION_PLAN.md를 읽고 1.0을 이어가**라고 요청하면 됩니다.
 

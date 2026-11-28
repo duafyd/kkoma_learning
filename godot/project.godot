@@ -4,7 +4,7 @@ config_version=5
 config/name="꼬마런닝 · 모모의 사과 주문"
 run/main_scene="res://round.tscn"
 config/features=PackedStringArray("4.7","GL Compatibility")
-config/icon="res://art/apple.svg"
+config/icon="res://art/launcher.png"
 
 [display]
 window/size/viewport_width=1280
