@@ -1,0 +1,1561 @@
+{
+  "F2-K1": {
+    "task": "match",
+    "order": "같은 그림을 찾아볼까?",
+    "target": "apple",
+    "choices": [
+      "apple",
+      "pear"
+    ],
+    "sample": "apple",
+    "voice": "F2-K1"
+  },
+  "F2-K2": {
+    "task": "trace",
+    "order": "이름표에 길을 그어 볼까?",
+    "target": "—",
+    "item": "apple",
+    "count": 0,
+    "voice": "F2-K2"
+  },
+  "F2-E1": {
+    "task": "match",
+    "order": "Banana, please!",
+    "target": "banana",
+    "choices": [
+      "banana",
+      "pear"
+    ],
+    "sample": "banana",
+    "lang": "en",
+    "voice": "F2-E1"
+  },
+  "F2-E2": {
+    "task": "trace",
+    "order": "Follow the round line!",
+    "target": "◯",
+    "item": "orange",
+    "count": 0,
+    "lang": "en",
+    "voice": "F2-E2"
+  },
+  "F2-M1": {
+    "task": "fill",
+    "order": "배 하나만 담아 줘.",
+    "target": 1,
+    "item": "pear",
+    "start": 0,
+    "available": 1,
+    "vessel": "바구니",
+    "voice": "F2-M1"
+  },
+  "F2-M2": {
+    "task": "dots",
+    "order": "사과 한 개에 점을 찍어 봐.",
+    "target": 1,
+    "item": "apple",
+    "start": 0,
+    "voice": "F2-M2"
+  },
+  "F2-O1": {
+    "task": "match",
+    "order": "같은 모양을 찾아 줘.",
+    "target": "pear",
+    "choices": [
+      "pear",
+      "banana"
+    ],
+    "sample": "pear",
+    "voice": "F2-O1"
+  },
+  "F2-O2": {
+    "task": "match",
+    "order": "견본과 같은 물건이 있는 상자를 골라 봐.",
+    "target": "apple",
+    "choices": [
+      "apple",
+      "pear"
+    ],
+    "sample": "apple",
+    "voice": "F2-O2"
+  },
+  "F2-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "pear",
+    "row": [
+      "pear",
+      "pear"
+    ],
+    "choices": [
+      "pear",
+      "apple"
+    ],
+    "voice": "F2-P1"
+  },
+  "F2-P2": {
+    "task": "match_row",
+    "order": "견본과 같은 줄을 골라 줘.",
+    "target": [
+      "apple",
+      "apple"
+    ],
+    "row": [
+      "apple",
+      "apple"
+    ],
+    "choices": [
+      [
+        "apple",
+        "apple"
+      ],
+      [
+        "pear",
+        "pear"
+      ]
+    ],
+    "voice": "F2-P2"
+  },
+  "F3-K1": {
+    "task": "listen",
+    "order": "배를 줄래?",
+    "target": "pear",
+    "choices": [
+      "pear",
+      "orange"
+    ],
+    "sample": null,
+    "voice": "F3-K1"
+  },
+  "F3-K2": {
+    "task": "trace",
+    "order": "이름표에 선을 그어 줄래?",
+    "target": "ㅡ",
+    "item": "apple",
+    "count": 0,
+    "voice": "F3-K2"
+  },
+  "F3-E1": {
+    "task": "listen",
+    "order": "Apple, please!",
+    "target": "apple",
+    "choices": [
+      "apple",
+      "pear"
+    ],
+    "sample": null,
+    "lang": "en",
+    "voice": "F3-E1"
+  },
+  "F3-E2": {
+    "task": "trace",
+    "order": "Follow the curved line!",
+    "target": "⌒",
+    "item": "banana",
+    "count": 0,
+    "lang": "en",
+    "voice": "F3-E2"
+  },
+  "F3-M1": {
+    "task": "fill",
+    "order": "사과 세 개를 담아 줘.",
+    "target": 3,
+    "item": "apple",
+    "start": 0,
+    "available": 4,
+    "vessel": "바구니",
+    "voice": "F3-M1"
+  },
+  "F3-M2": {
+    "task": "trace",
+    "order": "배 한 개야. 숫자를 써 줘.",
+    "target": "1",
+    "item": "pear",
+    "count": 1,
+    "voice": "F3-M2"
+  },
+  "F3-O1": {
+    "task": "observe",
+    "order": "이 조각의 과일은 뭘까?",
+    "target": "orange",
+    "choices": [
+      "orange",
+      "banana"
+    ],
+    "sample": "orange_half",
+    "voice": "F3-O1"
+  },
+  "F3-O2": {
+    "task": "layout",
+    "order": "견본처럼 자리를 채워 줘.",
+    "target": [
+      "banana",
+      "apple"
+    ],
+    "row": [
+      "banana",
+      "apple"
+    ],
+    "choices": [
+      "banana",
+      "apple"
+    ],
+    "vertical": true,
+    "voice": "F3-O2"
+  },
+  "F3-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "pear",
+    "row": [
+      "apple",
+      "pear",
+      "apple"
+    ],
+    "choices": [
+      "pear",
+      "apple"
+    ],
+    "voice": "F2-P1"
+  },
+  "F3-P2": {
+    "task": "match_row",
+    "order": "견본과 같은 줄을 골라 줘.",
+    "target": [
+      "pear",
+      "apple"
+    ],
+    "row": [
+      "pear",
+      "apple"
+    ],
+    "choices": [
+      [
+        "pear",
+        "apple"
+      ],
+      [
+        "apple",
+        "pear"
+      ]
+    ],
+    "voice": "F2-P2"
+  },
+  "F4-K1": {
+    "task": "label",
+    "order": "배 이름표를 달아 줄래?",
+    "target": "배",
+    "choices": [
+      "배",
+      "사과"
+    ],
+    "sample": "pear",
+    "voice": "F4-K1"
+  },
+  "F4-K2": {
+    "task": "trace",
+    "order": "감은 기역으로 시작해. 기역을 써 볼까?",
+    "target": "ㄱ",
+    "item": "persimmon",
+    "count": 0,
+    "voice": "F4-K2"
+  },
+  "F4-E1": {
+    "task": "listen",
+    "order": "Banana, please!",
+    "target": "banana",
+    "choices": [
+      "banana",
+      "pear"
+    ],
+    "sample": null,
+    "lang": "en",
+    "voice": "F2-E1"
+  },
+  "F4-E2": {
+    "task": "trace",
+    "order": "Trace the letter O.",
+    "target": "O",
+    "item": "orange",
+    "count": 0,
+    "lang": "en",
+    "voice": "F4-E2"
+  },
+  "F4-M1": {
+    "task": "fill",
+    "order": "사과 두 개를 담아 줘!",
+    "target": 2,
+    "item": "apple",
+    "start": 0,
+    "available": 3,
+    "vessel": "바구니",
+    "voice": "F4-M1"
+  },
+  "F4-M2": {
+    "task": "trace",
+    "order": "사과 두 개야. 숫자를 써 줘.",
+    "target": "2",
+    "item": "apple",
+    "count": 2,
+    "voice": "F4-M2"
+  },
+  "F4-O1": {
+    "task": "observe",
+    "order": "이 조각의 과일은 뭘까?",
+    "target": "orange",
+    "choices": [
+      "orange",
+      "banana"
+    ],
+    "sample": "slice",
+    "voice": "F3-O1"
+  },
+  "F4-O2": {
+    "task": "layout",
+    "order": "견본처럼 자리를 채워 줘.",
+    "target": [
+      "pear",
+      "apple"
+    ],
+    "row": [
+      "pear",
+      "apple"
+    ],
+    "choices": [
+      "pear",
+      "apple"
+    ],
+    "vertical": false,
+    "voice": "F3-O2"
+  },
+  "F4-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "pear",
+    "row": [
+      "apple",
+      "pear",
+      "apple",
+      "pear",
+      "apple"
+    ],
+    "choices": [
+      "pear",
+      "apple"
+    ],
+    "voice": "F2-P1"
+  },
+  "F4-P2": {
+    "task": "match_row",
+    "order": "견본과 같은 줄을 골라 줘.",
+    "target": [
+      "pear",
+      "pear",
+      "apple",
+      "pear",
+      "pear",
+      "apple"
+    ],
+    "row": [
+      "pear",
+      "pear",
+      "apple",
+      "pear",
+      "pear",
+      "apple"
+    ],
+    "choices": [
+      [
+        "pear",
+        "pear",
+        "apple",
+        "pear",
+        "pear",
+        "apple"
+      ],
+      [
+        "pear",
+        "apple",
+        "pear",
+        "pear",
+        "apple",
+        "pear"
+      ]
+    ],
+    "voice": "F2-P2"
+  },
+  "F5-K1": {
+    "task": "bundles",
+    "order": "배이 몇 개 필요한지 주문표를 보고 골라 봐.",
+    "target": [
+      "pear",
+      2
+    ],
+    "choices": [
+      [
+        "pear",
+        2
+      ],
+      [
+        "apple",
+        2
+      ],
+      [
+        "pear",
+        1
+      ]
+    ],
+    "sample": "배 두 개",
+    "voice": "F5-K1"
+  },
+  "F5-K2": {
+    "task": "trace",
+    "order": "배 상자에 배를 써 줄래?",
+    "target": "배",
+    "item": "pear",
+    "count": 0,
+    "voice": "F5-K2"
+  },
+  "F5-E1": {
+    "task": "listen_bundles",
+    "order": "Two apples, please!",
+    "target": [
+      "apple",
+      2
+    ],
+    "choices": [
+      [
+        "apple",
+        2
+      ],
+      [
+        "apple",
+        1
+      ],
+      [
+        "pear",
+        2
+      ]
+    ],
+    "sample": null,
+    "lang": "en",
+    "voice": "F5-E1"
+  },
+  "F5-E2": {
+    "task": "trace",
+    "order": "Trace the letter A.",
+    "target": "A",
+    "item": "apple",
+    "count": 0,
+    "lang": "en",
+    "voice": "F5-E2"
+  },
+  "F5-M1": {
+    "task": "fill",
+    "order": "배가 네 개가 되게 채워 줄래?",
+    "target": 4,
+    "item": "pear",
+    "start": 2,
+    "available": 3,
+    "vessel": "바구니",
+    "voice": "F5-M1"
+  },
+  "F5-M2": {
+    "task": "trace",
+    "order": "배 다섯 개야. 숫자를 써 줘.",
+    "target": "5",
+    "item": "pear",
+    "count": 5,
+    "voice": "F5-M2"
+  },
+  "F5-O1": {
+    "task": "observe",
+    "order": "이 조각의 과일은 뭘까?",
+    "target": "apple",
+    "choices": [
+      "apple",
+      "orange",
+      "banana"
+    ],
+    "sample": "apple_cut",
+    "voice": "F3-O1"
+  },
+  "F5-O2": {
+    "task": "layout",
+    "order": "견본처럼 자리를 채워 줘.",
+    "target": [
+      "pear",
+      "banana",
+      "apple"
+    ],
+    "row": [
+      "pear",
+      "banana",
+      "apple"
+    ],
+    "choices": [
+      "pear",
+      "banana",
+      "apple"
+    ],
+    "vertical": false,
+    "voice": "F3-O2"
+  },
+  "F5-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "pear",
+    "row": [
+      "apple",
+      "apple",
+      "pear",
+      "apple",
+      "apple"
+    ],
+    "choices": [
+      "pear",
+      "apple"
+    ],
+    "voice": "F2-P1"
+  },
+  "F5-P2": {
+    "task": "repair",
+    "order": "바뀐 칸을 찾고 제자리에 놓아 줘.",
+    "target": "apple",
+    "row": [
+      "pear",
+      "apple",
+      "tangerine"
+    ],
+    "broken": [
+      "pear",
+      "tangerine",
+      "tangerine"
+    ],
+    "position": 1,
+    "choices": [
+      "apple",
+      "tangerine"
+    ],
+    "voice": "F5-P2"
+  },
+  "B2-K1": {
+    "task": "match",
+    "order": "같은 그림을 찾아볼까?",
+    "target": "toast",
+    "choices": [
+      "toast",
+      "donut"
+    ],
+    "sample": "toast",
+    "voice": "F2-K1"
+  },
+  "B2-K2": {
+    "task": "trace",
+    "order": "이름표에 길을 그어 볼까?",
+    "target": "—",
+    "item": "toast",
+    "count": 0,
+    "voice": "F2-K2"
+  },
+  "B2-E1": {
+    "task": "match",
+    "order": "Cookie, please!",
+    "target": "cookie",
+    "choices": [
+      "cookie",
+      "donut"
+    ],
+    "sample": "cookie",
+    "lang": "en",
+    "voice": "B2-E1"
+  },
+  "B2-E2": {
+    "task": "trace",
+    "order": "Follow the round line!",
+    "target": "◯",
+    "item": "donut",
+    "count": 0,
+    "lang": "en",
+    "voice": "F2-E2"
+  },
+  "B2-M1": {
+    "task": "fill",
+    "order": "빵 하나 담아 줘.",
+    "target": 1,
+    "item": "toast",
+    "start": 0,
+    "available": 1,
+    "vessel": "봉투",
+    "voice": "B2-M1"
+  },
+  "B2-M2": {
+    "task": "dots",
+    "order": "쿠키 두 개에 점을 찍어 봐.",
+    "target": 2,
+    "item": "cookie",
+    "start": 0,
+    "voice": "B2-M2"
+  },
+  "B2-O1": {
+    "task": "match",
+    "order": "같은 모양을 찾아 줘.",
+    "target": "donut",
+    "choices": [
+      "donut",
+      "toast"
+    ],
+    "sample": "donut",
+    "voice": "F2-O1"
+  },
+  "B2-O2": {
+    "task": "match",
+    "order": "견본과 같은 물건이 있는 상자를 골라 봐.",
+    "target": "toast",
+    "choices": [
+      "toast",
+      "donut"
+    ],
+    "sample": "toast",
+    "voice": "F2-O2"
+  },
+  "B2-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "round_cookie",
+    "row": [
+      "round_cookie",
+      "round_cookie"
+    ],
+    "choices": [
+      "round_cookie",
+      "star_cookie"
+    ],
+    "voice": "F2-P1"
+  },
+  "B2-P2": {
+    "task": "match_row",
+    "order": "견본과 같은 줄을 골라 줘.",
+    "target": [
+      "star_cookie",
+      "star_cookie"
+    ],
+    "row": [
+      "star_cookie",
+      "star_cookie"
+    ],
+    "choices": [
+      [
+        "star_cookie",
+        "star_cookie"
+      ],
+      [
+        "round_cookie",
+        "round_cookie"
+      ]
+    ],
+    "voice": "F2-P2"
+  },
+  "B3-K1": {
+    "task": "listen",
+    "order": "도넛을 접시에 올려 줄래?",
+    "target": "donut",
+    "choices": [
+      "donut",
+      "toast"
+    ],
+    "sample": null,
+    "voice": "B3-K1"
+  },
+  "B3-K2": {
+    "task": "trace",
+    "order": "이름표에 선을 그어 줄래?",
+    "target": "ㅣ",
+    "item": "toast",
+    "count": 0,
+    "voice": "F3-K2"
+  },
+  "B3-E1": {
+    "task": "listen",
+    "order": "Bread, please!",
+    "target": "toast",
+    "choices": [
+      "toast",
+      "donut"
+    ],
+    "sample": null,
+    "lang": "en",
+    "voice": "B3-E1"
+  },
+  "B3-E2": {
+    "task": "trace",
+    "order": "Follow the straight line!",
+    "target": "│",
+    "item": "toast",
+    "count": 0,
+    "lang": "en",
+    "voice": "B3-E2"
+  },
+  "B3-M1": {
+    "task": "fill",
+    "order": "세 개가 필요해. 하나 더 담아 줘.",
+    "target": 3,
+    "item": "cookie",
+    "start": 2,
+    "available": 2,
+    "vessel": "봉투",
+    "voice": "B3-M1"
+  },
+  "B3-M2": {
+    "task": "trace",
+    "order": "식빵 한 개야. 숫자를 써 줘.",
+    "target": "1",
+    "item": "toast",
+    "count": 1,
+    "voice": "B3-M2"
+  },
+  "B3-O1": {
+    "task": "observe",
+    "order": "어떤 빵이 이 모양과 맞을까?",
+    "target": "baguette",
+    "choices": [
+      "baguette",
+      "toast"
+    ],
+    "sample": "baguette_shadow",
+    "voice": "B3-O1"
+  },
+  "B3-O2": {
+    "task": "layout",
+    "order": "견본처럼 자리를 채워 줘.",
+    "target": [
+      "cookie"
+    ],
+    "row": [
+      "cookie"
+    ],
+    "choices": [
+      "cookie",
+      "toast"
+    ],
+    "vertical": true,
+    "voice": "F3-O2"
+  },
+  "B3-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "round_cookie",
+    "row": [
+      "star_cookie",
+      "round_cookie",
+      "star_cookie"
+    ],
+    "choices": [
+      "round_cookie",
+      "star_cookie"
+    ],
+    "voice": "F2-P1"
+  },
+  "B3-P2": {
+    "task": "match_row",
+    "order": "견본과 같은 줄을 골라 줘.",
+    "target": [
+      "round_cookie",
+      "star_cookie"
+    ],
+    "row": [
+      "round_cookie",
+      "star_cookie"
+    ],
+    "choices": [
+      [
+        "round_cookie",
+        "star_cookie"
+      ],
+      [
+        "star_cookie",
+        "round_cookie"
+      ]
+    ],
+    "voice": "F2-P2"
+  },
+  "B4-K1": {
+    "task": "label",
+    "order": "식빵에 이름표를 붙여 줄래?",
+    "target": "식빵",
+    "choices": [
+      "식빵",
+      "도넛"
+    ],
+    "sample": "toast",
+    "voice": "B4-K1"
+  },
+  "B4-K2": {
+    "task": "trace",
+    "order": "네모 쿠키에 미음을 써 볼까?",
+    "target": "ㅁ",
+    "item": "square_cookie",
+    "count": 0,
+    "voice": "B4-K2"
+  },
+  "B4-E1": {
+    "task": "listen",
+    "order": "Cookie, please!",
+    "target": "cookie",
+    "choices": [
+      "cookie",
+      "donut"
+    ],
+    "sample": null,
+    "lang": "en",
+    "voice": "B2-E1"
+  },
+  "B4-E2": {
+    "task": "trace",
+    "order": "Trace the letter L.",
+    "target": "L",
+    "item": "cake",
+    "count": 0,
+    "lang": "en",
+    "voice": "B4-E2"
+  },
+  "B4-M1": {
+    "task": "fill",
+    "order": "빵 네 개를 포장해 줘.",
+    "target": 4,
+    "item": "toast",
+    "start": 1,
+    "available": 4,
+    "vessel": "봉투",
+    "voice": "B4-M1"
+  },
+  "B4-M2": {
+    "task": "trace",
+    "order": "쿠키 세 개야. 숫자를 써 줘.",
+    "target": "3",
+    "item": "cookie",
+    "count": 3,
+    "voice": "B4-M2"
+  },
+  "B4-O1": {
+    "task": "observe",
+    "order": "어떤 빵이 이 모양과 맞을까?",
+    "target": "donut",
+    "choices": [
+      "donut",
+      "toast"
+    ],
+    "sample": "donut_shadow",
+    "voice": "B3-O1"
+  },
+  "B4-O2": {
+    "task": "layout",
+    "order": "견본처럼 자리를 채워 줘.",
+    "target": [
+      "baguette",
+      "donut"
+    ],
+    "row": [
+      "baguette",
+      "donut"
+    ],
+    "choices": [
+      "baguette",
+      "donut"
+    ],
+    "vertical": false,
+    "voice": "F3-O2"
+  },
+  "B4-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "star_cookie",
+    "row": [
+      "star_cookie",
+      "round_cookie",
+      "star_cookie",
+      "round_cookie"
+    ],
+    "choices": [
+      "star_cookie",
+      "round_cookie"
+    ],
+    "voice": "F2-P1"
+  },
+  "B4-P2": {
+    "task": "repair",
+    "order": "바뀐 칸을 찾고 제자리에 놓아 줘.",
+    "target": "star_cookie",
+    "row": [
+      "star_cookie",
+      "round_cookie",
+      "star_cookie",
+      "round_cookie"
+    ],
+    "broken": [
+      "star_cookie",
+      "round_cookie",
+      "round_cookie",
+      "round_cookie"
+    ],
+    "position": 2,
+    "choices": [
+      "star_cookie",
+      "round_cookie"
+    ],
+    "voice": "F5-P2"
+  },
+  "B5-K1": {
+    "task": "bundles",
+    "order": "쿠키가 몇 개 필요한지 주문표를 보고 골라 봐.",
+    "target": [
+      "cookie",
+      3
+    ],
+    "choices": [
+      [
+        "cookie",
+        3
+      ],
+      [
+        "donut",
+        3
+      ],
+      [
+        "cookie",
+        2
+      ]
+    ],
+    "sample": "쿠키 세 개",
+    "voice": "B5-K1"
+  },
+  "B5-K2": {
+    "task": "trace",
+    "order": "빵집 간판에 빵을 써 줘.",
+    "target": "빵",
+    "item": "toast",
+    "count": 0,
+    "voice": "B5-K2"
+  },
+  "B5-E1": {
+    "task": "listen_bundles",
+    "order": "Two cookies, please!",
+    "target": [
+      "cookie",
+      2
+    ],
+    "choices": [
+      [
+        "cookie",
+        2
+      ],
+      [
+        "cookie",
+        1
+      ],
+      [
+        "donut",
+        2
+      ]
+    ],
+    "sample": null,
+    "lang": "en",
+    "voice": "B5-E1"
+  },
+  "B5-E2": {
+    "task": "trace",
+    "order": "Trace the letter B.",
+    "target": "B",
+    "item": "toast",
+    "count": 0,
+    "lang": "en",
+    "voice": "B5-E2"
+  },
+  "B5-M1": {
+    "task": "fill",
+    "order": "다섯 개 중 두 개를 작은 봉투에 넣어 줘.",
+    "target": 2,
+    "item": "cookie",
+    "start": 0,
+    "available": 5,
+    "vessel": "봉투",
+    "voice": "B5-M1"
+  },
+  "B5-M2": {
+    "task": "trace",
+    "order": "도넛 네 개야. 숫자를 써 줘.",
+    "target": "4",
+    "item": "donut",
+    "count": 4,
+    "voice": "B5-M2"
+  },
+  "B5-O1": {
+    "task": "observe",
+    "order": "어떤 빵이 이 모양과 맞을까?",
+    "target": "baguette",
+    "choices": [
+      "baguette",
+      "toast",
+      "donut"
+    ],
+    "sample": "baguette_cut",
+    "voice": "B3-O1"
+  },
+  "B5-O2": {
+    "task": "layout",
+    "order": "견본처럼 자리를 채워 줘.",
+    "target": [
+      "toast",
+      "donut",
+      "cookie"
+    ],
+    "row": [
+      "toast",
+      "donut",
+      "cookie"
+    ],
+    "choices": [
+      "toast",
+      "donut",
+      "cookie"
+    ],
+    "vertical": false,
+    "voice": "F3-O2"
+  },
+  "B5-P1": {
+    "task": "pattern",
+    "order": "빈칸에 어떤 것이 올까?",
+    "target": "round_cookie",
+    "row": [
+      "star_cookie",
+      "star_cookie",
+      "round_cookie",
+      "star_cookie",
+      "star_cookie"
+    ],
+    "choices": [
+      "round_cookie",
+      "star_cookie"
+    ],
+    "voice": "F2-P1"
+  },
+  "B5-P2": {
+    "task": "repair",
+    "order": "바뀐 칸을 찾고 제자리에 놓아 줘.",
+    "target": "star_cookie",
+    "row": [
+      "round_cookie",
+      "star_cookie",
+      "moon_cookie"
+    ],
+    "broken": [
+      "round_cookie",
+      "moon_cookie",
+      "moon_cookie"
+    ],
+    "position": 1,
+    "choices": [
+      "star_cookie",
+      "moon_cookie"
+    ],
+    "voice": "F5-P2"
+  },
+  "W2-K1": {
+    "task": "trace",
+    "order": "가로 길 모양을 따라 그려 볼까?",
+    "target": "—",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K1"
+  },
+  "W2-K2": {
+    "task": "trace",
+    "order": "세로 길 모양을 따라 그려 볼까?",
+    "target": "│",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K2"
+  },
+  "W2-K3": {
+    "task": "trace",
+    "order": "둥근 길 모양을 따라 그려 볼까?",
+    "target": "◯",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K3"
+  },
+  "W2-E1": {
+    "task": "trace",
+    "order": "가로 길 모양을 따라 그려 볼까?",
+    "target": "—",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K1"
+  },
+  "W2-E2": {
+    "task": "trace",
+    "order": "세로 길 모양을 따라 그려 볼까?",
+    "target": "│",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K2"
+  },
+  "W2-E3": {
+    "task": "trace",
+    "order": "둥근 길 모양을 따라 그려 볼까?",
+    "target": "◯",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K3"
+  },
+  "W2-M1": {
+    "task": "trace",
+    "order": "가로 길 모양을 따라 그려 볼까?",
+    "target": "—",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K1"
+  },
+  "W2-M2": {
+    "task": "trace",
+    "order": "세로 길 모양을 따라 그려 볼까?",
+    "target": "│",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K2"
+  },
+  "W2-M3": {
+    "task": "trace",
+    "order": "둥근 길 모양을 따라 그려 볼까?",
+    "target": "◯",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K3"
+  },
+  "W3-K1": {
+    "task": "trace",
+    "order": "으의 가로선 모양을 따라 그려 볼까?",
+    "target": "ㅡ",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W3-K1"
+  },
+  "W3-K2": {
+    "task": "trace",
+    "order": "이의 세로선 모양을 따라 그려 볼까?",
+    "target": "ㅣ",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W3-K2"
+  },
+  "W3-K3": {
+    "task": "trace",
+    "order": "굽은 길 모양을 따라 그려 볼까?",
+    "target": "⌒",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W3-K3"
+  },
+  "W3-E1": {
+    "task": "trace",
+    "order": "세로 길 모양을 따라 그려 볼까?",
+    "target": "│",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K2"
+  },
+  "W3-E2": {
+    "task": "trace",
+    "order": "굽은 길 모양을 따라 그려 볼까?",
+    "target": "⌒",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W3-K3"
+  },
+  "W3-E3": {
+    "task": "trace",
+    "order": "둥근 길 모양을 따라 그려 볼까?",
+    "target": "◯",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K3"
+  },
+  "W3-M1": {
+    "task": "trace",
+    "order": "1 모양을 따라 그려 볼까?",
+    "target": "1",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W3-M1"
+  },
+  "W3-M2": {
+    "task": "trace",
+    "order": "가로 길 모양을 따라 그려 볼까?",
+    "target": "—",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W2-K1"
+  },
+  "W3-M3": {
+    "task": "trace",
+    "order": "굽은 길 모양을 따라 그려 볼까?",
+    "target": "⌒",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W3-K3"
+  },
+  "W4-K1": {
+    "task": "trace",
+    "order": "기역 모양을 따라 그려 볼까?",
+    "target": "ㄱ",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W4-K1"
+  },
+  "W4-K2": {
+    "task": "trace",
+    "order": "니은 모양을 따라 그려 볼까?",
+    "target": "ㄴ",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W4-K2"
+  },
+  "W4-K3": {
+    "task": "trace",
+    "order": "미음 모양을 따라 그려 볼까?",
+    "target": "ㅁ",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W4-K3"
+  },
+  "W4-E1": {
+    "task": "trace",
+    "order": "Trace the letter L.",
+    "target": "L",
+    "item": "",
+    "count": 0,
+    "lang": "en",
+    "voice": "B4-E2"
+  },
+  "W4-E2": {
+    "task": "trace",
+    "order": "Trace the letter O.",
+    "target": "O",
+    "item": "",
+    "count": 0,
+    "lang": "en",
+    "voice": "F4-E2"
+  },
+  "W4-E3": {
+    "task": "trace",
+    "order": "Trace the letter I.",
+    "target": "I",
+    "item": "",
+    "count": 0,
+    "lang": "en",
+    "voice": "W4-E3"
+  },
+  "W4-M1": {
+    "task": "trace",
+    "order": "1 모양을 따라 그려 볼까?",
+    "target": "1",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W3-M1"
+  },
+  "W4-M2": {
+    "task": "trace",
+    "order": "2 모양을 따라 그려 볼까?",
+    "target": "2",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W4-M2"
+  },
+  "W4-M3": {
+    "task": "trace",
+    "order": "3 모양을 따라 그려 볼까?",
+    "target": "3",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W4-M3"
+  },
+  "W5-K1": {
+    "task": "trace",
+    "order": "배 모양을 따라 그려 볼까?",
+    "target": "배",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W5-K1"
+  },
+  "W5-K2": {
+    "task": "trace",
+    "order": "빵 모양을 따라 그려 볼까?",
+    "target": "빵",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W5-K2"
+  },
+  "W5-K3": {
+    "task": "trace",
+    "order": "우 모양을 따라 그려 볼까?",
+    "target": "우",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W5-K3"
+  },
+  "W5-E1": {
+    "task": "trace",
+    "order": "Trace the letter A.",
+    "target": "A",
+    "item": "",
+    "count": 0,
+    "lang": "en",
+    "voice": "F5-E2"
+  },
+  "W5-E2": {
+    "task": "trace",
+    "order": "Trace the letter B.",
+    "target": "B",
+    "item": "",
+    "count": 0,
+    "lang": "en",
+    "voice": "B5-E2"
+  },
+  "W5-E3": {
+    "task": "trace",
+    "order": "Trace the letter P.",
+    "target": "P",
+    "item": "",
+    "count": 0,
+    "lang": "en",
+    "voice": "W5-E3"
+  },
+  "W5-M1": {
+    "task": "trace",
+    "order": "3 모양을 따라 그려 볼까?",
+    "target": "3",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W4-M3"
+  },
+  "W5-M2": {
+    "task": "trace",
+    "order": "4 모양을 따라 그려 볼까?",
+    "target": "4",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W5-M2"
+  },
+  "W5-M3": {
+    "task": "trace",
+    "order": "5 모양을 따라 그려 볼까?",
+    "target": "5",
+    "item": "",
+    "count": 0,
+    "lang": "ko",
+    "voice": "W5-M3"
+  },
+  "S2-M1": {
+    "task": "how_many",
+    "order": "사과가 몇 개인지 같이 세어 볼까?",
+    "target": "1",
+    "choices": [
+      "1",
+      "2"
+    ],
+    "sample": 1,
+    "voice": "how_many"
+  },
+  "S2-M2": {
+    "task": "quantity_choice",
+    "order": "숫자와 같은 개수가 있는 카드를 찾아봐.",
+    "target": [
+      "apple",
+      1
+    ],
+    "choices": [
+      [
+        "apple",
+        1
+      ],
+      [
+        "apple",
+        2
+      ]
+    ],
+    "sample": "1",
+    "voice": "quantity_choice"
+  },
+  "S3-M1": {
+    "task": "how_many",
+    "order": "사과가 몇 개인지 같이 세어 볼까?",
+    "target": "2",
+    "choices": [
+      "2",
+      "1"
+    ],
+    "sample": 2,
+    "voice": "how_many"
+  },
+  "S3-M2": {
+    "task": "quantity_choice",
+    "order": "숫자와 같은 개수가 있는 카드를 찾아봐.",
+    "target": [
+      "apple",
+      2
+    ],
+    "choices": [
+      [
+        "apple",
+        2
+      ],
+      [
+        "apple",
+        1
+      ]
+    ],
+    "sample": "2",
+    "voice": "quantity_choice"
+  },
+  "S4-M1": {
+    "task": "how_many",
+    "order": "사과가 몇 개인지 같이 세어 볼까?",
+    "target": "3",
+    "choices": [
+      "3",
+      "2"
+    ],
+    "sample": 3,
+    "voice": "how_many"
+  },
+  "S4-M2": {
+    "task": "quantity_choice",
+    "order": "숫자와 같은 개수가 있는 카드를 찾아봐.",
+    "target": [
+      "apple",
+      3
+    ],
+    "choices": [
+      [
+        "apple",
+        3
+      ],
+      [
+        "apple",
+        2
+      ]
+    ],
+    "sample": "3",
+    "voice": "quantity_choice"
+  },
+  "S5-M1": {
+    "task": "how_many",
+    "order": "사과가 몇 개인지 같이 세어 볼까?",
+    "target": "5",
+    "choices": [
+      "5",
+      "4"
+    ],
+    "sample": 5,
+    "voice": "how_many"
+  },
+  "S5-M2": {
+    "task": "quantity_choice",
+    "order": "숫자와 같은 개수가 있는 카드를 찾아봐.",
+    "target": [
+      "apple",
+      5
+    ],
+    "choices": [
+      [
+        "apple",
+        5
+      ],
+      [
+        "apple",
+        4
+      ]
+    ],
+    "sample": "5",
+    "voice": "quantity_choice"
+  },
+  "S4-E1": {
+    "task": "label",
+    "order": "Find the word pear.",
+    "target": "pear",
+    "choices": [
+      "pear",
+      "banana"
+    ],
+    "sample": "pear",
+    "lang": "en",
+    "voice": "S4-E1"
+  },
+  "S4-E2": {
+    "task": "label",
+    "order": "Find the word orange.",
+    "target": "orange",
+    "choices": [
+      "orange",
+      "banana"
+    ],
+    "sample": "orange",
+    "lang": "en",
+    "voice": "S4-E2"
+  },
+  "S5-E1": {
+    "task": "label",
+    "order": "Find the word pear.",
+    "target": "pear",
+    "choices": [
+      "pear",
+      "banana",
+      "apple"
+    ],
+    "sample": "pear",
+    "lang": "en",
+    "voice": "S4-E1"
+  },
+  "S5-E2": {
+    "task": "label",
+    "order": "Find the word orange.",
+    "target": "orange",
+    "choices": [
+      "orange",
+      "banana",
+      "apple"
+    ],
+    "sample": "orange",
+    "lang": "en",
+    "voice": "S4-E2"
+  }
+}

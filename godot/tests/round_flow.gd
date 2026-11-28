@@ -95,11 +95,14 @@ func run() -> void:
 	var suffix := str(OS.get_process_id())
 	save_path = "user://test_round_" + suffix + ".cfg"
 	audio_path = "user://test_audio_" + suffix + ".cfg"
+	var base := ConfigFile.new()
+	base.set_value("round", "deck", ["word", "count", "english", "observe", "pattern"])
+	base.save(save_path)
 	launch()
 	await process_frame
-	check(game.at_home and game.page.route_buttons.size() == 4, "Missing four choices")
+	check(game.at_home and game.page.route_buttons.size() == 5, "Missing four choices")
 	tap(game.page.route_buttons.shop)
-	check(game.deck == game.FIRST and game.page.sound_on and game.page.get_node("Voice").playing, "First launch order or voice")
+	check(game.deck == ["word", "count", "english", "observe", "pattern"] and game.page.sound_on and game.page.get_node("Voice").playing, "First launch order or voice")
 	tap(game.pause_button)
 	check(paused and game.menu.visible, "Pause overlay")
 	tap(game.menu.get_child(0))
@@ -120,14 +123,7 @@ func run() -> void:
 		await process_frame
 	check(game.page.kind == "end" and game.page.prizes.size() == 5, "Missing prize shelf")
 	tap(game.page.get_node("Replay"))
-	check(game.deck.has("trace") and not game.deck.has("count") and game.deck[0] != first[0], "Second round variety")
-	var second: Array = game.deck.duplicate()
-	for key in second:
-		await play_card(key)
-		tap(game.page.get_node("Replay"))
-		await process_frame
-	check(game.index == 5 and game.page.kind == "end", "Second shelf unreachable")
-	tap(game.page.get_node("Replay"))
+	check(game.deck.size() == 5 and game.deck[0].begins_with("F4-"), "Legacy replay did not enter the new catalog")
 	tap(game.pause_button)
 	tap(game.menu.get_child(1))
 	check(game.index == 1 and game.results[0].outcome == "skipped", "Skip counted as direct")

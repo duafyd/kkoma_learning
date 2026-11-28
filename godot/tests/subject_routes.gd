@@ -34,19 +34,24 @@ func tap(node: Control) -> void:
 
 func finish_card() -> void:
 	var p = game.page
-	check(p.lesson.subject == game.route and p.sound_on and p.get_node("Voice").playing, "Subject or sound mismatch")
-	if p.lesson.task == "write":
+	check(p.kind[3] == game.Deck.TOPICS[game.route] and p.sound_on and p.get_node("Voice").playing, "Subject or sound mismatch")
+	if p.lesson.task == "trace":
 		var pad = p.trace
-		button(pad.global_position + pad.path[0], true)
-		for point in pad.path:
-			var ev := InputEventMouseMotion.new()
-			ev.position = pad.global_position + point
-			ev.button_mask = MOUSE_BUTTON_MASK_LEFT
-			root.push_input(ev, true)
-		button(pad.global_position + pad.path[-1], false)
+		for stroke in pad.strokes:
+			button(pad.global_position + stroke[0], true)
+			for point in stroke:
+				var ev := InputEventMouseMotion.new()
+				ev.position = pad.global_position + point
+				ev.button_mask = MOUSE_BUTTON_MASK_LEFT
+				root.push_input(ev, true)
+			button(pad.global_position + stroke[-1], false)
+	elif p.lesson.task == "fill":
+		while p.item_total < int(p.lesson.target):
+			tap(p.stock)
+		tap(p.confirm_fill)
 	else:
 		for choice in p.choices:
-			if choice.get_meta("key") == p.lesson.target:
+			if choice.get_meta("value") == p.lesson.target:
 				tap(choice)
 	check(p.finished, "Cannot solve " + p.kind)
 	tap(p.get_node("Replay"))
@@ -60,7 +65,7 @@ func run() -> void:
 	legacy.save(save_path)
 	launch()
 	await process_frame
-	check(game.page.route_buttons.size() == 4 and game.page.sound_on, "Direct menu or initial sound")
+	check(game.page.route_buttons.size() == 5 and game.page.sound_on, "Direct menu or initial sound")
 	tap(game.page.route_buttons.hangul)
 	finish_card()
 	var pending: String = game.deck[game.index]
@@ -84,7 +89,7 @@ func run() -> void:
 		var first: Array = game.deck.duplicate()
 		for i in range(game.index, 3):
 			finish_card()
-		check(game.page.kind == "subject_end", "Subject lacks finish")
+		check(game.page.kind == "catalog_end", "Subject lacks finish")
 		tap(game.page.get_node("Replay"))
 		check(game.deck != first and game.deck[0] != first[0], "Replay variation")
 		for i in 3:
@@ -92,7 +97,7 @@ func run() -> void:
 		tap(game.mode_button)
 		check(game.writing_only and game.deck.size() == 3, "Writing shelf missing")
 		for i in 3:
-			check(game.page.lesson.task == "write", "Writing route has wrong task")
+			check(game.page.lesson.task == "trace", "Writing route has wrong task")
 			finish_card()
 		tap(game.pause_button)
 		check(game.at_home, "Cannot leave subject summary")

@@ -2,10 +2,10 @@ extends "res://fruit_card.gd"
 
 signal route_selected(route: String)
 const CONTENT := preload("res://subject_cards.json")
-const TITLES := {"hangul":"한글 놀이", "english":"영어 놀이", "numbers":"숫자 놀이", "shop":"과일 가게"}
+const TITLES := {"hangul":"한글 놀이", "english":"영어 놀이", "numbers":"숫자 놀이", "shop":"과일 가게", "bakery":"빵집"}
 const ICONS := {
 	"hangul": preload("res://art/book.webp"), "english": preload("res://art/blocks.webp"),
-	"numbers": preload("res://art/abacus.webp"), "shop": preload("res://art/fruit_basket.png")
+	"numbers": preload("res://art/abacus.webp"), "shop": preload("res://art/fruit_basket.png"), "bakery": preload("res://art/toast.webp")
 }
 var subject := "hangul"
 var resume_routes: Array = []
@@ -25,7 +25,10 @@ func start_activity() -> void:
 			var label: String = TITLES[route]
 			if route in resume_routes:
 				label += "\n이어서"
-			var button := card(label, Rect2(440 + (i % 2) * 382, 301 + floori(i / 2.0) * 175, 360, 150), route_selected.emit.bind(route))
+			var bounds := Rect2(440 + (i % 2) * 382, 283 + floori(i / 2.0) * 127, 360, 111)
+			if route == "bakery":
+				bounds = Rect2(440, 537, 742, 109)
+			var button := card(label, bounds, route_selected.emit.bind(route))
 			var style: StyleBoxFlat = $Listen.get_theme_stylebox("normal").duplicate()
 			style.content_margin_left = 24
 			style.content_margin_right = 22
@@ -33,7 +36,7 @@ func start_activity() -> void:
 				button.add_theme_stylebox_override(state, style)
 			button.icon = ICONS[route]
 			button.expand_icon = true
-			button.add_theme_constant_override("icon_max_width", 98)
+			button.add_theme_constant_override("icon_max_width", 91)
 			button.add_theme_font_size_override("font_size", 34)
 			route_buttons[route] = button
 		$Prompt.hide()

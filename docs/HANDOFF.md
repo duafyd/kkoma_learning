@@ -1,16 +1,25 @@
 # 꼬마런닝 · 완성본 개발 인수인계
 
-**2026-11-28 · 현재 APK는 Godot 0.6입니다.** 저장소는 `duafyd/kkoma_learning`, 작업 브랜치는 `prototype/worksheet`입니다.
+**2026-11-28 · Godot 0.7 기기 검토용 APK** · 저장소 `duafyd/kkoma_learning` · 브랜치 `prototype/worksheet`
 
-- 첫 화면의 **한글 놀이 / 영어 놀이 / 숫자 놀이 / 과일 가게**는 서로 독립된 진입점입니다. 가게를 거쳐 과목에 들어가는 옛 동선은 폐기했습니다. 과목별 세 장과 따라 쓰기 전용 세 장, 가게의 혼합 다섯 장을 유지합니다. [실행 화면](preview/play-menu.jpg)
-- `godot/round.gd`는 놀이 선택·편성·모드별 저장과 돌아가기를, `subject_card.gd`와 `subject_cards.json`은 독립 과목 UI와 21개 활동 정의를 담당합니다. 세 과목 각각 이름/수량 찾기 4개와 쓰기 3개입니다. 쓰기 경로는 `trace_two.gd`에 있습니다. 과일 가게는 기존 `market.gd`, `fruit_card.gd`를 사용합니다. 가게의 여섯 대표 장면과 독립 과목 문항을 출시 원고 80개 완성으로 집계하지 않습니다.
-- `user://fruit_round.cfg`에서 0.5의 `round` 구역은 과일 가게용입니다. 독립 과목은 과목 키와 일반/쓰기 구역에 각각 기록하고, 어떤 모드로 이어갈지 따로 저장합니다. 소리 설정은 `preferences.cfg`로 공통입니다.
-- 검증은 리소스를 가져온 뒤 `res://tests/subject_routes.gd`, `res://tests/round_flow.gd`, `res://tests/tap_flow.gd`를 각각 headless로 실행합니다. 새 테스트는 0.5 저장 복원, 독립 진도, 모드 전환, 세 과목의 일반·쓰기 완주와 재실행을 확인합니다. 수동 검토에서는 첫 화면에서 과목마다 바로 진입하고 갤럭시탭에서 손가락 크기·음량을 확인합니다.
-- 다음 개발은 [1.0 작업 장부](PRODUCTION_PLAN.md)의 연령 설정·콘텐츠 카탈로그·빵집 연결입니다. 현재 활동은 만 4세 대표 수준이고 연령별 분기와 빵집은 출시 제작 범위입니다. [80개 주문 원고](ORDER_CATALOG.md) · [출시 명세](RELEASE_SPEC.md)
+- **실행 범위**는 연령 첫 설정·보호자 최근 활동, 독립 한글·영어·숫자와 쓰기 전용 모드, 과일 가게·빵집, 이어하기·마무리 진열대입니다. 첫 실행은 음성과 효과음 켜짐입니다. 갤럭시탭 가로에서 한 손가락으로 조작합니다. [놀이마당](preview/play-menu-07.jpg) · [빵집](preview/bakery-07.jpg) · [한글 쓰기](preview/writing-07.jpg)
+- **콘텐츠**는 `godot/activity_catalog.json`에 기본 가게 주문 80개, 연령별 따라 쓰기 36개, 독립 과목 추가 활동 12개가 있습니다. `catalog_card.gd`에서 보기, 담기, 배열, 시각 도움, 완료 피드백을 구현합니다. `trace_two.gd`의 경로는 여러 획을 순서대로 진행합니다. 대사는 `sound/catalog`의 오프라인 A 합성음이며 주문 정의의 `voice`로 연결합니다. 중복 대사는 클립을 공유합니다.
+- **진입·편성**은 `round.tscn`과 `round.gd`, `round_deck.gd`가 담당합니다. 연령을 바꾸면 진행 중인 판은 그 판의 연령으로 마치고 다음 판부터 새 설정이 적용됩니다. 가게는 다섯 영역을 한 번씩 제시하며 쓰기는 최대 한 장입니다. 최근 제시한 문항과 도움을 받은 문항의 유사 목표를 다음 편성에 사용합니다.
+- **호환**은 `user://fruit_round.cfg`의 기존 0.5/0.6 덱을 완료할 때까지 원래 장면으로 처리하고 새 판부터 카탈로그를 사용합니다. 놀이와 일반/쓰기 모드는 진도를 따로 저장합니다. `preferences.cfg`는 기존 음소거 설정을 읽습니다.
+- **검증**은 아래 명령으로 재현합니다. 카탈로그 검사는 128개 활동의 시작 음성·오답·힌트·완료와 두 가게 편성을 확인하고, 나머지는 기존 사과 조작·과목별 왕복·이전 저장을 검증합니다. 스토어 배포용 서명과 아동 대상 갤럭시탭 실기 관찰은 후속 검토입니다.
+- **다음 작업**은 [작업 장부](PRODUCTION_PLAN.md)의 실기기 검수입니다. 만 2~3세와 4~5세가 소리를 듣고 시작하는 곳, 손가락에 가려지는 획, 빵집 수량 조작, 오프라인 재실행을 관찰하고 막히는 장면을 수정합니다. 장면별 음성 톤과 문항 교육 검토도 이때 반영합니다.
 
-0.6 검증 결과는 세 회귀 검사 각각 실패 0건, 모의 화면 터치로 영어 L 직접 쓰기 완료입니다. APK SHA-256은 `9ad44652cbd913d78ed097c1aedf7c4f48afba0c94691775a126e733741440d7`입니다.
+```sh
+godot --headless --editor --path godot --import
+godot --headless --path godot --script res://tests/catalog_flow.gd
+godot --headless --path godot --script res://tests/subject_routes.gd
+godot --headless --path godot --script res://tests/round_flow.gd
+godot --headless --path godot --script res://tests/tap_flow.gd
+```
 
-새 채팅에서는 **duafyd/kkoma_learning의 prototype/worksheet 최신 브랜치에서 docs/HANDOFF.md와 docs/PRODUCTION_PLAN.md를 읽고 장부의 다음 작업부터 이어가**라고 요청하면 됩니다.
+0.7의 회귀 검사 네 종은 실패 0건입니다. 서명은 0.6 APK와 일치하며 패키지의 128개 카드와 주문 음성을 확인했습니다. APK SHA-256은 `a758963dd5ab800c8c601ecadff1ce57557fe6765c5dc2c7935ae857c15d9048`입니다.
+
+새 채팅에서는 **duafyd/kkoma_learning의 prototype/worksheet 최신 브랜치에서 docs/HANDOFF.md와 docs/PRODUCTION_PLAN.md를 읽고 1.0을 이어가**라고 요청하면 됩니다.
 
 ## 0.5 재현
 
